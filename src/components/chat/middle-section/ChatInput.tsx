@@ -1,14 +1,15 @@
 import React from 'react';
+import FollowUpQuestion from "./elements/FollowUpQuestion";
 
 const ChatInputSection: React.FC = () => {
     // @ts-ignore
     return (
         <section id="chat-input-section">
             <div id="follow-up-questions-section">
-                <div className="follow-up-question">Ajahn Brahm is the VERY BEST. No question...</div>
-                <div className="follow-up-question">I LOVE Ajahn Brahm &lt;3....</div>
-                <div className="follow-up-question">I LOVE Ajahn Brahm SOOOO FUKEN MUCH &lt;3....</div>
-                <div className="follow-up-question">I LOVE Ajahn Brahm ENORMOUSLY &lt;3....</div>
+                <FollowUpQuestion questionContent="Ajahn Brahm is the VERY BEST. No question..." />
+                <FollowUpQuestion questionContent="Ajahn Brahm is the VERY BEST. Indeed" />
+                <FollowUpQuestion questionContent="Ajahn Brahm is the VERY BEST. No question..." />
+                <FollowUpQuestion questionContent="Ajahn Brahm is the VERY BEST. " />
             </div>
             <div id="chat-input-top">
                 <div id="chat-input-top-row-1">
@@ -41,7 +42,7 @@ const ChatInputSection: React.FC = () => {
                         </div>
                     </div>
                     <div id="tags-section">
-                        <div id="tag-list">
+                        <div id="new-message-tag-list">
                             <div className="chat-tag">Tag name <div className="chat-tag-delete"
                                                                     style={{opacity: 0}}>X</div>
                             </div>
