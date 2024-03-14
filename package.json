@@ -20,12 +20,17 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
+    "eject": "react-scripts eject",
+    "dev": "concurrently \"npm run start\" \"cd server && npm start\""
+},
+
   "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:@typescript-eslint/recommended"
     ]
   },
   "browserslist": {
@@ -39,5 +44,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }
