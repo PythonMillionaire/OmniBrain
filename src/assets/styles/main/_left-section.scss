@@ -16,28 +16,31 @@
 #chat-list-main {
   height: 100%;
   max-width: none;
-  background-color: #fff;
-  border-right: 0 solid #000;
+  background: linear-gradient(to bottom, #f7f9fc, #fafafa);
   flex-flow: column;
   padding: 0;
   display: flex;
+
 }
 
 .chat-list-item-container {
   width: 100%;
   height: auto;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color-lighter);
   border-radius: 0;
   padding: 10px 14px;
   @include flex(space-between, $gap: 10px);
 
+
+  background: linear-gradient(to bottom, white, #fafafa);
+
   &:hover .chat-list-item-menu {
-    display: block;
+    visibility: visible;
   }
 }
 
 .chat-list-item-menu {
-  display: none;
+  visibility: hidden;
   font-size: 1.3em;
   font-weight: 600;
   letter-spacing: 0.05em;
@@ -58,6 +61,26 @@
   display: flex;
 }
 
+
+#chat-list {
+  height: 100%;
+  background-color: #fff;
+  flex-flow: column;
+  display: flex;
+}
+
+#chat-list-top {
+  width: 100%;
+  height: auto;
+  background: linear-gradient(to bottom, #f7f9fc, #fafafa);
+  padding: 10px 14px 14px;
+
+  @include flex(left, stretch, $direction: column, $gap: 23px);
+
+  border-bottom: 1px solid var(--border-color-lighter);
+
+
+}
 
 #chat-list-top-row {
   justify-content: space-between;
@@ -110,7 +133,7 @@
 }
 
 #account-avatar {
-  margin-right: 10px;
+  margin-right: 8px;
   width: 8%;
 
   img {

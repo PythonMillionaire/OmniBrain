@@ -1,5 +1,7 @@
 import React from 'react';
 import FollowUpQuestion from "./elements/FollowUpQuestion";
+import Slider from "../../general/Slider";
+import ProviderButton from "./elements/ProviderButton";
 
 const ChatInputSection: React.FC = () => {
     // @ts-ignore
@@ -16,8 +18,7 @@ const ChatInputSection: React.FC = () => {
                     <div className="chat-input-detail-level-slider">
                         <div>Response detail level <br/>
                         </div>
-                        <input type="range" min="0" max="5" value="0" className="slider" step="1"
-                               id="response-detail-level-slider"/>
+                        <Slider/>
                     </div>
                     <div id="ai-response-settings-checkboxes">
                         <label className="checkbox-field">
@@ -65,11 +66,11 @@ const ChatInputSection: React.FC = () => {
             </div>
             <div id="chat-input-bottom">
                 <div id="provider-buttons-container">
-                    <a className="provider-button" href="#">Provider</a>
-                    <a className="provider-button" href="#">Provider</a>
-                    <a className="provider-button" href="#">Provider</a>
-                    <a className="provider-button" href="#">Provider</a>
-                    <a className="provider-button" href="#">Provider</a>
+                    <ProviderButton providerName={"Midjourney"}/>
+                    <ProviderButton providerName={"ChatGPT 3.5"}/>
+                    <ProviderButton providerName={"Claude 3"}/>
+                    <ProviderButton providerName={"Gemini 1.5"}/>
+                    <ProviderButton providerName={"ChatGPT 4"}/>
                 </div>
                 <div id="prompt-settings">
                     <div id="prompt-settings-checkboxes">

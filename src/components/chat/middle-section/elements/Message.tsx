@@ -1,5 +1,6 @@
 import React from "react";
 import ChatMessageTag from "./ChatMessageTag";
+import aiLogo from "../../../../assets/images/ai-providers/logo-chatgpt.svg";
 
 interface MessageProps {
     sender: string;
@@ -14,6 +15,11 @@ const Message: React.FC<MessageProps> = ({ sender, messageContents, senderButton
         <div className={`chat-message-outer-container ${sender.toLowerCase()}`}>
             <div className="chat-message-inner-container">
                 <div className="chat-message-info">
+                    {sender === "Agent" && (
+                        <div className="chat-list-item-ai-model-logo-message">
+                            <img src={aiLogo} alt="AI Model Logo" />
+                        </div>
+                    )}
                     <div className="chat-message-info-sender">{sender}</div>
                 </div>
 

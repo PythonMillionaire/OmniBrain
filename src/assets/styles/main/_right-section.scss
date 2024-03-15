@@ -3,22 +3,23 @@
 #right-section {
   width: 20%;
   max-width: 300px;
-  border-left: 1px solid var(--border-color);
-  pointer-events: auto;
-  flex-flow: column;
-  margin-left: 0;
-  margin-right: 0;
-  display: flex;
+
+  @include flex(flex-start, center, $direction: column);
+
+  > section {
+    width: 100%;
+
+    padding-left: 14px;
+    padding-right: 14px;
+  }
 }
 
 #tab-headers-section {
   height: 43px;
-  grid-column-gap: 16px;
-  grid-row-gap: 16px;
-  border-bottom: 1px solid var(--border-color);
-  padding-left: 12px;
-  padding-right: 12px;
-  display: flex;
+
+  border-bottom: 1px solid var(--border-color-lighter-two);
+
+  @include flex(flex-start, $gap: 16px);
 }
 
 .tab-header {
@@ -27,15 +28,16 @@
 }
 
 #tab-contents {
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
-  flex-flow: column;
-  padding: 12px 10px;
-  display: flex;
+  padding-top: 12px;
+  @include flex($gap: 22px, $direction: column);
+}
+
+#saved-prompts-list {
+  width: 100%;
 }
 
 .saved-prompt {
-  border: 1px solid var(--border-color);
+  border: 2px solid var(--border-color-hued);
   border-radius: 12px;
   padding: 6px 12px;
 }

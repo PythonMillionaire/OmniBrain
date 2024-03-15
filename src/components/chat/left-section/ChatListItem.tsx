@@ -1,11 +1,13 @@
 import React from 'react';
 
+import aiLogo from "../../../assets/images/ai-providers/logo-chatgpt.svg";
+
 const ChatListItem: React.FC = () => {
     return (
         <div className="chat-list-item-container">
             <div className="chat-list-item-ai-model-logo">
                 <img
-                    src="https://assets-global.website-files.com/plugins/Basic/assets/placeholder.60f9b1840c.svg" />
+                    src={aiLogo} />
             </div>
             <div className="chat-list-item-information">
                 <div className="chat-list-item-top-row">

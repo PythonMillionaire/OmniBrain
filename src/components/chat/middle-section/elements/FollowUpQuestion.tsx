@@ -6,7 +6,7 @@ interface FollowUpQuestionProps {
 
 const FollowUpQuestion: React.FC<FollowUpQuestionProps> = ({questionContent}) => {
     return (
-        <div className="follow-up-question">{questionContent}</div>
+        <div className="button follow-up-question">{questionContent}</div>
     )
 }
 
