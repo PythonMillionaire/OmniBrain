@@ -1,0 +1,169 @@
+@import "form-elements";
+@import "main/left-section";
+@import "main/middle-section";
+@import "main/right-section";
+@import "mixins-and-variables";
+
+html
+{
+    height: 100%;
+
+    ms-text-size-adjust: 100%;
+    webkit-text-size-adjust: 100%;
+    font-family: sans-serif;
+    font-size: 62.5%;
+
+    @include cursor
+}
+
+body
+{
+    margin: 0;
+    height: 100vh;
+    flex-flow: column;
+    display: flex;
+    overflow: hidden;
+    font-size: 1.4rem;
+
+    min-height: 100%;
+    color: #333;
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+#main
+{
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    min-width: 0;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    background-color: #fff;
+    justify-content: space-between;
+    margin-left: 0;
+    margin-right: 0;
+    display: flex;
+}
+
+#tags-section
+{
+    width: 40%;
+    height: 100%;
+    border-width: 1px 0 0 1px;
+    border-style: solid;
+    border-color: var(--border-color-lighter);
+    background-color: #f5f5f5;
+    border-top-left-radius: 8px;
+    padding: 8px;
+
+    @include flex(flex-start, $gap: 12px);
+}
+
+*
+{
+    box-sizing: border-box;
+}
+
+.add-new-circle
+{
+    width: 1.6em;
+    height: 1.6em;
+    border: 2px solid var(--border-color-hued);
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    margin-right: 6px;
+    padding: 0;
+    display: flex;
+}
+
+.agent-logo-message
+{
+    width: 2em;
+    height: 2em;
+    border-radius: 8px;
+}
+
+/*.add-new {
+    font-weight: 600;
+}*/
+
+.button
+{
+    user-select: none;
+}
+
+.search-icon
+{
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+:is(input, textarea)
+{
+    font: inherit;
+
+    &:focus-visible
+    {
+        outline: none;
+    }
+}
+
+
+a
+{
+    text-decoration: none;
+}
+
+a, button, .button
+{
+    @include pointer;
+}
+
+img
+{
+    border: 0;
+}
+
+main, menu, nav, section
+{
+    display: block;
+}
+
+.custom-tooltip {
+    position: absolute;
+    background-color: hsl(150 30% 94% / 1); //hsl(226deg 100% 98.44%);
+    color: #333;
+    text-align: center;
+    padding: 8px 18px;
+    border-radius: 22px;
+    z-index: 1000;
+    top: -28px;
+    border: 2px solid #3E6638; //var(--border-color-hued-subdued);
+    left: 50%;
+    text-wrap: wrap;
+    transform: translateX(-50%);
+    font-weight: 300;
+    line-height: normal;
+    @include cursor;
+
+    max-width: 400px;
+
+    filter: drop-shadow(0 0 14px hsl(226 20% 20% / 0.14));
+
+    &::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 7px;
+        border-style: solid;
+    }
+
+    &.custom-tooltip:not(.upside-down)::before {
+        border-color: #E6C50B transparent transparent transparent;
+        border-bottom: none;
+        bottom: -9px;
+    }
+}

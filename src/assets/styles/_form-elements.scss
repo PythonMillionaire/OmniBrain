@@ -1,0 +1,127 @@
+@import "mixins-and-variables";
+
+$slider-width: 150px;
+$thumb-color: hsl(223, 50%, 60%);
+
+.checkbox-field {
+  position: relative;
+
+  height: 100%;
+  padding-left: 0;
+  padding-right: 10px;
+
+  @include flex($gap: 6px);
+}
+
+.checkbox-label {
+  white-space: nowrap;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  @include flex;
+}
+
+input
+{
+  padding: 12px;
+  border: 1px solid var(--border-color-hued-subdued);
+  height: 2.4em;
+  border-radius: 10px;
+}
+
+input[type="checkbox"] {
+  margin: 0 2px 0 0;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  border: 1px solid white; // Fix for FF unable to apply focus style bug
+  width: $slider-width; // Required for proper track sizing in FF
+
+  &::-webkit-slider-runnable-track {
+    width: $slider-width;
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: $thumb-color;
+    margin-top: -4px;
+
+    filter: drop-shadow(0 0 4px hsla(225, 60%, 20%, 0.12));
+  }
+
+  &:focus {
+    outline: none;
+
+    &::-webkit-slider-runnable-track {
+      background: #ccc;
+    }
+  }
+
+  &::-moz-range-track {
+    width: $slider-width;
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+  }
+
+  &::-moz-range-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: $thumb-color;
+  }
+
+  &:-moz-focusring {
+    outline: 1px solid white;
+    outline-offset: -1px;
+  }
+
+  &:focus::-moz-range-track {
+    background: #ccc;
+  }
+
+  &::-ms-track {
+    width: $slider-width;
+    height: 5px;
+    background: transparent;
+    border-color: transparent;
+    border-width: 6px 0;
+    color: transparent;
+  }
+
+  &::-ms-fill-lower {
+    background: #777;
+    border-radius: 10px;
+  }
+
+  &::-ms-fill-upper {
+    background: #ddd;
+    border-radius: 10px;
+  }
+
+  &::-ms-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: $thumb-color;
+  }
+
+  &:focus::-ms-fill-lower {
+    background: #888;
+  }
+
+  &:focus::-ms-fill-upper {
+    background: #ccc;
+  }
+}

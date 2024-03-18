@@ -27,16 +27,12 @@
 }
 
 
-#chat-message-action-bar {
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+#chat-messages-tool-bar {
   border-bottom: 1px solid var(--border-color-lighter-two);
-  flex-flow: row;
   flex: 0 auto;
-  justify-content: space-between;
-  align-items: center;
   padding: 4px 12px;
-  display: flex;
+
+  @include flex(space-between);
 
   background: linear-gradient(to bottom, white, #fafafa);
 
@@ -51,6 +47,14 @@
   @include flex;
 }
 
+#add-new-tag-button-input, .add-new-tag-button-message
+{
+  justify-content: center;
+  align-items: center;
+  margin-right: 0;
+  display: flex;
+}
+
 #chat-input-top-row-2 {
   width: 100%;
   display: flex;
@@ -58,8 +62,7 @@
 
 #chat-input-top-row-1 {
   width: 729.406px;
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
+  gap: 20px;
   display: flex;
 }
 
@@ -147,7 +150,7 @@
   {
     border: 1px solid hsl(226deg 55.31% 84.52%);
     box-shadow: inset 0 0 3px hsl(226deg 25.31% 84.52%);
-    background-color: hsl(225 10% 94% / 1);
+    background-color: hsl(225 6% 97% / 1);
     border-radius: 10px;
   }
 
@@ -168,14 +171,12 @@
 
 
 #chat-menu {
-  grid-column-gap: 28px;
-  grid-row-gap: 28px;
+  gap: 28px;
   display: flex;
 }
 
 #chat-filter-search {
-  grid-column-gap: 12px;
-  grid-row-gap: 12px;
+  gap: 12px;
   display: flex;
 }
 
@@ -374,11 +375,13 @@
   user-select: none;
   width: 100%;
   margin-bottom: 8px;
-  padding: 0 24px;
+  padding: 0 18px;
   font-weight: 700;
-  @include flex($gap: 0.4em);
+  @include flex($gap: 0.5em);
 
   grid-area: message-sender;
+
+  height: 2em;
 }
 
 .chat-list-item-ai-model-logo, .chat-list-item-ai-model-logo-message {
@@ -397,11 +400,9 @@
 
 .chat-message-buttons-side {
   grid-area: buttons-side;
-  gap: 8px;
-  flex-flow: column;
-  justify-content: center;
   padding-left: 12px;
-  display: flex;
+
+  @include flex(center, flex-start, $gap: 8px, $direction: column);
 }
 
 $chat-bottom-border-width: 2px;
@@ -478,6 +479,10 @@ $chat-bottom-border-width: 2px;
   border-top-left-radius: 8px;
   padding: 0;
   display: flex;
+}
+
+.chat-message-tag-list {
+  @include flex(flex-start, $gap: 12px);
 }
 
 #provider-buttons-container {
@@ -632,6 +637,8 @@ $chat-bottom-border-width: 2px;
         "empty0 message-sender empty1"
         "checkbox message buttons-side"
         "empty3 action-buttons empty4";
+
+  align-items: flex-start;
 }
 
 @mixin shadowColor($bg, $shadow) {
@@ -662,6 +669,10 @@ $chat-bottom-border-width: 2px;
     z-index: 0;
 
   }
+}
+
+.chat-message-action-buttons-bottom {
+
 }
 
 .chat-message-select-checkbox {

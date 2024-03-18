@@ -1,0 +1,42 @@
+@use 'sass:math';
+
+:root
+{
+  --border-color: hsl(0 2% 60% / 1);
+  --border-color-lighter: hsl(0 2% 60% / 0.6);
+  --border-color-lighter-two: hsl(0 2% 60% / 0.3);
+  --border-color-hued: hsl(226deg 55.31% 66.52%);
+  --border-color-hued-subdued: hsl(226deg 34% 60%);
+  --border-color-hued-complementary: hsl(226deg 55.31% 66.52%);
+
+  --soft-shadow-top: drop-shadow(0 -4px 6px hsla(225, 90%, 40%, 0.05));
+  --soft-shadow-bottom: drop-shadow(0 4px 6px hsla(225, 90%, 40%, 0.05));
+  --soft-shadow-right: drop-shadow(4px 0 6px hsla(225, 90%, 40%, 0.05));
+  --soft-shadow-left: drop-shadow(-4px 0 6px hsla(225, 90%, 40%, 0.05));
+
+  --primary-color: hsl(226deg 55.31% 66.52%);
+}
+
+
+@mixin flex($justify-content: center, $align-items: center, $direction: row, $gap: 0px, $wrap: nowrap, $inline: false) {
+  display: if($inline, inline-flex, flex);
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-direction: $direction;
+
+  gap: $gap;
+
+  flex-wrap: $wrap;
+}
+
+@mixin cursor {
+  cursor: url("../images/cursors/cursor.png"), auto;
+}
+
+@mixin pointer {
+  cursor: url("../images/cursors/cursor-pointer.png") 8 0, auto;
+}
+
+@mixin scrollCursor {
+  cursor: url("../images/cursors/cursor-scroll.png"), auto;
+}

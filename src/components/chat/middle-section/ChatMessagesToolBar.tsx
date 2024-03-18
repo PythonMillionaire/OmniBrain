@@ -3,7 +3,7 @@ import SearchButton from "../../general/SearchButton";
 
 const ChatMessagesToolBar: React.FC = () => {
     return (
-        <section id="chat-message-action-bar">
+        <section id="chat-messages-tool-bar">
             <div id="chat-menu">
                 <div id="export-import">Export/import</div>
                 <div id="editor-settings">Chat settings</div>

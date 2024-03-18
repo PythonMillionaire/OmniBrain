@@ -7,8 +7,8 @@ const ChatMessages: React.FC = () => {
         <section id="chat-messages-section">
             <UserMessage  messageContents={"Test\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntest"}/>
             <AgentMessage  messageContents={"Test\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntest"}/>
-            <UserMessage  messageContents={"Test\ntest\ntest\ntest"}/>
-            <AgentMessage  messageContents={"Test\ntest\ntest\ntest"}/>
+            <UserMessage  messageContents={"Test"}/>
+            <AgentMessage  messageContents={"Test"}/>
         </section>
     );
 };

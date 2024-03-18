@@ -5,7 +5,6 @@ import ProviderSendButton from "./elements/ProviderSendButton";
 import Checkbox from "../../general/Checkbox";
 
 const ChatInputSection: React.FC = () => {
-    // @ts-ignore
     return (
         <section id="chat-input-section">
             <div id="follow-up-questions-section">
@@ -22,9 +21,9 @@ const ChatInputSection: React.FC = () => {
                         <Slider/>
                     </div>
                     <div id="ai-response-settings-checkboxes">
-                        <Checkbox text={"Include examples"} tooltipText={"Whether or not the AI should include examples in its output."} />
-                        <Checkbox text={"Include explanation"} tooltipText={"Whether or not the AI should explain the output."} />
-                        <Checkbox text={"Split output"} tooltipText={"Whether the AI's output should split into the sections defined in Settings."} />
+                        <Checkbox text={"Include examples"} tooltipText={"Whether or not the AI should include illustrative examples in its output."} />
+                        <Checkbox text={"Include explanation"} tooltipText={"Whether or not the AI should also provide explanations in addition to completing the given task."} />
+                        <Checkbox text={"Split output"} tooltipText={"Whether the AI's output should split into sections, as defined in Settings."} />
                     </div>
                 </div>
                 <div id="chat-input-top-row-2">
@@ -42,7 +41,7 @@ const ChatInputSection: React.FC = () => {
                             <div className="chat-tag">Tag name <div className="button chat-tag-delete">X</div>
                             </div>
                         </div>
-                        <div className="button add-new" id="add-new-tag-button">
+                        <div className="button add-new" id="add-new-tag-button-input">
                             <div className="add-new-circle">+</div>
                         </div>
                     </div>
@@ -68,18 +67,9 @@ const ChatInputSection: React.FC = () => {
                 </div>
                 <div id="prompt-settings">
                     <div id="prompt-settings-checkboxes">
-                        <label className="checkbox-field">
-                            <input type="checkbox"/>
-                            <span className="checkbox-label">Keep prompt after sending</span>
-                        </label>
-                        <label className="checkbox-field">
-                            <input type="checkbox"/>
-                            <span className="checkbox-label">Improve prompt before sending</span>
-                        </label>
-                        <label className="checkbox-field">
-                            <input type="checkbox"/>
-                            <span className="checkbox-label">Don't include other messages</span>
-                        </label>
+                        <Checkbox text={"Keep prompt after sending"} tooltipText={"Whether the prompt should remain in the input field after the message is sent."} />
+                        <Checkbox text={"Improve prompt before sending"} tooltipText={"Whether the prompt should first be improved by the AI defined in Settings before being sent."} />
+                        <Checkbox text={"Don't include previous messages"} tooltipText={"Whether all previous chat messages should be omitted from next request."} />
                     </div>
                 </div>
             </div>

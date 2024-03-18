@@ -9,6 +9,7 @@ const Main: React.FC = () => {
             <LeftSection />
             <MiddleSection />
             <RightSection />
+            <div id="portal-root"></div>
         </div>
     );
 };
