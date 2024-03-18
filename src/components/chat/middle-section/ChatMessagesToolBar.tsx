@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchButton from "../../general/SearchButton";
 
-const ChatMessageActionBar: React.FC = () => {
+const ChatMessagesToolBar: React.FC = () => {
     return (
         <section id="chat-message-action-bar">
             <div id="chat-menu">
@@ -11,7 +11,7 @@ const ChatMessageActionBar: React.FC = () => {
             <div id="chat-filter-search">
                 <div id="chat-message-filters">
                     <input id="filter-chat-tag-section"/>
-                    <div className="chat-tag-filter">Tag name <div className="chat-tag-delete" style={{opacity: 0}}>X</div>
+                    <div className="chat-tag-filter">Tag name <div className="button chat-tag-delete">X</div>
                     </div>
 
                 </div>
@@ -27,4 +27,4 @@ const ChatMessageActionBar: React.FC = () => {
     );
 };
 
-export default ChatMessageActionBar;
+export default ChatMessagesToolBar;

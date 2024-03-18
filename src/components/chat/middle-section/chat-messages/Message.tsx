@@ -1,23 +1,28 @@
 import React from "react";
 import ChatMessageTag from "./ChatMessageTag";
 import aiLogo from "../../../../assets/images/ai-providers/logo-chatgpt.svg";
+import userAvatar from '../../../../assets/images/user-avatar.svg';
+import {MessageSender} from "../../../../types/enums";
 
 interface MessageProps {
-    sender: string;
+    sender: MessageSender;
     messageContents: string;
-    senderButtonsBottom: React.ReactNode;
-    senderButtonsSide: React.ReactNode;
+    actionButtons: React.ReactNode;
     children?: React.ReactNode;
 }
 
-const Message: React.FC<MessageProps> = ({ sender, messageContents, senderButtonsSide, senderButtonsBottom, children }) => {
+const Message: React.FC<MessageProps> = ({ sender, messageContents, actionButtons, children }) => {
     return (
         <div className={`chat-message-outer-container ${sender.toLowerCase()}`}>
             <div className="chat-message-inner-container">
                 <div className="chat-message-info">
-                    {sender === "Agent" && (
+                    {sender === MessageSender.Agent ? (
                         <div className="chat-list-item-ai-model-logo-message">
-                            <img src={aiLogo} alt="AI Model Logo" />
+                            <img className={"message-avatar"} src={aiLogo} alt="AI Model Logo" />
+                        </div>
+                    ) : (
+                        <div className="account-avatar-message">
+                            <img className={"message-avatar"} src={userAvatar} alt="User avatar" />
                         </div>
                     )}
                     <div className="chat-message-info-sender">{sender}</div>
@@ -39,7 +44,7 @@ const Message: React.FC<MessageProps> = ({ sender, messageContents, senderButton
                 </div>
 
                 <div className="chat-message-buttons-side">
-                    {senderButtonsSide}
+                    {actionButtons}
                 </div>
 
                 <div className="chat-message-bottom">
@@ -49,7 +54,7 @@ const Message: React.FC<MessageProps> = ({ sender, messageContents, senderButton
                         <div className="chat-message-tag-list">
                             <ChatMessageTag/>
                         </div>
-                        {senderButtonsBottom}
+                        {actionButtons}
                     </div>
                 </div>
             </div>

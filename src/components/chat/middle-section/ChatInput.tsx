@@ -1,7 +1,8 @@
 import React from 'react';
 import FollowUpQuestion from "./elements/FollowUpQuestion";
 import Slider from "../../general/Slider";
-import ProviderButton from "./elements/ProviderButton";
+import ProviderSendButton from "./elements/ProviderSendButton";
+import Checkbox from "../../general/Checkbox";
 
 const ChatInputSection: React.FC = () => {
     // @ts-ignore
@@ -21,15 +22,9 @@ const ChatInputSection: React.FC = () => {
                         <Slider/>
                     </div>
                     <div id="ai-response-settings-checkboxes">
-                        <label className="checkbox-field">
-                            <input type="checkbox"/>
-                            <span className="checkbox-label">Include examples</span>
-                        </label>
-                        <label className="checkbox-field">
-                            <input type="checkbox"/>
-                            <span className="checkbox-label">Split output</span>
-                        </label>
-
+                        <Checkbox text={"Include examples"} tooltipText={"Whether or not the AI should include examples in its output."} />
+                        <Checkbox text={"Include explanation"} tooltipText={"Whether or not the AI should explain the output."} />
+                        <Checkbox text={"Split output"} tooltipText={"Whether the AI's output should split into the sections defined in Settings."} />
                     </div>
                 </div>
                 <div id="chat-input-top-row-2">
@@ -38,17 +33,16 @@ const ChatInputSection: React.FC = () => {
                             <div className="topic-tab selected">Graphic design</div>
                             <div className="topic-tab">Programming</div>
                         </div>
-                        <div id="add-new-topic-button">
+                        <div className="button add-new" id="add-new-topic-button">
                             <div className="add-new-circle">+</div>
                         </div>
                     </div>
                     <div id="tags-section">
                         <div id="new-message-tag-list">
-                            <div className="chat-tag">Tag name <div className="chat-tag-delete"
-                                                                    style={{opacity: 0}}>X</div>
+                            <div className="chat-tag">Tag name <div className="button chat-tag-delete">X</div>
                             </div>
                         </div>
-                        <div id="add-new-tag-button">
+                        <div className="button add-new" id="add-new-tag-button">
                             <div className="add-new-circle">+</div>
                         </div>
                     </div>
@@ -66,11 +60,11 @@ const ChatInputSection: React.FC = () => {
             </div>
             <div id="chat-input-bottom">
                 <div id="provider-buttons-container">
-                    <ProviderButton providerName={"Midjourney"}/>
-                    <ProviderButton providerName={"ChatGPT 3.5"}/>
-                    <ProviderButton providerName={"Claude 3"}/>
-                    <ProviderButton providerName={"Gemini 1.5"}/>
-                    <ProviderButton providerName={"ChatGPT 4"}/>
+                    <ProviderSendButton providerName={"Midjourney"}/>
+                    <ProviderSendButton providerName={"ChatGPT 3.5"}/>
+                    <ProviderSendButton providerName={"Claude 3"}/>
+                    <ProviderSendButton providerName={"Gemini 1.5"}/>
+                    <ProviderSendButton providerName={"ChatGPT 4"}/>
                 </div>
                 <div id="prompt-settings">
                     <div id="prompt-settings-checkboxes">

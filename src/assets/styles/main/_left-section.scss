@@ -7,10 +7,15 @@
   margin-left: 0;
   margin-right: 0;
   display: flex;
+
+  overflow: hidden;
+
+  filter: var(--soft-shadow-right);
 }
 
 #conversation-search {
   width: 100%;
+  grid-area: searchInput;
 }
 
 #chat-list-main {
@@ -24,18 +29,30 @@
 }
 
 .chat-list-item-container {
+  user-select: none;
   width: 100%;
   height: auto;
   border-bottom: 1px solid var(--border-color-lighter);
   border-radius: 0;
-  padding: 10px 14px;
+  padding: 1.25rem 1.4rem;
   @include flex(space-between, $gap: 10px);
 
+  border-right: 5px solid transparent;
 
-  background: linear-gradient(to bottom, white, #fafafa);
+  @include pointer;
+
+  background: linear-gradient(to bottom, white, hsl(0 0% 96% / 1));
 
   &:hover .chat-list-item-menu {
     visibility: visible;
+  }
+
+  &.selected {
+    $color: hsl(226deg 40% 66%);
+    border-color: transparent;
+    border-right: 4px solid $color;
+    box-shadow: 0 0 0 1px $color, 0 0 0 2px var(--border-color-lighter);
+    filter: drop-shadow(0 3px 4px hsl(225 60.42% 52.26% / 0.06));
   }
 }
 
@@ -44,7 +61,8 @@
   font-size: 1.3em;
   font-weight: 600;
   letter-spacing: 0.05em;
-  color: #555;
+
+  color: var(--border-color-hued-subdued);
 
   @include pointer;
 }
@@ -54,8 +72,7 @@
   height: auto;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding: 0.55rem 0;
   font-size: 1.5rem;
   font-weight: 700;
   display: flex;
@@ -73,7 +90,7 @@
   width: 100%;
   height: auto;
   background: linear-gradient(to bottom, #f7f9fc, #fafafa);
-  padding: 10px 14px 14px;
+  padding: 10px 14px 18px;
 
   @include flex(left, stretch, $direction: column, $gap: 23px);
 
@@ -94,7 +111,33 @@
 }
 
 #filter-chat-list-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "searchInput searchButton"
+                        "advanced empty";
+
+  justify-content: center;
+  align-items: center;
+
+  .search-icon {
+    grid-area: searchButton;
+  }
+}
+
+#filter-chat-list-basic-row {
+  width: 100%;
   @include flex;
+}
+
+#filter-chat-list-advanced-options {
+  width: 100%;
+  @include flex(space-between);
+  margin-top: 6px;
+  padding: 0 8px 0 8px;
+
+  font-size: 1.2rem;
+
+  grid-area: advanced;
 }
 
 .chat-list-item-middle-row {
@@ -118,6 +161,7 @@
 
 .chat-list-item-date {
   font-size: 1.2rem;
+  font-style: italic;
 }
 
 .chat-list-item-description {
@@ -132,7 +176,7 @@
   display: flex;
 }
 
-#account-avatar {
+#account-avatar-left {
   margin-right: 8px;
   width: 8%;
 

@@ -10,13 +10,16 @@ function Slider() {
     };
 
     return (
-        <div>
+        <div id="chat-response-detail">
             <input
                 type="range"
+                step="1"
                 min="0"     // Minimum value
                 max="5"   // Maximum value
                 value={value} // Current value
                 onChange={handleChange} // Function to call when value changes
+
+                style={{padding: 0}}
             />
         </div>
     );

@@ -1,12 +1,12 @@
 import React from 'react';
-import ChatMessageActionBar from './ChatMessageActionBar';
+import ChatMessagesToolBar from './ChatMessagesToolBar';
 import ChatMessages from './ChatMessages';
 import ChatInputSection from './ChatInput';
 
 const MiddleSection: React.FC = () => {
     return (
         <div id="middle-section">
-            <ChatMessageActionBar />
+            <ChatMessagesToolBar />
             <ChatMessages />
             <ChatInputSection />
         </div>

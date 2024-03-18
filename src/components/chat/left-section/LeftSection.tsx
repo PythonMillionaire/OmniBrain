@@ -12,7 +12,7 @@ const LeftSection: React.FC = () => {
 
             <section id="left-section-bottom">
                 <div id="account-info">
-                    <div id="account-avatar">
+                    <div id="account-avatar-left">
                         <img src={userAvatar} alt="User avatar"/>
                     </div>
                     <div id="account-name">Account Name <br/>
