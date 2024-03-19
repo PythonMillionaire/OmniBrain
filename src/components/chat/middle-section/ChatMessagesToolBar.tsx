@@ -1,12 +1,16 @@
 import React from 'react';
 import SearchButton from "../../general/SearchButton";
 
+import exportImportIcon from "../../../assets/images/export-import.svg";
+
+import settingsIcon from "../../../assets/images/settings.svg";
+
 const ChatMessagesToolBar: React.FC = () => {
     return (
         <section id="chat-messages-tool-bar">
             <div id="chat-menu">
-                <div id="export-import">Export/import</div>
-                <div id="editor-settings">Chat settings</div>
+                <div id="export-import"><img src={exportImportIcon} />Export/import</div>
+                <div id="editor-settings"><img src={settingsIcon} /> Chat settings</div>
             </div>
             <div id="chat-filter-search">
                 <div id="chat-message-filters">

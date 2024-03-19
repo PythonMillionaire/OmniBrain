@@ -30,7 +30,7 @@
 #chat-messages-tool-bar {
   border-bottom: 1px solid var(--border-color-lighter-two);
   flex: 0 auto;
-  padding: 4px 12px;
+  padding: 6px 18px;
 
   @include flex(space-between);
 
@@ -39,8 +39,29 @@
   filter: var(--soft-shadow-bottom);
 }
 
+#export-import {
+  @include flex($gap: 8px);
+
+  img {
+    width: 12px;
+
+    opacity: 0.65;
+  }
+}
+
 .chat-message-tag {
   display: flex;
+}
+
+#editor-settings {
+
+  @include flex($gap: 8px);
+
+  img {
+    width: 16px;
+
+    opacity: 0.75;
+  }
 }
 
 #chat-message-search-section {
@@ -55,12 +76,12 @@
   display: flex;
 }
 
-#chat-input-top-row-2 {
+#chat-input-top-organization-settings {
   width: 100%;
   display: flex;
 }
 
-#chat-input-top-row-1 {
+#chat-input-top-response-settings {
   width: 729.406px;
   gap: 20px;
   display: flex;
@@ -124,6 +145,8 @@
 #topics-section {
   width: 60%;
   display: flex;
+
+  padding-top: 4px;
 }
 
 .prompt-settings-label {
@@ -333,12 +356,48 @@
   background-color: #fff;
 
   margin: 0;
-  padding-left: 11px;
   position: relative;
 
   @include flex(space-between, stretch, $direction: column);
 
   filter: var(--soft-shadow-top);
+
+  > div:not(.button) {
+    padding-left: 12px;
+  }
+}
+
+#chat-input-top-collapse-button {
+  position: absolute;
+  top: 0;
+  right: 50%;
+  transform: translate(50%, -50%);
+  z-index: 2;
+
+  border: 1px solid var(--border-color-hued);
+
+  user-select: none;
+
+  border-radius: 16px;
+
+  width: 80px;
+  height: 12px;
+
+  @include flex;
+
+  background: linear-gradient(to bottom, white, #fafafa);
+
+  box-shadow: 0 0 2px hsla(225, 20%, 60%, 0.4);
+
+  span {
+    font-size: 1.3rem;
+    transform: scaleY(0.65);
+
+    color: #555;
+
+    position: relative;
+    top: 1px;
+  }
 }
 
 .agent {
@@ -585,6 +644,10 @@ $chat-bottom-border-width: 2px;
 
 .copy-message-button {
   @include messageButton(10.5px, 0.65);
+}
+
+.save-prompt-button {
+  @include messageButton(12px, 0.65);
 }
 
 .message-scroll-to-bottom-button, .message-scroll-to-top-button {

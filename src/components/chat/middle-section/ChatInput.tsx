@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import FollowUpQuestion from "./elements/FollowUpQuestion";
 import Slider from "../../general/Slider";
 import ProviderSendButton from "./elements/ProviderSendButton";
 import Checkbox from "../../general/Checkbox";
 
 const ChatInputSection: React.FC = () => {
+    const [isVisible, setIsVisible] = useState(true);
+    const responseSettingsRef = useRef<HTMLDivElement>(null); // Ref for the label
+
     return (
         <section id="chat-input-section">
             <div id="follow-up-questions-section">
@@ -14,7 +17,14 @@ const ChatInputSection: React.FC = () => {
                 <FollowUpQuestion questionContent="Ajahn Brahm is the VERY BEST. " />
             </div>
             <div id="chat-input-top">
-                <div id="chat-input-top-row-1">
+                <div
+                    className="button"
+                    id="chat-input-top-collapse-button"
+                    onClick={() => setIsVisible(!isVisible)}
+                >
+                    <span style={{top: isVisible ? '1px' : '0' }}>{isVisible ? '▼' : '▲'}</span>
+                </div>
+                <div id="chat-input-top-response-settings" ref={responseSettingsRef} style={{ display: isVisible ? 'flex' : 'none'}}>
                     <div className="chat-input-detail-level-slider">
                         <div>Response detail level <br/>
                         </div>
@@ -26,7 +36,7 @@ const ChatInputSection: React.FC = () => {
                         <Checkbox text={"Split output"} tooltipText={"Whether the AI's output should split into sections, as defined in Settings."} />
                     </div>
                 </div>
-                <div id="chat-input-top-row-2">
+                <div id="chat-input-top-organization-settings">
                     <div id="topics-section">
                         <div id="topics">
                             <div className="topic-tab selected">Graphic design</div>

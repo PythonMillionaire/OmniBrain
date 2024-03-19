@@ -6,13 +6,15 @@ import copyIcon from "../../../../assets/images/action-buttons/copy.svg";
 import scrollArrowIcon from "../../../../assets/images/action-buttons/scroll-arrow.svg";
 import thumbsDownIcon from "../../../../assets/images/action-buttons/thumbs-down.svg";
 import regenerateIcon from "../../../../assets/images/action-buttons/regenerate.svg";
-import saveIcon from "../../../../assets/images/action-buttons/save-favorites.svg";
+import saveToFavoritesIcon from "../../../../assets/images/action-buttons/save-favorites.svg";
+import savePromptIcon from "../../../../assets/images/action-buttons/save-prompt.svg";
 
 import copyMessageContents from "./functionality/copyMessageContents";
 import scrollToMessageExtremity from "./functionality/scrollToMessageExtremity";
 import thumbDownMessage from "./functionality/messageThumbsDown";
 import regenerateMessage from "./functionality/regenerateMessage";
 import saveToFavorites from "./functionality/saveToFavorites";
+import savePrompt from "./functionality/savePrompt";
 
 interface MessageActionButtonProps {
     buttonIconURL: string;
@@ -29,7 +31,7 @@ const MessageActionButton: React.FC<MessageActionButtonProps> = ({buttonIconURL,
 const SaveToFavoritesButton: React.FC = () => (
     <MessageActionButton
         buttonAction={(event) => saveToFavorites(event.currentTarget)}
-        buttonIconURL={saveIcon}
+        buttonIconURL={saveToFavoritesIcon}
         className="message-save-to-favorites"
     />
 );
@@ -66,6 +68,14 @@ const RegenerateMessageButton: React.FC = () => (
     />
 );
 
+const SavePromptButton: React.FC = () => (
+    <MessageActionButton
+        buttonAction={(event) => savePrompt(event.currentTarget)}
+        buttonIconURL={savePromptIcon}
+        className="save-prompt-button"
+    />
+);
+
 const CopyMessageButton: React.FC = () => (
     <MessageActionButton
         buttonAction={(event) => copyMessageContents(event.currentTarget)}
@@ -90,5 +100,6 @@ export const UserMessageActionButtons: React.FC = () => (
             <ScrollToTopButton/>
             <ScrollToBottomButton/>
             <CopyMessageButton/>
+            <SavePromptButton />
         </>
     );
