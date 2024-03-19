@@ -27,7 +27,7 @@ const RightSection: React.FC = () => {
                 </div>
 
                 <div id="saved-prompts-list">
-                    <div id={"saved-prompts-list-header"}>
+                    <div id="saved-prompts-list-header">
                         <div id="saved-prompts-display">
                             <div className={"button"} id="saved-prompts-display-grid">
                                 <img src={gridIcon} id="saved-prompts-display-grid-icon" alt="Display saved prompts as grid"/>

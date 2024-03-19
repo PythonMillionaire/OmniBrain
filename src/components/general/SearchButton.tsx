@@ -1,7 +1,7 @@
 import React from "react";
 
 const SearchButton = () => (
-        <svg className="search-icon" fill="#555" height="20px" viewBox="0 0 490.4 490.4" width="20px"
+        <svg className="button search-icon" fill="#555" viewBox="0 0 490.4 490.4"
              xmlns="http://www.w3.org/2000/svg">
             <g>
                 <path d="M484.1,454.796l-110.5-110.6c29.8-36.3,47.6-82.8,47.6-133.4c0-116.3-94.3-210.6-210.6-210.6S0,94.496,0,210.796

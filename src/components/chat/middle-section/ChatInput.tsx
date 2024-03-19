@@ -4,6 +4,10 @@ import Slider from "../../general/Slider";
 import ProviderSendButton from "./elements/ProviderSendButton";
 import Checkbox from "../../general/Checkbox";
 
+import chatGPTIcon from "../../../assets/images/ai-providers/logo-chatgpt.svg";
+import claudeIcon from "../../../assets/images/ai-providers/logo-claude.svg";
+import geminiIcon from "../../../assets/images/ai-providers/logo-gemini.svg";
+
 const ChatInputSection: React.FC = () => {
     const [isVisible, setIsVisible] = useState(true);
     const responseSettingsRef = useRef<HTMLDivElement>(null); // Ref for the label
@@ -63,7 +67,7 @@ const ChatInputSection: React.FC = () => {
                     <div className="add-new-circle">+</div>
                 </div>
                 <div id="input-container">
-                    <textarea id="input-field" placeholder="Example Text"></textarea>
+                    <textarea id="input-field" placeholder="Type your prompt here"></textarea>
                 </div>
 
             </div>
@@ -71,9 +75,9 @@ const ChatInputSection: React.FC = () => {
                 <div id="provider-buttons-container">
                     <ProviderSendButton providerName={"Midjourney"}/>
                     <ProviderSendButton providerName={"ChatGPT 3.5"}/>
-                    <ProviderSendButton providerName={"Claude 3"}/>
-                    <ProviderSendButton providerName={"Gemini 1.5"}/>
-                    <ProviderSendButton providerName={"ChatGPT 4"}/>
+                    <ProviderSendButton providerName={"Claude 3"} providerIcon={claudeIcon}/>
+                    <ProviderSendButton providerName={"Gemini 1.5"} providerIcon={geminiIcon}/>
+                    <ProviderSendButton providerName={"ChatGPT 4"} providerIcon={chatGPTIcon}/>
                 </div>
                 <div id="prompt-settings">
                     <div id="prompt-settings-checkboxes">

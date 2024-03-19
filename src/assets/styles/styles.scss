@@ -67,8 +67,8 @@ body
 
 .add-new-circle
 {
-    width: 1.6em;
-    height: 1.6em;
+    width: 2.2rem;
+    height: 2.2rem;
     border: 2px solid var(--border-color-hued);
     border-radius: 50%;
     justify-content: center;
@@ -76,6 +76,10 @@ body
     margin-right: 6px;
     padding: 0;
     display: flex;
+
+    background: linear-gradient(to bottom, white, #fafafa);
+
+    box-shadow: 0 0 4px hsla(225, 20%, 60%, 0.2);
 }
 
 .agent-logo-message
@@ -98,18 +102,10 @@ body
 {
     margin-left: 10px;
     cursor: pointer;
+
+    width: 18px;
+    height: 18px;
 }
-
-:is(input, textarea)
-{
-    font: inherit;
-
-    &:focus-visible
-    {
-        outline: none;
-    }
-}
-
 
 a
 {

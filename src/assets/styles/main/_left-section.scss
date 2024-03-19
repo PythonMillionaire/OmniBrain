@@ -21,7 +21,7 @@
 #chat-list-main {
   height: 100%;
   max-width: none;
-  background: linear-gradient(to bottom, #f7f9fc, #fafafa);
+  background: linear-gradient(to bottom, hsl(216 5% 95% / 1), hsl(216 2% 95% / 1));
   flex-flow: column;
   padding: 0;
   display: flex;
@@ -29,6 +29,8 @@
 }
 
 .chat-list-item-container {
+  position: relative;
+
   user-select: none;
   width: 100%;
   height: auto;
@@ -36,8 +38,6 @@
   border-radius: 0;
   padding: 1.25rem 1.4rem;
   @include flex(space-between, $gap: 10px);
-
-  border-right: 5px solid transparent;
 
   @include pointer;
 
@@ -49,10 +49,20 @@
 
   &.selected {
     $color: hsl(226deg 40% 66%);
-    border-color: transparent;
-    border-right: 4px solid $color;
-    box-shadow: 0 0 0 1px $color, 0 0 0 2px var(--border-color-lighter);
-    filter: drop-shadow(0 3px 4px hsl(225 60.42% 52.26% / 0.06));
+
+    box-shadow: 0 0 4px hsla(225, 20%, 60%, 0.4);
+    z-index: 2;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 4px;
+      background-color: $color;
+
+      height: 100%;
+    }
   }
 }
 

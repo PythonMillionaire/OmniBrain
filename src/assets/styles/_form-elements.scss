@@ -20,16 +20,34 @@ $thumb-color: hsl(223, 50%, 60%);
   @include flex;
 }
 
-input
+:is(input, textarea)
+{
+  font: inherit;
+
+  &:focus-visible
+  {
+    outline: none;
+  }
+
+  &::placeholder {
+    font-style: italic;
+  }
+}
+
+input:not([type="range"])
 {
   padding: 12px;
   border: 1px solid var(--border-color-hued-subdued);
   height: 2.4em;
   border-radius: 10px;
+
+  background: hsl(225 20% 98% / 1);
 }
 
 input[type="checkbox"] {
   margin: 0 2px 0 0;
+
+  border-color: var(--border-color-hued) !important;
 }
 
 input[type=range] {
