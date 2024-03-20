@@ -1,10 +1,22 @@
 @import "../mixins-and-variables";
 
 #right-section {
+  position: relative;
+
   width: 30%;
   max-width: 460px;
 
   @include flex(flex-start, center, $direction: column);
+
+  background: linear-gradient(to bottom, white, #fafafa);
+
+
+}
+
+#right-section-inner {
+  @include flex(flex-start, center, $direction: column);
+
+  width: 100%;
 
   > section {
     width: 100%;
@@ -14,7 +26,7 @@
 #tab-headers-section {
   height: 43px;
 
-  border-bottom: 1px solid var(--border-color-lighter-two);
+  border-bottom: 1px solid var(--border-color-lighter);
 
   @include flex(flex-start);
 
@@ -28,10 +40,10 @@
 
   padding: 0 18px;
 
-  border-right: 1px solid var(--border-color-lighter-two);
+  border-right: 1px solid var(--border-color-lighter);
 }
 
-#saved-prompt-tab-icon {
+#saved-prompt-button-tab-icon {
   width: 14px;
 
   opacity: 0.6;
@@ -49,58 +61,60 @@
   height: 100%;
 }
 
-#saved-prompts-list-header {
-  @include flex(space-between);
+#saved-prompt-buttons-list-header {
+  width: 100%;
 
-  padding: 18px;
+  @include flex(space-between, stretch);
+
+  padding: 12px 18px;
 
   background: linear-gradient(to bottom, white, #fafafa);
 
-  border-bottom: 1px solid var(--border-color-lighter-two)
+  border-bottom: 1px solid var(--border-color-lighter-three)
 
 }
 
-#saved-prompts-list-settings {
+#saved-prompt-buttons-list-settings {
   @include flex($gap: 8px)
 }
 
-#saved-prompts-list-settings-icon {
+#saved-prompt-buttons-list-settings-icon {
   width: 16px;
 }
 
-#saved-prompts-display {
+#saved-prompt-buttons-display {
 
   @include flex(flex-end, $gap: 22px);
 }
 
-#saved-prompts-display-grid, #saved-prompts-display-list {
+#saved-prompt-buttons-display-grid, #saved-prompt-buttons-display-list {
 
   @include flex($gap: 8px);
 }
 
-#saved-prompts-display-grid-icon {
+#saved-prompt-buttons-display-grid-icon {
   width: 14px;
   opacity: 0.7;
 }
 
-#saved-prompts-display-list-icon {
+#saved-prompt-buttons-display-list-icon {
   width: 15px;
   opacity: 0.7;
 }
 
-.saved-prompt-topic-list {
+.saved-prompt-button-topic-list {
   @include flex(flex-start);
 
   width: 100%;
 
-  border-bottom: 1px solid var(--border-color-lighter-two);
+  border-bottom: 1px solid var(--border-color-lighter-three);
 }
 
-.saved-prompt-topic {
+.saved-prompt-button-topic {
   position: relative;
 
   padding: 12px 24px;
-  border-right: 1px solid var(--border-color-lighter-two);
+  border-right: 1px solid var(--border-color-lighter-three);
   background-color: #f5f5f5;
 
   height: 100%;
@@ -108,6 +122,10 @@
   @include flex;
 
   text-align: center;
+
+  &:not(.selected) {
+    box-shadow: inset 0 0 14px hsl(225 20% 60% / 0.05);
+  }
 
   &.selected {
     background: linear-gradient(to bottom, white, #fafafa);
@@ -124,9 +142,11 @@
   }
 }
 
-#saved-prompts-list {
+#saved-prompt-buttons-list {
   width: 100%;
   height: 100%;
+
+  padding-top: 14px;
 
   @include flex(flex-start, stretch, $gap: 24px, $direction: column);
 
@@ -137,11 +157,11 @@
   }
 }
 
-.saved-prompt-category-container {
+.saved-prompt-button-category-container {
   @include flex(center, stretch, $gap: 16px, $direction: column);
 }
 
-.saved-prompt-category {
+.saved-prompt-button-category {
   text-align: center;
 
   color: #444;
@@ -149,36 +169,46 @@
   margin: 0;
 }
 
-.saved-prompt {
-  border: 1px solid var(--border-color-hued);
+.saved-prompt-button {
+  border: 1px solid var(--border-color-lighter-two);
   border-radius: 12px;
-  padding: 8px 15px;
+  padding: 10px 15px;
 
   @include flex(space-between);
 
   background: linear-gradient(to bottom, white, #fafafa);
 
-  box-shadow: 0 0 4px hsla(225, 20%, 60%, 0.2);
+  box-shadow: 0 0 8px hsla(225, 20%, 60%, 0.12);
 
-  &:hover .saved-prompt-buttons {
+  &:hover .saved-prompt-button-action-buttons {
     visibility: visible;
   }
 }
 
-.saved-prompt-info {
+.saved-prompt-button-content {
+  @include flex($gap: 12px);
+}
+
+.save-prompt-hamburger {
+  width: 12px;
+
+  opacity: 0.7;
+}
+
+.saved-prompt-button-info {
   @include flex($gap: 8px);
 }
 
-.saved-prompt-icon {
+.saved-prompt-button-icon {
   width: 16px;
 }
 
-.saved-prompt-buttons {
+.saved-prompt-button-action-buttons {
   visibility: hidden;
   @include flex($gap: 8px);
 }
 
-.saved-prompt-delete-icon {
+.saved-prompt-button-delete-icon {
   font-size: 2.3rem;
 
   @include flex;
@@ -188,13 +218,13 @@
   line-height: 0;
 }
 
-.saved-prompt-settings-icon {
+.saved-prompt-button-settings-icon {
   width: 12px;
 
   opacity: 0.85;
 }
 
-#add-saved-prompt {
+#add-new-saved-prompt-button {
   @include flex;
 }
 

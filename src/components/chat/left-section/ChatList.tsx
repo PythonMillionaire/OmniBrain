@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+
 import ChatListItem from "./ChatListItem";
 import SearchButton from "../../general/SearchButton";
+import AddElementButton from "../../general/AddElementButton";
+
+import arrowIcon from "../../../assets/images/arrow.svg";
 
 // Assuming each ChatListItem can be identified uniquely, for example, by an id
 const chatListData = [
@@ -21,15 +25,6 @@ const ChatList: React.FC = () => {
     return (
         <section id="chat-list">
             <div id="chat-list-top">
-                <div id="chat-list-top-row">
-                    <div id="logo">
-                        <img src="https://assets-global.website-files.com/plugins/Basic/assets/placeholder.60f9b1840c.svg" alt="OmniBrain Logo"/>
-                    </div>
-                    <div className="button add-new" id="add-new-chat-button">
-                        <div className="add-new-circle">+</div>
-                        <div className="add-new-chat-text">New chat</div>
-                    </div>
-                </div>
                 <div id="filter-chat-list-row">
                     <input id="conversation-search" placeholder="Search all conversations"/>
                     <SearchButton/>
@@ -41,16 +36,23 @@ const ChatList: React.FC = () => {
             </div>
 
             <div id="chat-list-main">
-                {chatListData.map((item) => (
-                    <ChatListItem
-                        key={item.id}
-                        id={item.id}
-                        isSelected={selectedId === item.id}
-                        onSelect={() => handleSelectItem(item.id)}
-                        name={item.name}
-                        date={item.date}
-                    />
-                ))}
+                <div id="chat-list-open-chats">
+                    {chatListData.map((item) => (
+                        <ChatListItem
+                            key={item.id}
+                            id={item.id}
+                            isSelected={selectedId === item.id}
+                            onSelect={() => handleSelectItem(item.id)}
+                            name={item.name}
+                            date={item.date}
+                        />
+                    ))}
+                </div>
+
+                <div id="chat-list-see-all">
+                    <img src={arrowIcon} alt={"See all chats"} />
+                    <div>See all chats</div>
+                </div>
             </div>
         </section>
     );

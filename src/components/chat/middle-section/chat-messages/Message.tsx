@@ -5,6 +5,7 @@ import ChatMessageTag from "./ChatMessageTag";
 import aiLogo from "../../../../assets/images/ai-providers/logo-chatgpt.svg";
 import userAvatar from '../../../../assets/images/user-avatar.svg';
 import {MessageSender} from "../../../../types/enums";
+import AddElementButton from "../../../general/AddElementButton";
 
 interface MessageProps {
     sender: MessageSender;
@@ -85,10 +86,10 @@ const Message: React.FC<MessageProps> = ({ sender, messageContents, actionButton
                     <div className="chat-message-action-row">
                         <div className="chat-message-tag-list">
                             <ChatMessageTag/>
-                            <div className="button add-new add-new-tag-button-message">
-                                <div className="add-new-circle">+</div>
-                            </div>
+
+                            <AddElementButton type={"new-tag-message"}/>
                         </div>
+
                         <div className="chat-message-buttons-bottom">
                             {actionButtons}
                         </div>

@@ -3,12 +3,28 @@ import React from 'react';
 import userAvatar from '../../../assets/images/user-avatar.svg';
 import settingsIcon from '../../../assets/images/settings.svg';
 import ChatList from "./ChatList";
+import LeftSectionActionButtons from "./LeftSectionActionButtons";
 
+import botIcon from "../../../assets/images/bot.svg";
+import exploreIcon from "../../../assets/images/explore.svg";
+import upgradeIcon from "../../../assets/images/upgrade.svg";
+import creditsIcon from "../../../assets/images/credits.svg";
+import logo from "../../../assets/images/logo.svg";
+import AddElementButton from "../../general/AddElementButton";
 
 const LeftSection: React.FC = () => {
     return (
         <div id="left-section">
+            <div id="left-section-top">
+                <div id="logo">
+                    <img src={logo} alt="OmniBrain Logo"/>
+                </div>
+
+                <AddElementButton text={"New chat"} type={"chat"}/>
+            </div>
             <ChatList />
+
+            <LeftSectionActionButtons />
 
             <section id="left-section-bottom">
                 <div id="account-info">

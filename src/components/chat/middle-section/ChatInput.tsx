@@ -7,10 +7,14 @@ import Checkbox from "../../general/Checkbox";
 import chatGPTIcon from "../../../assets/images/ai-providers/logo-chatgpt.svg";
 import claudeIcon from "../../../assets/images/ai-providers/logo-claude.svg";
 import geminiIcon from "../../../assets/images/ai-providers/logo-gemini.svg";
+import AddElementButton from "../../general/AddElementButton";
+import CollapseButton from "../../general/CollapseSectionButton";
+
+import {ButtonPosition} from "../../../types/enums";
 
 const ChatInputSection: React.FC = () => {
     const [isVisible, setIsVisible] = useState(true);
-    const responseSettingsRef = useRef<HTMLDivElement>(null); // Ref for the label
+    const elementRef = useRef<HTMLDivElement>(null);
 
     return (
         <section id="chat-input-section">
@@ -21,14 +25,9 @@ const ChatInputSection: React.FC = () => {
                 <FollowUpQuestion questionContent="Ajahn Brahm is the VERY BEST. " />
             </div>
             <div id="chat-input-top">
-                <div
-                    className="button"
-                    id="chat-input-top-collapse-button"
-                    onClick={() => setIsVisible(!isVisible)}
-                >
-                    <span style={{top: isVisible ? '1px' : '0' }}>{isVisible ? '▼' : '▲'}</span>
-                </div>
-                <div id="chat-input-top-response-settings" ref={responseSettingsRef} style={{ display: isVisible ? 'flex' : 'none'}}>
+                <CollapseButton isVisible={isVisible} buttonPosition={ButtonPosition.bottom} toggleVisibility={() => setIsVisible(!isVisible)} id={"chat-input-top-collapse-button"} />
+
+                <div id="chat-input-top-response-settings" ref={elementRef} style={{ display: isVisible ? 'flex' : 'none'}}>
                     <div className="chat-input-detail-level-slider">
                         <div>Response detail level <br/>
                         </div>
@@ -46,25 +45,21 @@ const ChatInputSection: React.FC = () => {
                             <div className="topic-tab selected">Graphic design</div>
                             <div className="topic-tab">Programming</div>
                         </div>
-                        <div className="button add-new" id="add-new-topic-button">
-                            <div className="add-new-circle">+</div>
-                        </div>
+                        <AddElementButton type={"topic"}/>
                     </div>
                     <div id="tags-section">
                         <div id="new-message-tag-list">
                             <div className="chat-tag">Tag name <div className="button chat-tag-delete">X</div>
                             </div>
                         </div>
-                        <div className="button add-new" id="add-new-tag-button-input">
-                            <div className="add-new-circle">+</div>
-                        </div>
+                        <AddElementButton type={"new-tag-input"}/>
                     </div>
                 </div>
             </div>
             <div id="chat-input-middle">
                 <div id="subtopics-section">
                     <div className="subtopic">Ajahn Brahm is the VERY BEST. No question...</div>
-                    <div className="add-new-circle">+</div>
+                    <AddElementButton type={"subtopic"}/>
                 </div>
                 <div id="input-container">
                     <textarea id="input-field" placeholder="Type your prompt here"></textarea>

@@ -1,8 +1,8 @@
 import React from 'react';
 import SearchButton from "../../general/SearchButton";
 
+import shareChatIcon from "../../../assets/images/share.svg";
 import exportImportIcon from "../../../assets/images/export-import.svg";
-
 import settingsIcon from "../../../assets/images/settings.svg";
 
 const ChatMessagesToolBar: React.FC = () => {
@@ -10,8 +10,9 @@ const ChatMessagesToolBar: React.FC = () => {
         <section id="chat-messages-tool-bar">
             <div id="chat-message-tool-bar-top">
                 <div id="chat-menu">
-                    <div id="export-import"><img src={exportImportIcon}/>Export/import</div>
-                    <div id="editor-settings"><img src={settingsIcon}/> Chat settings</div>
+                    <div id="share-chat" className={"button"}><img src={shareChatIcon}/>Share</div>
+                    <div id="export-import" className={"button"}><img src={exportImportIcon}/>Export/import</div>
+                    <div id="editor-settings" className={"button"}><img src={settingsIcon}/> Chat settings</div>
                 </div>
                 <div id="chat-filter-search">
                     <div id="chat-message-filters">
