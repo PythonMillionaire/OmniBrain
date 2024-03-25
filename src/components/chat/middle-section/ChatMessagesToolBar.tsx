@@ -4,6 +4,7 @@ import SearchButton from "../../general/SearchButton";
 import shareChatIcon from "../../../assets/images/share.svg";
 import exportImportIcon from "../../../assets/images/export-import.svg";
 import settingsIcon from "../../../assets/images/settings.svg";
+import Tag from "../../general/Tag";
 
 const ChatMessagesToolBar: React.FC = () => {
     return (
@@ -17,8 +18,7 @@ const ChatMessagesToolBar: React.FC = () => {
                 <div id="chat-filter-search">
                     <div id="chat-message-filters">
                         <input id="filter-chat-tag-section"/>
-                        <div className="chat-tag-filter">Tag name <div className="button chat-tag-delete">X</div>
-                        </div>
+                        <Tag className={"chat-tag-filter"} tagName={"Tag name"}/>
 
                     </div>
                     <div id="chat-message-search-section">

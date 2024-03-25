@@ -30,7 +30,7 @@ const ChatListItem: React.FC<ChatListItemProps> = ({
                 <div className="chat-list-item-middle-row">
                     <div className="chat-list-item-info-content">
                         <div className="chat-list-item-title">Conversation name</div>
-                        <div className="chat-list-item-description">Last message sent or description...</div>
+                        <div className="chat-list-item-description">Last message sent or description testing testing testing...</div>
                     </div>
                     <div className="chat-list-item-menu">...</div>
                 </div>

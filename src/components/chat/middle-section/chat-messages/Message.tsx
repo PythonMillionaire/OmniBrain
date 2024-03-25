@@ -1,11 +1,12 @@
 import React, { useLayoutEffect, useRef, useState, useCallback } from "react";
 import lodash from 'lodash';
 
-import ChatMessageTag from "./ChatMessageTag";
 import aiLogo from "../../../../assets/images/ai-providers/logo-chatgpt.svg";
 import userAvatar from '../../../../assets/images/user-avatar.svg';
 import {MessageSender} from "../../../../types/enums";
 import AddElementButton from "../../../general/AddElementButton";
+
+import Tag from "../../../general/Tag";
 
 interface MessageProps {
     sender: MessageSender;
@@ -85,7 +86,7 @@ const Message: React.FC<MessageProps> = ({ sender, messageContents, actionButton
 
                     <div className="chat-message-action-row">
                         <div className="chat-message-tag-list">
-                            <ChatMessageTag/>
+                            <Tag tagName={'Tag name'}/>
 
                             <AddElementButton type={"new-tag-message"}/>
                         </div>

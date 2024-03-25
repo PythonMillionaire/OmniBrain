@@ -19,12 +19,12 @@ const LeftSection: React.FC = () => {
                 <div id="logo">
                     <img src={logo} alt="OmniBrain Logo"/>
                 </div>
-
-                <AddElementButton text={"New chat"} type={"chat"}/>
+                <ChatList />
             </div>
-            <ChatList />
 
-            <LeftSectionActionButtons />
+            <div id="left-section-middle">
+                <LeftSectionActionButtons/>
+            </div>
 
             <section id="left-section-bottom">
                 <div id="account-info">
@@ -34,7 +34,7 @@ const LeftSection: React.FC = () => {
                     <div id="account-name">Account Name <br/>
                     </div>
                 </div>
-                <div id="account-settings">
+                <div className="button" id="account-settings">
                     <img src={settingsIcon} alt="Settings"/>
                 </div>
             </section>

@@ -3,12 +3,19 @@ import FollowUpQuestion from "./elements/FollowUpQuestion";
 import Slider from "../../general/Slider";
 import ProviderSendButton from "./elements/ProviderSendButton";
 import Checkbox from "../../general/Checkbox";
+import Tag from "../../general/Tag";
+
+import AddElementButton from "../../general/AddElementButton";
+import CollapseButton from "../../general/CollapseSectionButton";
 
 import chatGPTIcon from "../../../assets/images/ai-providers/logo-chatgpt.svg";
 import claudeIcon from "../../../assets/images/ai-providers/logo-claude.svg";
 import geminiIcon from "../../../assets/images/ai-providers/logo-gemini.svg";
-import AddElementButton from "../../general/AddElementButton";
-import CollapseButton from "../../general/CollapseSectionButton";
+
+import fileUploadIcon from "../../../assets/images/file-upload.svg";
+import voiceMessageIcon from "../../../assets/images/voice-message.svg";
+import extractTextFromWebsiteIcon from "../../../assets/images/website.svg";
+
 
 import {ButtonPosition} from "../../../types/enums";
 
@@ -49,8 +56,7 @@ const ChatInputSection: React.FC = () => {
                     </div>
                     <div id="tags-section">
                         <div id="new-message-tag-list">
-                            <div className="chat-tag">Tag name <div className="button chat-tag-delete">X</div>
-                            </div>
+                            <Tag className={"chat-tag"} tagName={"Tag name"}/>
                         </div>
                         <AddElementButton type={"new-tag-input"}/>
                     </div>
@@ -67,6 +73,11 @@ const ChatInputSection: React.FC = () => {
 
             </div>
             <div id="chat-input-bottom">
+                <div id="input-special-actions">
+                    <img src={extractTextFromWebsiteIcon} alt="Extract text from website" id="extract-text-from-website-icon" className="button input-special-action-button"/>
+                    <img src={voiceMessageIcon} alt="Voice message" id="voice-message-icon" className="button input-special-action-button"/>
+                    <img src={fileUploadIcon} alt="File upload" id="file-upload-icon" className="button input-special-action-button"/>
+                </div>
                 <div id="provider-buttons-container">
                     <ProviderSendButton providerName={"Midjourney"}/>
                     <ProviderSendButton providerName={"ChatGPT 3.5"}/>
@@ -78,7 +89,7 @@ const ChatInputSection: React.FC = () => {
                     <div id="prompt-settings-checkboxes">
                         <Checkbox text={"Keep prompt after sending"} tooltipText={"Whether the prompt should remain in the input field after the message is sent."} />
                         <Checkbox text={"Improve prompt before sending"} tooltipText={"Whether the prompt should first be improved by the AI defined in Settings before being sent."} />
-                        <Checkbox text={"Don't include previous messages"} tooltipText={"Whether all previous chat messages should be omitted from next request."} />
+                        <Checkbox text={"Don't include any previous messages"} tooltipText={"Whether all previous chat messages should be omitted from next request."} />
                     </div>
                 </div>
             </div>

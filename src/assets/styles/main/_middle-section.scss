@@ -22,13 +22,18 @@
 }
 
 #ai-response-settings-checkboxes {
-  @include flex($gap: 2rem);
+  width: 100%;
+  @include flex(space-between);
 }
 
 
 #chat-messages-tool-bar {
+  @include flex(space-between);
+
+  width: 100%;
+  height: 43px;
   border-bottom: 1px solid var(--border-color-lighter);
-  padding: 6px 22px;
+  padding: 0 22px;
 
   background: linear-gradient(to bottom, white, #fafafa);
 
@@ -36,6 +41,7 @@
 }
 
 #chat-message-tool-bar-top {
+  width: 100%;
   @include flex(space-between);
 }
 
@@ -96,7 +102,8 @@
 }
 
 #chat-input-top-response-settings {
-  width: 729.406px;
+  padding-right: 20px;
+  width: 100%;
   gap: 20px;
   display: flex;
 
@@ -148,9 +155,11 @@
   border: 2px solid var(--border-color-hued);
   white-space: nowrap;
   border-radius: 12px;
-  padding: 6px 16px;
+  padding: 4px 16px;
 
   box-shadow: 0 0 2px hsla(225, 20%, 60%, 0.2);
+
+  font-size: 1.4rem;
 }
 
 #topics-section {
@@ -179,28 +188,6 @@ $middle-bg: hsl(216, 3%, 97%);
   overflow-x: hidden;
 
   @include flex(flex-start, stretch, $direction: column, $gap: 16px);
-
-  &::-webkit-scrollbar-track
-  {
-    border: 1px solid hsl(226deg 55.31% 84.52%);
-    box-shadow: inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.3);
-    background-color: hsl(225 6% 99% / 1);
-    border-radius: 10px;
-  }
-
-  &::-webkit-scrollbar
-  {
-    width: 12px;
-    filter: drop-shadow(5px 0px 0px red);
-  }
-
-  &::-webkit-scrollbar-thumb
-  {
-    box-shadow: inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.6), 0 2px 3px hsl(226deg 25.31% 84.52%);
-    border-radius: 10px;
-    background: hsl(225 30% 100% / 1);
-    border: 1px solid hsl(226deg 35.31% 76%);
-  }
 }
 
 
@@ -216,6 +203,10 @@ $middle-bg: hsl(216, 3%, 97%);
 #chat-menu {
   gap: 28px;
   display: flex;
+
+  .button {
+    font-weight: 500;
+  }
 }
 
 #chat-filter-search {
@@ -228,7 +219,8 @@ $middle-bg: hsl(216, 3%, 97%);
 
   background-color: #fafafa;
 
-  height: 2.4em;
+  height: var(--input-field-height);
+
   border-radius: 10px;
   margin-bottom: 0;
   line-height: 0;
@@ -242,14 +234,13 @@ $middle-bg: hsl(216, 3%, 97%);
 }
 
 #filter-chat-tag-section {
+  height: auto;
+
   padding: 0;
   border: 0;
-
-  height: auto;
 }
 
 #filter-chat-search-section {
-  height: 2.4em;
   border-radius: 10px;
   margin-bottom: 0;
   line-height: 0;
@@ -304,6 +295,11 @@ $middle-bg: hsl(216, 3%, 97%);
 
   box-shadow: 0 0 4px hsla(225, 20%, 60%, 0.2);
 
+}
+
+.tag {
+  font-weight: 500;
+
   &:hover .chat-tag-delete {
     visibility: visible;
   }
@@ -326,7 +322,7 @@ $middle-bg: hsl(216, 3%, 97%);
   right: calc(0% + 2px);
 
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
 
   border: 1px solid var(--border-color-hued);
   transform: translate(50%, -50%);
@@ -548,6 +544,22 @@ $chat-bottom-border-width: 2px;
   gap: 10px;
 }
 
+#input-special-actions {
+  @include flex(flex-end, $gap: 14px);
+
+  padding: 0 2.2rem 0.4rem;
+}
+
+.input-special-action-button {
+  height: 16px;
+
+  opacity: 0.65;
+}
+
+#file-upload-icon {
+  opacity: 0.9;
+}
+
 #new-message-tag-list {
   height: 100%;
   background-color: rgba(255, 255, 255, 0);
@@ -575,15 +587,34 @@ $chat-bottom-border-width: 2px;
 }
 
 .provider-button.provider-button {
-  border: 2px solid var(--border-color-hued);
-  color: #2e2020;
-  background-color: #fff;
-  border-radius: 12px;
-  padding: 6px 14px;
+  position: relative;
 
-  @include flex($gap: 8px);
+  font-weight: 500;
 
-  box-shadow: 0 0 2px hsla(225, 20%, 60%, 0.2);
+  @include flex;
+
+  > div.button-contents {
+    z-index: 1;
+    @include flex($gap: 8px);
+
+    box-shadow: 0 0 2px hsla(225, 20%, 60%, 0.2);
+    border: 2px solid var(--border-color-hued-subdued);
+    color: #2e2020;
+    background: linear-gradient(to bottom, white, hsl(226 100% 99% / 1));
+    border-radius: 12px;
+    padding: 8px 14px;
+  }
+
+  > div.below-button {
+    background: hsl(226deg 44% 64%);
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    z-index: 0;
+    border-radius: 12px;
+    bottom: -2px;
+    right: -2px;
+  }
 }
 
 .provider-icon {
@@ -657,7 +688,7 @@ $chat-bottom-border-width: 2px;
   @include messageButton(10.5px, 0.65);
 }
 
-.save-prompt-button {
+.add-to-saved-prompts-button {
   @include messageButton(12px, 0.65);
 }
 
@@ -734,6 +765,10 @@ $chat-bottom-border-width: 2px;
   grid-area: checkbox;
   height: 100%;
   @include flex;
+
+  .checkbox-field {
+    padding-right: 4px;
+  }
 }
 
 
@@ -753,5 +788,5 @@ $chat-bottom-border-width: 2px;
 
   overflow: visible;
 
-  padding: 0 4px;
+  padding: 0 4px 4px;
 }

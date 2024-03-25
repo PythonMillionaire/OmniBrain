@@ -9,13 +9,14 @@ interface ProviderSendButtonProps {
 const ProviderSendButton: React.FC<ProviderSendButtonProps> = ({ providerName, providerIcon }) => {
     return (
         <div className="button provider-button">
-            {providerIcon &&
+            <div className="below-button"></div>
+            <div className="button-contents">{providerIcon &&
                 (typeof providerIcon === 'string' ? (
-                    <img src={providerIcon} alt="User uploaded icon" className="provider-icon" />
+                    <img src={providerIcon} alt="User uploaded icon" className="provider-icon"/>
                 ) : (
-                    React.createElement(providerIcon) // Correct way to dynamically create a component
+                    React.createElement(providerIcon)
                 ))}
-            {providerName}
+                {providerName}</div>
         </div>
     );
 };

@@ -8,7 +8,7 @@ import arrowIcon from "../../../assets/images/arrow.svg";
 
 // Assuming each ChatListItem can be identified uniquely, for example, by an id
 const chatListData = [
-    { id: 1, name: "ChatGPT 5", date: "April 5, 2024", title: "Conversation name", description: "Last message sent or description..." },
+    { id: 1, name: "ChatGPT 5", date: "April 5, 2024", title: "Conversation name", description: "Last message sent or description testing testing testing..." },
     { id: 2, name: "ChatGPT 6", date: "April 6, 2024", title: "Another conversation name", description: "Another last message..." },
     // Add more items as needed
 ];
@@ -24,6 +24,8 @@ const ChatList: React.FC = () => {
 
     return (
         <section id="chat-list">
+            <div id="add-new-chat-section"><AddElementButton text={"Start new chat"} type={"chat"}/></div>
+
             <div id="chat-list-top">
                 <div id="filter-chat-list-row">
                     <input id="conversation-search" placeholder="Search all conversations"/>
@@ -34,6 +36,8 @@ const ChatList: React.FC = () => {
                     </div>
                 </div>
             </div>
+
+
 
             <div id="chat-list-main">
                 <div id="chat-list-open-chats">
@@ -49,7 +53,7 @@ const ChatList: React.FC = () => {
                     ))}
                 </div>
 
-                <div id="chat-list-see-all">
+                <div className="button" id="chat-list-see-all">
                     <img src={arrowIcon} alt={"See all chats"} />
                     <div>See all chats</div>
                 </div>

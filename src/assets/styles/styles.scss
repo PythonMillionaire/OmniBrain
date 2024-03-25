@@ -10,10 +10,13 @@ html
 
     ms-text-size-adjust: 100%;
     webkit-text-size-adjust: 100%;
-    font-family: sans-serif;
     font-size: 62.5%;
 
-    @include cursor
+    @include cursor;
+
+    * {
+        font-family: "Source Sans 3", sans-serif;
+    }
 }
 
 body
@@ -23,7 +26,7 @@ body
     flex-flow: column;
     display: flex;
     overflow: hidden;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
 
     min-height: 100%;
     color: #333;
@@ -82,16 +85,9 @@ body
     box-shadow: 0 0 4px hsla(225, 20%, 60%, 0.2);
 }
 
-.agent-logo-message
-{
-    width: 2em;
-    height: 2em;
-    border-radius: 8px;
+.add-new {
+    font-weight: 500;
 }
-
-/*.add-new {
-    font-weight: 600;
-}*/
 
 .button
 {
@@ -130,14 +126,14 @@ main, menu, nav, section
     position: absolute;
     z-index: 2;
 
-    border: 1px solid var(--border-color-hued);
+    border: 1px solid var(--border-color-lighter);
 
     user-select: none;
 
     border-radius: 16px;
 
     width: 80px;
-    height: 12px;
+    height: 10px;
 
     @include flex;
 
@@ -146,20 +142,20 @@ main, menu, nav, section
     box-shadow: 0 0 2px hsla(225, 20%, 60%, 0.4);
 
     span {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
         transform: scaleY(0.65);
 
         color: #555;
 
         position: relative;
-        top: 1px;
+        top: 0px;
     }
 }
 
 .custom-tooltip {
     position: absolute;
     background-color: hsl(150 30% 96% / 1); //hsl(226deg 100% 98.44%);
-    color: #333;
+    color: #555;
     text-align: center;
     padding: 8px 18px;
     border-radius: 22px;
@@ -169,7 +165,8 @@ main, menu, nav, section
     left: 50%;
     text-wrap: wrap;
     transform: translateX(-50%);
-    font-weight: 300;
+    font-weight: 400;
+    font-style: italic;
     line-height: normal;
     @include cursor;
 
@@ -191,4 +188,26 @@ main, menu, nav, section
         border-bottom: none;
         bottom: -9px;
     }
+}
+
+::-webkit-scrollbar-track
+{
+    border: 1px solid hsl(226deg 55.31% 84.52%);
+    box-shadow: inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.3);
+    background-color: hsl(225 6% 99% / 1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar
+{
+    width: 12px;
+    filter: drop-shadow(5px 0px 0px red);
+}
+
+::-webkit-scrollbar-thumb
+{
+    box-shadow: inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.6), 0 2px 3px hsl(226deg 25.31% 84.52%);
+    border-radius: 10px;
+    background: hsl(225 30% 100% / 1);
+    border: 1px solid hsl(226deg 35.31% 76%);
 }

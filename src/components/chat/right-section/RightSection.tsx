@@ -25,7 +25,7 @@ const RightSection: React.FC = () => {
 
             <div id="right-section-inner" ref={elementRef} style={{ display: isVisible ? 'flex' : 'none'}}>
                 <section id="tab-headers-section">
-                    <div className="button tab-header"><img src={saveIcon} id="saved-prompt-button-tab-icon"/> Saved prompts</div>
+                    <div className="button tab-header selected"><img src={saveIcon} id="saved-prompt-button-tab-icon"/> Saved prompts</div>
                     <div className="button tab-header"><img src={settingsIcon} id="settings-tab-icon"/> Settings</div>
                 </section>
 
@@ -59,7 +59,7 @@ const RightSection: React.FC = () => {
 
                     <div id="saved-prompt-buttons-list">
 
-                        <AddElementButton text={"Add new saved prompt"} type={"saved-prompt"}/>
+                        <div id="add-new-saved-prompt-button-section"><AddElementButton text={"Add new saved prompt"} type={"saved-prompt"}/></div>
 
                         <div className="saved-prompt-button-category-container">
                             <h3 className="saved-prompt-button-category">The Naked Truth</h3>

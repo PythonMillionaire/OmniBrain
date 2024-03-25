@@ -12,7 +12,7 @@ interface SavedPromptButtonProps {
 }
 
 const SavedPromptButton: React.FC<SavedPromptButtonProps> = ({ promptContents, promptIcon: icon }) => (
-    <div className="saved-prompt-button">
+    <div className="button saved-prompt-button">
         <div className={"saved-prompt-button-content"}>
             <div>
                 <img className="save-prompt-hamburger" src={hamburgerIcon} alt="Click to reorder"/>
