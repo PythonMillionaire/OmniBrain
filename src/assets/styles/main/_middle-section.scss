@@ -132,10 +132,30 @@
   align-items: flex-end;
   margin: 8px 0 4px;
   display: flex;
+
+  padding: 0 6px;
+
+  transition: padding 0.425s ease;
+  border: 1px solid transparent;
+
+  &:hover {
+    background: linear-gradient(to bottom, white, #fafafa);
+    border: 1px solid var(--border-color-lighter-two);
+    border-radius: 18px;
+    padding: 0 20px;
+  }
 }
 
 .replies-info {
-  @include flex(left, $gap: 1.2rem);
+  @include flex(flex-start, $gap: 1.2rem);
+}
+
+.replies-providers-in-thread {
+  @include flex(flex-start, $gap: 1.2rem);
+}
+
+.replies-provider-in-thread-logo {
+  width: 14px;
 }
 
 .replies-counter {
@@ -482,6 +502,16 @@ $opacity-message-buttons: 0.7;
     position: sticky;
     top: 50%;
   }
+
+  .message-save-to-favorites {
+    position: relative;
+    left: -2px;
+  }
+
+  .message-scroll-to-bottom-button, .message-scroll-to-top-button {
+    position: relative;
+    left: 1px;
+  }
 }
 
 .chat-message-buttons-bottom {
@@ -697,6 +727,10 @@ $chat-bottom-border-width: 2px;
     }
 
     .visible { visibility: visible; }
+  }
+
+  .invisible {
+    visibility: hidden;
   }
 }
 

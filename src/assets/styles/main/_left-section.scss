@@ -6,6 +6,14 @@
 
   @include flex;
 
+  filter: var(--soft-shadow-bottom);
+
+  background: linear-gradient(to bottom, white, #fafafa);
+
+  position: relative;
+
+  z-index: 2;
+
   img {
     width: 114px;
 
@@ -86,6 +94,14 @@
 
 #chat-list-open-chats {
   width: 100%;
+
+  .chat-list-item-container:first-of-type {
+    filter: var(--soft-shadow-top);
+  }
+
+  .chat-list-item-container:last-of-type {
+    filter: var(--soft-shadow-bottom);
+  }
 }
 
 #chat-list-see-all {
@@ -98,7 +114,7 @@
 
   border-top: 1px solid var(--border-color-lighter-two);
 
-  filter: var(--soft-shadow-bottom);
+  filter: var(--soft-shadow-top);
 
   font-style: italic;
 
@@ -174,6 +190,8 @@
 #chat-list {
   background-color: #fff;
   @include flex(center, stretch, $direction: column);
+
+  filter: var(--soft-shadow-bottom);
 }
 
 
@@ -182,13 +200,13 @@
   width: 100%;
   height: auto;
   background: linear-gradient(to bottom, white, #fafafa);
-  padding: 14px 14px 18px;
+  padding: 14px 14px 8px;
 
   @include flex(left, stretch, $direction: column, $gap: 23px);
 
   border-bottom: 1px solid var(--border-color-lighter);
 
-
+  filter: var(--soft-shadow-top)
 }
 
 #left-section-top {
@@ -208,8 +226,7 @@
 }
 
 #add-new-chat-button {
-  align-items: center;
-  display: flex;
+  @include flex;
 
   background: linear-gradient(to bottom, white, #fafafa);
   padding: 6px 16px;
@@ -330,8 +347,9 @@
 
 .add-new-chat-text {
   white-space: nowrap;
-  align-items: center;
-  display: flex;
+  @include flex;
+
+  font-size: 1.035em;
 }
 
 .buttons-section {
@@ -346,7 +364,8 @@
 
   background: linear-gradient(to bottom, white, #fafafa);
 
-  box-shadow: 0 0 12px hsla(225, 20%, 60%, 0.08);
+  box-shadow: 0 0 12px hsla(225, 20%, 60%, 0.03);
+  filter: var(--soft-shadow-bottom) var(--soft-shadow-top);
 }
 
 .left-section-button {

@@ -10,7 +10,7 @@
 
   background: linear-gradient(to bottom, white, #fafafa);
 
-
+  filter: var(--soft-shadow-left);
 }
 
 #right-section-inner {
@@ -222,7 +222,7 @@
 }
 
 .save-prompt-hamburger {
-  width: 11px;
+  width: 11.5px;
 
   opacity: 0.7;
 }

@@ -30,7 +30,7 @@ const Message: React.FC<MessageProps> = ({ sender, messageContents, actionButton
     }, []);
 
     // Using lodash's throttle function to limit how often the checkAndSetButtonVisibility function can be invoked
-    const debouncedCheck = useCallback(lodash.debounce(checkAndSetButtonVisibility, 30), [checkAndSetButtonVisibility]);
+    const debouncedCheck = useCallback(lodash.debounce(checkAndSetButtonVisibility, 20), [checkAndSetButtonVisibility]);
 
     useLayoutEffect(() => {
         window.addEventListener('resize', debouncedCheck);
@@ -108,7 +108,7 @@ const Message: React.FC<MessageProps> = ({ sender, messageContents, actionButton
                             <AddElementButton type={"new-tag-message"}/>
                         </div>
 
-                        <div className="chat-message-buttons-bottom">
+                        <div className={`chat-message-buttons-bottom ${showSideButtons ? 'invisible' : ''}`} >
                             {actionButtons}
                         </div>
                     </div>
