@@ -172,7 +172,7 @@
   background: hsl(216, 3%, 97%);
 
   > *:not(:first-child) {
-    padding: 0 18px;
+    padding: 0 22px;
   }
 }
 
@@ -188,7 +188,20 @@
   margin: 0;
 }
 
+.saved-prompt-button-outer {
+  @include flex(space-between);
+}
+
+.saved-prompt-button-reorder-icon {
+  flex: 0;
+  margin-right: 10px;
+
+  cursor: move;
+}
+
 .saved-prompt-button {
+  flex-grow: 1;
+
   border: 1px solid var(--border-color-lighter-two);
   border-radius: 12px;
   padding: 6px 15px;
@@ -209,7 +222,7 @@
 }
 
 .save-prompt-hamburger {
-  width: 12px;
+  width: 11px;
 
   opacity: 0.7;
 }

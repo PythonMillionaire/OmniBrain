@@ -11,7 +11,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ text, tooltipText }) => {
     const parentRef = useRef<HTMLLabelElement>(null); // Ref for the label
 
     return (
-        <label className="checkbox-field"
+        <label className="button checkbox-field"
                onMouseEnter={() => setIsHovered(true)}
                onMouseLeave={() => setIsHovered(false)}>
             {tooltipText && (

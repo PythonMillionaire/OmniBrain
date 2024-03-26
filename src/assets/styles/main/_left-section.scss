@@ -89,7 +89,7 @@
 }
 
 #chat-list-see-all {
-  @include flex(flex-start, $gap: 8px);
+  @include flex(flex-start, $gap: 12px);
   background: linear-gradient(to bottom, white, #fafafa);
 
   width: 100%;
@@ -198,7 +198,7 @@
 }
 
 #add-new-chat-section {
-  padding: 4px 8px;
+  padding: 4px 7px;
 
   border-bottom: 1px solid var(--border-color-lighter);
 
@@ -214,7 +214,7 @@
   background: linear-gradient(to bottom, white, #fafafa);
   padding: 6px 16px;
   width: 100%;
-  border-radius: 12px;
+  border-radius: 8px;
   border: 1px solid var(--border-color-lighter);
 
   box-shadow: 0 0 4px hsla(225, 20%, 60%, 0.08);
@@ -366,7 +366,7 @@
 }
 
 .button-icon {
-  width: 24px;
+  width: 22px;
 
   opacity: 0.8;
 }
@@ -387,6 +387,14 @@
 
 #add-credits-button {
   border: 1px solid hsl(112.17deg 29.11% 46%);
+}
+
+#send-feedback-button {
+  img {
+    position: relative;
+
+    top: -1px;
+  }
 }
 
 #upgrade-button {

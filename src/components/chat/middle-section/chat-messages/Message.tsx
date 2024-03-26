@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState, useCallback } from "react";
+import React, { useLayoutEffect, useEffect, useRef, useState, useCallback } from "react";
 import lodash from 'lodash';
 
 import aiLogo from "../../../../assets/images/ai-providers/logo-chatgpt.svg";
@@ -30,7 +30,7 @@ const Message: React.FC<MessageProps> = ({ sender, messageContents, actionButton
     }, []);
 
     // Using lodash's throttle function to limit how often the checkAndSetButtonVisibility function can be invoked
-    const debouncedCheck = useCallback(lodash.debounce(checkAndSetButtonVisibility, 1500), [checkAndSetButtonVisibility]);
+    const debouncedCheck = useCallback(lodash.debounce(checkAndSetButtonVisibility, 30), [checkAndSetButtonVisibility]);
 
     useLayoutEffect(() => {
         window.addEventListener('resize', debouncedCheck);
@@ -41,6 +41,24 @@ const Message: React.FC<MessageProps> = ({ sender, messageContents, actionButton
             debouncedCheck.cancel(); // Cancel any pending execution of the throttled function on cleanup
         };
     }, [debouncedCheck, checkAndSetButtonVisibility]);
+
+    useEffect(() => {
+        const handleLoad = () => {
+            checkAndSetButtonVisibility();
+        };
+
+        window.addEventListener('load', handleLoad);
+
+        // Ensure the function runs if the component mounts after the window has already loaded
+        if (document.readyState === 'complete') {
+            checkAndSetButtonVisibility();
+        }
+
+        return () => {
+            window.removeEventListener('load', handleLoad);
+        };
+    }, [checkAndSetButtonVisibility]);
+
 
     return (
         <div className={`chat-message-outer-container ${sender.toLowerCase()}`}>
@@ -59,11 +77,8 @@ const Message: React.FC<MessageProps> = ({ sender, messageContents, actionButton
                 </div>
 
                 <div className="chat-message-select-checkbox">
-                    <label className="checkbox-field">
+                    <label className="button checkbox-field">
                         <input type="checkbox"/>
-                        <span>
-                      <br/>
-                    </span>
                     </label>
                 </div>
 
@@ -73,13 +88,15 @@ const Message: React.FC<MessageProps> = ({ sender, messageContents, actionButton
                     </div>
                 </div>
 
-                <div
-                    ref={sideButtonsRef}
-                    className="chat-message-buttons-side"
-                    style={{ display: showSideButtons ? 'flex' : 'none' }} // Use the state to control visibility
-                >
-                    {actionButtons}
+                <div className="chat-message-buttons-side-outer">
+                    <div
+                        ref={sideButtonsRef}
+                        className={`chat-message-buttons-side ${showSideButtons ? 'visible' : ''}`}
+                    >
+                        {actionButtons}
+                    </div>
                 </div>
+
 
                 <div className="chat-message-bottom">
                     {children}

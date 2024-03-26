@@ -388,7 +388,7 @@ $middle-bg: hsl(216, 3%, 97%);
 
   height: auto;
   min-height: 4.2rem;
-  border: 1px solid var(--border-color-lighter);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   flex: 1;
   width: 100%;
@@ -457,13 +457,31 @@ $middle-bg: hsl(216, 3%, 97%);
     height: auto;
 }
 
-.chat-message-buttons-side {
+.chat-message-buttons-side-outer {
   grid-area: buttons-side;
-  padding-left: 12px;
 
-  @include flex(center, flex-start, $gap: 8px, $direction: column);
+  width: 14px;
 
-  opacity: 0.82;
+  height: 100%;
+}
+
+$opacity-message-buttons: 0.7;
+
+.chat-message-buttons-side {
+  @include flex(center, flex-start, $gap: 14px, $direction: column);
+
+  opacity: $opacity-message-buttons;
+
+  width: 14px;
+
+  position: absolute;
+
+  visibility: hidden;
+
+  &.visible {
+    position: sticky;
+    top: 50%;
+  }
 }
 
 .chat-message-buttons-bottom {
@@ -474,7 +492,7 @@ $middle-bg: hsl(216, 3%, 97%);
 
   @include flex(flex-end, $gap: 18px);
 
-  opacity: 0.82;
+  opacity: $opacity-message-buttons;
 }
 
 $chat-bottom-border-width: 2px;
@@ -544,10 +562,26 @@ $chat-bottom-border-width: 2px;
   gap: 10px;
 }
 
-#input-special-actions {
-  @include flex(flex-end, $gap: 14px);
+#chat-input-bottom-action-row {
+  @include flex(space-between);
 
-  padding: 0 2.2rem 0.4rem;
+  position: relative;
+
+  top: -4px;
+}
+
+#chat-input-token-counter {
+  @include flex($gap: 8px);
+
+  padding: 0 22px;
+
+  font-size: 0.94em;
+}
+
+#chat-input-special-actions {
+  @include flex(flex-end, $gap: 20px);
+
+  padding: 0 2.2rem;
 }
 
 .input-special-action-button {
@@ -639,7 +673,7 @@ $chat-bottom-border-width: 2px;
   }
 
   &.user-message {
-    background: linear-gradient(to bottom, hsl(227 90% 98% / 1), hsl(226deg 90% 98%));
+    background: linear-gradient(to bottom, hsl(227 90% 99% / 1), hsl(226deg 90% 99%));
     //border: 2px solid var(--border-color-hued);
 
     //border: 1px solid hsl(225deg 60.42% 52.26% / 80%);
@@ -661,6 +695,8 @@ $chat-bottom-border-width: 2px;
     .chat-message-action-row {
       visibility: visible;
     }
+
+    .visible { visibility: visible; }
   }
 }
 
@@ -745,6 +781,9 @@ $chat-bottom-border-width: 2px;
   grid-area: message;
   width: 100%;
 
+
+  padding: 0 12px;
+
   &:before {
     content: "";
     width: 100%;
@@ -765,10 +804,7 @@ $chat-bottom-border-width: 2px;
   grid-area: checkbox;
   height: 100%;
   @include flex;
-
-  .checkbox-field {
-    padding-right: 4px;
-  }
+  visibility: hidden;
 }
 
 

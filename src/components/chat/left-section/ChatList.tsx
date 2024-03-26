@@ -4,7 +4,7 @@ import ChatListItem from "./ChatListItem";
 import SearchButton from "../../general/SearchButton";
 import AddElementButton from "../../general/AddElementButton";
 
-import arrowIcon from "../../../assets/images/arrow.svg";
+import archiveIcon from "../../../assets/images/archive.svg";
 
 // Assuming each ChatListItem can be identified uniquely, for example, by an id
 const chatListData = [
@@ -54,7 +54,7 @@ const ChatList: React.FC = () => {
                 </div>
 
                 <div className="button" id="chat-list-see-all">
-                    <img src={arrowIcon} alt={"See all chats"} />
+                    <img src={archiveIcon} alt={"See all chats"} />
                     <div>See all chats</div>
                 </div>
             </div>
