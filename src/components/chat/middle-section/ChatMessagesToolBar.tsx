@@ -6,7 +6,7 @@ import exportImportIcon from "../../../assets/images/export-import.svg";
 import settingsIcon from "../../../assets/images/settings.svg";
 import Tag from "../../general/Tag";
 
-const ChatMessagesToolBar: React.FC = () => {
+const ChatMessagesToolBar = () => {
     return (
         <section id="chat-messages-tool-bar">
             <div id="chat-message-tool-bar-top">

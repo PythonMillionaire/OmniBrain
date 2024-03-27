@@ -1,5 +1,3 @@
-import React from 'react';
-
 const copyMessageContents = async (eventTarget: EventTarget) => {
     try {
         // The target is the element that triggered the event

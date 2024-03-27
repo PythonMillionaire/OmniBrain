@@ -14,7 +14,7 @@ import AddElementButton from "../../general/AddElementButton";
 import CollapseButton from "../../general/CollapseSectionButton";
 import {ButtonPosition} from "../../../types/enums";
 
-const RightSection: React.FC = () => {
+const RightSection = () => {
     const [isVisible, setIsVisible] = useState(true);
     const elementRef = useRef<HTMLDivElement>(null);
 

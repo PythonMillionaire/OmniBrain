@@ -51,12 +51,20 @@ const Tooltip: React.FC<TooltipProps> = ({ text, visible, parentRef }) => {
         left: `${position.left}px`,
     };
 
-    return ReactDOM.createPortal(
-        <div ref={tooltipRef} className="custom-tooltip" style={style}>
-            {text}
-        </div>,
-        document.getElementById('portal-root')!
-    );
+    const portalRoot = document.getElementById('portal-root');
+    if (portalRoot !== null) {
+        return ReactDOM.createPortal(
+            <div ref={tooltipRef} className="custom-tooltip" style={style}>
+                {text}
+            </div>,
+            portalRoot
+        );
+    } else {
+        // Handle the case where the portal root isn't found
+        // This could be a fallback rendering, an error, or even a no-op
+        console.error("Portal root not found");
+        return null;
+    }
 };
 
 export default Tooltip;

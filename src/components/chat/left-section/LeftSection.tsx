@@ -12,7 +12,7 @@ import creditsIcon from "../../../assets/images/credits.svg";
 import logo from "../../../assets/images/logo.svg";
 import AddElementButton from "../../general/AddElementButton";
 
-const LeftSection: React.FC = () => {
+const LeftSection = () => {
     return (
         <div id="left-section">
             <div id="left-section-top">

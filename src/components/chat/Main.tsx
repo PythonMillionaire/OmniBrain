@@ -3,7 +3,7 @@ import LeftSection from './left-section/LeftSection';
 import MiddleSection from './middle-section/MiddleSection';
 import RightSection from './right-section/RightSection';
 
-const Main: React.FC = () => {
+const Main = () => {
     return (
         <div id="main">
             <LeftSection />

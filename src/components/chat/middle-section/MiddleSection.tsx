@@ -1,14 +1,18 @@
 import React from 'react';
 import ChatMessagesToolBar from './ChatMessagesToolBar';
-import ChatMessages from './ChatMessages';
-import ChatInputSection from './ChatInput';
+import ChatMessagesSection from './ChatMessagesSection';
+import ChatInputSection from './ChatInputSection';
+import {ReplyModeProvider} from "../../general/messages/ReplyModeContext";
 
-const MiddleSection: React.FC = () => {
+const MiddleSection = () => {
     return (
         <div id="middle-section">
             <ChatMessagesToolBar />
-            <ChatMessages />
-            <ChatInputSection />
+
+            <ReplyModeProvider>
+                <ChatMessagesSection />
+                <ChatInputSection />
+            </ReplyModeProvider>
         </div>
     );
 };

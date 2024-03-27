@@ -1,4 +1,4 @@
-import { MessageExtremity } from "../../../../../types/enums";
+import { MessageExtremity } from "../../../../../../types/enums";
 
 // Adjusted function to accept an element reference
 const scrollToMessageExtremity = (element: EventTarget, extremity: MessageExtremity) => {

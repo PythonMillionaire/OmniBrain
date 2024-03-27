@@ -9,12 +9,12 @@ import regenerateIcon from "../../../../assets/images/action-buttons/regenerate.
 import saveToFavoritesIcon from "../../../../assets/images/action-buttons/save-favorites.svg";
 import savePromptIcon from "../../../../assets/images/action-buttons/save-prompt.svg";
 
-import copyMessageContents from "./functionality/copyMessageContents";
-import scrollToMessageExtremity from "./functionality/scrollToMessageExtremity";
-import thumbDownMessage from "./functionality/messageThumbsDown";
-import regenerateMessage from "./functionality/regenerateMessage";
-import saveToFavorites from "./functionality/saveToFavorites";
-import savePrompt from "./functionality/savePrompt";
+import copyMessageContents from "./message/functionality-message-buttons/copyMessageContents";
+import scrollToMessageExtremity from "./message/functionality-message-buttons/scrollToMessageExtremity";
+import thumbDownMessage from "./message/functionality-message-buttons/messageThumbsDown";
+import regenerateMessage from "./message/functionality-message-buttons/regenerateMessage";
+import saveToFavorites from "./message/functionality-message-buttons/saveToFavorites";
+import savePrompt from "./message/functionality-message-buttons/savePrompt";
 
 interface MessageActionButtonProps {
     buttonIconURL: string;
@@ -28,7 +28,7 @@ const MessageActionButton: React.FC<MessageActionButtonProps> = ({buttonIconURL,
     )
 }
 
-const SaveToFavoritesButton: React.FC = () => (
+const SaveToFavoritesButton = () => (
     <MessageActionButton
         buttonAction={(event) => saveToFavorites(event.currentTarget)}
         buttonIconURL={saveToFavoritesIcon}
@@ -36,7 +36,7 @@ const SaveToFavoritesButton: React.FC = () => (
     />
 );
 
-const ScrollToTopButton: React.FC = () => (
+const ScrollToTopButton = () => (
     <MessageActionButton
         buttonAction={(event) => scrollToMessageExtremity(event.currentTarget, MessageExtremity.top)}
         buttonIconURL={scrollArrowIcon}
@@ -44,7 +44,7 @@ const ScrollToTopButton: React.FC = () => (
     />
 );
 
-const ScrollToBottomButton: React.FC = () => (
+const ScrollToBottomButton = () => (
     <MessageActionButton
         buttonAction={(event) => scrollToMessageExtremity(event.currentTarget, MessageExtremity.bottom)}
         buttonIconURL={scrollArrowIcon}
@@ -52,7 +52,7 @@ const ScrollToBottomButton: React.FC = () => (
     />
 );
 
-const ThumbsDownButton: React.FC = () => (
+const ThumbsDownButton = () => (
     <MessageActionButton
         buttonAction={(event) => thumbDownMessage(event.currentTarget)}
         buttonIconURL={thumbsDownIcon}
@@ -60,7 +60,7 @@ const ThumbsDownButton: React.FC = () => (
     />
 );
 
-const RegenerateMessageButton: React.FC = () => (
+const RegenerateMessageButton = () => (
     <MessageActionButton
         buttonAction={(event) => regenerateMessage(event.currentTarget)}
         buttonIconURL={regenerateIcon}
@@ -68,7 +68,7 @@ const RegenerateMessageButton: React.FC = () => (
     />
 );
 
-const SavePromptButton: React.FC = () => (
+const SavePromptButton = () => (
     <MessageActionButton
         buttonAction={(event) => savePrompt(event.currentTarget)}
         buttonIconURL={savePromptIcon}
@@ -76,7 +76,7 @@ const SavePromptButton: React.FC = () => (
     />
 );
 
-const CopyMessageButton: React.FC = () => (
+const CopyMessageButton = () => (
     <MessageActionButton
         buttonAction={(event) => copyMessageContents(event.currentTarget)}
         buttonIconURL={copyIcon}
@@ -84,7 +84,7 @@ const CopyMessageButton: React.FC = () => (
     />
 );
 
-export const AgentMessageActionButtons: React.FC = () => (
+export const AgentMessageActionButtons = () => (
         <>
             <SaveToFavoritesButton/>
             <ScrollToTopButton/>
@@ -95,7 +95,7 @@ export const AgentMessageActionButtons: React.FC = () => (
         </>
     );
 
-export const UserMessageActionButtons: React.FC = () => (
+export const UserMessageActionButtons = () => (
         <>
             <ScrollToTopButton/>
             <ScrollToBottomButton/>

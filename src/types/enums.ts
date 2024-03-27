@@ -1,6 +1,6 @@
-export enum MessageSender {
-    Agent = "Agent",
-    User = "User"
+export enum MessageSenderType {
+    ai = "AI",
+    user = "User"
 }
 
 export enum MessageExtremity {
@@ -13,4 +13,9 @@ export enum ButtonPosition {
     bottom = 'bottom',
     right = 'right',
     left = 'left'
+}
+
+export enum ReplyMode {
+    allMessages = "allMessages",
+    thread = "thread"
 }

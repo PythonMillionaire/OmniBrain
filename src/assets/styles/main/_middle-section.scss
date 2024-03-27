@@ -96,9 +96,18 @@
   display: flex;
 }
 
-#chat-input-top-organization-settings {
+#chat-input-organization-settings {
   width: 100%;
-  display: flex;
+
+  @include flex(center, stretch, $gap: 14px, $direction: column);
+}
+
+$chat-bottom-border-width: 2px;
+
+#chat-input-organization-settings-top {
+  @include flex(space-between);
+
+  border-bottom: $chat-bottom-border-width solid var(--border-color-hued-subdued);
 }
 
 #chat-input-top-response-settings {
@@ -166,7 +175,7 @@
   font-style: italic;
 }
 
-.view-thread {
+.reply-in-thread, .view-thread {
   font-weight: 600;
 }
 
@@ -182,9 +191,11 @@
   font-size: 1.4rem;
 }
 
-#topics-section {
+#chat-input-topics-section {
   width: 60%;
   display: flex;
+
+  padding-left: 8px;
 }
 
 .prompt-settings-label {
@@ -359,7 +370,7 @@ $middle-bg: hsl(216, 3%, 97%);
   top: 2px;
 }
 
-#subtopics-section {
+#subchat-input-topics-section {
   width: 100%;
   @include flex(left, $gap: 1.4rem);
   padding: 0 1.4rem;
@@ -420,7 +431,7 @@ $middle-bg: hsl(216, 3%, 97%);
   filter: drop-shadow(0 0 6px hsl(225 20% 60% / 0.1));
 }
 
-.agent {
+.ai {
   .chat-message-info {
     justify-content: flex-start;
   }
@@ -525,9 +536,7 @@ $opacity-message-buttons: 0.7;
   opacity: $opacity-message-buttons;
 }
 
-$chat-bottom-border-width: 2px;
-
-#topics {
+#chat-input-topics {
   margin-right: 13px;
 
   height: auto;
@@ -573,9 +582,7 @@ $chat-bottom-border-width: 2px;
   overflow: hidden;
 
   gap: 12px;
-  padding: 12px 0;
-
-  border-top: $chat-bottom-border-width solid var(--border-color-hued-subdued);
+  padding: 2px 0;
 }
 
 #chat-input-bottom {
@@ -590,14 +597,18 @@ $chat-bottom-border-width: 2px;
   display: flex;
 
   gap: 10px;
+
+  margin-top: 5px;
 }
 
-#chat-input-bottom-action-row {
+#chat-input-middle-action-row {
+  width: 100%;
+
   @include flex(space-between);
 
   position: relative;
 
-  top: -4px;
+  top: -6px;
 }
 
 #chat-input-token-counter {
@@ -695,7 +706,7 @@ $chat-bottom-border-width: 2px;
   position: relative;
   z-index: 1;
 
-  &.agent-message {
+  &.ai-message {
     background: linear-gradient(to bottom, white, #f8f8f8);
     //border: 2px solid var(--border-color-hued);
     //border: 1px solid hsl(225deg 16.3% 46.72% / 60%);
@@ -718,7 +729,7 @@ $chat-bottom-border-width: 2px;
 }
 
 
-.chat-message-outer-container.user, .chat-message-outer-container.agent {
+.chat-message-outer-container.user, .chat-message-outer-container.ai {
   @include flex(flex-start, stretch, $direction: column);
 
   &:hover  {
@@ -806,7 +817,7 @@ $chat-bottom-border-width: 2px;
   @include shadowColor(hsl(225deg 30% 60% / 3%), 0 0 26px hsl(225deg 30% 60% / 6%));
 }
 
-.agent .chat-message-wrapper::before {
+.ai .chat-message-wrapper::before {
   @include shadowColor(hsl(225deg 30% 60% / 5%), 0 0 26px hsl(225deg 30% 60% / 10%));
 }
 

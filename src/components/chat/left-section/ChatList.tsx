@@ -13,7 +13,7 @@ const chatListData = [
     // Add more items as needed
 ];
 
-const ChatList: React.FC = () => {
+const ChatList = () => {
     // State to keep track of the selected chat list item
     const [selectedId, setSelectedId] = useState<number | null>(null);
 
