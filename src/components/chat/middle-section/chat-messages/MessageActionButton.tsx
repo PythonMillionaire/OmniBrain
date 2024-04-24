@@ -9,12 +9,12 @@ import regenerateIcon from "../../../../assets/images/action-buttons/regenerate.
 import saveToFavoritesIcon from "../../../../assets/images/action-buttons/save-favorites.svg";
 import savePromptIcon from "../../../../assets/images/action-buttons/save-prompt.svg";
 
-import copyMessageContents from "./message/functionality-message-buttons/copyMessageContents";
-import scrollToMessageExtremity from "./message/functionality-message-buttons/scrollToMessageExtremity";
-import thumbDownMessage from "./message/functionality-message-buttons/messageThumbsDown";
-import regenerateMessage from "./message/functionality-message-buttons/regenerateMessage";
-import saveToFavorites from "./message/functionality-message-buttons/saveToFavorites";
-import savePrompt from "./message/functionality-message-buttons/savePrompt";
+import copyMessageContents from "./message/functionality/copyMessageContents";
+import scrollToMessageExtremity from "./message/functionality/scrollToMessageExtremity";
+import thumbDownMessage from "./message/functionality/messageThumbsDown";
+import regenerateMessage from "./message/functionality/regenerateMessage";
+import saveToFavorites from "./message/functionality/saveToFavorites";
+import savePrompt from "./message/functionality/savePrompt";
 
 interface MessageActionButtonProps {
     buttonIconURL: string;

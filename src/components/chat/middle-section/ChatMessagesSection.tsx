@@ -1,25 +1,10 @@
 import React from 'react';
-import AgentMessage from "./chat-messages/AgentMessage";
-import UserMessage from "./chat-messages/UserMessage";
+import Conversation from "./chat-messages/Conversation";
 
 const ChatMessagesSection = () => {
     return (
         <section id="chat-messages-section">
-            <UserMessage
-                messageContents={"Test\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntest"}
-            />
-
-            <AgentMessage
-                messageContents={"Test\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntestTest\ntest\ntest\ntest"}
-            />
-
-            <UserMessage
-                messageContents={"Test"}
-            />
-
-            <AgentMessage
-                messageContents={"Test"}
-            />
+            <Conversation />
         </section>
     );
 };

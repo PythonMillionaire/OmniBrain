@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import lodash from 'lodash';
+import MessageSender from "../../../../../types/messages/MessageSender";
 
 interface MessageMiddleSectionProps {
-    sender: string;
+    sender: MessageSender;
     messageContents: string;
     actionButtons: React.ReactNode;
     onShowSideButtonsChange: (isVisible: boolean) => void; // New callback prop
@@ -70,7 +71,7 @@ const MessageMiddleSection: React.FC<MessageMiddleSectionProps> = ({
             </div>
 
             <div className="chat-message-wrapper">
-                <div ref={chatMessageRef} className={`chat-message ${sender.toLowerCase()}-message`}>
+                <div ref={chatMessageRef} className={`chat-message ${sender.type.toLowerCase()}-message`}>
                     <div className="chat-message-contents">{messageContents}</div>
                 </div>
             </div>

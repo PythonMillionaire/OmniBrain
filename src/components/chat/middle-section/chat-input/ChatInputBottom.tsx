@@ -21,6 +21,7 @@ const ChatInputBottom = () => {
                 <div id="prompt-settings-checkboxes">
                     <Checkbox text={"Keep prompt after sending"} tooltipText={"Whether the prompt should remain in the input field after the message is sent."} />
                     <Checkbox text={"Improve prompt before sending"} tooltipText={"Whether the prompt should first be improved by the AI defined in Settings before being sent."} />
+                    <Checkbox text={"Minify prompt before sending"} tooltipText={"Whether the prompt should first be minified and have unnecessary characters removed, such as multiple spaces in a row, before sending. This reduces usage costs."} />
                     <Checkbox text={"Don't include any previous messages"} tooltipText={"Whether all previous chat messages should be omitted from next request."} />
                 </div>
             </div>

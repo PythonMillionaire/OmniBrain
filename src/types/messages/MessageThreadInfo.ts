@@ -1,16 +1,20 @@
 import MessageInfo from "./MessageInfo";
-import {MessageSenderType} from "./enums";
+import {MessageSenderType} from "../enums";
 import {AIProviderInfo} from "./MessageSender";
 
 export default class MessageThreadInfo {
-    name?: string;
-    firstReply: MessageInfo;
     private _replies: MessageInfo[];
 
-    constructor(firstReply: MessageInfo, replies: MessageInfo[], name?: string) {
-        this.name = name;
-        this.firstReply = firstReply;
+    constructor(
+        public id: string,
+        replies: MessageInfo[] = [],
+        public name?: string
+    ) {
         this._replies = replies;
+    }
+
+    get replies(): MessageInfo[] {
+        return this._replies;
     }
 
     get repliesCount(): number {
@@ -42,6 +46,7 @@ export default class MessageThreadInfo {
                 return isUnique;
             });
     }
+
 
     addReply(reply: MessageInfo): void {
         this._replies.push(reply);

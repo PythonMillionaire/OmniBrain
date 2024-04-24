@@ -110,6 +110,45 @@ $chat-bottom-border-width: 2px;
   border-bottom: $chat-bottom-border-width solid var(--border-color-hued-subdued);
 }
 
+#chat-input-reply-in-thread {
+  position: relative;
+
+  margin-left: 18px;
+
+  padding: 4px 14px;
+
+  border: 1px solid var(--border-color-lighter);
+
+  border-radius: 12px;
+}
+
+#chat-input-currently-active-thread-label {
+  font-weight: 600;
+}
+
+#chat-input-reply-in-thread-close-button {
+  border-radius: 50%;
+
+  width: 1.8rem;
+  height: 1.8rem;
+
+  font-weight: 600;
+  font-size: 1.15em;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(20%, -50%);
+
+  border: 1px solid var(--border-color);
+
+  @include flex;
+
+  background: linear-gradient(to bottom, white, #fafafa);
+
+  box-shadow: 0 0 2px hsl(225 20% 10% / 0.14);
+}
+
 #chat-input-top-response-settings {
   padding-right: 20px;
   width: 100%;
@@ -137,12 +176,10 @@ $chat-bottom-border-width: 2px;
 .chat-message-thread-info {
   user-select: none;
   width: 100%;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin: 8px 0 4px;
-  display: flex;
 
-  padding: 0 6px;
+  @include flex(space-between, flex-end, $direction: column);
+
+  padding: 0 8px;
 
   transition: padding 0.425s ease;
   border: 1px solid transparent;
@@ -153,9 +190,25 @@ $chat-bottom-border-width: 2px;
     border-radius: 18px;
     padding: 0 20px;
   }
+
+  &.chat-message-viewing-thread {
+    background: hsl(226, 20%, 95%);
+    border: 1px solid var(--border-color-lighter-two);
+    border-radius: 18px;
+    padding: 0 20px;
+  }
 }
 
-.replies-info {
+.chat-message-thread-contents {
+  width: 100%;
+  @include flex(flex-start, stretch, $direction: column);
+
+  background: hsl(226 20% 95% / 1);
+  border-radius: 18px;
+
+}
+
+.chat-message-thread-replies-info {
   @include flex(flex-start, $gap: 1.2rem);
 }
 
@@ -175,7 +228,7 @@ $chat-bottom-border-width: 2px;
   font-style: italic;
 }
 
-.reply-in-thread, .view-thread {
+.chat-message-reply-in-thread, .chat-message-view-thread {
   font-weight: 600;
 }
 
@@ -454,7 +507,7 @@ $middle-bg: hsl(216, 3%, 97%);
 .chat-message-bottom {
   grid-area: action-buttons;
 
-  @include flex(space-between, $direction: column);
+  @include flex(space-between, $direction: column, $gap: 4px);
 
   margin-top: 8px;
 
@@ -733,10 +786,6 @@ $opacity-message-buttons: 0.7;
   @include flex(flex-start, stretch, $direction: column);
 
   &:hover  {
-    .chat-message-action-row {
-      visibility: visible;
-    }
-
     .visible { visibility: visible; }
   }
 
@@ -751,7 +800,7 @@ $opacity-message-buttons: 0.7;
 
   @include flex(space-between);
 
-  visibility: hidden;
+  padding: 0 8px;
 }
 
 @mixin messageButton($w, $o) {

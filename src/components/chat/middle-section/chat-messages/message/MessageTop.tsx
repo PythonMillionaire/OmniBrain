@@ -1,16 +1,17 @@
 import React from 'react';
 import {MessageSenderType} from "../../../../../types/enums";
+import MessageSender from "../../../../../types/messages/MessageSender";
 
 interface MessageInfoProps {
-    sender: MessageSenderType;
+    sender: MessageSender;
     userAvatar: string;
     aiLogo: string;
 }
 
-const MessageInfo: React.FC<MessageInfoProps> = ({sender, userAvatar, aiLogo}) => {
+const MessageTop: React.FC<MessageInfoProps> = ({sender, userAvatar, aiLogo}) => {
     return(
         <div className="chat-message-info">
-            {sender === MessageSenderType.ai ? (
+            {sender.type === MessageSenderType.ai ? (
                 <div className="chat-list-item-ai-model-logo-message">
                     <img className={"message-avatar"} src={aiLogo} alt="AI Model Logo" />
                 </div>
@@ -19,9 +20,9 @@ const MessageInfo: React.FC<MessageInfoProps> = ({sender, userAvatar, aiLogo}) =
                     <img className={"message-avatar"} src={userAvatar} alt="User avatar" />
                 </div>
             )}
-            <div className="chat-message-info-sender">{sender}</div>
+            <div className="chat-message-info-sender">{sender.name}</div>
         </div>
     )
 }
 
-export default MessageInfo;
+export default MessageTop;

@@ -4,36 +4,37 @@ import aiLogo from "../../../../assets/images/ai-providers/logo-chatgpt.svg";
 import userAvatar from '../../../../assets/images/user-avatar.svg';
 import {MessageSenderType} from "../../../../types/enums";
 
-import MessageInfo from "./message/MessageInfo";
+import MessageTop from "./message/MessageTop";
 import MessageMiddleSection from "./message/MessageMiddleSection";
 import MessageBottomSection from "./message/MessageBottomSection";
+import MessageInfo from "../../../../types/messages/MessageInfo";
 
 interface MessageProps {
-    sender: MessageSenderType;
-    messageContents: string;
+    messageInfo: MessageInfo;
     actionButtons: React.ReactNode;
     threadSection?: React.ReactNode;
 }
 
-const Message: React.FC<MessageProps> = ({ sender, messageContents, actionButtons, threadSection }) => {
+const Message: React.FC<MessageProps> = ({ messageInfo, actionButtons, threadSection }) => {
     const [showSideButtons, setShowSideButtons] = useState(true);
+    const [showBottomSection, setShowBottomSection] = useState(false);
 
     const handleShowSideButtonsChange = (isVisible: boolean) => {
         setShowSideButtons(isVisible);
     };
 
     return (
-        <div className={`chat-message-outer-container ${sender.toLowerCase()}`}>
+        <div className={`chat-message-outer-container ${messageInfo.sender.type.toLowerCase()}`}>
             <div className="chat-message-inner-container">
-                <MessageInfo
-                    sender={sender}
+                <MessageTop
+                    sender={messageInfo.sender}
                     userAvatar={userAvatar}
                     aiLogo={aiLogo}
                 />
 
                 <MessageMiddleSection
-                    sender={sender}
-                    messageContents={messageContents}
+                    sender={messageInfo.sender}
+                    messageContents={messageInfo.contents}
                     actionButtons={actionButtons}
                     onShowSideButtonsChange={handleShowSideButtonsChange}
                 />

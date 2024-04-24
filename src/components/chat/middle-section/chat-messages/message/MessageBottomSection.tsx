@@ -11,8 +11,6 @@ interface MessageBottomSectionProps {
 const MessageBottomSection: React.FC<MessageBottomSectionProps> = ({ children, actionButtons, showSideButtons }) => {
     return (
         <div className="chat-message-bottom">
-            {children}
-
             <div className="chat-message-action-row">
                 <div className="chat-message-tag-list">
                     <Tag tagName={'Tag name'}/>
@@ -24,6 +22,8 @@ const MessageBottomSection: React.FC<MessageBottomSectionProps> = ({ children, a
                     {actionButtons}
                 </div>
             </div>
+
+            {children}
         </div>
     );
 }

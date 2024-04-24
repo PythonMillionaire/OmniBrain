@@ -1,16 +1,15 @@
 import React from "react";
 import Message from "./Message";
 
-import {MessageSenderType} from "../../../../types/enums";
-
 import {UserMessageActionButtons} from "./MessageActionButton";
+import MessageInfo from "../../../../types/messages/MessageInfo";
 
 interface UserMessageProps {
-    messageContents: string;
+    messageInfo: MessageInfo;
 }
 
-const UserMessage: React.FC<UserMessageProps> = ({ messageContents }) => {
-    return <Message sender={MessageSenderType.user} messageContents={messageContents} actionButtons={<UserMessageActionButtons />} />;
+const UserMessage: React.FC<UserMessageProps> = ({ messageInfo }) => {
+    return <Message messageInfo={messageInfo} actionButtons={<UserMessageActionButtons />} />;
 };
 
 export default UserMessage;
