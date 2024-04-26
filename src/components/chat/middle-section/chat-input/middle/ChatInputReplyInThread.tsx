@@ -1,24 +1,27 @@
-import React from "react";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../../../../app/store';
+import { ReplyMode } from '../../../../../types/enums';
+import { scrollToThread } from '../functionality/ReplyModeFunctionality';
+import { selectReplyMode, setReplyMode, selectActiveThreadID } from '../../../../../features/chat/chatSlice';
 
-import {ReplyMode} from "../../../../../types/enums";
-import {scrollToThread} from "../functionality/ReplyModeFunctionality";
-import MessageThreadInfo from "../../../../../types/messages/MessageThreadInfo";
+const ChatInputReplyInThread: React.FC = () => {
+    const dispatch = useDispatch();
+    const replyMode = useSelector(selectReplyMode);
+    const activeThreadID = useSelector(selectActiveThreadID);
 
-interface ChatInputMiddleProps {
-    setReplyMode: (newMode: ReplyMode, newActiveThreadID: string) => void;
-    newActiveThreadID: string;
-}
+    const closeReplyToThread = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+        dispatch(setReplyMode({ replyMode: ReplyMode.allMessages, activeThreadID: '' }));
+        e.stopPropagation();
+    };
 
-const ChatInputReplyInThread: React.FC<ChatInputMiddleProps> = ({ setReplyMode, newActiveThreadID }) => {
-    return(
+    return (
         <div className="button" id="chat-input-reply-in-thread" onClick={scrollToThread}>
-            <span id="chat-input-currently-active-thread-label">Currently replying to Thread:</span> <span id="chat-input-currently-active-thread">#P1-M34</span>
-            <span id="chat-input-reply-in-thread-close-button" onClick={(e) => {
-                setReplyMode(ReplyMode.allMessages, newActiveThreadID);
-                e.stopPropagation();
-            }}>×</span>
+            <span id="chat-input-currently-active-thread-label">Currently replying to Thread:</span>
+            <span id="chat-input-currently-active-thread">#{activeThreadID}</span>
+            <span id="chat-input-reply-in-thread-close-button" onClick={closeReplyToThread}>×</span>
         </div>
-    )
+    );
 }
 
 export default ChatInputReplyInThread;

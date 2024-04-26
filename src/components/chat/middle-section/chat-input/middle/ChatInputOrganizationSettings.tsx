@@ -2,13 +2,14 @@ import AddElementButton from "../../../../general/AddElementButton";
 import React from "react";
 
 import ChatInputReplyInThread from "./ChatInputReplyInThread";
-import {useReplyMode} from "../../../../general/messages/ReplyModeContext";
 import Tag from "../../../../general/Tag";
 
 import {ReplyMode} from "../../../../../types/enums";
+import {useDispatch, useSelector} from "react-redux";
+import {selectReplyMode, setReplyMode} from "../../../../../features/chat/chatSlice";
 
 const ChatInputOrganizationSettings = () => {
-    const { replyMode, setReplyMode } = useReplyMode();
+    const replyMode = useSelector(selectReplyMode);
 
     return (
         <div id="chat-input-organization-settings">
@@ -23,7 +24,7 @@ const ChatInputOrganizationSettings = () => {
                                 <AddElementButton type={"topic"}/>
                         </div>
 
-                        : <ChatInputReplyInThread setReplyMode={setReplyMode} newActiveThreadID={''} />
+                        : <ChatInputReplyInThread />
                 }
 
                 <div id="tags-section">

@@ -3,28 +3,30 @@ import {MessageSenderType} from "../enums";
 import {AIProviderInfo} from "./MessageSender";
 
 export default class MessageThreadInfo {
-    private _replies: MessageInfo[];
+    private _messages: MessageInfo[];
 
     constructor(
         public id: string,
-        replies: MessageInfo[] = [],
+        messages: MessageInfo[] = [],
         public name?: string
     ) {
-        this._replies = replies;
+        this._messages = messages;
     }
 
-    get replies(): MessageInfo[] {
-        return this._replies;
+    get messages(): MessageInfo[] {
+        return this._messages;
     }
 
-    get repliesCount(): number {
-        return this._replies.length;
+    get messageCount(): number {
+        return this.messages.length;
     }
+
+    get allMessageIds(): string[] { return this._messages.map(reply => reply.id); } // returns all messageIds
 
     get lastInteractionDate(): Date | undefined {
-        if (this._replies.length > 0) {
+        if (this._messages.length > 0) {
             // last reply is the most recent one
-            return this._replies[this._replies.length - 1].date;
+            return this._messages[this._messages.length - 1].date;
         }
         return undefined;
     }
@@ -33,7 +35,7 @@ export default class MessageThreadInfo {
         const uniqueIds = new Set<string>();
 
         // filter out undefined values, then apply the uniqueness check.
-        return this._replies
+        return this._messages
             .map(reply => reply.sender.type === MessageSenderType.ai ? reply.sender as AIProviderInfo : undefined)
             .filter((provider): provider is AIProviderInfo => provider !== undefined)
             .filter(provider => {
@@ -48,12 +50,12 @@ export default class MessageThreadInfo {
     }
 
 
-    addReply(reply: MessageInfo): void {
-        this._replies.push(reply);
+    addMessage(messageToAdd: MessageInfo): void {
+        this._messages.push(messageToAdd);
     }
 
     // deletes reply by id
     deleteReply(reply: MessageInfo): void {
-        this._replies = this._replies.filter(r => r.id !== reply.id);
+        this._messages = this._messages.filter(r => r.id !== reply.id);
     }
 }

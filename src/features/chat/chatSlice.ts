@@ -6,6 +6,7 @@ import Conversation from "../../components/chat/middle-section/chat-messages/Con
 import MessageThreadInfo from "../../types/messages/MessageThreadInfo";
 
 import { createSelector } from 'reselect';
+import {ReplyMode} from "../../types/enums";
 
 // Define the type for a conversation
 interface ConversationType {
@@ -18,9 +19,11 @@ interface ConversationType {
 interface ChatState {
     messages: MessageInfo[];
     conversations: ConversationType[];
-    threads: MessageThreadInfo[]; // Store threads
+    threads: MessageThreadInfo[];
     loading: 'idle' | 'pending' | 'succeeded' | 'failed';
     error: string | null;
+    replyMode: ReplyMode;
+    activeThreadID: string;
 }
 
 const initialState: ChatState = {
@@ -29,6 +32,8 @@ const initialState: ChatState = {
     threads: [],
     loading: 'idle',
     error: null,
+    replyMode: ReplyMode.allMessages,
+    activeThreadID: '',
 };
 
 
@@ -59,20 +64,34 @@ const chatSlice = createSlice({
                 state.messages.push(action.payload);
             },
             createThread(state, action: PayloadAction<{ firstReply: MessageInfo }>) {
-                const newId = uuidv4();
-                const newThread = new MessageThreadInfo(newId);
-                newThread.addReply(action.payload.firstReply);
+                const newThread = new MessageThreadInfo(action.payload.firstReply.id);
+                newThread.addMessage(action.payload.firstReply);
                 state.threads.push(newThread);
             },
             addConversation(state, action: PayloadAction<ConversationType>) {
                 state.conversations.push(action.payload);
             },
-            appendMessageToConversation(state, action: PayloadAction<{ conversationId: string, messageId: string }>) {
-                const conversation = state.conversations.find(convo => convo.id === action.payload.conversationId);
-                if (conversation && !conversation.messageIds.includes(action.payload.messageId)) {
-                    conversation.messageIds.push(action.payload.messageId);
+            appendMessageToThread(state, action: PayloadAction<{ messageToAdd: MessageInfo, threadId: string }>) {
+                const threadIndex = state.threads.findIndex(thread => thread.id === action.payload.threadId);
+                if (threadIndex !== -1) {
+                    const thread = state.threads[threadIndex];
+                    // Rehydrate the existing messages in the thread
+                    const rehydratedMessages = thread.messages.map(msg =>
+                        new MessageInfo(msg.id, msg.sender, msg.contents, new Date(msg.date), msg.parentThreadID));
+                    // Create a new MessageThreadInfo instance with the new message added
+                    const newThread = new MessageThreadInfo(thread.id, rehydratedMessages, thread.name);
+                    newThread.addMessage(action.payload.messageToAdd);
+                    // Replace the old thread object with the new one
+                    state.threads[threadIndex] = newThread;
                 }
             },
+            setReplyMode(state, action: PayloadAction<{ replyMode: ReplyMode, activeThreadID: string }>) {
+                state.replyMode = action.payload.replyMode;
+                state.activeThreadID = action.payload.activeThreadID;
+            },
+            clearActiveThreadID(state) {
+                state.activeThreadID = '';
+            }
         },
     extraReducers: (builder) => {
         builder
@@ -92,7 +111,7 @@ const chatSlice = createSlice({
     }
 });
 
-export const { addMessage, addConversation, appendMessageToConversation, createThread } = chatSlice.actions;
+export const { setReplyMode, clearActiveThreadID, addMessage, appendMessageToThread, addConversation, createThread } = chatSlice.actions;
 export default chatSlice.reducer;
 
 const getMessages = (state: RootState) => state.chat.messages;
@@ -100,7 +119,10 @@ const getMessages = (state: RootState) => state.chat.messages;
 export const selectAllMessages = createSelector(
     [getMessages], // input selector array
     (messages) => {
-        return [...messages].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+        // Rehydrate each plain object into a MessageInfo instance
+        return messages
+            .map(msg => new MessageInfo(msg.id, msg.sender, msg.contents, new Date(msg.date), msg.parentThreadID))
+            .sort((a, b) => a.date.getTime() - b.date.getTime());
     }
 );
 
@@ -116,6 +138,21 @@ export const selectConversationById = (state: RootState, id: string) => {
 export const selectAllThreads = (state: RootState) => state.chat.threads;
 
 // Finds a thread by ID within the array
-export const selectThreadById = (state: RootState, threadId: string) => {
-    return state.chat.threads.find(thread => thread.id === threadId);
-};
+export const selectThreadById = createSelector(
+    [selectAllThreads, (state, threadId) => threadId],
+    (threads, threadId) => {
+        const thread = threads.find(thread => thread.id === threadId);
+        if (thread) {
+            // Rehydrate the thread with MessageInfo instances
+            const rehydratedMessages = thread.messages.map(msg =>
+                new MessageInfo(msg.id, msg.sender, msg.contents, new Date(msg.date), msg.parentThreadID));
+            return new MessageThreadInfo(thread.id, rehydratedMessages, thread.name);
+        }
+        return null;
+    }
+);
+
+
+// Selectors
+export const selectReplyMode = (state: RootState) => state.chat.replyMode;
+export const selectActiveThreadID = (state: RootState) => state.chat.activeThreadID;
