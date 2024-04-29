@@ -828,7 +828,9 @@ input[type=range]:focus::-ms-fill-upper {
   background: hsl(226, 20%, 95%);
   border: 1px solid var(--border-color-lighter-two);
   border-radius: 18px;
-  padding: 0 20px;
+  padding: 16px 16px 20px;
+  gap: 12px;
+  margin-top: 6px;
 }
 
 .chat-message-thread-contents {
@@ -839,8 +841,33 @@ input[type=range]:focus::-ms-fill-upper {
   flex-direction: column;
   gap: 0px;
   flex-wrap: nowrap;
+  display: none;
   background: hsl(226, 20%, 95%);
   border-radius: 18px;
+}
+.chat-message-thread-contents > * {
+  margin-bottom: 20px;
+}
+.chat-message-thread-contents.chat-message-viewing-thread {
+  display: flex;
+}
+
+.chat-message-thread-action-section {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  gap: 1.2rem;
+  flex-wrap: nowrap;
+  margin-top: 3px;
+  padding: 1px 4px;
+}
+.chat-message-thread-action-section.chat-message-viewing-thread {
+  padding: 0 20px;
+}
+.chat-message-thread-action-section.bottom-element {
+  display: none;
 }
 
 .chat-message-thread-replies-info {
@@ -877,6 +904,10 @@ input[type=range]:focus::-ms-fill-upper {
   font-weight: 600;
 }
 
+.chat-message-view-thread-button {
+  margin-right: 12px;
+}
+
 .follow-up-question {
   background-color: #fdfdfd;
   border: 2px solid var(--border-color-hued);
@@ -906,7 +937,7 @@ input[type=range]:focus::-ms-fill-upper {
   border-color: var(--border-color);
   background: hsl(216, 3%, 97%);
   flex: 1;
-  padding: 14px 12px 0px;
+  padding: 0 12px 0px;
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
@@ -915,6 +946,9 @@ input[type=range]:focus::-ms-fill-upper {
   flex-direction: column;
   gap: 16px;
   flex-wrap: nowrap;
+}
+#chat-messages-section > :first-child {
+  margin-top: 8px;
 }
 
 #follow-up-questions-section {
