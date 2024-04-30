@@ -194,9 +194,9 @@
 
 .saved-prompt-button-reorder-icon {
   flex: 0;
-  margin-right: 10px;
+  margin-right: 12px;
 
-  cursor: move;
+  cursor: move !important;
 }
 
 .saved-prompt-button {
@@ -284,7 +284,7 @@
 }
 
 #add-new-saved-prompt-button-section {
-  padding: 8px 0;
+  padding: 9px 0;
 
   background: linear-gradient(to bottom, white, #fafafa);
 

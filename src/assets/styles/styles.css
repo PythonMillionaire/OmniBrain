@@ -843,7 +843,7 @@ input[type=range]:focus::-ms-fill-upper {
   padding: 0 20px;
 }
 .chat-message-thread-info.chat-message-viewing-thread {
-  background: hsl(226, 20%, 95%);
+  background: hsl(226, 20%, 96%);
   border: 1px solid var(--border-color-lighter-two);
   border-radius: 18px;
   padding: 16px 16px 20px;
@@ -860,7 +860,7 @@ input[type=range]:focus::-ms-fill-upper {
   gap: 0px;
   flex-wrap: nowrap;
   display: none;
-  background: hsl(226, 20%, 95%);
+  background: hsl(226, 20%, 96%);
   border-radius: 18px;
 }
 .chat-message-thread-contents > * {
@@ -964,9 +964,6 @@ input[type=range]:focus::-ms-fill-upper {
   gap: 16px;
   flex-wrap: nowrap;
 }
-#chat-messages-section > :first-child {
-  margin-top: 8px;
-}
 
 #follow-up-questions-section {
   padding: 1rem 1.4rem 1rem;
@@ -1012,7 +1009,8 @@ input[type=range]:focus::-ms-fill-upper {
   height: 100%;
   background: #f0f0f0;
   padding: 0 12px;
-  border-left: 1px solid var(--border-color-lighter-three);
+  border-left: 1px solid var(--border-color-lighter-two);
+  border-top: 1px solid var(--border-color-lighter-three);
   box-shadow: inset 0 0 8px 1px hsla(0, 0%, 0%, 0.04);
 }
 
@@ -1093,6 +1091,7 @@ input[type=range]:focus::-ms-fill-upper {
   gap: 0px;
   flex-wrap: nowrap;
   padding: 12px 7px;
+  box-shadow: inset 0 0 4px 0 hsla(0, 0%, 0%, 0.16);
 }
 
 #filter-chat-tag-section {
@@ -1106,6 +1105,7 @@ input[type=range]:focus::-ms-fill-upper {
   margin-bottom: 0;
   line-height: 0;
   overflow: visible;
+  box-shadow: inset 0 0 4px 0 hsla(0, 0%, 0%, 0.16);
 }
 
 .chat-tag-filter {
@@ -1583,6 +1583,9 @@ input[type=range]:focus::-ms-fill-upper {
 .chat-message-outer-container.user .invisible, .chat-message-outer-container.ai .invisible {
   visibility: hidden;
 }
+.chat-message-outer-container.user:first-child, .chat-message-outer-container.ai:first-child {
+  margin-top: 8px;
+}
 
 .chat-message-action-row {
   width: 100%;
@@ -1946,8 +1949,8 @@ input[type=range]:focus::-ms-fill-upper {
 
 .saved-prompt-button-reorder-icon {
   flex: 0;
-  margin-right: 10px;
-  cursor: move;
+  margin-right: 12px;
+  cursor: move !important;
 }
 
 .saved-prompt-button {
@@ -2048,7 +2051,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 #add-new-saved-prompt-button-section {
-  padding: 8px 0;
+  padding: 9px 0;
   background: linear-gradient(to bottom, white, #fafafa);
   border-bottom: 1px solid var(--border-color-lighter-two);
 }

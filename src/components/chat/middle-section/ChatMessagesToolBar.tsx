@@ -80,11 +80,11 @@ const ChatMessagesToolBar: React.FC = () => {
             </div>
             <div id="chat-message-tool-bar-bottom">
                 <div id="chat-pages-menu">
-                    <div id="previous-page" className={"button"}><span>←</span> Previous page</div>
+                    <div id="previous-page" className={"button"}><span>←</span> Previous</div>
                     <div id="chat-page-number">
-                        <b>1</b> <i>of</i> <b>13</b>
+                        <b>1</b> <i>of</i> <b>13</b> <i>pages</i>
                     </div>
-                    <div id="next-page" className={"button"}>Next page <span>→</span></div>
+                    <div id="next-page" className={"button"}>Next <span>→</span></div>
                     <div id="create-new-page" className={"button"}><AddElementButton text={"Create new page"} type={"page"}/></div>
                 </div>
                 <DragDropContext onDragEnd={handleOnDragEnd}>
