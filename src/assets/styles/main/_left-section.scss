@@ -223,13 +223,15 @@
   @include flex;
 
   background: hsl(216, 10%, 93%);
+
+  height: 42px;
 }
 
 #add-new-chat-button {
   @include flex;
 
   background: linear-gradient(to bottom, white, #fafafa);
-  padding: 6px 16px;
+  padding: 5px 16px;
   width: 100%;
   border-radius: 8px;
   border: 1px solid var(--border-color-lighter);
