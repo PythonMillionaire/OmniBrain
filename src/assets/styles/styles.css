@@ -195,6 +195,10 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 #left-section-middle {
+  height: 100%;
+  width: 100%;
+  padding-top: 20px;
+  display: none;
   display: flex;
   justify-content: flex-start;
   align-items: stretch;
@@ -948,6 +952,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 #chat-messages-section {
+  position: relative;
   height: auto;
   border-style: none none solid;
   border-width: 0;
@@ -955,8 +960,7 @@ input[type=range]:focus::-ms-fill-upper {
   background: hsl(216, 3%, 97%);
   flex: 1;
   padding: 0 12px 0px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   display: flex;
   justify-content: flex-start;
   align-items: stretch;

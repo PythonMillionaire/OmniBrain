@@ -51,13 +51,13 @@ const Conversation = () => {
     const messages = useSelector((state: RootState) => selectAllMessages(state));
 
     return (
-        <section id="chat-messages-section">
+        <>
             {Object.values(messages).map(msg => (
                 msg.sender.type === MessageSenderType.user ?
                     <UserMessage key={msg.id} messageInfo={msg} /> :
                     <AgentMessage key={msg.id} messageInfo={msg} />
             ))}
-        </section>
+        </>
     );
 };
 

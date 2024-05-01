@@ -309,6 +309,7 @@ $chat-bottom-border-width: 2px;
 $middle-bg: hsl(216, 3%, 97%);
 
 #chat-messages-section {
+  position: relative;
   height: auto;
   border-style: none none solid;
   border-width: 0;
@@ -317,8 +318,7 @@ $middle-bg: hsl(216, 3%, 97%);
   flex: 1;
   padding: 0 12px 0px;
 
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
 
   @include flex(flex-start, stretch, $direction: column, $gap: 16px);
 }

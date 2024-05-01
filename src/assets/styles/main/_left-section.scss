@@ -41,6 +41,13 @@
 }
 
 #left-section-middle {
+  height: 100%;
+  width: 100%;
+
+  padding-top: 20px;
+
+  display: none;
+
   @include flex(flex-start, stretch, $direction: column, $gap: 8px);
 
   overflow-y: auto;

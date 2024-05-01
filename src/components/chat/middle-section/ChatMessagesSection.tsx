@@ -1,11 +1,14 @@
 import React from 'react';
 import Conversation from "./chat-messages/Conversation";
+import CustomScrollbar from "../../general/CustomScrollbar";
 
 const ChatMessagesSection = () => {
     return (
-        <section id="chat-messages-section">
-            <Conversation />
-        </section>
+        <CustomScrollbar>
+            <section id="chat-messages-section">
+                <Conversation />
+            </section>
+        </CustomScrollbar>
     );
 };
 
