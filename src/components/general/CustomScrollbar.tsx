@@ -34,7 +34,7 @@ const wrapperStyle: CSSProperties = {
 
 
 const thumbYStyle: CSSProperties = {
-    boxShadow: 'inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.6), 0 3px 3px hsl(226deg 25.31% 84.52% / 0.5)',
+    boxShadow: 'inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.2), 0 3px 3px hsl(226deg 25.31% 84.52% / 0.15)',
     borderRadius: '10px',
     background: 'hsl(225 10% 100% / 1)',
     border: '1px solid hsl(226deg 35.31% 76% / 1)',

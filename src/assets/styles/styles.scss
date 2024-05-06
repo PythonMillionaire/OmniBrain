@@ -49,20 +49,6 @@ body
     display: flex;
 }
 
-#tags-section
-{
-    width: 40%;
-    height: 100%;
-    border-width: 1px 0 0 1px;
-    border-style: solid;
-    border-color: var(--border-color-lighter);
-    background-color: #f5f5f5;
-    border-top-left-radius: 8px;
-    padding: 8px;
-
-    @include flex(flex-start, $gap: 12px);
-}
-
 *
 {
     box-sizing: border-box;

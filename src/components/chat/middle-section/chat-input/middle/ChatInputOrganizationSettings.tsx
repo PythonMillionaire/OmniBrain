@@ -27,7 +27,7 @@ const ChatInputOrganizationSettings = () => {
                         : <ChatInputReplyInThread />
                 }
 
-                <div id="tags-section">
+                <div id="chat-input-tags-section">
                     <div id="new-message-tag-list">
                         <Tag className={"chat-tag"} tagName={"Tag name"}/>
                     </div>

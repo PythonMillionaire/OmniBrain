@@ -15,7 +15,7 @@
   z-index: 2;
 
   img {
-    width: 114px;
+    width: 84px;
 
     position: relative;
 
@@ -118,17 +118,15 @@
 
   width: 100%;
 
-  padding: 12px 20px;
+  padding: 14px 20px;
 
   border-top: 1px solid var(--border-color-lighter-two);
-  border-bottom: 1px solid var(--border-color-lighter);
+  border-bottom: 1px solid var(--border-color-lighter-two);
 
   filter: var(--soft-shadow-top);
 
   font-style: italic;
   font-weight: 500;
-
-
 
   img {
     width: 20px;
@@ -142,7 +140,7 @@
     left: 0;
     width: 100%;
     height: 3px;
-    background: hsl(226deg 40% 66%);
+    background: hsl(226deg 40% 62%);
   }
 }
 
@@ -224,7 +222,7 @@
 
   @include flex(left, stretch, $direction: column, $gap: 23px);
 
-  border-bottom: 1px solid var(--border-color-lighter);
+  border-bottom: 1px solid var(--border-color-lighter-two);
 
   filter: var(--soft-shadow-top)
 }
@@ -236,7 +234,7 @@
 }
 
 #add-new-chat-section {
-  padding: 4px 7px;
+  padding: 24px 7px;
 
   border-bottom: 1px solid var(--border-color-lighter);
 
@@ -248,18 +246,66 @@
 }
 
 #add-new-chat-button {
-  @include flex;
+  position: relative;
 
-  background: linear-gradient(to bottom, white, #fafafa);
-  padding: 5px 16px;
+  @include flex($gap: 8px);
+
+  background: linear-gradient(to bottom, white, #f0f0f0);
+  padding: 6px 16px;
   width: 100%;
   border-radius: 8px;
-  border: 1px solid var(--border-color-lighter);
+  border: 1px solid var(--border-color-slightly-lighter);
 
-  box-shadow: 0 0 4px hsla(225, 20%, 60%, 0.08);
+  box-shadow: 0 0 4px hsla(225, 20%, 60%, 0.15);
+
+  overflow: hidden;
+
+  color: #484848;
+
+  font-weight: 500;
 
   .add-new-circle {
     margin-right: 10px;
+  }
+
+  svg {
+    width: 16px;
+
+    opacity: 0.84;
+
+    filter: drop-shadow(0 2px 1px hsla(225, 20%, 60%, 0.5));
+  }
+
+  --add-new-chat-button-details-color: hsl(225deg 45% 62%); //hsl(58 15% 31% / 1); //#DBC235; //hsl(122 14% 64% / 1);//hsl(225deg 44% 65%);
+
+  @mixin add-new-chat-button-color-detail($leftOrRight) {
+    content: '';
+    position: absolute;
+    width: 64px;
+    height: 100px;
+    background-color: var(--add-new-chat-button-details-color);
+
+    border: 1px solid var(--border-color-lighter);
+
+    border-radius: 50%;
+
+    filter: drop-shadow(if($leftOrRight == "left", 1px, -1px) 0 0px hsla(225, 20%, 40%, 0.08));
+
+    // Dynamically set either left or right
+    @if $leftOrRight == "left" {
+      left: -60px;
+    } @else if $leftOrRight == "right" {
+      right: -60px;
+    } @else {
+      @warn "Invalid value for $leftOrRight. Use 'left' or 'right'.";
+    }
+  }
+
+  &::before {
+    @include add-new-chat-button-color-detail(left);
+  }
+  &::after {
+    @include add-new-chat-button-color-detail(right);
   }
 }
 
