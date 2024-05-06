@@ -44,7 +44,7 @@
   height: 100%;
   width: 100%;
 
-  padding-top: 20px;
+  padding-top: 58px;
 
   display: none;
 
@@ -59,9 +59,7 @@
 }
 
 #left-section-action-buttons {
-  @include flex(flex-start, stretch, $direction: column, $gap: 8px);
-
-  //margin-top: clamp(20px, 10vh, 80px);
+  @include flex(flex-start, stretch, $direction: column);
 
   background: linear-gradient(to bottom, hsl(216 5% 95% / 1), hsl(216 2% 95% / 1));
 }
@@ -112,7 +110,10 @@
 }
 
 #chat-list-see-all {
+  position: relative;
+
   @include flex(flex-start, $gap: 12px);
+
   background: linear-gradient(to bottom, white, #fafafa);
 
   width: 100%;
@@ -120,17 +121,29 @@
   padding: 12px 20px;
 
   border-top: 1px solid var(--border-color-lighter-two);
+  border-bottom: 1px solid var(--border-color-lighter);
 
   filter: var(--soft-shadow-top);
 
   font-style: italic;
+  font-weight: 500;
+
+
 
   img {
     width: 20px;
     opacity: 0.75;
   }
 
-  font-weight: 500;
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: hsl(226deg 40% 66%);
+  }
 }
 
 .chat-list-item-container {
@@ -369,7 +382,7 @@
   max-height: 320px;
 
   border-top: 1px solid var(--border-color-lighter);
-  border-bottom: 1px solid var(--border-color-lighter);
+  &:last-child { border-bottom: 1px solid var(--border-color-lighter) };
 
   background: linear-gradient(to bottom, white, #fafafa);
 

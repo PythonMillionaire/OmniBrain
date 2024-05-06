@@ -15,6 +15,8 @@ import settingsIcon from "../../../assets/images/settings.svg";
 import Tag from "../../general/Tag";
 import AddElementButton from "../../general/AddElementButton";
 
+import pageNavigationArrow from "../../../assets/images/next-page.svg";
+
 const ChatThreadTab: React.FC<{ id: string; }> = ({ id }) => {
     return (
         <div id={`chat-thread-tab-${id}`} className="button chat-thread-tab">
@@ -63,7 +65,7 @@ const ChatMessagesToolBar: React.FC = () => {
                 <div id="chat-menu">
                     <div id="share-chat" className={"button"}><img src={shareChatIcon} alt="Share"/>Share</div>
                     <div id="export-import" className={"button"}><img src={exportImportIcon} alt="Export/Import"/>Export/import</div>
-                    <div id="editor-settings" className={"button"}><img src={settingsIcon} alt="Settings"/>Chat settings</div>
+                    <div id="editor-settings" className={"button"}><img src={settingsIcon} alt="Settings"/>Current chat's settings</div>
                 </div>
                 <div id="chat-filter-search">
                     <div id="chat-message-filters">
@@ -80,11 +82,13 @@ const ChatMessagesToolBar: React.FC = () => {
             </div>
             <div id="chat-message-tool-bar-bottom">
                 <div id="chat-pages-menu">
-                    <div id="previous-page" className={"button"}><span>←</span> Previous</div>
-                    <div id="chat-page-number">
-                        <b>1</b> <i>of</i> <b>13</b> <i>pages</i>
+                    <div id="previous-page" className={"button"}><img className={"page-navigation-arrow"}
+                                                                      src={pageNavigationArrow} alt="Previous page"/> Previous
                     </div>
-                    <div id="next-page" className={"button"}>Next <span>→</span></div>
+                    <div id="chat-page-number">
+                    <b>1</b> <i>of</i> <b>13</b> <i>pages</i>
+                    </div>
+                    <div id="next-page" className={"button"}>Next <img className={"page-navigation-arrow"} src={pageNavigationArrow} alt="Next page"/> </div>
                     <div id="create-new-page" className={"button"}><AddElementButton text={"Create new page"} type={"page"}/></div>
                 </div>
                 <DragDropContext onDragEnd={handleOnDragEnd}>

@@ -12,12 +12,10 @@ interface AgentMessageProps {
 }
 
 const AgentMessage: React.FC<AgentMessageProps> = ({ messageInfo, allowThreads = true}) => {
-    console.log("Rendering AgentMessage", messageInfo, messageInfo.parentThreadID);
-
     return (
         <Message
             messageInfo={messageInfo}
-            actionButtons={<AgentMessageActionButtons />}
+            actionButtons={<AgentMessageActionButtons isInsideThread={!allowThreads}/>}
             threadSection={
                 !allowThreads ? null :
                 <MessageThread messageInfo={messageInfo}

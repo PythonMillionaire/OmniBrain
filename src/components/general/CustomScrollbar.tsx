@@ -1,5 +1,5 @@
-import React, { CSSProperties } from 'react';
-import { Scrollbar } from 'react-scrollbars-custom';
+import React, {CSSProperties, useRef} from 'react';
+import {Scrollbar} from 'react-scrollbars-custom';
 
 // scrollbarStyles.ts
 const trackYStyle: CSSProperties = {
@@ -21,7 +21,8 @@ const outermostStyle: CSSProperties = {
     inset: '0px 10px 0px 0px',
     overflow: 'hidden',
     width: '100%',
-    height: '100%'
+    height: '100%',
+    minHeight: '70px'
 };
 
 const wrapperStyle: CSSProperties = {
@@ -38,6 +39,7 @@ const thumbYStyle: CSSProperties = {
     background: 'hsl(225 10% 100% / 1)',
     border: '1px solid hsl(226deg 35.31% 76% / 1)',
     height: '100%',
+    width: '10px'
 };
 
 const thumbWrapperStyle: CSSProperties = {
@@ -56,16 +58,15 @@ const adjustedThumbStyle: CSSProperties = {
     transform: 'translateX(-50%)',
     left: '50%',
     position: 'relative', // Relative to the wrapper
-    width: '10px', // Your desired thumb width
+    //width: '10px', // Your desired thumb width
     margin: 'auto' // Helps in centering if needed
 };
 
 const scrollerStyle: CSSProperties = {
     position: 'absolute',
     inset: '0',
-    overflowY: 'auto',
-    overflowX: 'hidden',
-    marginRight: '-10px'
+    overflow: 'hidden !important',
+    width: '100%'
 };
 
 const contentStyle: CSSProperties = {
@@ -76,16 +77,26 @@ const contentStyle: CSSProperties = {
 };
 
 
-interface CustomScrollbarProps {
-    children: React.ReactNode;
-}
-const CustomScrollbar: React.FC<CustomScrollbarProps> = ({ children }) => {
+const CustomScrollbar: React.FC<{ children: React.ReactNode, minHeight?: string }> = ({ children, minHeight = 'none' }) => {
+    const scrollerRef = useRef<HTMLDivElement | null>(null);
+
+    // Function to handle the mouse wheel event
+    const handleWheel = (event: React.WheelEvent<HTMLDivElement>) => {
+        const scroller = scrollerRef.current;
+        if (scroller && event.currentTarget.contains(event.target as Node)) {
+            // Prevent default scrolling behavior
+            event.preventDefault();
+            // Scroll to the new position
+            scroller.scrollTop = scroller.scrollTop + event.deltaY;
+        }
+    };
+
     return (
         <Scrollbar
             noDefaultStyles
-            style={{ width: '100%', height: '100%' }}
+            style={{ width: '100%', height: '100%', minHeight: minHeight }}
             renderer={props => {
-                const { elementRef, ...restProps } = props; // Destructure to separate elementRef from other props
+                const { elementRef, ...restProps } = props;
                 return <div {...restProps} ref={elementRef} style={{ ...restProps.style, ...outermostStyle }} />;
             }}
             trackYProps={{
@@ -99,7 +110,7 @@ const CustomScrollbar: React.FC<CustomScrollbarProps> = ({ children }) => {
                     const { elementRef, ...restProps } = props;
                     return (
                         <div {...restProps} ref={elementRef} style={{ ...restProps.style, ...thumbWrapperStyle }}>
-                            <div style={{ ...adjustedThumbStyle }} /> {/* This div is the actual thumb */}
+                            <div style={{ ...adjustedThumbStyle }} />
                         </div>
                     );
                 }
@@ -107,7 +118,18 @@ const CustomScrollbar: React.FC<CustomScrollbarProps> = ({ children }) => {
             scrollerProps={{
                 renderer: props => {
                     const { elementRef, ...restProps } = props;
-                    return <div {...restProps} ref={elementRef} style={{ ...restProps.style, ...scrollerStyle }} />;
+                    return (
+                        <div
+                            {...restProps}
+                            ref={node => {
+                                elementRef && elementRef(node); // Call the elementRef function with the node
+                                scrollerRef.current = node; // Directly assign the node to scrollerRef.current
+                            }}
+                            className="custom-scroller"
+                            style={{ ...restProps.style, ...scrollerStyle }}
+                            onWheel={handleWheel} // Attach the wheel handler
+                        />
+                    );
                 }
             }}
             contentProps={{

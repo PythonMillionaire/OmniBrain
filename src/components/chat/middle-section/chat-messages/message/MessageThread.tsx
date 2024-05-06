@@ -15,6 +15,9 @@ import {AIProviderInfo} from "../../../../../types/messages/MessageSender";
 import AgentMessage from "../AgentMessage";
 import {UnknownAction} from "@reduxjs/toolkit";
 
+import viewThreadIcon from "../../../../../assets/images/action-buttons/view-thread.svg";
+import replyInThreadIcon from "../../../../../assets/images/action-buttons/reply-in-thread.svg";
+import cancelReplyInThreadIcon from "../../../../../assets/images/action-buttons/cancel-reply-in-thread.svg";
 
 const handleToggleReplyMode = (
                              activeThreadID: string,
@@ -30,20 +33,39 @@ const handleToggleReplyMode = (
     }
 };
 
-/* Thread with no messages */
-const EmptyThread: React.FC<{ currentThreadID: string }> = ({ currentThreadID }) => {
-    const dispatch = useDispatch();
-    const replyMode = useSelector((state: RootState) => selectReplyMode(state));
-    const activeThread = useSelector((state: RootState) => selectActiveThreadID(state));
+const ReplyInThisThread: React.FC = () => {
+    return <><img className={"reply-in-thread-button-icon"} src={replyInThreadIcon} alt="Reply in thread"/>Reply in thread</>;
+}
 
-    const buttonText = replyMode === ReplyMode.thread && activeThread === currentThreadID ?
-        'Currently replying to this thread. Click to cancel' :
-        (replyMode === ReplyMode.thread ? 'Already replying to a thread. Click to reply to this one instead' : 'Reply in thread');
+const AlreadyReplyingInThisThread: React.FC = () => {
+    return <span>
+            <img className={"reply-in-thread-button-icon"} src={replyInThreadIcon} alt="Cancel reply in thread"/>
+            Replying to this thread. Click to cancel
+        </span>;
+}
+
+const ReplyToAnotherThread: React.FC = () => {
+    return <span>
+                <img className={"reply-in-thread-button-icon"} src={cancelReplyInThreadIcon}
+                     alt="Reply to another thread"/>
+                Already replying to a thread. Reply to this one instead
+            </span>;
+}
+
+/* Thread with no messages */
+const EmptyThread: React.FC<{ currentThreadID: string }> = ({currentThreadID}) => {
+    const dispatch = useDispatch();
+    const activeThread = useSelector((state: RootState) => selectActiveThreadID(state));
+    const replyMode = useSelector((state: RootState) => selectReplyMode(state));
+
+    const buttonElement = replyMode === ReplyMode.thread ? (activeThread === currentThreadID ?
+        <AlreadyReplyingInThisThread /> : <ReplyToAnotherThread />
+            ) : <ReplyInThisThread />;
 
     return (
         <div className="button chat-message-thread-info" onClick={() => handleToggleReplyMode(activeThread, currentThreadID, replyMode, dispatch)}>
             <div className="chat-message-thread-action-section"></div>
-            <div className="chat-message-reply-in-thread">{buttonText}</div>
+            <div className="chat-message-reply-in-thread">{buttonElement}</div>
         </div>
     );
 };
@@ -56,7 +78,6 @@ interface MessageThreadInfoComponentProps {
     lastInteractionDate?: Date;
     aiProviders?: AIProviderInfo[];
     currentThreadID: string;
-    replyMode: ReplyMode;
 }
 
 const MessageThreadInfoComponent: React.FC<MessageThreadInfoComponentProps> = React.memo(({
@@ -67,11 +88,14 @@ const MessageThreadInfoComponent: React.FC<MessageThreadInfoComponentProps> = Re
                                                                                    lastInteractionDate,
                                                                                    aiProviders,
                                                                                    currentThreadID,
-                                                                                   replyMode
                                                                                }) => {
     const dispatch = useDispatch();
 
     const activeThread = useSelector((state: RootState) => selectActiveThreadID(state));
+
+    const replyMode = useSelector((state: RootState) => selectReplyMode(state));
+
+    console.log("HR", activeThread, currentThreadID, replyMode);
 
     return <span className={`chat-message-thread-action-section ${viewingThread ? 'chat-message-viewing-thread' : ''} ${isBottomOne && !viewingThread ? 'bottom-element' : ''}`}>
         <span className={`chat-message-thread-replies-info`}>{
@@ -86,17 +110,23 @@ const MessageThreadInfoComponent: React.FC<MessageThreadInfoComponentProps> = Re
                     interaction: {lastInteractionDate.toDateString()}</div>
             }
         </span>
-
-        <span className="chat-message-view-thread">
+        <span className="chat-message-view-reply-thread">
             {
-                    <>
-                        <span className={'button chat-message-view-thread-button'} onClick={() => setViewingThread(!viewingThread)}>
-                            {viewingThread ? 'Close thread' : 'View thread'}
+                <>
+                    <span className={'button chat-message-reply-in-thread-button'}
+                          onClick={() => handleToggleReplyMode(activeThread, currentThreadID, replyMode, dispatch)}>
+                        {replyMode === ReplyMode.thread ? (activeThread === currentThreadID ?
+                                <AlreadyReplyingInThisThread /> : <ReplyToAnotherThread />
+                        ) : <ReplyInThisThread />}
+                    </span>
+
+                    <span className={'button chat-message-view-thread-button'}
+                          onClick={() => setViewingThread(!viewingThread)}>
+                            {viewingThread ? 'Close thread' :
+                                <><img className={"view-thread-button-icon"} src={viewThreadIcon} alt="View thread"/>View
+                                    thread</>}
                         </span>
-                        <span className={'button'} onClick={() => handleToggleReplyMode(activeThread, currentThreadID, replyMode, dispatch)}>
-                            { replyMode === ReplyMode.thread && activeThread === currentThreadID ?
-                            'Currently replying to this thread. Click to cancel' : 'Reply in thread' }</span>
-                    </>
+                </>
 
             }
                 </span>
@@ -108,8 +138,6 @@ interface MessageThreadProps {
 }
 
 const MessageThread: React.FC<MessageThreadProps> = ({messageInfo}) => {
-    console.log("Rendering MessageThread", messageInfo.contents);
-
     const [viewingThread, setViewingThread] = useState(false);
 
     const messageThreadInfo = useSelector((state: RootState) => selectThreadById(state, messageInfo.id));
@@ -137,7 +165,6 @@ const MessageThread: React.FC<MessageThreadProps> = ({messageInfo}) => {
                 setViewingThread={setViewingThread}
                 viewingThread={viewingThread}
                 currentThreadID={messageThreadInfo && messageThreadInfo.id ? messageThreadInfo.id : messageInfo.id}
-                replyMode={ReplyMode.thread}
             />
 
             <div className={`chat-message-thread-contents ${viewingThread ? 'chat-message-viewing-thread' : ''}`}>
@@ -158,7 +185,6 @@ const MessageThread: React.FC<MessageThreadProps> = ({messageInfo}) => {
                 setViewingThread={setViewingThread}
                 viewingThread={viewingThread}
                 currentThreadID={messageThreadInfo && messageThreadInfo.id ? messageThreadInfo.id : messageInfo.id}
-                replyMode={ReplyMode.thread}
             />
         </div>
     );

@@ -41,11 +41,11 @@ const ChatList = () => {
 
             <div id="chat-list-main">
                 <div id="chat-list-open-chats">
-                    {chatListData.map((item) => (
+                    {chatListData.map((item, index) => (
                         <ChatListItem
                             key={item.id}
                             id={item.id}
-                            isSelected={selectedId === item.id}
+                            isSelected={selectedId === item.id || index === 0} //TODO: remove right half of condition
                             onSelect={() => handleSelectItem(item.id)}
                             name={item.name}
                             date={item.date}

@@ -191,6 +191,10 @@ main, menu, nav, section
     }
 }
 
+.custom-scroller {
+    overflow: hidden !important;  // Allow vertical scrolling
+}
+
 ::-webkit-scrollbar-track
 {
     border: 1px solid hsl(226deg 55.31% 84.52%);

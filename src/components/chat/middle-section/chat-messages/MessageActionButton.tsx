@@ -8,6 +8,7 @@ import thumbsDownIcon from "../../../../assets/images/action-buttons/thumbs-down
 import regenerateIcon from "../../../../assets/images/action-buttons/regenerate.svg";
 import saveToFavoritesIcon from "../../../../assets/images/action-buttons/save-favorites.svg";
 import savePromptIcon from "../../../../assets/images/action-buttons/save-prompt.svg";
+import replyInThreadIcon from "../../../../assets/images/action-buttons/reply-in-thread.svg";
 
 import copyMessageContents from "./message/functionality/copyMessageContents";
 import scrollToMessageExtremity from "./message/functionality/scrollToMessageExtremity";
@@ -15,20 +16,23 @@ import thumbDownMessage from "./message/functionality/messageThumbsDown";
 import regenerateMessage from "./message/functionality/regenerateMessage";
 import saveToFavorites from "./message/functionality/saveToFavorites";
 import savePrompt from "./message/functionality/savePrompt";
+import createThreadInMainMessageSectionFromMessageInThread
+    from "./message/functionality/createThreadInMainMessageSectionFromMessageInThread";
 
 interface MessageActionButtonProps {
     buttonIconURL: string;
     buttonAction: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
     className?: string;
+    styles?: React.CSSProperties;
 }
 
-const MessageActionButton: React.FC<MessageActionButtonProps> = ({buttonIconURL, buttonAction, className}) => {
+const MessageActionButton: React.FC<MessageActionButtonProps> = ({buttonIconURL, buttonAction, className, styles}) => {
     return (
-        <img src={buttonIconURL} className={`button message-action ${className}`} onClick={buttonAction} />
+        <img src={buttonIconURL} className={`button message-action ${className}`} onClick={buttonAction} style={styles} />
     )
 }
 
-const SaveToFavoritesButton = () => (
+const SaveToFavoritesButton: React.FC = () => (
     <MessageActionButton
         buttonAction={(event) => saveToFavorites(event.currentTarget)}
         buttonIconURL={saveToFavoritesIcon}
@@ -36,7 +40,7 @@ const SaveToFavoritesButton = () => (
     />
 );
 
-const ScrollToTopButton = () => (
+const ScrollToTopButton: React.FC = () => (
     <MessageActionButton
         buttonAction={(event) => scrollToMessageExtremity(event.currentTarget, MessageExtremity.top)}
         buttonIconURL={scrollArrowIcon}
@@ -44,7 +48,7 @@ const ScrollToTopButton = () => (
     />
 );
 
-const ScrollToBottomButton = () => (
+const ScrollToBottomButton: React.FC = () => (
     <MessageActionButton
         buttonAction={(event) => scrollToMessageExtremity(event.currentTarget, MessageExtremity.bottom)}
         buttonIconURL={scrollArrowIcon}
@@ -52,7 +56,7 @@ const ScrollToBottomButton = () => (
     />
 );
 
-const ThumbsDownButton = () => (
+const ThumbsDownButton: React.FC = () => (
     <MessageActionButton
         buttonAction={(event) => thumbDownMessage(event.currentTarget)}
         buttonIconURL={thumbsDownIcon}
@@ -60,7 +64,16 @@ const ThumbsDownButton = () => (
     />
 );
 
-const RegenerateMessageButton = () => (
+const ThumbsUpButton: React.FC = () => (
+    <MessageActionButton
+        buttonAction={(event) => thumbDownMessage(event.currentTarget)}
+        buttonIconURL={thumbsDownIcon}
+        className="message-thumbs-down-button"
+        styles={{transform: 'rotate(180deg)'}}
+    />
+);
+
+const RegenerateMessageButton: React.FC = () => (
     <MessageActionButton
         buttonAction={(event) => regenerateMessage(event.currentTarget)}
         buttonIconURL={regenerateIcon}
@@ -68,7 +81,7 @@ const RegenerateMessageButton = () => (
     />
 );
 
-const SavePromptButton = () => (
+const SavePromptButton: React.FC = () => (
     <MessageActionButton
         buttonAction={(event) => savePrompt(event.currentTarget)}
         buttonIconURL={savePromptIcon}
@@ -76,7 +89,7 @@ const SavePromptButton = () => (
     />
 );
 
-const CopyMessageButton = () => (
+const CopyMessageButton: React.FC = () => (
     <MessageActionButton
         buttonAction={(event) => copyMessageContents(event.currentTarget)}
         buttonIconURL={copyIcon}
@@ -84,18 +97,28 @@ const CopyMessageButton = () => (
     />
 );
 
-export const AgentMessageActionButtons = () => (
+const CreateThreadInMainMessageSection: React.FC = () => (
+    <MessageActionButton
+        buttonAction={(event) => createThreadInMainMessageSectionFromMessageInThread(event.currentTarget)}
+        buttonIconURL={replyInThreadIcon}
+        className="reply-in-thread-button-icon"
+    />
+)
+
+export const AgentMessageActionButtons: React.FC<{isInsideThread: boolean}> = ({isInsideThread = false}) => (
         <>
             <SaveToFavoritesButton/>
             <ScrollToTopButton/>
             <ScrollToBottomButton/>
             <ThumbsDownButton/>
+            <ThumbsUpButton/>
             <RegenerateMessageButton/>
             <CopyMessageButton/>
+            {isInsideThread && <CreateThreadInMainMessageSection />}
         </>
     );
 
-export const UserMessageActionButtons = () => (
+export const UserMessageActionButtons: React.FC = () => (
         <>
             <ScrollToTopButton/>
             <ScrollToBottomButton/>

@@ -17,7 +17,7 @@ const ChatInputReplyInThread: React.FC = () => {
 
     return (
         <div className="button" id="chat-input-reply-in-thread" onClick={scrollToThread}>
-            <span id="chat-input-currently-active-thread-label">Currently replying to Thread:</span>
+            <span id="chat-input-currently-active-thread-label">Replying to Thread:</span>
             <span id="chat-input-currently-active-thread">#{activeThreadID}</span>
             <span id="chat-input-reply-in-thread-close-button" onClick={closeReplyToThread}>×</span>
         </div>
