@@ -66,8 +66,7 @@ const ChatList = () => {
     return (
         <section id="chat-list">
             <div id="add-new-chat-section">
-                <div id={"add-new-chat-button"} className={"button"}><NewChatIcon/> Start
-                    new chat
+                <div id={"add-new-chat-button"} className={"button"}><NewChatIcon/> Start a new chat
                 </div>
             </div>
 

@@ -9,6 +9,7 @@ import regenerateIcon from "../../../../assets/images/action-buttons/regenerate.
 import saveToFavoritesIcon from "../../../../assets/images/action-buttons/save-favorites.svg";
 import savePromptIcon from "../../../../assets/images/action-buttons/save-prompt.svg";
 import replyInThreadIcon from "../../../../assets/images/action-buttons/reply-in-thread.svg";
+import shareReplyIcon from "../../../../assets/images/action-buttons/share.svg";
 
 import copyMessageContents from "./message/functionality/copyMessageContents";
 import scrollToMessageExtremity from "./message/functionality/scrollToMessageExtremity";
@@ -32,11 +33,19 @@ const MessageActionButton: React.FC<MessageActionButtonProps> = ({buttonIconURL,
     )
 }
 
+const ShareReplyButton: React.FC = () => (
+    <MessageActionButton
+        buttonAction={(event) => saveToFavorites(event.currentTarget)}
+        buttonIconURL={shareReplyIcon}
+        className="share-reply-button"
+    />
+);
+
 const SaveToFavoritesButton: React.FC = () => (
     <MessageActionButton
         buttonAction={(event) => saveToFavorites(event.currentTarget)}
         buttonIconURL={saveToFavoritesIcon}
-        className="message-save-to-favorites"
+        className="message-save-to-favorites-button"
     />
 );
 
@@ -107,6 +116,7 @@ const CreateThreadInMainMessageSection: React.FC = () => (
 
 export const AgentMessageActionButtons: React.FC<{isInsideThread: boolean}> = ({isInsideThread = false}) => (
         <>
+            <ShareReplyButton />
             <SaveToFavoritesButton/>
             <ScrollToTopButton/>
             <ScrollToBottomButton/>

@@ -1,4 +1,4 @@
-import React, {CSSProperties, useRef} from 'react';
+import React, {CSSProperties, useEffect, useRef} from 'react';
 import {Scrollbar} from 'react-scrollbars-custom';
 
 // scrollbarStyles.ts
@@ -65,8 +65,8 @@ const adjustedThumbStyle: CSSProperties = {
 const scrollerStyle: CSSProperties = {
     position: 'absolute',
     inset: '0',
-    overflow: 'hidden !important',
-    width: '100%'
+    width: '100%',
+    marginRight: '0px',
 };
 
 const contentStyle: CSSProperties = {
@@ -77,7 +77,7 @@ const contentStyle: CSSProperties = {
 };
 
 
-const CustomScrollbar: React.FC<{ children: React.ReactNode, minHeight?: string }> = ({ children, minHeight = 'none' }) => {
+const CustomScrollbar: React.FC<{ children: React.ReactNode, minHeight?: string, styles?: CSSProperties }> = ({ children, minHeight = 'none', styles = {}  }) => {
     const scrollerRef = useRef<HTMLDivElement | null>(null);
 
     // Function to handle the mouse wheel event
@@ -91,10 +91,31 @@ const CustomScrollbar: React.FC<{ children: React.ReactNode, minHeight?: string 
         }
     };
 
+    useEffect(() => {
+        const scroller = scrollerRef.current;
+        if (scroller) {
+            // Here, use the native WheelEvent type
+            const handleWheel = (event: WheelEvent) => {
+                if (scroller.contains(event.target as Node)) {
+                    event.preventDefault();
+                    scroller.scrollTop += event.deltaY;
+                }
+            };
+
+            // Add the event listener with `passive: false` to ensure `preventDefault` can be called
+            scroller.addEventListener('wheel', handleWheel, { passive: false });
+
+            // Cleanup the event listener on component unmount
+            return () => {
+                scroller.removeEventListener('wheel', handleWheel);
+            };
+        }
+    }, []);
+
     return (
         <Scrollbar
             noDefaultStyles
-            style={{ width: '100%', height: '100%', minHeight: minHeight }}
+            style={{ width: '100%', height: '100%', minHeight: minHeight, ...styles }}
             renderer={props => {
                 const { elementRef, ...restProps } = props;
                 return <div {...restProps} ref={elementRef} style={{ ...restProps.style, ...outermostStyle }} />;
@@ -127,7 +148,6 @@ const CustomScrollbar: React.FC<{ children: React.ReactNode, minHeight?: string 
                             }}
                             className="custom-scroller"
                             style={{ ...restProps.style, ...scrollerStyle }}
-                            onWheel={handleWheel} // Attach the wheel handler
                         />
                     );
                 }

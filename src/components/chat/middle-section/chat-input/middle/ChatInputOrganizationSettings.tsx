@@ -18,8 +18,8 @@ const ChatInputOrganizationSettings = () => {
                     replyMode === ReplyMode.allMessages ?
                         <div id="chat-input-topics-section">
                             <div id="chat-input-topics">
-                                <div className="topic-tab selected">Graphic design</div>
-                                <div className="topic-tab">Programming</div>
+                                <div className="button topic-tab selected">Graphic design</div>
+                                <div className="button topic-tab">Programming</div>
                             </div>
                                 <AddElementButton type={"topic"}/>
                         </div>

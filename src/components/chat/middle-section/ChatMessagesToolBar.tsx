@@ -9,7 +9,7 @@ import {
 } from 'react-beautiful-dnd';
 
 import SearchButton from "../../general/SearchButton";
-import shareChatIcon from "../../../assets/images/share.svg";
+import shareChatIcon from "../../../assets/images/action-buttons/share.svg";
 import exportImportIcon from "../../../assets/images/export-import.svg";
 import settingsIcon from "../../../assets/images/settings.svg";
 import Tag from "../../general/Tag";
@@ -96,7 +96,7 @@ const ChatMessagesToolBar: React.FC = () => {
                         {(provided: DroppableProvided) => (
                             <div {...provided.droppableProps} ref={provided.innerRef}
                                  id="chat-page-and-thread-tabs-section">
-                                <div id={`chat-page-tab-1`} className="button chat-page-tab chat-main-page">
+                                <div id={`chat-page-tab-1`} className="button chat-page-tab chat-main-page selected">
                                     <span>Page</span> <i>1</i>
                                 </div>
 

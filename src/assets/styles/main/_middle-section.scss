@@ -117,6 +117,10 @@
 
 #chat-message-search-section {
   @include flex($gap: 8px);
+
+  > div {
+    @include flex;
+  }
 }
 
 #add-new-tag-input-button, .add-new-tag-message-button
@@ -205,6 +209,8 @@ $chat-bottom-border-width: 2px;
   display: none;
 }
 
+$thread-background: hsl(226, 16%, 94%);
+
 .chat-message-thread-info {
   user-select: none;
   width: 100%;
@@ -226,7 +232,7 @@ $chat-bottom-border-width: 2px;
   }
 
   &.chat-message-viewing-thread {
-    background: hsl(226, 20%, 96%);
+    background: $thread-background;
     border: 1px solid var(--border-color-lighter-two);
     border-radius: 18px;
     padding: 16px 16px 20px;
@@ -243,7 +249,7 @@ $chat-bottom-border-width: 2px;
 
   display: none;
 
-  background: hsl(226 20% 96% / 1);
+  background: $thread-background;
   border-radius: 18px;
 
   > * {
@@ -336,7 +342,7 @@ $chat-bottom-border-width: 2px;
 }
 
 .follow-up-question {
-  background-color: #fdfdfd;
+  background: linear-gradient(to bottom, white, #f0f0f0);
   border: 2px solid var(--border-color-hued);
   white-space: nowrap;
   border-radius: 12px;
@@ -360,7 +366,7 @@ $chat-bottom-border-width: 2px;
   display: flex;
 }
 
-$middle-bg: hsl(216, 3%, 97%);
+$middle-bg: hsl(240 4% 96% / 1);
 
 #chat-messages-section {
   position: relative;
@@ -432,6 +438,8 @@ $middle-bg: hsl(216, 3%, 97%);
   width: 100%;
   height: 100%;
 
+  overflow: hidden;
+
   background: #f0f0f0;
 
   padding: 0 12px;
@@ -461,6 +469,12 @@ $middle-bg: hsl(216, 3%, 97%);
 
   &:hover .chat-page-thread-tab-delete:not(.chat-main-page) {
     visibility: visible;
+  }
+
+  &:not(.selected) {
+    position: relative;
+    top: 3px;
+    padding: 6px 18px 8px;
   }
 }
 
@@ -508,6 +522,8 @@ $middle-bg: hsl(216, 3%, 97%);
   display: flex;
 }
 
+$input-inset-shadow: inset 0 0 2px 0 hsl(0 0 0 / 0.16);
+
 #chat-message-filters {
   position: relative;
 
@@ -526,7 +542,7 @@ $middle-bg: hsl(216, 3%, 97%);
 
   padding: 12px 7px;
 
-  box-shadow: inset 0 0 4px 0 hsl(0 0 0 / 0.16);
+  box-shadow: $input-inset-shadow;
 }
 
 #filter-chat-tag-section {
@@ -542,7 +558,7 @@ $middle-bg: hsl(216, 3%, 97%);
   line-height: 0;
   overflow: visible;
 
-  box-shadow: inset 0 0 4px 0 hsl(0 0 0 / 0.16);
+  box-shadow: $input-inset-shadow;
 }
 
 .chat-tag-filter {
@@ -785,7 +801,7 @@ $opacity-message-buttons: 0.7;
     top: 50%;
   }
 
-  .message-save-to-favorites {
+  .message-save-to-favorites-button {
     position: relative;
     left: -2px;
   }
@@ -823,17 +839,18 @@ $opacity-message-buttons: 0.7;
   border-style: solid;
   border-width: 1px;
   border-color: var(--border-color);
+  border-bottom: none;
   white-space: nowrap;
   border-radius: 12px 12px 0 0;
-  padding: 8px 18px 10px;
+  padding: 8px 18px 8px;
   position: relative;
-  top: $chat-bottom-border-width;
+
+  background: #f8f8f8;
 }
 
 .topic-tab.selected {
   border-width: $chat-bottom-border-width;
   border-color: var(--border-color-hued-subdued);
-  border-bottom: none;
   font-weight: 700;
 
   background-color: white;
@@ -883,11 +900,13 @@ $opacity-message-buttons: 0.7;
 }
 
 #chat-input-token-counter {
-  @include flex($gap: 8px);
+  @include flex(flex-start, $gap: 20px);
 
   padding: 0 22px;
+}
 
-  font-size: 0.94em;
+#chat-input-token-counter-total, #chat-input-token-counter-prompt, #chat-input-token-counter-context {
+  @include flex($gap: 8px);
 }
 
 #chat-input-special-actions {
@@ -952,7 +971,7 @@ $opacity-message-buttons: 0.7;
   }
 
   > div.below-button {
-    background: hsl(226deg 44% 64%);
+    background: hsl(226deg 43% 63%);
     width: 100%;
     position: absolute;
     height: 100%;
@@ -972,7 +991,7 @@ $opacity-message-buttons: 0.7;
   border-radius: 13px;
   padding: 14px 24px;
 
-  $shadow: 0 0 8px hsl(225 100% 40% / 0.08);
+  $shadow: 0 0 4px hsl(225 100% 40% / 0.08);
 
   position: relative;
   z-index: 1;
@@ -981,7 +1000,7 @@ $opacity-message-buttons: 0.7;
     background: linear-gradient(to bottom, white, #f8f8f8);
     //border: 2px solid var(--border-color-hued);
     //border: 1px solid hsl(225deg 16.3% 46.72% / 60%);
-    box-shadow: 0 0 0 1px hsl(225deg 16.3% 46.72% / 60%), 0 0 0 2px hsl(225deg 16.3% 46.72% / 10%), $shadow;
+    box-shadow: 0 0 0 1px hsl(225deg 16.3% 56% / 60%), 0 0 0 2px hsl(225deg 16.3% 50% / 0.09), $shadow;
   }
 
   &.user-message {
@@ -989,7 +1008,7 @@ $opacity-message-buttons: 0.7;
     //border: 2px solid var(--border-color-hued);
 
     //border: 1px solid hsl(225deg 60.42% 52.26% / 80%);
-    box-shadow: 0 0 0 1px hsl(225deg 60.42% 52.26% / 60%), 0 0 0 2px hsl(0 2% 60% / 0.24), $shadow;
+    box-shadow: 0 0 0 1px hsl(225deg 53% 63% / 70%), 0 0 0 2px hsl(0 2% 60% / 0.15), $shadow;
   }
 }
 
@@ -1032,8 +1051,12 @@ $opacity-message-buttons: 0.7;
   opacity: $o;
 }
 
-.message-save-to-favorites {
+.message-save-to-favorites-button {
   @include messageButton(13px, 0.75);
+}
+
+.share-reply-button {
+  @include messageButton(11.5px, 0.93);
 }
 
 .copy-message-button {
