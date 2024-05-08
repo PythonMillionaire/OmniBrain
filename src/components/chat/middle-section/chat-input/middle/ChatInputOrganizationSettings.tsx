@@ -20,6 +20,7 @@ const ChatInputOrganizationSettings = () => {
                             <div id="chat-input-topics">
                                 <div className="button topic-tab selected">Graphic design</div>
                                 <div className="button topic-tab">Programming</div>
+                                <div className="button topic-tab">Marketing</div>
                             </div>
                                 <AddElementButton type={"topic"}/>
                         </div>
@@ -36,7 +37,8 @@ const ChatInputOrganizationSettings = () => {
             </div>
 
             <div id="subchat-input-topics-section">
-                <div className="subtopic">Ajahn Brahm is the VERY BEST. No question...</div>
+                <div className="button subtopic selected">Ajahn Brahm is the VERY BEST. No question about it</div>
+                <div className="button subtopic">Ajahn Brahm is beautiful</div>
                 <AddElementButton type={"subtopic"}/>
             </div>
         </div>

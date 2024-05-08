@@ -17,6 +17,7 @@
   @include flex(flex-start, center, $direction: column);
 
   width: 100%;
+  height: 100%;
 
   > section {
     width: 100%;
@@ -127,6 +128,8 @@
   width: 100%;
 
   border-bottom: 1px solid var(--border-color-lighter-three);
+
+  height: 42px;
 }
 
 .saved-prompt-button-topic {
@@ -169,7 +172,7 @@
 
   @include flex(flex-start, stretch, $gap: 24px, $direction: column);
 
-  background: hsl(216, 3%, 97%);
+  background: hsl(215deg 24% 95.5%);
 
   > *:not(:first-child) {
     padding: 0 22px;
@@ -197,6 +200,14 @@
   margin-right: 12px;
 
   cursor: move !important;
+
+  svg {
+    width: 11.5px;
+
+    opacity: 0.55;
+
+    //fill: hsl(226deg 34% 56%);
+  }
 }
 
 .saved-prompt-button {
@@ -208,7 +219,7 @@
 
   @include flex(space-between);
 
-  background: linear-gradient(to bottom, #fcfcfc, #f3f3f3);
+  background: linear-gradient(to bottom, white, #f3f3f3);
 
   box-shadow: 0 2px 6px hsla(225, 20%, 60%, 0.06);
 
@@ -219,14 +230,6 @@
 
 .saved-prompt-button-content {
   @include flex($gap: 12px);
-}
-
-.save-prompt-hamburger {
-  width: 11.5px;
-
-  opacity: 0.7;
-
-  fill: hsl(226deg 34% 56%);
 }
 
 .saved-prompt-button-info {
@@ -270,7 +273,7 @@
 
   padding: 4px 7px;
 
-  border: 1px solid hsl(226deg 68.64% 80%);
+  border: 1px solid var(--border-color-lighter-two);
 
   box-shadow: inset 0 0 8px hsl(0 0% 0% / 0.04);
 }

@@ -5,7 +5,7 @@ import {Scrollbar} from 'react-scrollbars-custom';
 const trackYStyle: CSSProperties = {
     border: '1px solid hsl(226deg 55.31% 84.52% / 1)',
     boxShadow: 'inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.3)',
-    backgroundColor: 'hsl(240 14% 99% / 1)',
+    backgroundColor: 'hsl(225 30% 97% / 1)',
     borderRadius: '10px',
     position: 'absolute',
     userSelect: 'none',

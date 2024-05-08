@@ -37,7 +37,7 @@
 
   filter: var(--soft-shadow-right);
 
-  background: hsl(216, 10%, 93%);
+  background: hsl(225, 10%, 93%);
 }
 
 #left-section-middle {
@@ -163,6 +163,8 @@
 
   @include pointer;
 
+  box-shadow: inset 0 0 6px 0 hsla(0, 0%, 0%, 0.05);
+
   background: linear-gradient(to bottom, white, hsl(0 0% 96% / 1));
 
   &:hover .chat-list-item-menu {
@@ -172,7 +174,7 @@
   &.selected {
     $color: hsl(226deg 40% 66%);
 
-    box-shadow: 0 0 3px hsla(225, 20%, 60%, 0.2);
+    box-shadow: 0 0 3px hsla(225, 20%, 60%, 0.2), inset 0 0 6px 0 hsla(0, 0%, 0%, 0.07);
     z-index: 2;
 
     &::after {
@@ -240,9 +242,9 @@
 }
 
 #add-new-chat-section {
-  padding: 23px 7px;
+  padding: 21px 7px;
 
-  border-bottom: 1px solid var(--border-color-lighter);
+  border-bottom: 1px solid var(--border-color-lighter-two);
 
   @include flex;
 
@@ -257,7 +259,7 @@
   @include flex($gap: 8px);
 
   background: linear-gradient(to bottom, white, #f0f0f0);
-  padding: 6px 16px;
+  padding: 5px 16px;
   width: 100%;
   border-radius: 8px;
   border: 1px solid var(--border-color-slightly-lighter);
@@ -275,7 +277,7 @@
   }
 
   svg {
-    width: 16px;
+    width: 15px;
 
     opacity: 0.84;
 
@@ -288,7 +290,7 @@
     content: '';
     position: absolute;
     width: 64px;
-    height: 80px;
+    height: 100px;
     background-color: var(--add-new-chat-button-details-color);
 
     border: 1px solid var(--border-color-lighter);
@@ -429,7 +431,7 @@
 }
 
 .left-panel-action-button {
-  @include flex(flex-start, $gap: 16px);
+  @include flex(flex-start, $gap: 14px);
 
   padding: 2.4rem 2rem;
 

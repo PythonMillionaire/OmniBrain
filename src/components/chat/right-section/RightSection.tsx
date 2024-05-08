@@ -34,6 +34,7 @@ const RightSection = () => {
                         <div className="button saved-prompt-button-topic selected">All</div>
                         <div className="button saved-prompt-button-topic">Graphic design</div>
                         <div className="button saved-prompt-button-topic">Programming</div>
+                        <div className="button saved-prompt-button-topic">Marketing</div>
                     </div>
 
                     <div id="saved-prompt-buttons-list-header">
@@ -59,7 +60,7 @@ const RightSection = () => {
 
                     <div id="saved-prompt-buttons-list">
 
-                        <div id="add-new-saved-prompt-button-section"><AddElementButton text={"Add new saved prompt"} type={"saved-prompt"}/></div>
+                        <div id="add-new-saved-prompt-button-section"><AddElementButton text={"Create new saved prompt"} type={"saved-prompt"}/></div>
 
                         <div className="saved-prompt-button-category-container">
                             <h3 className="saved-prompt-button-category">The Naked Truth</h3>

@@ -54,9 +54,9 @@
   width: 100%;
   @include flex(space-between, $gap: 20px);
 
-  min-height: 42px;
+  min-height: 43px;
 
-  border-top: 1px solid var(--border-color-lighter-three);
+  border-top: 1px solid var(--border-color-lighter-two);
 }
 
 #share-chat {
@@ -143,6 +143,8 @@ $chat-bottom-border-width: 2px;
   @include flex(space-between);
 
   border-bottom: $chat-bottom-border-width solid var(--border-color-hued-subdued);
+
+  background: linear-gradient(to bottom, hsl(225 20% 98% / 1), hsl(225 20% 95% / 1));
 }
 
 #chat-input-reply-in-thread {
@@ -366,7 +368,7 @@ $thread-background: hsl(226, 16%, 94%);
   display: flex;
 }
 
-$middle-bg: hsl(240 4% 96% / 1);
+$middle-bg: hsl(240 10% 96% / 1);
 
 #chat-messages-section {
   position: relative;
@@ -450,7 +452,7 @@ $middle-bg: hsl(240 4% 96% / 1);
   box-shadow: inset 0 0 4px 1px hsl(0 0% 0% / 0.03);
 }
 
-@mixin chat-tab-style($bg-color) {
+@mixin chat-tab-style($bg-color, $bg-color-unselected) {
   font-size: 1.45rem;
 
   padding: 6px 18px;
@@ -461,8 +463,6 @@ $middle-bg: hsl(240 4% 96% / 1);
 
   filter: var(--soft-shadow-top);
 
-  opacity: 0.75;
-
   > span {
     font-weight: 500;
   }
@@ -472,6 +472,8 @@ $middle-bg: hsl(240 4% 96% / 1);
   }
 
   &:not(.selected) {
+    border-color: hsl(226deg 55.31% 66.52% / 0.65);
+    background: $bg-color-unselected;
     position: relative;
     top: 3px;
     padding: 6px 18px 8px;
@@ -485,11 +487,11 @@ $middle-bg: hsl(240 4% 96% / 1);
 }
 
 .chat-page-tab {
-  @include chat-tab-style(linear-gradient(to bottom, #fcfcfc, #f2f2f2));
+  @include chat-tab-style(linear-gradient(to bottom, hsl(0 0% 99% / 1), hsl(0 0% 95% / 1)), linear-gradient(to bottom, hsl(0 0% 99% / 0.5), hsl(0 0% 95% / 0.5)));
 }
 
 .chat-thread-tab {
-  @include chat-tab-style(linear-gradient(to bottom, hsl(227 56% 96% / 1), hsl(227 56% 93% / 1)));
+  @include chat-tab-style(linear-gradient(to bottom, hsl(227 56% 96% / 1), hsl(227 56% 93% / 1)), linear-gradient(to bottom, hsl(227 56% 96% / 0.5), hsl(227 56% 93% / 0.5)));
 }
 
 .chat-page-thread-tab-delete
@@ -666,10 +668,24 @@ $input-inset-shadow: inset 0 0 2px 0 hsl(0 0 0 / 0.16);
   padding: 4px 12px;
 
   box-shadow: 0 0 4px hsla(225, 20%, 60%, 0.2);
+
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+
+  background: hsla(225, 10%, 40%, 0.06);
+
+  &.selected {
+    background: hsla(225, 70%, 60%, 0.06);
+    border-width: 2px;
+  }
 }
 
 #chat-input-section {
   @include flex(flex-start, stretch, $direction: column);
+
+  background: linear-gradient(to bottom, #fbfbfb, #fdfdfd);
 }
 
 #chat-input-top {
@@ -677,7 +693,6 @@ $input-inset-shadow: inset 0 0 2px 0 hsl(0 0 0 / 0.16);
   height: auto;
   max-height: 120px;
   border-top: 1px solid var(--border-color-lighter);
-  background-color: #fff;
 
   margin: 0;
   position: relative;
@@ -685,6 +700,8 @@ $input-inset-shadow: inset 0 0 2px 0 hsl(0 0 0 / 0.16);
   @include flex(space-between, stretch, $direction: column);
 
   filter: var(--soft-shadow-top);
+
+  background: linear-gradient(to bottom, white, hsl(225 20% 98% / 1));
 
   > div:not(.button) {
     padding-left: 12px;
@@ -698,7 +715,7 @@ $input-inset-shadow: inset 0 0 2px 0 hsl(0 0 0 / 0.16);
 }
 
 #chat-input-field {
-  background: hsl(225 20% 98% / 1);
+  background: hsl(225 20% 97% / 1);
 
   height: auto;
   min-height: 4.2rem;
@@ -846,6 +863,11 @@ $opacity-message-buttons: 0.7;
   position: relative;
 
   background: #f8f8f8;
+
+  &:not(.selected) {
+    border-color: var(--border-color-lighter);
+    background: #f3f3f3;
+  }
 }
 
 .topic-tab.selected {
@@ -862,7 +884,6 @@ $opacity-message-buttons: 0.7;
 
 #chat-input-middle {
   height: auto;
-  background-color: #fff;
   flex-flow: column;
   flex: none;
   align-items: center;
@@ -877,7 +898,6 @@ $opacity-message-buttons: 0.7;
   width: 100%;
   height: auto;
   max-height: none;
-  background-color: #fff;
   flex-flow: column;
   flex: none;
   justify-content: flex-start;

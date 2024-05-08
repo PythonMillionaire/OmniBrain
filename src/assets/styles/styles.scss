@@ -69,6 +69,11 @@ body
     background: linear-gradient(to bottom, white, #fafafa);
 
     box-shadow: 0 0 4px hsla(225, 20%, 60%, 0.2);
+
+    svg {
+        fill: hsl(225 20% 48% / 1);
+        width: 8px;
+    }
 }
 
 .add-new {
