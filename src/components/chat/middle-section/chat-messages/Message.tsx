@@ -30,6 +30,7 @@ const Message: React.FC<MessageProps> = ({ messageInfo, actionButtons, threadSec
                     sender={messageInfo.sender}
                     userAvatar={userAvatar}
                     aiLogo={aiLogo}
+                    sendDate={messageInfo.date}
                 />
 
                 <MessageMiddleSection

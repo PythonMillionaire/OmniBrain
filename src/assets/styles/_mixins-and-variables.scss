@@ -1,12 +1,14 @@
 @use 'sass:math';
 
+$border-modifier: 0.97;
+
 :root
 {
-  --border-color: hsl(0 2% 60% / 1);
-  --border-color-slightly-lighter: hsl(0 2% 60% / 0.7);
-  --border-color-lighter: hsl(0 2% 60% / 0.6);
-  --border-color-lighter-two: hsl(0 2% 60% / 0.45);
-  --border-color-lighter-three: hsl(0 2% 60% / 0.3);
+  --border-color: #{hsla(0, 2%, 60%, $border-modifier * 1)};
+  --border-color-slightly-lighter: #{hsla(0, 2%, 60%, $border-modifier * 0.7)};
+  --border-color-lighter: #{hsla(0, 2%, 60%, $border-modifier * 0.6)};
+  --border-color-lighter-two: #{hsla(0, 2%, 60%, $border-modifier * 0.45)};
+  --border-color-lighter-three: #{hsla(0, 2%, 60%, $border-modifier * 0.3)};
   --border-color-hued: hsl(226deg 55.31% 66.52%);
   --border-color-hued-subdued: hsl(226deg 34% 60%);
   --border-color-hued-complementary: hsl(226deg 55.31% 66.52%);

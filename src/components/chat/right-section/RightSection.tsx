@@ -16,17 +16,19 @@ import {ButtonPosition} from "../../../types/enums";
 
 const RightSection = () => {
     const [isVisible, setIsVisible] = useState(true);
-    const elementRef = useRef<HTMLDivElement>(null);
+
+    const collapseDivRef = useRef<HTMLDivElement>(null);
 
     return (
-        <div id="right-section" style={!isVisible ? { width: '10px' } : {}}>
+        <div id="right-section" ref={collapseDivRef} style={!isVisible ? { width: '10px' } : {}}>
 
-        <CollapseButton isVisible={isVisible} buttonPosition={ButtonPosition.right} toggleVisibility={() => setIsVisible(!isVisible)} id={'right-section-collapse-button'} />
+        <CollapseButton isVisible={isVisible} buttonPosition={ButtonPosition.right}  referenceToCollapsedElement={collapseDivRef} visibilitySetter={setIsVisible} id={'right-section-collapse-button'} />
 
-            <div id="right-section-inner" ref={elementRef} style={{ display: isVisible ? 'flex' : 'none'}}>
+            <div id="right-section-inner" style={{ display: isVisible ? 'flex' : 'none'}}>
                 <section id="tab-headers-section">
                     <div className="button tab-header selected"><img src={saveIcon} id="saved-prompt-button-tab-icon"/> Saved prompts</div>
-                    <div className="button tab-header"><img src={settingsIcon} id="settings-tab-icon"/> Settings</div>
+                    <div className="button tab-header"><img src={settingsIcon} id="settings-tab-icon"/> File manager</div>
+                    <div className="button tab-header"><img src={settingsIcon} id="settings-tab-icon"/> AutoGPT</div>
                 </section>
 
                 <section id="tab-contents">

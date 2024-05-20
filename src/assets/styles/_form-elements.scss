@@ -56,6 +56,8 @@ input[type=range] {
   border: 1px solid white; // Fix for FF unable to apply focus style bug
   width: $slider-width; // Required for proper track sizing in FF
 
+  @include pointer;
+
   &::-webkit-slider-runnable-track {
     width: $slider-width;
     height: 5px;

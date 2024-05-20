@@ -25,7 +25,7 @@
 }
 
 #left-section {
-  width: 15.35%;
+  width: 16%;
   min-width: 280px;
   max-width: 320px;
   margin-left: 0;
@@ -33,7 +33,7 @@
 
   @include flex(space-between, stretch, $direction: column);
 
-  overflow: hidden;
+  //overflow: hidden;
 
   filter: var(--soft-shadow-right);
 
@@ -89,10 +89,11 @@
 #chat-list-main {
   height: 100%;
   max-width: none;
-  background: linear-gradient(to bottom, hsl(216 5% 95% / 1), hsl(216 2% 95% / 1));
+  $hue: 240;
+  background: linear-gradient(to bottom, hsl($hue 7% 85% / 1), hsl($hue 6% 92% / 1));
   flex: 1;
 
-  min-height: 293px;
+  min-height: 297px;
 
   @include flex(space-between, $direction: column);
 
@@ -100,6 +101,7 @@
 }
 
 #chat-list-open-chats {
+  z-index: 1;
   width: 100%;
 
   .chat-list-item-container:first-of-type {
@@ -110,15 +112,20 @@
     //filter: var(--soft-shadow-bottom);
   }
 
-  filter: var(--soft-shadow-bottom);
+  filter: drop-shadow(0 2px 3px hsla(225, 20%, 30%, 0.08));
 }
+
+$forward-animation-transition: 0.45s ease;
+$forward-animation-transition-opacity: 0.25s ease;
+$backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
+
 
 #chat-list-see-all {
   position: relative;
 
   @include flex(flex-start, $gap: 12px);
 
-  background: linear-gradient(to bottom, white, #f0f0f0);
+  background: linear-gradient(to bottom, white, hsl(220 14% 92% / 1));
 
   width: 100%;
 
@@ -127,10 +134,12 @@
   border-top: 1px solid var(--border-color-lighter-two);
   //border-bottom: 1px solid var(--border-color-lighter-three);
 
-  filter: var(--soft-shadow-top);
+  filter: var(--soft-shadow-top) var(--soft-shadow-bottom);
 
   font-style: italic;
   font-weight: 500;
+
+  transition: padding $forward-animation-transition;
 
   img {
     width: 20px;
@@ -144,7 +153,17 @@
     left: 0;
     width: 100%;
     height: 4px;
-    background: hsl(226deg 40% 62%);
+
+    $color: hsl(226deg 26% 55%);
+    $color-two: hsl(226deg 56% 74%);
+
+    background: linear-gradient(185deg, $color, $color-two);
+  }
+
+  &:hover {
+    padding-left: 3.2rem;
+
+    transition: padding $backward-animation-transition;
   }
 }
 
@@ -163,19 +182,32 @@
 
   @include pointer;
 
-  box-shadow: inset 0 0 6px 0 hsla(0, 0%, 0%, 0.05);
+  box-shadow: inset 0 0 4px 0 hsla(0, 0%, 0%, 0.06);
 
-  background: linear-gradient(to bottom, white, hsl(0 0% 96% / 1));
+  $hue: 225;
+  background: linear-gradient(to bottom, hsl($hue 4% 91% / 1), hsl($hue 3% 89% / 1));
+
+  color: #6a6a6a;
 
   &:hover .chat-list-item-menu {
     visibility: visible;
   }
 
   &.selected {
-    $color: hsl(226deg 40% 66%);
+    color: #3a3a3a;
 
-    box-shadow: 0 0 3px hsla(225, 20%, 60%, 0.2), inset 0 0 6px 0 hsla(0, 0%, 0%, 0.07);
+    $color: hsl(226deg 22% 58%);
+    $color-two: hsl(226deg 50% 74%);
+
+    background: linear-gradient(to bottom, #fdfdfd, hsl(0 0% 93% / 1) 82%);
+
+    box-shadow: 0 0 3px hsla(225, 20%, 60%, 0.2), inset 0 0 12px 0 hsla(0, 0%, 0%, 0.05);
     z-index: 2;
+
+    &:not(:last-of-type) {
+      filter: var(--soft-shadow-bottom);
+    }
+
 
     &::after {
       content: '';
@@ -183,7 +215,7 @@
       top: 0;
       right: 0;
       width: 4px;
-      background-color: $color;
+      background: linear-gradient(45deg, $color, $color-two);
 
       height: 100%;
     }
@@ -192,13 +224,83 @@
 
 .chat-list-item-menu {
   visibility: hidden;
-  font-size: 1.3em;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-size: 2.15rem;
+  font-weight: 400;
+  letter-spacing: 0.035em;
 
   color: var(--border-color-hued-subdued);
 
   @include pointer;
+
+  padding: 8px;
+  margin-right: -8px;
+
+  $b-radius: 2px;
+  /* Styles for the dropdown menu */
+  .dropdown-menu {
+    font-size: 1.3rem;
+    display: none;
+    position: absolute;
+    right: -45%;
+    top: 50%;
+    background: linear-gradient(to bottom, white, #f0f0f0);
+    border: 1px solid var(--border-color-lighter-two);
+    border-radius: $b-radius;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+    z-index: 1000;
+
+    &:hover {
+      @include flex($direction: column, $gap: 0.4rem);
+    }
+  }
+
+  .dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.6rem 0 0.6rem;
+  }
+
+  .dropdown-menu li a {
+    display: block;
+    padding: 8px 24px 8px 16px;
+    color: #333;
+    text-decoration: none;
+  }
+
+  .dropdown-menu li  {
+    min-width: 170px;
+
+    &:hover {
+      background: linear-gradient(37deg, hsl(225 10% 90% / 1), hsl(225 10% 95% / 1));
+
+      a {
+        text-shadow: 0 0 1px hsla(0, 0%, 0%, 0.45);
+      }
+    }
+
+
+    &:first-of-type {
+      a:hover {
+        border-radius: $b-radius $b-radius 0 0;
+      }
+    }
+
+    &:last-of-type {
+      a:hover {
+        border-radius: 0 0 $b-radius $b-radius;
+      }
+    }
+  }
+
+  /* Show the dropdown menu when hovering over the chat list item */
+  &:hover .dropdown-menu {
+    @include flex($direction: column, $gap: 0.4rem);
+  }
+
+}
+
+.dropdown-menu:hover {
+  @include flex($direction: column, $gap: 0.4rem);
 }
 
 .chat-list-item-title {
@@ -216,8 +318,6 @@
 #chat-list {
   background-color: #fff;
   @include flex(center, stretch, $direction: column);
-
-  filter: var(--soft-shadow-bottom);
 }
 
 
@@ -225,30 +325,34 @@
 #chat-list-top {
   width: 100%;
   height: auto;
-  background: linear-gradient(to bottom, white, #fafafa);
-  padding: 14px 14px 8px;
+  background: linear-gradient(to bottom, hsl(220 16% 98% / 1), hsl(220 16% 96% / 1));
+  padding: 14px 14px 12px;
 
-  @include flex(left, stretch, $direction: column, $gap: 23px);
+  @include flex(left, stretch, $direction: column, $gap: 10px);
 
   border-bottom: 1px solid var(--border-color-lighter-two);
 
-  filter: var(--soft-shadow-top)
+  filter: var(--soft-shadow-top);
+
+  z-index: 2;
 }
 
 #left-section-top {
   @include flex(flex-start, stretch, $direction: column);
 
   background: linear-gradient(to bottom, white, #fafafa);
+
+  filter: var(--soft-shadow-bottom);
 }
 
 #add-new-chat-section {
-  padding: 21px 7px;
+  padding: 21px 9px;
 
   border-bottom: 1px solid var(--border-color-lighter-two);
 
   @include flex;
 
-  background: hsl(216, 10%, 93%);
+  background: hsl(216, 10%, 90%);
 
   height: 42px;
 }
@@ -259,12 +363,12 @@
   @include flex($gap: 8px);
 
   background: linear-gradient(to bottom, white, #f0f0f0);
-  padding: 5px 16px;
+  padding: 4px 14px;
   width: 100%;
   border-radius: 8px;
   border: 1px solid var(--border-color-slightly-lighter);
 
-  box-shadow: 0 0 4px hsla(225, 20%, 60%, 0.15);
+  box-shadow: 0 0 4px hsla(225, 20%, 60%, 0.15), 0 2px 2px hsla(225, 20%, 60%, 0.25);
 
   overflow: hidden;
 
@@ -291,7 +395,6 @@
     position: absolute;
     width: 64px;
     height: 100px;
-    background-color: var(--add-new-chat-button-details-color);
 
     border: 1px solid var(--border-color-lighter);
 
@@ -299,10 +402,15 @@
 
     //filter: drop-shadow(if($leftOrRight == "left", 1px, -1px) 0 0px hsla(225, 20%, 40%, 0.08));
 
+    $color: hsl(226deg 56% 65%);
+    $color-two: hsl(226deg 60% 74%);
+
     // Dynamically set either left or right
     @if $leftOrRight == "left" {
+      background: linear-gradient(to left, $color, $color-two);
       left: -60px;
     } @else if $leftOrRight == "right" {
+      background: linear-gradient(to right, $color, $color-two);
       right: -60px;
     } @else {
       @warn "Invalid value for $leftOrRight. Use 'left' or 'right'.";
@@ -351,6 +459,49 @@
   .button {
     font-weight: 500;
   }
+}
+
+/* Dropdown.css */
+#filter-chat-list-by-project {
+  position: relative;
+  width: 100%;
+
+  font-size: 1.4rem;
+
+  .dropdown-menu {
+    position: absolute;
+    width: 100%;
+    background: white;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    border-radius: 4px;
+    z-index: 1000;
+    list-style: none;
+    padding: 0;
+    margin-top: 2px; /* small space between the title and the dropdown */
+  }
+
+  .dropdown-menu li {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .dropdown-menu li:last-child {
+    border-bottom: none; /* Remove border for the last item */
+  }
+
+  .dropdown-menu li:hover {
+    background-color: #f0f0f0;
+  }
+}
+
+#filter-chat-list-by-project-title {
+  padding: 4px 10px;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
 .chat-list-item-middle-row {
@@ -433,7 +584,7 @@
 .left-panel-action-button {
   @include flex(flex-start, $gap: 14px);
 
-  padding: 2.4rem 2rem;
+  padding: 1.2rem 2rem;
 
   font-weight: 500;
   color: #464646;
@@ -443,10 +594,38 @@
   border-top: 1px solid var(--border-color-lighter);
   &:last-child { border-bottom: 1px solid var(--border-color-lighter) };
 
-  background: linear-gradient(to bottom, white, #fafafa);
+  background: linear-gradient(to bottom, white, #f6f6f6);
 
   box-shadow: 0 0 12px hsla(225, 20%, 60%, 0.03);
   filter: var(--soft-shadow-bottom) var(--soft-shadow-top);
+
+  // return transition, moving back to original position
+  transition: padding $backward-animation-transition;
+
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 5px;
+    height: 100%;
+    background: hsl(226 34% 66% / 1);
+
+    opacity: 0;
+
+    // forward transition
+    transition: padding $backward-animation-transition, opacity $backward-animation-transition;
+  }
+
+  &:hover {
+    padding-left: 3.2rem;
+
+    transition: padding $forward-animation-transition;
+
+    &:after {
+      opacity: 1;
+      transition: padding $forward-animation-transition, opacity $forward-animation-transition-opacity;
+    }
+  }
 }
 
 .left-section-button {
@@ -466,7 +645,7 @@
 }
 
 .button-icon {
-  width: 22px;
+  height: 22px;
 
   opacity: 0.8;
 }
@@ -484,3 +663,19 @@
 
   width: 20px;
 }
+
+#upgrade-plan::before, #add-credits::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 5px;
+}
+
+#upgrade-plan::before {
+  background: hsl(42 100% 50% / 1);
+}
+
+#add-credits::before {
+    background: hsl(42 96% 42% / 1);
+  }

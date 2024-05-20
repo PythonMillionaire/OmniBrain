@@ -11,6 +11,14 @@
   background: linear-gradient(to bottom, white, #fafafa);
 
   filter: var(--soft-shadow-left);
+
+  &:not(.collapsed) {
+    min-width: 16%;
+  }
+
+  &.collapsed {
+    min-width: 10px;
+  }
 }
 
 #right-section-inner {
@@ -34,6 +42,8 @@
 
   background: linear-gradient(to bottom, white 75%, #fafafa);
 
+  font-size: 1.4rem;
+
   .button {
     font-weight: 500;
   }
@@ -46,7 +56,7 @@
 
   padding: 0 18px;
 
-  border-right: 1px solid var(--border-color-lighter-three);
+  border-right: 1px solid var(--border-color-lighter-two);
 
   &:not(.selected) {
     color: #666;
@@ -82,12 +92,14 @@
 
   padding: 12px 18px;
 
-  background: linear-gradient(to bottom, white, #fafafa);
+  background: linear-gradient(to bottom, hsl(225 10% 98%), hsl(225 6% 97%));
 
-  border-bottom: 1px solid var(--border-color-lighter-three);
+  border-bottom: 1px solid var(--border-color-lighter-two);
 
   overflow-x: hidden;
   overflow-y: auto;
+
+  font-size: 1.4rem;
 
   .button {
     font-weight: 500;
@@ -127,9 +139,11 @@
 
   width: 100%;
 
-  border-bottom: 1px solid var(--border-color-lighter-three);
+  border-bottom: 1px solid var(--border-color-lighter-two);
 
   height: 42px;
+
+  font-size: 1.4rem;
 }
 
 .saved-prompt-button-topic {
@@ -153,6 +167,8 @@
     background: linear-gradient(to bottom, white, #fafafa);
 
     font-weight: 600;
+
+    border-right-color: var(--border-color-lighter-two);
   }
 
   &.selected::after {
@@ -172,7 +188,7 @@
 
   @include flex(flex-start, stretch, $gap: 24px, $direction: column);
 
-  background: hsl(215deg 24% 95.5%);
+  background: linear-gradient(to bottom, hsl(225 13% 93.5%), hsl(225 8% 92%));
 
   > *:not(:first-child) {
     padding: 0 22px;
@@ -192,12 +208,11 @@
 }
 
 .saved-prompt-button-outer {
-  @include flex(space-between);
+  @include flex(space-between, $gap: 8px);
 }
 
 .saved-prompt-button-reorder-icon {
   flex: 0;
-  margin-right: 12px;
 
   cursor: move !important;
 
@@ -213,7 +228,7 @@
 .saved-prompt-button {
   flex-grow: 1;
 
-  border: 1px solid var(--border-color-lighter-two);
+  border: 1px solid var(--border-color-lighter);
   border-radius: 12px;
   padding: 5px 15px;
 
@@ -221,7 +236,7 @@
 
   background: linear-gradient(to bottom, white, #f3f3f3);
 
-  box-shadow: 0 2px 6px hsla(225, 20%, 60%, 0.06);
+  box-shadow: 0 1px 4px hsla(225, 20%, 60%, 0.12);
 
   &:hover .saved-prompt-button-action-buttons {
     visibility: visible;
@@ -264,7 +279,6 @@
 }
 
 .saved-prompt-button-credits {
-  margin-left: 8px;
   @include flex($gap: 4px);
 
   border-radius: 8px;
@@ -294,6 +308,8 @@
   background: linear-gradient(to bottom, white, #fafafa);
 
   border-bottom: 1px solid var(--border-color-lighter-two);
+
+  filter: var(--soft-shadow-bottom);
 }
 
 #add-new-saved-prompt-button {

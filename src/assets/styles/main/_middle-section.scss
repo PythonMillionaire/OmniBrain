@@ -8,7 +8,7 @@
 #middle-section {
   width: auto;
   height: 100%;
-  max-width: none;
+  max-width: 68%;
   border-left: 1px solid var(--border-color-lighter);
   border-right: 1px solid var(--border-color-lighter);
   flex: 1;
@@ -39,6 +39,8 @@
 
   position: relative;
   z-index: 1;
+
+  font-size: 1.4rem;
 }
 
 #chat-message-tool-bar-top {
@@ -48,34 +50,29 @@
   min-height: 42px;
 
   padding: 6px 22px;
+
+  background: linear-gradient(to bottom, white, #fdfdfd);
 }
 
 #chat-message-tool-bar-bottom {
   width: 100%;
   @include flex(space-between, $gap: 20px);
 
+  background: linear-gradient(to bottom, #fdfdfd, #f0f0f0);
+
   min-height: 43px;
+  max-height: 43px;
 
   border-top: 1px solid var(--border-color-lighter-two);
-}
 
-#share-chat {
-  @include flex($gap: 8px);
-
-  img {
-    width: 12px;
-
-    opacity: 0.9;
+  > div {
+    @include flex;
+    height: 100%;
   }
-}
 
-#export-import {
-  @include flex($gap: 8px);
-
-  img {
-    width: 12px;
-
-    opacity: 0.65;
+  .right {
+    width: 100%;
+    overflow: hidden;
   }
 }
 
@@ -104,15 +101,28 @@
   display: flex;
 }
 
-#editor-settings {
-
+.chat-menu-button {
   @include flex($gap: 8px);
+}
 
+@mixin chat-menu-button-image($width, $opacity) {
   img {
-    width: 16px;
+    width: $width;
 
-    opacity: 0.75;
+    opacity: $opacity;
   }
+}
+
+#share-chat {
+  @include chat-menu-button-image(12px, 0.9);
+}
+
+#export-import {
+  @include chat-menu-button-image(12px, 0.65);
+}
+
+#editor-settings {
+  @include chat-menu-button-image(16px, 0.75);
 }
 
 #chat-message-search-section {
@@ -134,17 +144,17 @@
 #chat-input-organization-settings {
   width: 100%;
 
-  @include flex(center, stretch, $gap: 14px, $direction: column);
+  @include flex(center, stretch, $direction: column);
 }
 
 $chat-bottom-border-width: 2px;
-
+$bg-chat-input-top-base-brightness: 95%;
 #chat-input-organization-settings-top {
   @include flex(space-between);
 
   border-bottom: $chat-bottom-border-width solid var(--border-color-hued-subdued);
 
-  background: linear-gradient(to bottom, hsl(225 20% 98% / 1), hsl(225 20% 95% / 1));
+  background: linear-gradient(to bottom, hsl(225 20% $bg-chat-input-top-base-brightness / 1), hsl(225 0% calc($bg-chat-input-top-base-brightness - 1%) / 1));
 }
 
 #chat-input-reply-in-thread {
@@ -157,6 +167,8 @@ $chat-bottom-border-width: 2px;
   border: 1px solid var(--border-color-lighter);
 
   border-radius: 12px;
+
+  box-shadow: 0 0 2px hsl(225 20% 10% / 0.08), 0 0 8px hsl(225 20% 10% / 0.035);
 }
 
 #chat-input-currently-active-thread-label {
@@ -211,7 +223,8 @@ $chat-bottom-border-width: 2px;
   display: none;
 }
 
-$thread-background: hsl(226, 16%, 94%);
+$hue: 240;
+$thread-background: linear-gradient(to bottom, hsl($hue, 12%, 91%), hsl($hue, 11%, 90%));
 
 .chat-message-thread-info {
   user-select: none;
@@ -219,29 +232,39 @@ $thread-background: hsl(226, 16%, 94%);
 
   @include flex(space-between, flex-end, $direction: column);
 
-  padding: 0 8px;
+  padding: 3px 8px;
 
   margin-top: 3px;
 
   transition: padding 0.425s ease;
   border: 1px solid transparent;
 
-  &:hover {
+  @mixin visibleBackground {
     background: linear-gradient(to bottom, white, #fafafa);
-    border: 1px solid var(--border-color-lighter-two);
+    border: 1px solid var(--border-color-lighter);
     border-radius: 18px;
-    padding: 0 20px;
+    padding: 3px 20px;
+  }
+
+  &:hover, &.chat-message-already-replying-to-this-thread {
+    @include visibleBackground;
+  }
+
+  &.chat-message-replying-to-another-thread:hover {
+    background: linear-gradient(to bottom, hsl(225, 17%, 96%), hsl(225, 15%, 94%));
   }
 
   &.chat-message-viewing-thread {
     background: $thread-background;
-    border: 1px solid var(--border-color-lighter-two);
+    border: 1px solid hsl(225 42% 70% / 1);
     border-radius: 18px;
     padding: 16px 16px 20px;
 
     gap: 12px;
 
     margin-top: 6px;
+
+    box-shadow: inset 0 0 18px hsl(225 20% 10% / 0.03);
   }
 }
 
@@ -266,8 +289,6 @@ $thread-background: hsl(226, 16%, 94%);
 .chat-message-thread-action-section {
   width: 100%;
   @include flex(space-between, $gap: 1.2rem);
-
-  padding: 1px 4px;
 
   &.chat-message-viewing-thread {
     padding: 0 20px;
@@ -368,21 +389,21 @@ $thread-background: hsl(226, 16%, 94%);
   display: flex;
 }
 
-$middle-bg: hsl(215 12% 95% / 1);
+$middle-bg: hsl(215 7% 92% / 1);
 
 #chat-messages-section {
   position: relative;
-  height: auto;
+  //height: auto;
   border-style: none none solid;
   border-width: 0;
   border-color: var(--border-color);
   background: $middle-bg;
-  flex: 1;
   padding: 0px 12px 10px;
 
-  overflow: hidden;
+  //overflow: hidden;
 
   @include flex(flex-start, stretch, $direction: column, $gap: 16px);
+  flex-grow: 1;
 }
 
 
@@ -412,7 +433,7 @@ $middle-bg: hsl(215 12% 95% / 1);
   border-width: 1px 0 0 1px;
   border-style: solid;
   border-color: var(--border-color-lighter);
-  background-color: #f5f5f5;
+  background-color: hsl(225 8% 93% / 1);
   border-top-left-radius: 8px;
   padding: 8px;
 
@@ -440,9 +461,10 @@ $middle-bg: hsl(215 12% 95% / 1);
   width: 100%;
   height: 100%;
 
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: auto;
 
-  background: #f0f0f0;
+  background: hsl(225 8% 93% / 1);
 
   padding: 0 12px;
 
@@ -450,6 +472,9 @@ $middle-bg: hsl(215 12% 95% / 1);
   border-top: 1px solid var(--border-color-lighter-two);
 
   box-shadow: inset 0 0 4px 1px hsl(0 0% 0% / 0.03);
+
+  position: relative;
+  //top: 14px;
 }
 
 @mixin chat-tab-style($bg-color, $bg-color-unselected) {
@@ -460,6 +485,8 @@ $middle-bg: hsl(215 12% 95% / 1);
   border: 1px solid var(--border-color-hued);
   border-bottom: none;
   background: $bg-color;
+
+  white-space: nowrap;
 
   filter: var(--soft-shadow-top);
 
@@ -487,11 +514,33 @@ $middle-bg: hsl(215 12% 95% / 1);
 }
 
 .chat-page-tab {
-  @include chat-tab-style(linear-gradient(to bottom, hsl(0 0% 99% / 1), hsl(0 0% 95% / 1)), linear-gradient(to bottom, hsl(0 0% 99% / 0.5), hsl(0 0% 95% / 0.5)));
+  @include chat-tab-style(
+                  linear-gradient(
+                                  to bottom,
+                                  hsl(0 0% 99% / 1),
+                                  hsl(0 0% 95% / 1)
+                  ),
+
+                  linear-gradient(
+                                  to bottom,
+                                  hsl(0 0% 99% / 0.5),
+                                  hsl(0 0% 95% / 0.5)
+                  ));
 }
 
 .chat-thread-tab {
-  @include chat-tab-style(linear-gradient(to bottom, hsl(227 56% 96% / 1), hsl(227 56% 93% / 1)), linear-gradient(to bottom, hsl(227 56% 96% / 0.5), hsl(227 56% 93% / 0.5)));
+  @include chat-tab-style(
+                  linear-gradient(
+                                  to bottom,
+                                  hsl(227 56% 96% / 1),
+                                  hsl(227 56% 93% / 1)
+                  ),
+
+                  linear-gradient(
+                                  to bottom,
+                                  hsl(227 56% 96% / 0.5),
+                                  hsl(227 56% 93% / 0.5)
+                  ));
 }
 
 .chat-page-thread-tab-delete
@@ -542,7 +591,7 @@ $input-inset-shadow: inset 0 0 2px 0 hsl(0 0 0 / 0.16);
 
   @include flex(left);
 
-  padding: 12px 7px;
+  padding: 12px 5px;
 
   box-shadow: $input-inset-shadow;
 }
@@ -587,10 +636,47 @@ $input-inset-shadow: inset 0 0 2px 0 hsl(0 0 0 / 0.16);
   height: auto;
 }
 
-.chat-message-info-sender
-{
-  @include flex;
+.chat-message-info-sender {
+  @include flex(flex-start);
 }
+
+.chat-message-info-sender-name
+{
+  @include flex(flex-start);
+  flex-grow: 1;
+}
+
+.chat-message-info-send-date {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 0.5s, opacity 0.15s linear;
+
+  font-weight: 400;
+  font-style: italic;
+}
+
+.ai > .chat-message-inner-container > .chat-message-info {
+  .chat-message-info-send-date {
+    @include flex(flex-end);
+  }
+
+  .chat-message-info-sender {
+    @include flex(flex-start, $gap: 8px);
+    flex-grow: 1;
+  }
+}
+
+.user > .chat-message-inner-container > .chat-message-info  {
+  .chat-message-info-send-date {
+    @include flex(flex-start);
+    flex-grow: 1;
+  }
+
+  .chat-message-info-sender {
+    @include flex(flex-end, $gap: 8px);
+  }
+}
+
 
 #chat-response-detail {
   padding: 0 14px;
@@ -655,10 +741,18 @@ $input-inset-shadow: inset 0 0 2px 0 hsl(0 0 0 / 0.16);
   top: 2px;
 }
 
+$base-bg-brightness: 99%;
+
+$lightest-bg-brightness-reduction: 1%;
+$darkest-bg-brightness-reduction: 2%;
+
 #subchat-input-topics-section {
   width: 100%;
   @include flex(left, $gap: 1.4rem);
-  padding: 0 1.4rem;
+  padding: 1.4rem 1.4rem 1.2rem;
+
+  filter: var(--soft-shadow-top);
+  background: linear-gradient(to bottom, hsl(225 10% $base-bg-brightness / 1), hsl(225 10% $base-bg-brightness - $lightest-bg-brightness-reduction / 1));
 }
 
 .subtopic {
@@ -667,17 +761,19 @@ $input-inset-shadow: inset 0 0 2px 0 hsl(0 0 0 / 0.16);
   border-radius: 8px;
   padding: 4px 12px;
 
-  box-shadow: 0 0 4px hsla(225, 20%, 60%, 0.2);
+  box-shadow: 0 1px 2px hsla(225, 20%, 60%, 0.1);
 
   max-width: 300px;
   overflow: hidden;
   text-overflow: ellipsis;
 
-
-  background: hsla(225, 10%, 40%, 0.06);
+  background: linear-gradient(to bottom, hsla(225, 10%, 98%, 1), hsla(225, 10%, 92.5%, 1));
 
   &.selected {
-    background: hsla(225, 70%, 60%, 0.06);
+    background: linear-gradient(to bottom, hsla(225, 90%, 100%, 1), hsla(225, 70%, 97%, 1));
+
+    box-shadow:  0 1px 2px hsla(225, 20%, 60%, 0.05), 0 1px 4px hsla(225, 20%, 60%, 0.11);
+
     border-width: 2px;
   }
 }
@@ -701,7 +797,7 @@ $input-inset-shadow: inset 0 0 2px 0 hsl(0 0 0 / 0.16);
 
   filter: var(--soft-shadow-top);
 
-  background: linear-gradient(to bottom, white, hsl(225 20% 98% / 1));
+  background: linear-gradient(to bottom, hsl(225 25% 98% / 1 ), hsl(225 20% $bg-chat-input-top-base-brightness / 1));
 
   > div:not(.button) {
     padding-left: 12px;
@@ -715,11 +811,11 @@ $input-inset-shadow: inset 0 0 2px 0 hsl(0 0 0 / 0.16);
 }
 
 #chat-input-field {
-  background: hsl(225 20% 97% / 1);
+  background: hsl(220deg 30% 99%);//hsl(220 12% 92%);
 
   height: auto;
   min-height: 4.2rem;
-  border: 1px solid var(--border-color);
+  border: 1px solid hsl(225 40% 52.26% / 55%);
   border-radius: 12px;
   flex: 1;
   width: 100%;
@@ -728,11 +824,15 @@ $input-inset-shadow: inset 0 0 2px 0 hsl(0 0 0 / 0.16);
 
   resize: vertical;
 
-  filter: drop-shadow(0 0 6px hsl(225 20% 60% / 0.1));
+  filter: drop-shadow(0 0 6px hsl(225 20% 60% / 0.04));
 
   z-index: 2;
 
-  box-shadow: inset 0 0 4px 1px hsla(0, 0%, 0%, 0.03);
+  box-shadow: inset 0 0 8px 0 hsla(0, 0%, 0%, 0.025);
+
+  &::placeholder {
+    color: #444;
+  }
 }
 
 .ai {
@@ -866,7 +966,7 @@ $opacity-message-buttons: 0.7;
 
   &:not(.selected) {
     border-color: var(--border-color-lighter);
-    background: #f3f3f3;
+    background: hsl(225 3% 93.24%);
   }
 }
 
@@ -889,9 +989,6 @@ $opacity-message-buttons: 0.7;
   align-items: center;
   display: flex;
   overflow: hidden;
-
-  gap: 12px;
-  padding: 2px 0;
 }
 
 #chat-input-bottom {
@@ -906,7 +1003,10 @@ $opacity-message-buttons: 0.7;
 
   gap: 10px;
 
-  margin-top: 5px;
+  padding-top: 11px;
+
+  background: linear-gradient(to bottom, hsl(225 20% $base-bg-brightness - $darkest-bg-brightness-reduction / 1), hsl(225 20% $base-bg-brightness - $lightest-bg-brightness-reduction / 1));
+
 }
 
 #chat-input-middle-action-row {
@@ -914,9 +1014,9 @@ $opacity-message-buttons: 0.7;
 
   @include flex(space-between);
 
-  position: relative;
+  padding-top: 7px;
 
-  top: -6px;
+  background: linear-gradient(to bottom, hsl(225 20% $base-bg-brightness - $darkest-bg-brightness-reduction / 1), hsl(225 20% $base-bg-brightness - $darkest-bg-brightness-reduction / 1));
 }
 
 #chat-input-token-counter {
@@ -985,13 +1085,20 @@ $opacity-message-buttons: 0.7;
     box-shadow: 0 0 2px hsla(225, 20%, 60%, 0.2);
     border: 2px solid var(--border-color-hued-subdued);
     color: #2e2020;
-    background: linear-gradient(to bottom, white, hsl(226 100% 99% / 1));
+    background: linear-gradient(to bottom, white 76%, hsl(226 40% 95% / 1) 95%);
     border-radius: 12px;
     padding: 8px 14px;
+
+    img {
+      filter: drop-shadow(2px 2px 1px hsl(225 20% 60% / 0.06)) drop-shadow(2px 2px 2px hsl(225 20% 60% / 0.16));
+    }
   }
 
   > div.below-button {
-    background: hsl(226deg 43% 63%);
+    $color: hsl(226 34% 50% / 1);
+    $color-two: hsl(226 60% 74% / 1);
+
+    background: linear-gradient(65deg, $color, $color-two);
     width: 100%;
     position: absolute;
     height: 100%;
@@ -999,6 +1106,8 @@ $opacity-message-buttons: 0.7;
     border-radius: 12px;
     bottom: -2px;
     right: -2px;
+
+    box-shadow: 2px 2px 1px hsl(225 20% 60% / 0.05), 1px 1px 3px hsl(225 20% 60% / 0.12);
   }
 }
 
@@ -1016,34 +1125,42 @@ $opacity-message-buttons: 0.7;
   position: relative;
   z-index: 1;
 
+  $border-modifier-messages: 0.9;
+
   &.ai-message {
     background: linear-gradient(to bottom, white, #f8f8f8);
     //border: 2px solid var(--border-color-hued);
     //border: 1px solid hsl(225deg 16.3% 46.72% / 60%);
-    box-shadow: 0 0 0 1px hsl(225deg 16.3% 56% / 60%), 0 0 0 2px hsl(225deg 16.3% 50% / 0.09), $shadow;
+    box-shadow: 0 0 0 1px #{hsla(225deg, 16.3%, 56%, 0.6 * $border-modifier * $border-modifier-messages)}, 0 0 0 2px #{hsla(225deg, 16.3%, 50%, 0.09 * $border-modifier * $border-modifier-messages)}, $shadow;
   }
 
   &.user-message {
-    background: linear-gradient(to bottom, hsl(227 90% 99% / 1), hsl(226deg 90% 99%));
+    background: linear-gradient(to bottom, hsl(227 90% 100% / 1), hsl(226deg 76% 98%));
     //border: 2px solid var(--border-color-hued);
 
     //border: 1px solid hsl(225deg 60.42% 52.26% / 80%);
-    box-shadow: 0 0 0 1px hsl(225deg 53% 63% / 70%), 0 0 0 2px hsl(0 2% 60% / 0.15), $shadow;
+    box-shadow: 0 0 0 1px #{hsl(225deg, 53%, 63%, 0.7 * $border-modifier * $border-modifier-messages)}, 0 0 0 2px #{hsla(0, 2%, 60%, 0.15 * $border-modifier * $border-modifier-messages)}, $shadow;
   }
 }
 
 .chat-message-contents {
   white-space: pre-line;
 
-  line-height: 2.5rem;
+  line-height: 1.8rem;
 }
 
 
-.chat-message-outer-container.user, .chat-message-outer-container.ai {
+.chat-message-outer-container {
   @include flex(flex-start, stretch, $direction: column);
 
   &:hover  {
     .visible { visibility: visible; }
+
+    > .chat-message-inner-container > .chat-message-info .chat-message-info-send-date {
+      visibility: visible;
+      opacity: 1;
+      transition-delay: 0s;
+    }
   }
 
   .invisible {
@@ -1109,6 +1226,8 @@ $opacity-message-buttons: 0.7;
   padding: 0 1.4rem;
 
   min-height: 68px;
+
+  background: linear-gradient(to bottom, hsl(225 20% $base-bg-brightness - $lightest-bg-brightness-reduction / 1), hsl(225 20% $base-bg-brightness - $darkest-bg-brightness-reduction / 1));
 }
 
 
@@ -1130,11 +1249,11 @@ $opacity-message-buttons: 0.7;
 }
 
 .user .chat-message-wrapper::before {
-  @include shadowColor(hsl(225deg 30% 60% / 3%), 0 0 26px hsl(225deg 30% 60% / 6%));
+  @include shadowColor(hsl(225deg 30% 60% / 3%), 0 0 18px hsl(225deg 30% 60% / 6%));
 }
 
 .ai .chat-message-wrapper::before {
-  @include shadowColor(hsl(225deg 30% 60% / 5%), 0 0 26px hsl(225deg 30% 60% / 10%));
+  @include shadowColor(hsl(225deg 30% 60% / 5%), 0 0 18px hsl(225deg 30% 60% / 10%));
 }
 
 .chat-message-wrapper {
@@ -1147,10 +1266,13 @@ $opacity-message-buttons: 0.7;
 
   &:before {
     content: "";
-    width: 100%;
+    width: 98%;
     height: 30px;
     position: absolute;
-    bottom: calc(0% - 11px);
+    bottom: calc(0% - 5px);
+    left: 50%;
+    transform: translate(-50%, 0px);
+
     border-radius: 30px;
     z-index: 0;
 
@@ -1166,6 +1288,8 @@ $opacity-message-buttons: 0.7;
   height: 100%;
   @include flex;
   visibility: hidden;
+  position: relative;
+  right: -4px;
 }
 
 

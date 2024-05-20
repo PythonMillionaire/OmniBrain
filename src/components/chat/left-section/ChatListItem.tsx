@@ -32,7 +32,17 @@ const ChatListItem: React.FC<ChatListItemProps> = ({
                         <div className="chat-list-item-title">Conversation name</div>
                         <div className="chat-list-item-description">Last message sent or description testing testing testing...</div>
                     </div>
-                    <div className="chat-list-item-menu">...</div>
+                    <div className="chat-list-item-menu">...
+                        <div className="dropdown-menu">
+                            <ul>
+                                <li><a href="#">Duplicate</a></li>
+                                <li><a href="#">Archive</a></li>
+                                <li><a href="#">Delete</a></li>
+                                <li><a href="#">Move to Project</a></li>
+                                <li><a href="#">Move to Workspace</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

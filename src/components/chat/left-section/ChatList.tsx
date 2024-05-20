@@ -63,6 +63,9 @@ const ChatList = () => {
         setSelectedId(id);
     };
 
+    const [isOpen, setIsOpen] = useState(false);
+    const toggleDropdown = () => setIsOpen(!isOpen);
+
     return (
         <section id="chat-list">
             <div id="add-new-chat-section">
@@ -79,6 +82,20 @@ const ChatList = () => {
                         <div className="button" id="filter-chat-list-advanced-search">Advanced search</div>
                     </div>
                 </div>
+
+                <div id="filter-chat-list-by-project">
+                    <div id="filter-chat-list-by-project-title" onClick={toggleDropdown}>
+                        Select project
+                    </div>
+                    {isOpen && (
+                        <ul className="dropdown-menu">
+                            <li>Project 1</li>
+                            <li>Project 2</li>
+                            <li>Project 3</li>
+                            <li>Project 4</li>
+                        </ul>
+                    )}
+                </div>
             </div>
 
 
@@ -88,7 +105,7 @@ const ChatList = () => {
                         <ChatListItem
                             key={item.id}
                             id={item.id}
-                            isSelected={selectedId === item.id || index === 0} //TODO: remove right half of condition
+                            isSelected={selectedId === item.id}
                             onSelect={() => handleSelectItem(item.id)}
                             name={item.name}
                             date={item.date}

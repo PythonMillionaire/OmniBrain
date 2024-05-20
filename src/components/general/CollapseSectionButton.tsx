@@ -4,12 +4,20 @@ import {ButtonPosition} from '../../types/enums';
 
 interface CollapseButtonProps {
     isVisible: boolean;
+    visibilitySetter: React.Dispatch<React.SetStateAction<boolean>>;
+    referenceToCollapsedElement: React.RefObject<HTMLElement>;
     buttonPosition: ButtonPosition;
-    toggleVisibility: () => void;
     id: string;
 }
 
-const CollapseButton: React.FC<CollapseButtonProps> = ({ isVisible, buttonPosition, toggleVisibility, id }) => {
+const CollapseButton: React.FC<CollapseButtonProps> = (
+    {
+        isVisible,
+        visibilitySetter,
+        referenceToCollapsedElement,
+        buttonPosition,
+        id
+    }) => {
     const getArrowStyle = () => {
         switch (buttonPosition) {
             case ButtonPosition.top:
@@ -45,18 +53,23 @@ const CollapseButton: React.FC<CollapseButtonProps> = ({ isVisible, buttonPositi
     }
 };
 
+    function toggleVisibility() {
+        visibilitySetter(!isVisible);
+
+        referenceToCollapsedElement.current?.classList.toggle('collapsed');
+    }
 
     return (
         <div
             id={id}
             className="button collapse-button"
-            onClick={toggleVisibility}
             style={{
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
                 ...getArrowStyle(), // Apply the dynamic style
-            }}
+            } }
+            onClick={toggleVisibility}
         >
             {/* Use a generic arrow that you'll rotate */}
             <span>▼</span>

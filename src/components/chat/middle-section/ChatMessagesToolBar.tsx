@@ -16,6 +16,7 @@ import Tag from "../../general/Tag";
 import AddElementButton from "../../general/AddElementButton";
 
 import pageNavigationArrow from "../../../assets/images/next-page.svg";
+import CustomScrollbar from "../../general/CustomScrollbar";
 
 const ChatThreadTab: React.FC<{ id: string; }> = ({ id }) => {
     return (
@@ -26,7 +27,7 @@ const ChatThreadTab: React.FC<{ id: string; }> = ({ id }) => {
     );
 }
 
-const ChatPageTab: React.FC<{ current: number; }> = ({ current }) => {
+const ChatPageTab: React.FC<{ current: string; }> = ({ current }) => {
     return (
         <div id={`chat-page-tab-${current}`} className="button chat-page-tab">
             <span>Page</span> <i>{current}</i>
@@ -39,7 +40,11 @@ const ChatPageTab: React.FC<{ current: number; }> = ({ current }) => {
 const ChatMessagesToolBar: React.FC = () => {
     const [tabs, setTabs] = useState([
         { id: 'P3-45', type: 'thread', content: <ChatThreadTab id="P3-45" /> },
-        { id: '7', type: 'page', content: <ChatPageTab current={7} /> }
+        { id: '7', type: 'page', content: <ChatPageTab current={"OmniBrain - 7"} /> },
+        { id: '8', type: 'page', content: <ChatPageTab current={"Happiness Hub - 11"} /> },
+        { id: '9', type: 'page', content: <ChatPageTab current={"Happiness Hub - 15"} /> },
+        { id: '10', type: 'page', content: <ChatPageTab current={"Happiness Hub - 29"} /> },
+        { id: '11', type: 'page', content: <ChatPageTab current={"OmniBrain - 55"} /> }
     ]);
 
     const handleOnDragEnd = (result: DropResult) => {
@@ -63,9 +68,9 @@ const ChatMessagesToolBar: React.FC = () => {
         <section id="chat-messages-tool-bar">
             <div id="chat-message-tool-bar-top">
                 <div id="chat-menu">
-                    <div id="share-chat" className={"button"}><img src={shareChatIcon} alt="Share"/>Share</div>
-                    <div id="export-import" className={"button"}><img src={exportImportIcon} alt="Export/Import"/>Export/import</div>
-                    <div id="editor-settings" className={"button"}><img src={settingsIcon} alt="Settings"/>Current chat's settings</div>
+                    <div id="share-chat" className={"button chat-menu-button"}><img src={shareChatIcon} alt="Share"/>Share</div>
+                    <div id="export-import" className={"button chat-menu-button"}><img src={exportImportIcon} alt="Export/Import"/>Export/import</div>
+                    <div id="editor-settings" className={"button chat-menu-button"}><img src={settingsIcon} alt="Settings"/>Current chat's settings</div>
                 </div>
                 <div id="chat-filter-search">
                     <div id="chat-message-filters">
@@ -81,57 +86,67 @@ const ChatMessagesToolBar: React.FC = () => {
                 </div>
             </div>
             <div id="chat-message-tool-bar-bottom">
-                <div id="chat-pages-menu">
-                    <div id="previous-page" className={"button"}><img className={"page-navigation-arrow"}
-                                                                      src={pageNavigationArrow} alt="Previous page"/> Previous
+                <div className={"left"}>
+                    <div id="chat-pages-menu">
+                        <div id="previous-page" className={"button"}><img className={"page-navigation-arrow"}
+                                                                          src={pageNavigationArrow}
+                                                                          alt="Previous page"/> Previous
+                        </div>
+                        <div id="chat-page-number">
+                            <b>1</b> <i>of</i> <b>13</b> <i>pages</i>
+                        </div>
+                        <div id="next-page" className={"button"}>Next <img className={"page-navigation-arrow"}
+                                                                           src={pageNavigationArrow} alt="Next page"/>
+                        </div>
+                        <div id="create-new-page" className={"button"}><AddElementButton text={"Create new page"}
+                                                                                         type={"page"}/></div>
                     </div>
-                    <div id="chat-page-number">
-                    <b>1</b> <i>of</i> <b>13</b> <i>pages</i>
-                    </div>
-                    <div id="next-page" className={"button"}>Next <img className={"page-navigation-arrow"} src={pageNavigationArrow} alt="Next page"/> </div>
-                    <div id="create-new-page" className={"button"}><AddElementButton text={"Create new page"} type={"page"}/></div>
                 </div>
-                <DragDropContext onDragEnd={handleOnDragEnd}>
-                    <Droppable droppableId="tabs" direction={"horizontal"}>
-                        {(provided: DroppableProvided) => (
-                            <div {...provided.droppableProps} ref={provided.innerRef}
-                                 id="chat-page-and-thread-tabs-section">
-                                <div id={`chat-page-tab-1`} className="button chat-page-tab chat-main-page selected">
-                                    <span>Page</span> <i>1</i>
-                                </div>
+                <div className={"right"}>
+                    <CustomScrollbar>
+                        <DragDropContext onDragEnd={handleOnDragEnd}>
+                            <Droppable droppableId="tabs" direction={"horizontal"}>
+                                {(provided: DroppableProvided) => (
+                                    <div {...provided.droppableProps} ref={provided.innerRef}
+                                         id="chat-page-and-thread-tabs-section">
+                                        <div id={`chat-page-tab-1`} className="button chat-page-tab chat-main-page selected">
+                                            <span>Page</span> <i>1</i>
+                                        </div>
 
-                                {tabs.map((tab, index) => (
-                                    <Draggable
-                                        key={tab.id}
-                                        draggableId={`chat-${tab.type === 'page' ? 'page' : tab.type === 'thread' ? 'thread' : 'main'}-tab-${tab.id}`}
-                                        index={index}>
-                                        {(provided: DraggableProvided) => {
-                                            let transform = provided.draggableProps.style?.transform;
-                                            if (transform) {
-                                                transform = transform.replace(/,\s*[-+]?[\d]+px\)/, ", 0px)");
-                                            }
-                                            const style = transform ? {
-                                                ...provided.draggableProps.style,
-                                                transform
-                                            } : provided.draggableProps.style;
+                                        {tabs.map((tab, index) => (
+                                            <Draggable
+                                                key={tab.id}
+                                                draggableId={`chat-${tab.type === 'page' ? 'page' : tab.type === 'thread' ? 'thread' : 'main'}-tab-${tab.id}`}
+                                                index={index}>
+                                                {(provided: DraggableProvided) => {
+                                                    let transform = provided.draggableProps.style?.transform;
+                                                    if (transform) {
+                                                        transform = transform.replace(/,\s*[-+]?[\d]+px\)/, ", 0px)");
+                                                    }
+                                                    const style = transform ? {
+                                                        ...provided.draggableProps.style,
+                                                        transform
+                                                    } : provided.draggableProps.style;
 
-                                            return (
-                                                <div
-                                                    ref={provided.innerRef}
-                                                    {...provided.draggableProps}
-                                                    {...provided.dragHandleProps}
-                                                    style={style}>
-                                                    {tab.content}
-                                                </div>
-                                            );
-                                        }}
-                                    </Draggable>
-                                ))}
-                                {provided.placeholder}
-                            </div>
-                        )}
-                    </Droppable>
-                </DragDropContext>
+                                                    return (
+                                                        <div
+                                                            ref={provided.innerRef}
+                                                            {...provided.draggableProps}
+                                                            {...provided.dragHandleProps}
+                                                            style={style}>
+                                                            {tab.content}
+                                                        </div>
+                                                    );
+                                                }}
+                                            </Draggable>
+                                        ))}
+                                        {provided.placeholder}
+                                    </div>
+                                )}
+                            </Droppable>
+                        </DragDropContext>
+                    </CustomScrollbar>
+                </div>
             </div>
         </section>
     );

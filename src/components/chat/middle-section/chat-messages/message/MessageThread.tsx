@@ -52,18 +52,23 @@ const ReplyToAnotherThread: React.FC = () => {
             </span>;
 }
 
+interface EmptyThreadProps {
+    currentThreadID: string;
+    activeThread: string,
+    replyMode: ReplyMode
+    threadStateClass: string
+}
+
 /* Thread with no messages */
-const EmptyThread: React.FC<{ currentThreadID: string }> = ({currentThreadID}) => {
+const EmptyThread: React.FC<EmptyThreadProps> = ({currentThreadID, activeThread, replyMode, threadStateClass}) => {
     const dispatch = useDispatch();
-    const activeThread = useSelector((state: RootState) => selectActiveThreadID(state));
-    const replyMode = useSelector((state: RootState) => selectReplyMode(state));
 
     const buttonElement = replyMode === ReplyMode.thread ? (activeThread === currentThreadID ?
         <AlreadyReplyingInThisThread /> : <ReplyToAnotherThread />
             ) : <ReplyInThisThread />;
 
     return (
-        <div className="button chat-message-thread-info" onClick={() => handleToggleReplyMode(activeThread, currentThreadID, replyMode, dispatch)}>
+        <div className={`button chat-message-thread-info ${threadStateClass}`} onClick={() => handleToggleReplyMode(activeThread, currentThreadID, replyMode, dispatch)}>
             <div className="chat-message-thread-action-section"></div>
             <div className="chat-message-reply-in-thread">{buttonElement}</div>
         </div>
@@ -78,6 +83,8 @@ interface MessageThreadInfoComponentProps {
     lastInteractionDate?: Date;
     aiProviders?: AIProviderInfo[];
     currentThreadID: string;
+    activeThread: string;
+    replyMode: ReplyMode;
 }
 
 const MessageThreadInfoComponent: React.FC<MessageThreadInfoComponentProps> = React.memo(({
@@ -88,14 +95,10 @@ const MessageThreadInfoComponent: React.FC<MessageThreadInfoComponentProps> = Re
                                                                                    lastInteractionDate,
                                                                                    aiProviders,
                                                                                    currentThreadID,
+                                                                                   activeThread,
+                                                                                   replyMode
                                                                                }) => {
     const dispatch = useDispatch();
-
-    const activeThread = useSelector((state: RootState) => selectActiveThreadID(state));
-
-    const replyMode = useSelector((state: RootState) => selectReplyMode(state));
-
-    console.log("HR", activeThread, currentThreadID, replyMode);
 
     return <span className={`chat-message-thread-action-section ${viewingThread ? 'chat-message-viewing-thread' : ''} ${isBottomOne && !viewingThread ? 'bottom-element' : ''}`}>
         <span className={`chat-message-thread-replies-info`}>{
@@ -106,8 +109,7 @@ const MessageThreadInfoComponent: React.FC<MessageThreadInfoComponentProps> = Re
         }
             <div className="replies-counter">{messageCount} replies</div>
             {
-                lastInteractionDate && <div className="last-thread-interaction">Last
-                    interaction: {lastInteractionDate.toDateString()}</div>
+                lastInteractionDate && <div className="last-thread-interaction">{lastInteractionDate.toDateString()}</div>
             }
         </span>
         <span className="chat-message-view-reply-thread">
@@ -142,21 +144,30 @@ const MessageThread: React.FC<MessageThreadProps> = ({messageInfo}) => {
 
     const messageThreadInfo = useSelector((state: RootState) => selectThreadById(state, messageInfo.id));
 
+    const replyMode = useSelector((state: RootState) => selectReplyMode(state));
+
+    const currentThreadID = messageThreadInfo && messageThreadInfo.id ? messageThreadInfo.id : messageInfo.id;
+
+    const activeThread = useSelector((state: RootState) => selectActiveThreadID(state));
+
+    const threadStateClass = replyMode === ReplyMode.thread ? (activeThread === currentThreadID ?
+            'chat-message-already-replying-to-this-thread' : 'chat-message-replying-to-another-thread'
+    ) : 'chat-message-reply-to-this-thread';
+
     // If there are no messages, return empty thread
     if (!messageThreadInfo || messageThreadInfo.messageCount === 0) {
-        console.log("No messages in thread.", messageInfo, messageThreadInfo, messageThreadInfo?.messageCount);
         return <EmptyThread
-            currentThreadID={messageThreadInfo && messageThreadInfo.id ? messageThreadInfo.id : messageInfo.id}/>;
-    } else {
-        console.log(messageThreadInfo.messageCount, " messages in thread ", messageThreadInfo);
+            currentThreadID={currentThreadID}
+            activeThread={activeThread}
+            replyMode={replyMode}
+            threadStateClass={threadStateClass}
+        />;
     }
-
-    console.log("THREAD INFO", messageThreadInfo, messageThreadInfo.messages);
 
     const { messageCount, lastInteractionDate, aiProviders } = messageThreadInfo;
 
     return (
-        <div className={`chat-message-thread-info ${viewingThread ? 'chat-message-viewing-thread' : ''}`}>
+        <div className={`chat-message-thread-info ${threadStateClass} ${viewingThread ? 'chat-message-viewing-thread' : ''}`}>
             <MessageThreadInfoComponent
                 isBottomOne={false}
                 messageCount={messageCount}
@@ -164,7 +175,9 @@ const MessageThread: React.FC<MessageThreadProps> = ({messageInfo}) => {
                 aiProviders={aiProviders}
                 setViewingThread={setViewingThread}
                 viewingThread={viewingThread}
-                currentThreadID={messageThreadInfo && messageThreadInfo.id ? messageThreadInfo.id : messageInfo.id}
+                currentThreadID={currentThreadID}
+                activeThread={activeThread}
+                replyMode={replyMode}
             />
 
             <div className={`chat-message-thread-contents ${viewingThread ? 'chat-message-viewing-thread' : ''}`}>
@@ -185,6 +198,8 @@ const MessageThread: React.FC<MessageThreadProps> = ({messageInfo}) => {
                 setViewingThread={setViewingThread}
                 viewingThread={viewingThread}
                 currentThreadID={messageThreadInfo && messageThreadInfo.id ? messageThreadInfo.id : messageInfo.id}
+                activeThread={activeThread}
+                replyMode={replyMode}
             />
         </div>
     );

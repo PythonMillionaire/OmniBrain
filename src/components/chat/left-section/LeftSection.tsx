@@ -11,6 +11,7 @@ import upgradeIcon from "../../../assets/images/upgrade.svg";
 import creditsIcon from "../../../assets/images/credits.svg";
 import logo from "../../../assets/images/logo.svg";
 import AddElementButton from "../../general/AddElementButton";
+import CustomScrollbar from "../../general/CustomScrollbar";
 
 const LeftSection = () => {
     return (
@@ -22,9 +23,12 @@ const LeftSection = () => {
                 <ChatList />
             </div>
 
-            <div id="left-section-middle">
-                <LeftSectionActionButtons/>
-            </div>
+
+            <CustomScrollbar styles={{filter: "var(--soft-shadow-top)"}}>
+                <div id="left-section-middle">
+                    <LeftSectionActionButtons/>
+                </div>
+            </CustomScrollbar>
 
             <section id="left-section-bottom">
                 <div id="account-info">

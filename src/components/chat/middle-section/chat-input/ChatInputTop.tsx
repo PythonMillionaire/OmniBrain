@@ -6,13 +6,14 @@ import React, {useRef, useState} from "react";
 
 const ChatInputTop = () => {
     const [isVisible, setIsVisible] = useState(true);
-    const elementRef = useRef<HTMLDivElement>(null);
+    // Create a ref for the div that you want to collapse
+    const collapseDivRef = useRef<HTMLDivElement>(null);
 
     return (
         <div id="chat-input-top">
-            <CollapseButton isVisible={isVisible} buttonPosition={ButtonPosition.bottom} toggleVisibility={() => setIsVisible(!isVisible)} id={"chat-input-top-collapse-button"} />
+            <CollapseButton isVisible={isVisible} buttonPosition={ButtonPosition.bottom} referenceToCollapsedElement={collapseDivRef} visibilitySetter={setIsVisible} id={"chat-input-top-collapse-button"} />
 
-            <div id="chat-input-top-response-settings" ref={elementRef} style={{ display: isVisible ? 'flex' : 'none'}}>
+            <div id="chat-input-top-response-settings" ref={collapseDivRef} style={{ display: isVisible ? 'flex' : 'none'}}>
                 <div className="chat-input-detail-level-slider">
                     <div>Response detail level <br/>
                     </div>

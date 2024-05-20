@@ -13,6 +13,8 @@ import {RootState} from "../../../../app/store";
 
 import {selectAllMessages} from "../../../../features/chat/chatSlice";
 
+const longMessage = "Message\n\nMessage\n\nMessage\n\nMessage\n\nMessage\n\nMessage\n\nMessage\n\nMessage\n\nMessage\n\nMessage\n\nMessage\n\nMessage";
+
 const Conversation = () => {
     const dispatch = useDispatch();
 
@@ -23,10 +25,10 @@ const Conversation = () => {
             const messageSenderChatGPT = new MessageSender("chat-gpt-4", "ChatGPT 4", chatGPTLogo, MessageSenderType.ai);
             const messageSenderUser = new MessageSender("u1234567890", "Zé", userAvatar, MessageSenderType.user);
 
-            const firstMsg = new MessageInfo(uuidv4(), messageSenderChatGPT, "1 - Long message text...", new Date());
+            const firstMsg = new MessageInfo(uuidv4(), messageSenderChatGPT, "1 - " + longMessage, new Date());
             const secondMsg = new MessageInfo(uuidv4(), messageSenderChatGPT, "2 - Short message text...", new Date());
 
-            const thirdMsg = new MessageInfo(uuidv4(), messageSenderUser, "3 - Long message text...", new Date());
+            const thirdMsg = new MessageInfo(uuidv4(), messageSenderUser, "3 - " + longMessage, new Date());
             const fourthMsg = new MessageInfo(uuidv4(), messageSenderUser, "4- Short message text...", new Date());
 
             // Create a thread with the first message

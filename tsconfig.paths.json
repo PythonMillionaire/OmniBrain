@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "react-refresh/runtime": ["./node_modules/react-refresh/runtime.js"]
+    }
+  }
+}
