@@ -82,7 +82,7 @@ input[type=range]::-webkit-slider-thumb {
   height: 16px;
   width: 16px;
   border-radius: 50%;
-  background: hsl(223, 50%, 60%);
+  background: linear-gradient(to bottom, hsl(223, 50%, 60%), hsl(223, 46%, 50%));
   margin-top: -4px;
   filter: drop-shadow(0 0 4px hsla(225, 60%, 20%, 0.12));
 }
@@ -193,7 +193,7 @@ input[type=range]:focus::-ms-fill-upper {
   gap: 0px;
   flex-wrap: nowrap;
   filter: var(--soft-shadow-right);
-  background: hsl(225, 10%, 93%);
+  background: hsl(225, 20%, 93%);
 }
 
 #left-section-middle {
@@ -245,7 +245,7 @@ input[type=range]:focus::-ms-fill-upper {
 #chat-list-main {
   height: 100%;
   max-width: none;
-  background: linear-gradient(to bottom, hsl(240, 7%, 85%), hsl(240, 6%, 92%));
+  background: linear-gradient(to bottom, hsl(225, 24%, 94%), hsl(225, 22%, 92%));
   flex: 1;
   min-height: 297px;
   display: flex;
@@ -262,6 +262,9 @@ input[type=range]:focus::-ms-fill-upper {
   width: 100%;
   filter: drop-shadow(0 2px 3px hsla(225, 20%, 30%, 0.08));
 }
+#chat-list-open-chats .chat-list-item-container.selected:first-of-type {
+  filter: var(--soft-shadow-top) drop-shadow(0 2px 3px hsla(225, 20%, 30%, 0.08));
+}
 #chat-list-see-all {
   position: relative;
   display: flex;
@@ -270,10 +273,10 @@ input[type=range]:focus::-ms-fill-upper {
   flex-direction: row;
   gap: 12px;
   flex-wrap: nowrap;
-  background: linear-gradient(to bottom, white, hsl(220, 14%, 92%));
+  background: linear-gradient(to bottom, white, hsl(220, 10%, 94%) 90%);
   width: 100%;
-  padding: 1.4rem 2rem;
-  border-top: 1px solid var(--border-color-lighter-two);
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--border-color-lighter);
   filter: var(--soft-shadow-top) var(--soft-shadow-bottom);
   font-style: italic;
   font-weight: 500;
@@ -290,7 +293,7 @@ input[type=range]:focus::-ms-fill-upper {
   left: 0;
   width: 100%;
   height: 4px;
-  background: linear-gradient(185deg, hsl(226, 26%, 55%), hsl(226, 56%, 74%));
+  background: linear-gradient(181deg, hsl(226, 26%, 55%), hsl(226, 56%, 74%));
 }
 #chat-list-see-all:hover {
   padding-left: 3.2rem;
@@ -313,21 +316,23 @@ input[type=range]:focus::-ms-fill-upper {
   flex-wrap: nowrap;
   z-index: 1;
   cursor: url("../images/cursors/cursor-pointer.png") 8 0, auto;
-  box-shadow: inset 0 0 4px 0 hsla(0, 0%, 0%, 0.06);
-  background: linear-gradient(to bottom, hsl(225, 4%, 91%), hsl(225, 3%, 89%));
+}
+.chat-list-item-container:not(.selected) {
+  box-shadow: inset 0 0 4px 0 hsla(0, 0%, 0%, 0.03);
   color: #6a6a6a;
+  background: linear-gradient(to bottom, hsl(225, 15%, 94%), hsl(225, 14%, 91%));
 }
 .chat-list-item-container:hover .chat-list-item-menu {
   visibility: visible;
 }
 .chat-list-item-container.selected {
   color: #3a3a3a;
-  background: linear-gradient(to bottom, #fdfdfd, hsl(0, 0%, 93%) 82%);
-  box-shadow: 0 0 3px hsla(225, 20%, 60%, 0.2), inset 0 0 12px 0 hsla(0, 0%, 0%, 0.05);
+  background: linear-gradient(to bottom, hsl(225, 18%, 100%), hsl(225, 15%, 97%) 82%);
+  box-shadow: 0 0 3px hsla(225, 20%, 60%, 0.08), inset 0 0 12px 0 hsla(0, 0%, 0%, 0.07);
   z-index: 2;
 }
 .chat-list-item-container.selected:not(:last-of-type) {
-  filter: var(--soft-shadow-bottom);
+  filter: drop-shadow(0 1px 6px hsla(225, 20%, 40%, 0.08));
 }
 .chat-list-item-container.selected::after {
   content: "";
@@ -335,8 +340,9 @@ input[type=range]:focus::-ms-fill-upper {
   top: 0;
   right: 0;
   width: 4px;
-  background: linear-gradient(45deg, hsl(226, 22%, 58%), hsl(226, 50%, 74%));
+  background: linear-gradient(25deg, hsl(226, 42%, 58%), hsl(226, 50%, 74%));
   height: 100%;
+  box-shadow: inset 0 0 1px 0 hsla(0, 0%, 0%, 0.5);
 }
 
 .chat-list-item-menu {
@@ -434,18 +440,19 @@ input[type=range]:focus::-ms-fill-upper {
   flex-direction: column;
   gap: 0px;
   flex-wrap: nowrap;
+  filter: drop-shadow(0 2px 3px hsla(225, 20%, 40%, 0.04));
 }
 
 #chat-list-top {
   width: 100%;
   height: auto;
-  background: linear-gradient(to bottom, hsl(220, 16%, 98%), hsl(220, 16%, 96%));
+  background: linear-gradient(to bottom, hsl(220, 16%, 98%), hsl(220, 6%, 96%));
   padding: 14px 14px 12px;
   display: flex;
   justify-content: left;
   align-items: stretch;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
   flex-wrap: nowrap;
   border-bottom: 1px solid var(--border-color-lighter-two);
   filter: var(--soft-shadow-top);
@@ -460,7 +467,7 @@ input[type=range]:focus::-ms-fill-upper {
   gap: 0px;
   flex-wrap: nowrap;
   background: linear-gradient(to bottom, white, #fafafa);
-  filter: var(--soft-shadow-bottom);
+  filter: drop-shadow(0 2px 3px hsla(225, 20%, 40%, 0.04));
 }
 
 #add-new-chat-section {
@@ -472,7 +479,7 @@ input[type=range]:focus::-ms-fill-upper {
   flex-direction: row;
   gap: 0px;
   flex-wrap: nowrap;
-  background: hsl(216, 10%, 90%);
+  background: hsl(216, 25%, 93%);
   height: 42px;
 }
 
@@ -489,7 +496,7 @@ input[type=range]:focus::-ms-fill-upper {
   width: 100%;
   border-radius: 8px;
   border: 1px solid var(--border-color-slightly-lighter);
-  box-shadow: 0 0 4px hsla(225, 20%, 60%, 0.15), 0 2px 2px hsla(225, 20%, 60%, 0.25);
+  box-shadow: 0 0 4px hsla(225, 20%, 60%, 0.12), 0 2px 2px hsla(225, 20%, 60%, 0.2);
   overflow: hidden;
   color: #444;
   font-weight: 500;
@@ -558,6 +565,8 @@ input[type=range]:focus::-ms-fill-upper {
   padding: 0 8px 0 8px;
   font-size: 1.2rem;
   grid-area: advanced;
+  letter-spacing: 0.02rem;
+  color: #444;
 }
 #filter-chat-list-advanced-options .button {
   font-weight: 500;
@@ -568,6 +577,7 @@ input[type=range]:focus::-ms-fill-upper {
   position: relative;
   width: 100%;
   font-size: 1.4rem;
+  margin-bottom: 2px;
 }
 #filter-chat-list-by-project .dropdown-menu {
   position: absolute;
@@ -594,11 +604,29 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 #filter-chat-list-by-project-title {
-  padding: 4px 10px;
-  background-color: #f2f2f2;
-  border: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  gap: 0px;
+  flex-wrap: nowrap;
+  width: 100%;
+  padding: 4px 14px;
+  background: linear-gradient(to bottom, hsl(225, 16%, 96%), hsl(225, 14%, 93%));
+  border: 1px solid hsl(225, 20%, 75%);
   cursor: pointer;
   border-radius: 4px;
+  font-style: italic;
+  color: #555;
+  box-shadow: 0 0 3px hsla(225, 20%, 60%, 0.2);
+}
+#filter-chat-list-by-project-title .dropdown-text {
+  flex-grow: 1;
+}
+#filter-chat-list-by-project-title .dropdown-arrow {
+  font-size: 1.2rem;
+  transform: scaleY(0.7);
+  color: #666;
 }
 
 .chat-list-item-middle-row {
@@ -706,10 +734,11 @@ input[type=range]:focus::-ms-fill-upper {
   padding: 1.2rem 2rem;
   font-weight: 500;
   color: #464646;
-  max-height: 50px;
+  max-height: 48px;
+  min-height: 48px;
   border-top: 1px solid var(--border-color-lighter);
-  background: linear-gradient(to bottom, white, #f6f6f6);
-  box-shadow: 0 0 12px hsla(225, 20%, 60%, 0.03);
+  background: linear-gradient(to bottom, hsl(225, 12%, 98%), hsl(225, 10%, 96%));
+  box-shadow: 0 0 12px hsla(225, 20%, 60%, 0.03), inset 0 0 15px 0 hsla(225, 20%, 60%, 0.07);
   filter: var(--soft-shadow-bottom) var(--soft-shadow-top);
   transition: padding 0.75s cubic-bezier(0.17, 0.67, 0.08, 1.07);
 }
@@ -869,7 +898,7 @@ input[type=range]:focus::-ms-fill-upper {
   flex-direction: row;
   gap: 20px;
   flex-wrap: nowrap;
-  background: linear-gradient(to bottom, #fdfdfd, #f0f0f0);
+  background: linear-gradient(to bottom, hsl(225, 10%, 98%), hsl(225, 10%, 94%));
   min-height: 43px;
   max-height: 43px;
   border-top: 1px solid var(--border-color-lighter-two);
@@ -981,16 +1010,17 @@ input[type=range]:focus::-ms-fill-upper {
   gap: 0px;
   flex-wrap: nowrap;
   border-bottom: 2px solid var(--border-color-hued-subdued);
-  background: linear-gradient(to bottom, hsl(225, 20%, 95%), hsl(225, 0%, 94%));
+  background: linear-gradient(to bottom, hsl(225, 20%, 96%), hsl(225, 16%, 95%));
 }
 
 #chat-input-reply-in-thread {
   position: relative;
   margin-left: 18px;
   padding: 4px 14px;
-  border: 1px solid var(--border-color-lighter);
+  border: 1px solid var(--border-color-hued);
   border-radius: 12px;
-  box-shadow: 0 0 2px hsla(225, 20%, 10%, 0.08), 0 0 8px hsla(225, 20%, 10%, 0.035);
+  background: linear-gradient(to bottom, hsl(225, 30%, 100%), hsl(225, 20%, 95%));
+  box-shadow: 0 0 2px hsla(225, 20%, 10%, 0.16), 0 0 8px hsla(225, 60%, 10%, 0.05);
 }
 
 #chat-input-currently-active-thread-label {
@@ -1057,13 +1087,14 @@ input[type=range]:focus::-ms-fill-upper {
   border: 1px solid transparent;
 }
 .chat-message-thread-info:hover, .chat-message-thread-info.chat-message-already-replying-to-this-thread {
-  background: linear-gradient(to bottom, white, #fafafa);
+  background: linear-gradient(to bottom, hsl(0, 0%, 100%), hsl(225, 20%, 97%));
   border: 1px solid var(--border-color-lighter);
   border-radius: 18px;
   padding: 3px 20px;
+  box-shadow: 0 0 8px hsla(225, 60%, 10%, 0.05);
 }
 .chat-message-thread-info.chat-message-replying-to-another-thread:hover {
-  background: linear-gradient(to bottom, hsl(225, 17%, 96%), hsl(225, 15%, 94%));
+  background: linear-gradient(to bottom, hsl(225, 12%, 97%), hsl(225, 10%, 95%));
 }
 .chat-message-thread-info.chat-message-viewing-thread {
   background: linear-gradient(to bottom, hsl(240, 12%, 91%), hsl(240, 11%, 90%));
@@ -1210,13 +1241,24 @@ input[type=range]:focus::-ms-fill-upper {
   opacity: 0.75;
 }
 
+.follow-up-question-outer-border {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 0px;
+  flex-wrap: nowrap;
+  background: linear-gradient(170deg, hsl(225, 80%, 70%), hsl(225, 40%, 60%));
+  border-radius: 14px;
+  padding: 2px;
+  box-shadow: 0 0 2px hsla(225, 20%, 60%, 0.56);
+}
+
 .follow-up-question {
-  background: linear-gradient(to bottom, white, #f0f0f0);
-  border: 2px solid var(--border-color-hued);
+  background: linear-gradient(to bottom, hsl(225, 20%, 98%), hsl(225, 14%, 95%));
   white-space: nowrap;
   border-radius: 12px;
   padding: 4px 16px;
-  box-shadow: 0 0 2px hsla(225, 20%, 60%, 0.2);
   font-size: 1.4rem;
 }
 
@@ -1237,7 +1279,7 @@ input[type=range]:focus::-ms-fill-upper {
   border-style: none none solid;
   border-width: 0;
   border-color: var(--border-color);
-  background: hsl(215, 7%, 92%);
+  background: hsl(215, 20%, 94%);
   padding: 0px 12px 10px;
   display: flex;
   justify-content: flex-start;
@@ -1248,6 +1290,10 @@ input[type=range]:focus::-ms-fill-upper {
   flex-grow: 1;
 }
 
+#middle-section .ScrollbarsCustom.trackYVisible {
+  background: hsl(215, 20%, 94%);
+}
+
 #follow-up-questions-section {
   padding: 0 1.4rem 1rem;
   display: flex;
@@ -1256,7 +1302,9 @@ input[type=range]:focus::-ms-fill-upper {
   flex-direction: row;
   gap: 1.4rem;
   flex-wrap: wrap;
-  background: hsl(215, 7%, 92%);
+  position: absolute;
+  z-index: 10;
+  top: -80px;
 }
 
 #chat-menu, #chat-pages-menu {
@@ -1278,7 +1326,7 @@ input[type=range]:focus::-ms-fill-upper {
   border-width: 1px 0 0 1px;
   border-style: solid;
   border-color: var(--border-color-lighter);
-  background-color: hsl(225, 8%, 93%);
+  background-color: hsl(225, 13%, 93%);
   border-top-left-radius: 8px;
   padding: 8px;
   display: flex;
@@ -1492,7 +1540,7 @@ input[type=range]:focus::-ms-fill-upper {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s linear 0.5s, opacity 0.15s linear;
-  font-weight: 400;
+  font-weight: 500;
   font-style: italic;
 }
 
@@ -1538,7 +1586,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 .chat-tag {
   white-space: nowrap;
-  background-color: #fdfdfd;
+  background: linear-gradient(to bottom, hsl(225, 20%, 100%), hsl(225, 20%, 95%));
   border: 2px solid var(--border-color-hued);
   border-radius: 8px;
   justify-content: center;
@@ -1597,43 +1645,46 @@ input[type=range]:focus::-ms-fill-upper {
   flex-direction: row;
   gap: 1.4rem;
   flex-wrap: nowrap;
-  padding: 1.4rem 1.4rem 1.2rem;
+  padding: 1.1rem 1.4rem 0.9rem;
   filter: var(--soft-shadow-top);
-  background: linear-gradient(to bottom, hsl(225, 10%, 99%), hsl(225, 10%, 98%));
+  background: linear-gradient(to bottom, hsl(225, 20%, 98%), hsl(225, 20%, 96%));
 }
 
 .subtopic {
-  border: 1px solid var(--border-color-hued);
   white-space: nowrap;
   border-radius: 8px;
   padding: 4px 12px;
-  box-shadow: 0 1px 2px hsla(225, 20%, 60%, 0.1);
   max-width: 300px;
   overflow: hidden;
   text-overflow: ellipsis;
-  background: linear-gradient(to bottom, hsl(225, 10%, 98%), hsl(225, 10%, 92.5%));
 }
 .subtopic.selected {
-  background: linear-gradient(to bottom, hsl(225, 90%, 100%), hsl(225, 70%, 97%));
-  box-shadow: 0 1px 2px hsla(225, 20%, 60%, 0.05), 0 1px 4px hsla(225, 20%, 60%, 0.11);
-  border-width: 2px;
+  border: 2px solid var(--border-color-hued);
+  color: hsl(0, 0%, 20%);
+  background: linear-gradient(to bottom, hsl(225, 50%, 100%), hsl(225, 30%, 93%));
+  box-shadow: 0 0 2px hsla(225, 20%, 60%, 0.075), 0 0 4px hsla(225, 20%, 60%, 0.16), inset 0 0 4px 0 hsla(225, 20%, 60%, 0.12);
+}
+.subtopic:not(.selected) {
+  background: linear-gradient(to bottom, hsl(225, 10%, 97%), hsl(225, 10%, 93%));
+  color: hsl(0, 0%, 50%);
+  border: 1px solid hsl(226, 20%, 70%);
+  box-shadow: 0 0 2px hsla(225, 20%, 60%, 0.1), inset 0 0 5px 0 hsla(225, 20%, 60%, 0.09);
 }
 
 #chat-input-section {
+  position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: stretch;
   flex-direction: column;
   gap: 0px;
   flex-wrap: nowrap;
-  background: linear-gradient(to bottom, #fbfbfb, #fdfdfd);
 }
 
 #chat-input-top {
-  z-index: 2;
   height: auto;
   max-height: 120px;
-  border-top: 1px solid var(--border-color-lighter);
+  border-top: 1px solid var(--border-color-slightly-lighter);
   margin: 0;
   position: relative;
   display: flex;
@@ -1643,7 +1694,7 @@ input[type=range]:focus::-ms-fill-upper {
   gap: 0px;
   flex-wrap: nowrap;
   filter: var(--soft-shadow-top);
-  background: linear-gradient(to bottom, hsl(225, 25%, 98%), hsl(225, 20%, 95%));
+  background: linear-gradient(to bottom, hsl(225, 25%, 99%), hsl(225, 20%, 96%));
 }
 #chat-input-top > div:not(.button) {
   padding-left: 12px;
@@ -1656,10 +1707,11 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 #chat-input-field {
+  position: relative;
   background: hsl(220, 30%, 99%);
   height: auto;
   min-height: 4.2rem;
-  border: 1px solid hsla(225, 40%, 52.26%, 0.55);
+  border: 1px solid hsla(225, 40%, 52.26%, 0.72);
   border-radius: 12px;
   flex: 1;
   width: 100%;
@@ -1667,7 +1719,7 @@ input[type=range]:focus::-ms-fill-upper {
   resize: vertical;
   filter: drop-shadow(0 0 6px hsla(225, 20%, 60%, 0.04));
   z-index: 2;
-  box-shadow: inset 0 0 8px 0 hsla(0, 0%, 0%, 0.025);
+  box-shadow: inset 0 0 36px 0 hsla(0, 0%, 0%, 0.015), inset 0 0 12px 0 hsla(0, 0%, 0%, 0.01);
 }
 #chat-input-field::placeholder {
   color: #444;
@@ -1795,35 +1847,40 @@ input[type=range]:focus::-ms-fill-upper {
 .topic-tab {
   border-style: solid;
   border-width: 1px;
-  border-color: var(--border-color);
   border-bottom: none;
   white-space: nowrap;
   border-radius: 12px 12px 0 0;
   padding: 8px 18px 8px;
   position: relative;
-  background: #f8f8f8;
+}
+.topic-tab.selected {
+  color: hsl(0, 0%, 24%);
+  border-color: var(--border-color);
+  background: linear-gradient(to bottom, hsl(0, 0%, 97%), hsl(0, 0%, 97%));
 }
 .topic-tab:not(.selected) {
+  color: hsl(0, 0%, 50%);
   border-color: var(--border-color-lighter);
-  background: hsl(225, 3%, 93.24%);
+  background: linear-gradient(to bottom, hsl(225, 5%, 94%), hsl(225, 1%, 93%));
 }
 
 .topic-tab.selected {
   border-width: 2px;
   border-color: var(--border-color-hued-subdued);
   font-weight: 700;
-  background-color: white;
+  background: linear-gradient(to bottom, white, hsl(225, 10%, 100%));
   padding-bottom: 12px;
   top: 2px;
 }
 
 #chat-input-middle {
   height: auto;
-  flex-flow: column;
-  flex: none;
-  align-items: center;
   display: flex;
-  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0px;
+  flex-wrap: nowrap;
 }
 
 #chat-input-bottom {
@@ -1836,8 +1893,8 @@ input[type=range]:focus::-ms-fill-upper {
   align-items: stretch;
   display: flex;
   gap: 10px;
-  padding-top: 11px;
-  background: linear-gradient(to bottom, hsl(225, 20%, 97%), hsl(225, 20%, 98%));
+  padding-top: 13px;
+  background: linear-gradient(to bottom, hsl(225, 20%, 95%), hsl(225, 20%, 99%));
 }
 
 #chat-input-middle-action-row {
@@ -1848,8 +1905,8 @@ input[type=range]:focus::-ms-fill-upper {
   flex-direction: row;
   gap: 0px;
   flex-wrap: nowrap;
-  padding-top: 7px;
-  background: linear-gradient(to bottom, hsl(225, 20%, 97%), hsl(225, 20%, 97%));
+  padding-top: 9px;
+  background: linear-gradient(to bottom, hsl(225, 20%, 95%), hsl(225, 20%, 95%));
 }
 
 #chat-input-token-counter {
@@ -1912,7 +1969,7 @@ input[type=range]:focus::-ms-fill-upper {
   width: 100%;
   height: auto;
   text-align: left;
-  padding: 0 1.4rem;
+  padding: 0 1.8rem;
   display: flex;
   overflow: visible;
   display: flex;
@@ -1944,7 +2001,7 @@ input[type=range]:focus::-ms-fill-upper {
   box-shadow: 0 0 2px hsla(225, 20%, 60%, 0.2);
   border: 2px solid var(--border-color-hued-subdued);
   color: #2e2020;
-  background: linear-gradient(to bottom, white 76%, hsl(226, 40%, 95%) 95%);
+  background: linear-gradient(175deg, hsl(226, 80%, 99%) 60%, hsl(226, 40%, 97%) 90%);
   border-radius: 12px;
   padding: 8px 14px;
 }
@@ -1952,7 +2009,7 @@ input[type=range]:focus::-ms-fill-upper {
   filter: drop-shadow(2px 2px 1px hsla(225, 20%, 60%, 0.06)) drop-shadow(2px 2px 2px hsla(225, 20%, 60%, 0.16));
 }
 .provider-button.provider-button > div.below-button {
-  background: linear-gradient(65deg, hsl(226, 34%, 50%), hsl(226, 60%, 74%));
+  background: linear-gradient(65deg, hsl(226, 34%, 44%), hsl(226, 90%, 74%));
   width: 100%;
   position: absolute;
   height: 100%;
@@ -1960,7 +2017,7 @@ input[type=range]:focus::-ms-fill-upper {
   border-radius: 12px;
   bottom: -2px;
   right: -2px;
-  box-shadow: 2px 2px 1px hsla(225, 20%, 60%, 0.05), 1px 1px 3px hsla(225, 20%, 60%, 0.12);
+  box-shadow: 2px 2px 1px hsla(225, 20%, 60%, 0.065), 1px 1px 3px hsla(225, 20%, 60%, 0.15);
 }
 
 .provider-icon {
@@ -1975,11 +2032,11 @@ input[type=range]:focus::-ms-fill-upper {
 }
 .chat-message.ai-message {
   background: linear-gradient(to bottom, white, #f8f8f8);
-  box-shadow: 0 0 0 1px hsla(225, 16.3%, 56%, 0.5238), 0 0 0 2px hsla(225, 16.3%, 50%, 0.07857), 0 0 4px hsla(225, 100%, 40%, 0.08);
+  box-shadow: 0 0 0 1px hsla(225, 16.3%, 56%, 0.5238), 0 0 0 2px hsla(225, 16.3%, 50%, 0.07857), 0 0 8px hsla(225, 60%, 40%, 0.07), inset 0 0 4px 0 hsla(0, 0%, 0%, 0.04), inset 0 0 40px 0 hsla(0, 0%, 0%, 0.025);
 }
 .chat-message.user-message {
   background: linear-gradient(to bottom, hsl(227, 90%, 100%), hsl(226, 76%, 98%));
-  box-shadow: 0 0 0 1px hsla(225, 53%, 63%, 0.6111), 0 0 0 2px hsla(0, 2%, 60%, 0.13095), 0 0 4px hsla(225, 100%, 40%, 0.08);
+  box-shadow: 0 0 0 1px hsla(225, 53%, 63%, 0.6111), 0 0 0 2px hsla(0, 2%, 60%, 0.13095), 0 0 8px hsla(225, 60%, 40%, 0.07), inset 0 0 4px 0 hsla(0, 0%, 0%, 0.04), inset 0 0 40px 0 hsla(0, 0%, 0%, 0.025);
 }
 
 .chat-message-contents {
@@ -2072,7 +2129,20 @@ input[type=range]:focus::-ms-fill-upper {
   width: 100%;
   padding: 0 1.4rem;
   min-height: 68px;
-  background: linear-gradient(to bottom, hsl(225, 20%, 98%), hsl(225, 20%, 97%));
+  background: linear-gradient(to bottom, hsl(225, 20%, 96%), hsl(225, 20%, 95%));
+}
+#chat-input-container::before {
+  content: "";
+  width: 98%;
+  height: 30px;
+  position: absolute;
+  bottom: calc(0% - 2px);
+  left: 50%;
+  transform: translate(-50%, 0px);
+  border-radius: 30px;
+  z-index: 0;
+  background-color: hsla(225, 30%, 60%, 0.06);
+  box-shadow: 0 0 12px hsla(225, 30%, 60%, 0.12), 0 0 18px hsla(225, 30%, 60%, 0.04);
 }
 
 .chat-message-inner-container {
@@ -2084,13 +2154,13 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .user .chat-message-wrapper::before {
-  background-color: hsla(225, 30%, 60%, 0.03);
-  box-shadow: 0 0 18px hsla(225, 30%, 60%, 0.06);
+  background-color: hsla(225, 30%, 60%, 0.04);
+  box-shadow: 0 0 18px hsla(225, 30%, 60%, 0.05);
 }
 
 .ai .chat-message-wrapper::before {
-  background-color: hsla(225, 30%, 60%, 0.05);
-  box-shadow: 0 0 18px hsla(225, 30%, 60%, 0.1);
+  background-color: hsla(225, 30%, 60%, 0.06);
+  box-shadow: 0 0 18px hsla(225, 30%, 60%, 0.07);
 }
 
 .chat-message-wrapper {
@@ -2260,7 +2330,7 @@ input[type=range]:focus::-ms-fill-upper {
   gap: 0px;
   flex-wrap: nowrap;
   padding: 12px 18px;
-  background: linear-gradient(to bottom, hsl(225, 10%, 98%), hsl(225, 6%, 97%));
+  background: linear-gradient(to bottom, hsl(225, 20%, 98%), hsl(225, 16%, 97%));
   border-bottom: 1px solid var(--border-color-lighter-two);
   overflow-x: hidden;
   overflow-y: auto;
@@ -2363,9 +2433,9 @@ input[type=range]:focus::-ms-fill-upper {
   justify-content: flex-start;
   align-items: stretch;
   flex-direction: column;
-  gap: 24px;
+  gap: 30px;
   flex-wrap: nowrap;
-  background: linear-gradient(to bottom, hsl(225, 13%, 93.5%), hsl(225, 8%, 92%));
+  background: linear-gradient(to bottom, hsl(225, 28%, 95%), hsl(225, 24%, 93%));
 }
 #saved-prompt-buttons-list > *:not(:first-child) {
   padding: 0 22px;
@@ -2376,7 +2446,7 @@ input[type=range]:focus::-ms-fill-upper {
   justify-content: center;
   align-items: stretch;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
   flex-wrap: nowrap;
 }
 
@@ -2498,7 +2568,7 @@ input[type=range]:focus::-ms-fill-upper {
 #add-new-saved-prompt-button-section {
   padding: 9px 0;
   background: linear-gradient(to bottom, white, #fafafa);
-  border-bottom: 1px solid var(--border-color-lighter-two);
+  border-bottom: 1px solid var(--border-color-lighter);
   filter: var(--soft-shadow-bottom);
 }
 
@@ -2580,7 +2650,7 @@ body {
   margin-right: 6px;
   padding: 0;
   display: flex;
-  background: linear-gradient(to bottom, white, #fafafa);
+  background: linear-gradient(to bottom, white, hsl(225, 30%, 96%));
   box-shadow: 0 0 4px hsla(225, 20%, 60%, 0.2);
 }
 .add-new-circle svg {

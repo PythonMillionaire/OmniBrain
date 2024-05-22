@@ -50,7 +50,7 @@ const thumbYStyle: CSSProperties = {
     boxShadow: 'inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.2), 0 3px 3px hsl(226deg 25.31% 84.52% / 0.15)',
     borderRadius: '10px',
     background: 'hsl(225 10% 100% / 1)',
-    border: '1px solid hsl(226deg 35.31% 76% / 1)',
+    border: '1px solid hsl(226deg 65.31% 60% / 1)',
     height: '100%',
     width: '13px'
 };
@@ -151,7 +151,6 @@ const CustomScrollbar: React.FC<{ children: React.ReactNode, minHeight?: string,
                 renderer: props => {
                     const { elementRef, ...restProps } = props;
 
-                    console.log('trackXProps', trackXStyle); // Add this log
                     return <div {...restProps} ref={elementRef} style={{ ...restProps.style, ...trackXStyle }} />;
                 }
             }}
@@ -159,7 +158,6 @@ const CustomScrollbar: React.FC<{ children: React.ReactNode, minHeight?: string,
                 renderer: props => {
                     const { elementRef, ...restProps } = props;
 
-                    console.log('thumbXProps', thumbWrapperStyle, adjustedThumbXStyle); // Add this log
                     return (
                         <div {...restProps} ref={elementRef} style={{ ...restProps.style, ...thumbWrapperStyle }}>
                             <div style={{ ...adjustedThumbXStyle }} />

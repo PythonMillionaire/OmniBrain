@@ -85,7 +85,8 @@ const ChatList = () => {
 
                 <div id="filter-chat-list-by-project">
                     <div id="filter-chat-list-by-project-title" onClick={toggleDropdown}>
-                        Select project
+                        <span className={"dropdown-text"}>Select project</span>
+                        <span className={"dropdown-arrow"}>▼</span>
                     </div>
                     {isOpen && (
                         <ul className="dropdown-menu">

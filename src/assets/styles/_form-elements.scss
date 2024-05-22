@@ -1,7 +1,6 @@
 @import "mixins-and-variables";
 
 $slider-width: 120px;
-$thumb-color: hsl(223, 50%, 60%);
 
 .checkbox-field {
   position: relative;
@@ -72,7 +71,7 @@ input[type=range] {
     height: 16px;
     width: 16px;
     border-radius: 50%;
-    background: $thumb-color;
+    background: linear-gradient(to bottom, hsl(223, 50%, 60%), hsl(223, 46%, 50%));
     margin-top: -4px;
 
     filter: drop-shadow(0 0 4px hsla(225, 60%, 20%, 0.12));
@@ -99,7 +98,7 @@ input[type=range] {
     height: 16px;
     width: 16px;
     border-radius: 50%;
-    background: $thumb-color;
+    background: hsl(223, 50%, 60%);;
   }
 
   &:-moz-focusring {
@@ -135,7 +134,7 @@ input[type=range] {
     height: 16px;
     width: 16px;
     border-radius: 50%;
-    background: $thumb-color;
+    background: hsl(223, 50%, 60%);;
   }
 
   &:focus::-ms-fill-lower {

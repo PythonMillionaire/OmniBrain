@@ -37,7 +37,7 @@
 
   filter: var(--soft-shadow-right);
 
-  background: hsl(225, 10%, 93%);
+  background: hsl(225, 20%, 93%);
 }
 
 #left-section-middle {
@@ -89,8 +89,8 @@
 #chat-list-main {
   height: 100%;
   max-width: none;
-  $hue: 240;
-  background: linear-gradient(to bottom, hsl($hue 7% 85% / 1), hsl($hue 6% 92% / 1));
+  $hue: 225;
+  background: linear-gradient(to bottom, hsl($hue 24% 94% / 1), hsl($hue 22% 92% / 1));
   flex: 1;
 
   min-height: 297px;
@@ -104,11 +104,11 @@
   z-index: 1;
   width: 100%;
 
-  .chat-list-item-container:first-of-type {
-    //filter: var(--soft-shadow-top);
+  .chat-list-item-container.selected:first-of-type {
+    filter: var(--soft-shadow-top) drop-shadow(0 2px 3px hsla(225, 20%, 30%, 0.08));
   }
 
-  .chat-list-item-container:last-of-type {
+  .chat-list-item-container.selected:last-of-type {
     //filter: var(--soft-shadow-bottom);
   }
 
@@ -125,13 +125,13 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
 
   @include flex(flex-start, $gap: 12px);
 
-  background: linear-gradient(to bottom, white, hsl(220 14% 92% / 1));
+  background: linear-gradient(to bottom, white, hsl(220 10% 94% / 1) 90%);
 
   width: 100%;
 
-  padding: 1.4rem 2rem;
+  padding: 1.5rem 2rem;
 
-  border-top: 1px solid var(--border-color-lighter-two);
+  border-top: 1px solid var(--border-color-lighter);
   //border-bottom: 1px solid var(--border-color-lighter-three);
 
   filter: var(--soft-shadow-top) var(--soft-shadow-bottom);
@@ -157,7 +157,7 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
     $color: hsl(226deg 26% 55%);
     $color-two: hsl(226deg 56% 74%);
 
-    background: linear-gradient(185deg, $color, $color-two);
+    background: linear-gradient(181deg, $color, $color-two);
   }
 
   &:hover {
@@ -182,12 +182,13 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
 
   @include pointer;
 
-  box-shadow: inset 0 0 4px 0 hsla(0, 0%, 0%, 0.06);
-
   $hue: 225;
-  background: linear-gradient(to bottom, hsl($hue 4% 91% / 1), hsl($hue 3% 89% / 1));
 
-  color: #6a6a6a;
+  &:not(.selected) {
+    box-shadow: inset 0 0 4px 0 hsla(0, 0%, 0%, 0.03);
+    color: #6a6a6a;
+    background: linear-gradient(to bottom, hsl($hue 15% 94% / 1), hsl($hue 14% 91% / 1));
+  }
 
   &:hover .chat-list-item-menu {
     visibility: visible;
@@ -196,16 +197,16 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
   &.selected {
     color: #3a3a3a;
 
-    $color: hsl(226deg 22% 58%);
+    $color: hsl(226deg 42% 58%);
     $color-two: hsl(226deg 50% 74%);
 
-    background: linear-gradient(to bottom, #fdfdfd, hsl(0 0% 93% / 1) 82%);
+    background: linear-gradient(to bottom, hsl(225 18% 100% / 1), hsl(225 15% 97% / 1) 82%);
 
-    box-shadow: 0 0 3px hsla(225, 20%, 60%, 0.2), inset 0 0 12px 0 hsla(0, 0%, 0%, 0.05);
+    box-shadow: 0 0 3px hsla(225, 20%, 60%, 0.08), inset 0 0 12px 0 hsla(0, 0%, 0%, 0.07);
     z-index: 2;
 
     &:not(:last-of-type) {
-      filter: var(--soft-shadow-bottom);
+      filter: drop-shadow(0 1px 6px hsla(225, 20%, 40%, 0.08));
     }
 
 
@@ -215,9 +216,11 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
       top: 0;
       right: 0;
       width: 4px;
-      background: linear-gradient(45deg, $color, $color-two);
+      background: linear-gradient(25deg, $color, $color-two);
 
       height: 100%;
+
+      box-shadow: inset 0 0 1px 0 hsla(0, 0%, 0%, 0.5);
     }
   }
 }
@@ -252,6 +255,8 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
     &:hover {
       @include flex($direction: column, $gap: 0.4rem);
     }
+
+
   }
 
   .dropdown-menu ul {
@@ -318,6 +323,8 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
 #chat-list {
   background-color: #fff;
   @include flex(center, stretch, $direction: column);
+
+  filter: drop-shadow(0 2px 3px hsla(225, 20%, 40%, 0.04));
 }
 
 
@@ -325,10 +332,10 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
 #chat-list-top {
   width: 100%;
   height: auto;
-  background: linear-gradient(to bottom, hsl(220 16% 98% / 1), hsl(220 16% 96% / 1));
+  background: linear-gradient(to bottom, hsl(220 16% 98% / 1), hsl(220 6% 96% / 1));
   padding: 14px 14px 12px;
 
-  @include flex(left, stretch, $direction: column, $gap: 10px);
+  @include flex(left, stretch, $direction: column, $gap: 14px);
 
   border-bottom: 1px solid var(--border-color-lighter-two);
 
@@ -342,7 +349,7 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
 
   background: linear-gradient(to bottom, white, #fafafa);
 
-  filter: var(--soft-shadow-bottom);
+  filter: drop-shadow(0 2px 3px hsla(225, 20%, 40%, 0.04));
 }
 
 #add-new-chat-section {
@@ -352,7 +359,7 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
 
   @include flex;
 
-  background: hsl(216, 10%, 90%);
+  background: hsl(216, 25%, 93%);
 
   height: 42px;
 }
@@ -368,7 +375,7 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
   border-radius: 8px;
   border: 1px solid var(--border-color-slightly-lighter);
 
-  box-shadow: 0 0 4px hsla(225, 20%, 60%, 0.15), 0 2px 2px hsla(225, 20%, 60%, 0.25);
+  box-shadow: 0 0 4px hsla(225, 20%, 60%, 0.12), 0 2px 2px hsla(225, 20%, 60%, 0.20);
 
   overflow: hidden;
 
@@ -456,6 +463,10 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
 
   grid-area: advanced;
 
+  letter-spacing: 0.02rem;
+
+  color: #444;
+
   .button {
     font-weight: 500;
   }
@@ -468,6 +479,8 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
 
   font-size: 1.4rem;
 
+  margin-bottom: 2px;
+
   .dropdown-menu {
     position: absolute;
     width: 100%;
@@ -478,6 +491,7 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
     list-style: none;
     padding: 0;
     margin-top: 2px; /* small space between the title and the dropdown */
+
   }
 
   .dropdown-menu li {
@@ -497,11 +511,32 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
 }
 
 #filter-chat-list-by-project-title {
-  padding: 4px 10px;
-  background-color: #f2f2f2;
-  border: 1px solid #ccc;
+  @include flex(space-between);
+  width: 100%;
+
+  padding: 4px 14px;
+  background: linear-gradient(to bottom, hsl(225 16% 96%), hsl(225 14% 93%));
+  border: 1px solid hsl(225 20% 75% / 1);
   cursor: pointer;
   border-radius: 4px;
+
+  font-style: italic;
+
+  color: #555;
+
+  box-shadow: 0 0 3px hsla(225, 20%, 60%, 0.2);
+
+  .dropdown-text {
+    flex-grow: 1;
+  }
+
+  .dropdown-arrow {
+    font-size: 1.2rem;
+
+    transform: scaleY(0.7);
+
+    color: #666;
+  }
 }
 
 .chat-list-item-middle-row {
@@ -589,14 +624,15 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
   font-weight: 500;
   color: #464646;
 
-  max-height: 50px;
+  max-height: 48px;
+  min-height: 48px;
 
   border-top: 1px solid var(--border-color-lighter);
   &:last-child { border-bottom: 1px solid var(--border-color-lighter) };
 
-  background: linear-gradient(to bottom, white, #f6f6f6);
+  background: linear-gradient(to bottom, hsl(225 12% 98% / 1), hsl(225 10% 96% / 1));
 
-  box-shadow: 0 0 12px hsla(225, 20%, 60%, 0.03);
+  box-shadow: 0 0 12px hsla(225, 20%, 60%, 0.03), inset 0 0 15px 0 hsla(225, 20%, 60%, 0.07);
   filter: var(--soft-shadow-bottom) var(--soft-shadow-top);
 
   // return transition, moving back to original position
