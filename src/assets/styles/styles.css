@@ -225,7 +225,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 #left-section-bottom {
-  background: linear-gradient(to bottom, white, #fafafa);
+  background: linear-gradient(to bottom, hsl(225, 20%, 99%), hsl(225, 12%, 95%));
   min-height: 40px;
   max-height: 40px;
   border-top: 1px solid var(--border-color-lighter-two);
@@ -294,6 +294,7 @@ input[type=range]:focus::-ms-fill-upper {
   width: 100%;
   height: 4px;
   background: linear-gradient(181deg, hsl(226, 26%, 55%), hsl(226, 56%, 74%));
+  box-shadow: inset 0 0 1px 0 hsl(225, 50%, 10%);
 }
 #chat-list-see-all:hover {
   padding-left: 3.2rem;
@@ -327,8 +328,8 @@ input[type=range]:focus::-ms-fill-upper {
 }
 .chat-list-item-container.selected {
   color: #3a3a3a;
-  background: linear-gradient(to bottom, hsl(225, 18%, 100%), hsl(225, 15%, 97%) 82%);
-  box-shadow: 0 0 3px hsla(225, 20%, 60%, 0.08), inset 0 0 12px 0 hsla(0, 0%, 0%, 0.07);
+  background: linear-gradient(to bottom, hsl(225, 18%, 100%), hsl(225, 15%, 97.5%) 82%);
+  box-shadow: 0 0 3px hsla(225, 20%, 60%, 0.08), inset 0 0 21px 0 hsla(0, 0%, 0%, 0.06);
   z-index: 2;
 }
 .chat-list-item-container.selected:not(:last-of-type) {
@@ -470,7 +471,7 @@ input[type=range]:focus::-ms-fill-upper {
   filter: drop-shadow(0 2px 3px hsla(225, 20%, 40%, 0.04));
 }
 
-#add-new-chat-section {
+#start-new-chat-section {
   padding: 21px 9px;
   border-bottom: 1px solid var(--border-color-lighter-two);
   display: flex;
@@ -483,7 +484,7 @@ input[type=range]:focus::-ms-fill-upper {
   height: 42px;
 }
 
-#add-new-chat-button {
+#start-new-chat-button {
   position: relative;
   display: flex;
   justify-content: center;
@@ -500,17 +501,17 @@ input[type=range]:focus::-ms-fill-upper {
   overflow: hidden;
   color: #444;
   font-weight: 500;
-  --add-new-chat-button-details-color: hsl(225deg 45% 62%);
+  --start-new-chat-button-details-color: hsl(225deg 45% 62%);
 }
-#add-new-chat-button .add-new-circle {
+#start-new-chat-button .add-new-circle {
   margin-right: 10px;
 }
-#add-new-chat-button svg {
+#start-new-chat-button svg {
   width: 15px;
   opacity: 0.84;
   filter: drop-shadow(0 2px 1px hsla(225, 20%, 60%, 0.5));
 }
-#add-new-chat-button::before {
+#start-new-chat-button::before {
   content: "";
   position: absolute;
   width: 64px;
@@ -519,8 +520,9 @@ input[type=range]:focus::-ms-fill-upper {
   border-radius: 50%;
   background: linear-gradient(to left, hsl(226, 56%, 65%), hsl(226, 60%, 74%));
   left: -60px;
+  box-shadow: inset 0 0 1px 0 hsla(225, 50%, 10%, 0.5);
 }
-#add-new-chat-button::after {
+#start-new-chat-button::after {
   content: "";
   position: absolute;
   width: 64px;
@@ -529,6 +531,7 @@ input[type=range]:focus::-ms-fill-upper {
   border-radius: 50%;
   background: linear-gradient(to right, hsl(226, 56%, 65%), hsl(226, 60%, 74%));
   right: -60px;
+  box-shadow: inset 0 0 1px 0 hsla(225, 50%, 10%, 0.5);
 }
 
 #filter-chat-list-row {
@@ -611,8 +614,8 @@ input[type=range]:focus::-ms-fill-upper {
   gap: 0px;
   flex-wrap: nowrap;
   width: 100%;
-  padding: 4px 14px;
-  background: linear-gradient(to bottom, hsl(225, 16%, 96%), hsl(225, 14%, 93%));
+  padding: 4px 14px 4px 12px;
+  background: linear-gradient(to bottom, hsl(225, 12%, 97%), hsl(225, 10%, 94%));
   border: 1px solid hsl(225, 20%, 75%);
   cursor: pointer;
   border-radius: 4px;
@@ -713,7 +716,7 @@ input[type=range]:focus::-ms-fill-upper {
   font-weight: 700;
 }
 
-.add-new-chat-text {
+.start-new-chat-text {
   white-space: nowrap;
   display: flex;
   justify-content: center;
@@ -737,7 +740,7 @@ input[type=range]:focus::-ms-fill-upper {
   max-height: 48px;
   min-height: 48px;
   border-top: 1px solid var(--border-color-lighter);
-  background: linear-gradient(to bottom, hsl(225, 12%, 98%), hsl(225, 10%, 96%));
+  background: linear-gradient(to bottom, hsl(225, 12%, 99%), hsl(225, 10%, 97%));
   box-shadow: 0 0 12px hsla(225, 20%, 60%, 0.03), inset 0 0 15px 0 hsla(225, 20%, 60%, 0.07);
   filter: var(--soft-shadow-bottom) var(--soft-shadow-top);
   transition: padding 0.75s cubic-bezier(0.17, 0.67, 0.08, 1.07);
@@ -873,7 +876,7 @@ input[type=range]:focus::-ms-fill-upper {
   background: linear-gradient(to bottom, white, #fafafa);
   filter: var(--soft-shadow-bottom);
   position: relative;
-  z-index: 1;
+  z-index: 2;
   font-size: 1.4rem;
 }
 
@@ -914,7 +917,19 @@ input[type=range]:focus::-ms-fill-upper {
 }
 #chat-message-tool-bar-bottom .right {
   width: 100%;
-  overflow: hidden;
+}
+#chat-message-tool-bar-bottom .right ::-webkit-scrollbar {
+  height: 10px;
+  filter: drop-shadow(5px 0px 0px red);
+}
+#chat-message-tool-bar-bottom .right ::-webkit-scrollbar-track {
+  border: 1px solid hsl(226, 55.31%, 84.52%);
+  box-shadow: inset 0 0 3px hsla(226, 25.31%, 84.52%, 0.3);
+  background-color: hsl(225, 6%, 99%);
+  border-radius: 10px;
+}
+#chat-message-tool-bar-bottom .right .ScrollbarsCustom {
+  top: 13px !important;
 }
 
 #previous-page, #next-page {
@@ -1081,7 +1096,7 @@ input[type=range]:focus::-ms-fill-upper {
   flex-direction: column;
   gap: 0px;
   flex-wrap: nowrap;
-  padding: 3px 8px;
+  padding: 2px 8px;
   margin-top: 3px;
   transition: padding 0.425s ease;
   border: 1px solid transparent;
@@ -1090,7 +1105,8 @@ input[type=range]:focus::-ms-fill-upper {
   background: linear-gradient(to bottom, hsl(0, 0%, 100%), hsl(225, 20%, 97%));
   border: 1px solid var(--border-color-lighter);
   border-radius: 18px;
-  padding: 3px 20px;
+  padding-left: 20px;
+  padding-right: 20px;
   box-shadow: 0 0 8px hsla(225, 60%, 10%, 0.05);
 }
 .chat-message-thread-info.chat-message-replying-to-another-thread:hover {
@@ -1279,7 +1295,7 @@ input[type=range]:focus::-ms-fill-upper {
   border-style: none none solid;
   border-width: 0;
   border-color: var(--border-color);
-  background: hsl(215, 20%, 94%);
+  background: hsl(215, 20%, 94.5%);
   padding: 0px 12px 10px;
   display: flex;
   justify-content: flex-start;
@@ -1291,7 +1307,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 #middle-section .ScrollbarsCustom.trackYVisible {
-  background: hsl(215, 20%, 94%);
+  background: hsl(215, 20%, 94.5%);
 }
 
 #follow-up-questions-section {
@@ -1368,11 +1384,15 @@ input[type=range]:focus::-ms-fill-upper {
   overflow-y: hidden;
   overflow-x: auto;
   background: hsl(225, 8%, 93%);
-  padding: 0 12px;
+  padding: 2px 12px 0;
   border-left: 1px solid var(--border-color-lighter-two);
   border-top: 1px solid var(--border-color-lighter-two);
   box-shadow: inset 0 0 4px 1px hsla(0, 0%, 0%, 0.03);
   position: relative;
+}
+#chat-page-and-thread-tabs-section > * {
+  position: relative;
+  top: 2px;
 }
 
 .chat-main-page {
@@ -1647,7 +1667,7 @@ input[type=range]:focus::-ms-fill-upper {
   flex-wrap: nowrap;
   padding: 1.1rem 1.4rem 0.9rem;
   filter: var(--soft-shadow-top);
-  background: linear-gradient(to bottom, hsl(225, 20%, 98%), hsl(225, 20%, 96%));
+  background: linear-gradient(to bottom, hsl(225, 30%, 98%), hsl(225, 30%, 97%));
 }
 
 .subtopic {
@@ -1662,13 +1682,13 @@ input[type=range]:focus::-ms-fill-upper {
   border: 2px solid var(--border-color-hued);
   color: hsl(0, 0%, 20%);
   background: linear-gradient(to bottom, hsl(225, 50%, 100%), hsl(225, 30%, 93%));
-  box-shadow: 0 0 2px hsla(225, 20%, 60%, 0.075), 0 0 4px hsla(225, 20%, 60%, 0.16), inset 0 0 4px 0 hsla(225, 20%, 60%, 0.12);
+  box-shadow: 0 0 2px hsla(225, 20%, 60%, 0.05), 0 0 4px hsla(225, 20%, 60%, 0.12), inset 0 0 4px 0 hsla(225, 20%, 60%, 0.08);
 }
 .subtopic:not(.selected) {
-  background: linear-gradient(to bottom, hsl(225, 10%, 97%), hsl(225, 10%, 93%));
+  background: linear-gradient(to bottom, hsl(225, 26%, 97%), hsl(225, 26%, 93%));
   color: hsl(0, 0%, 50%);
   border: 1px solid hsl(226, 20%, 70%);
-  box-shadow: 0 0 2px hsla(225, 20%, 60%, 0.1), inset 0 0 5px 0 hsla(225, 20%, 60%, 0.09);
+  box-shadow: 0 0 2px hsla(225, 20%, 60%, 0.1), inset 0 0 5px 0 hsla(225, 20%, 60%, 0.06);
 }
 
 #chat-input-section {
@@ -1708,7 +1728,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 #chat-input-field {
   position: relative;
-  background: hsl(220, 30%, 99%);
+  background: hsl(225, 20%, 98.5%);
   height: auto;
   min-height: 4.2rem;
   border: 1px solid hsla(225, 40%, 52.26%, 0.72);
@@ -1894,7 +1914,7 @@ input[type=range]:focus::-ms-fill-upper {
   display: flex;
   gap: 10px;
   padding-top: 13px;
-  background: linear-gradient(to bottom, hsl(225, 20%, 95%), hsl(225, 20%, 99%));
+  background: linear-gradient(to bottom, hsl(225, 30%, 96%), hsl(225, 30%, 100%));
 }
 
 #chat-input-middle-action-row {
@@ -1906,7 +1926,7 @@ input[type=range]:focus::-ms-fill-upper {
   gap: 0px;
   flex-wrap: nowrap;
   padding-top: 9px;
-  background: linear-gradient(to bottom, hsl(225, 20%, 95%), hsl(225, 20%, 95%));
+  background: linear-gradient(to bottom, hsl(225, 30%, 96%), hsl(225, 30%, 96%));
 }
 
 #chat-input-token-counter {
@@ -2003,7 +2023,7 @@ input[type=range]:focus::-ms-fill-upper {
   color: #2e2020;
   background: linear-gradient(175deg, hsl(226, 80%, 99%) 60%, hsl(226, 40%, 97%) 90%);
   border-radius: 12px;
-  padding: 8px 14px;
+  padding: 7px 12px;
 }
 .provider-button.provider-button > div.button-contents img {
   filter: drop-shadow(2px 2px 1px hsla(225, 20%, 60%, 0.06)) drop-shadow(2px 2px 2px hsla(225, 20%, 60%, 0.16));
@@ -2032,11 +2052,11 @@ input[type=range]:focus::-ms-fill-upper {
 }
 .chat-message.ai-message {
   background: linear-gradient(to bottom, white, #f8f8f8);
-  box-shadow: 0 0 0 1px hsla(225, 16.3%, 56%, 0.5238), 0 0 0 2px hsla(225, 16.3%, 50%, 0.07857), 0 0 8px hsla(225, 60%, 40%, 0.07), inset 0 0 4px 0 hsla(0, 0%, 0%, 0.04), inset 0 0 40px 0 hsla(0, 0%, 0%, 0.025);
+  box-shadow: 0 0 0 1px hsla(225, 16.3%, 56%, 0.57618), 0 0 0 2px hsla(225, 16.3%, 50%, 0.07857), 0 0 8px hsla(225, 60%, 40%, 0.07), inset 0 0 4px 0 hsla(0, 0%, 0%, 0.04), inset 0 0 40px 0 hsla(0, 0%, 0%, 0.025);
 }
 .chat-message.user-message {
   background: linear-gradient(to bottom, hsl(227, 90%, 100%), hsl(226, 76%, 98%));
-  box-shadow: 0 0 0 1px hsla(225, 53%, 63%, 0.6111), 0 0 0 2px hsla(0, 2%, 60%, 0.13095), 0 0 8px hsla(225, 60%, 40%, 0.07), inset 0 0 4px 0 hsla(0, 0%, 0%, 0.04), inset 0 0 40px 0 hsla(0, 0%, 0%, 0.025);
+  box-shadow: 0 0 0 1px hsla(225, 53%, 70%, 0.66348), 0 0 0 2px hsla(0, 2%, 60%, 0.13095), 0 0 8px hsla(225, 60%, 40%, 0.07), inset 0 0 4px 0 hsla(0, 0%, 0%, 0.04), inset 0 0 40px 0 hsla(0, 0%, 0%, 0.025);
 }
 
 .chat-message-contents {
@@ -2129,7 +2149,7 @@ input[type=range]:focus::-ms-fill-upper {
   width: 100%;
   padding: 0 1.4rem;
   min-height: 68px;
-  background: linear-gradient(to bottom, hsl(225, 20%, 96%), hsl(225, 20%, 95%));
+  background: linear-gradient(to bottom, hsl(225, 30%, 97%), hsl(225, 30%, 96%));
 }
 #chat-input-container::before {
   content: "";
@@ -2550,9 +2570,9 @@ input[type=range]:focus::-ms-fill-upper {
   gap: 4px;
   flex-wrap: nowrap;
   border-radius: 8px;
-  background: linear-gradient(to bottom, #fcfcfc, #fafafa);
+  background: linear-gradient(to bottom, hsl(225, 20%, 99%), hsl(225, 20%, 95%));
   padding: 4px 7px;
-  border: 1px solid var(--border-color-lighter-two);
+  border: 1px solid hsl(225, 30%, 76%);
   box-shadow: inset 0 0 8px hsla(0, 0%, 0%, 0.04);
 }
 

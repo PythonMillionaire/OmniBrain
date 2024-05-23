@@ -65,7 +65,7 @@
 }
 
 #left-section-bottom {
-  background: linear-gradient(to bottom, white, #fafafa);
+  background: linear-gradient(to bottom, hsl(225 20% 99% / 1), hsl(225 12% 95% / 1));
 
   min-height: 40px;
   max-height: 40px;
@@ -158,6 +158,8 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
     $color-two: hsl(226deg 56% 74%);
 
     background: linear-gradient(181deg, $color, $color-two);
+
+    box-shadow: inset 0 0 1px 0 hsla(225, 50%, 10%, 1);
   }
 
   &:hover {
@@ -200,9 +202,9 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
     $color: hsl(226deg 42% 58%);
     $color-two: hsl(226deg 50% 74%);
 
-    background: linear-gradient(to bottom, hsl(225 18% 100% / 1), hsl(225 15% 97% / 1) 82%);
+    background: linear-gradient(to bottom, hsl(225 18% 100% / 1), hsl(225 15% 97.5% / 1) 82%);
 
-    box-shadow: 0 0 3px hsla(225, 20%, 60%, 0.08), inset 0 0 12px 0 hsla(0, 0%, 0%, 0.07);
+    box-shadow: 0 0 3px hsla(225, 20%, 60%, 0.08), inset 0 0 21px 0 hsla(0, 0%, 0%, 0.06);
     z-index: 2;
 
     &:not(:last-of-type) {
@@ -352,7 +354,7 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
   filter: drop-shadow(0 2px 3px hsla(225, 20%, 40%, 0.04));
 }
 
-#add-new-chat-section {
+#start-new-chat-section {
   padding: 21px 9px;
 
   border-bottom: 1px solid var(--border-color-lighter-two);
@@ -364,7 +366,7 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
   height: 42px;
 }
 
-#add-new-chat-button {
+#start-new-chat-button {
   position: relative;
 
   @include flex($gap: 8px);
@@ -395,9 +397,9 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
     filter: drop-shadow(0 2px 1px hsla(225, 20%, 60%, 0.5));
   }
 
-  --add-new-chat-button-details-color: hsl(225deg 45% 62%); //hsl(58 15% 31% / 1); //#DBC235; //hsl(122 14% 64% / 1);//hsl(225deg 44% 65%);
+  --start-new-chat-button-details-color: hsl(225deg 45% 62%); //hsl(58 15% 31% / 1); //#DBC235; //hsl(122 14% 64% / 1);//hsl(225deg 44% 65%);
 
-  @mixin add-new-chat-button-color-detail($leftOrRight) {
+  @mixin start-new-chat-button-color-detail($leftOrRight) {
     content: '';
     position: absolute;
     width: 64px;
@@ -422,13 +424,15 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
     } @else {
       @warn "Invalid value for $leftOrRight. Use 'left' or 'right'.";
     }
+
+    box-shadow: inset 0 0 1px 0 hsla(225, 50%, 10%, 0.5);
   }
 
   &::before {
-    @include add-new-chat-button-color-detail(left);
+    @include start-new-chat-button-color-detail(left);
   }
   &::after {
-    @include add-new-chat-button-color-detail(right);
+    @include start-new-chat-button-color-detail(right);
   }
 }
 
@@ -514,8 +518,8 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
   @include flex(space-between);
   width: 100%;
 
-  padding: 4px 14px;
-  background: linear-gradient(to bottom, hsl(225 16% 96%), hsl(225 14% 93%));
+  padding: 4px 14px 4px 12px;
+  background: linear-gradient(to bottom, hsl(225 12% 97%), hsl(225 10% 94%));
   border: 1px solid hsl(225 20% 75% / 1);
   cursor: pointer;
   border-radius: 4px;
@@ -609,7 +613,7 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
 }
 
 
-.add-new-chat-text {
+.start-new-chat-text {
   white-space: nowrap;
   @include flex;
 
@@ -630,7 +634,7 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
   border-top: 1px solid var(--border-color-lighter);
   &:last-child { border-bottom: 1px solid var(--border-color-lighter) };
 
-  background: linear-gradient(to bottom, hsl(225 12% 98% / 1), hsl(225 10% 96% / 1));
+  background: linear-gradient(to bottom, hsl(225 12% 99% / 1), hsl(225 10% 97% / 1));
 
   box-shadow: 0 0 12px hsla(225, 20%, 60%, 0.03), inset 0 0 15px 0 hsla(225, 20%, 60%, 0.07);
   filter: var(--soft-shadow-bottom) var(--soft-shadow-top);

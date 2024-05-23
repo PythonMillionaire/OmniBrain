@@ -68,8 +68,8 @@ const ChatList = () => {
 
     return (
         <section id="chat-list">
-            <div id="add-new-chat-section">
-                <div id={"add-new-chat-button"} className={"button"}><NewChatIcon/> Start a new chat
+            <div id="start-new-chat-section">
+                <div id={"start-new-chat-button"} className={"button"}><NewChatIcon/> Start a new chat
                 </div>
             </div>
 
@@ -85,7 +85,7 @@ const ChatList = () => {
 
                 <div id="filter-chat-list-by-project">
                     <div id="filter-chat-list-by-project-title" onClick={toggleDropdown}>
-                        <span className={"dropdown-text"}>Select project</span>
+                        <span className={"dropdown-text"}>Showing chats from all projects</span>
                         <span className={"dropdown-arrow"}>▼</span>
                     </div>
                     {isOpen && (

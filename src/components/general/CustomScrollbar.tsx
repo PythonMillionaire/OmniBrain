@@ -60,8 +60,7 @@ const thumbXStyle: CSSProperties = {
     borderRadius: '10px',
     background: 'hsl(225 10% 100% / 1)',
     border: '1px solid hsl(226deg 35.31% 76% / 1)',
-    width: '100%',
-    height: '15px'
+    height: '5px'
 };
 
 const thumbWrapperStyle: CSSProperties = {
@@ -126,7 +125,9 @@ const CustomScrollbar: React.FC<{ children: React.ReactNode, minHeight?: string,
     return (
         <Scrollbar
             noDefaultStyles
+
             style={{ width: '100%', height: '100%', minHeight: minHeight, ...styles }}
+
             renderer={props => {
                 const { elementRef, ...restProps } = props;
                 return <div {...restProps} ref={elementRef} style={{ ...restProps.style, ...outermostStyle }} />;

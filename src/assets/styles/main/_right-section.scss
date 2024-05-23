@@ -283,11 +283,11 @@
 
   border-radius: 8px;
 
-  background: linear-gradient(to bottom, #fcfcfc, #fafafa);
+  background: linear-gradient(to bottom, hsl(225 20% 99% / 1), hsl(225 20% 95% / 1));
 
   padding: 4px 7px;
 
-  border: 1px solid var(--border-color-lighter-two);
+  border: 1px solid hsl(225 30% 76% / 1);
 
   box-shadow: inset 0 0 8px hsl(0 0% 0% / 0.04);
 }
