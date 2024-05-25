@@ -5,13 +5,22 @@ import SearchButton from "../../general/SearchButton";
 import AddElementButton from "../../general/AddElementButton";
 
 import archiveIcon from "../../../assets/images/archive.svg";
+import filterIcon from "../../../assets/images/filter.svg";
+import advancedSearchIcon from "../../../assets/images/advanced-search.svg";
 import newChatIcon from "../../../assets/images/new-chat.svg";
+import CustomScrollbar from "../../general/CustomScrollbar";
 
 // Assuming each ChatListItem can be identified uniquely, for example, by an id
 const chatListData = [
     { id: 1, name: "ChatGPT 5", date: "April 5, 2024", title: "Conversation name", description: "Last message sent or description testing testing testing..." },
     { id: 2, name: "ChatGPT 6", date: "April 6, 2024", title: "Another conversation name", description: "Another last message..." },
-    // Add more items as needed
+    { id: 3, name: "ChatGPT 7", date: "April 7, 2024", title: "Another conversation name", description: "Another message..." },
+    { id: 4, name: "ChatGPT 7", date: "April 7, 2024", title: "Another conversation name", description: "Another message..." },
+    { id: 5, name: "ChatGPT 7", date: "April 7, 2024", title: "Another conversation name", description: "Another message..." },
+    { id: 6, name: "ChatGPT 7", date: "April 7, 2024", title: "Another conversation name", description: "Another message..." },
+    { id: 7, name: "ChatGPT 7", date: "April 7, 2024", title: "Another conversation name", description: "Another message..." },
+    { id: 8, name: "ChatGPT 7", date: "April 7, 2024", title: "Another conversation name", description: "Another message..." },
+    { id: 9, name: "ChatGPT 7", date: "April 7, 2024", title: "Another conversation name", description: "Another message..." },
 ];
 
 const NewChatIcon: React.FC = () => {
@@ -69,7 +78,8 @@ const ChatList = () => {
     return (
         <section id="chat-list">
             <div id="start-new-chat-section">
-                <div id={"start-new-chat-button"} className={"button"}><NewChatIcon/> Start a new chat
+                <div id={"start-new-chat-button"} className={"button"}><NewChatIcon/>
+                    <span>Start a new chat</span>
                 </div>
             </div>
 
@@ -78,14 +88,16 @@ const ChatList = () => {
                     <input id="conversation-search" placeholder="Search all conversations"/>
                     <SearchButton/>
                     <div id="filter-chat-list-advanced-options">
-                        <div className="button" id="filter-chat-list-filter">Filter</div>
-                        <div className="button" id="filter-chat-list-advanced-search">Advanced search</div>
+                        <div className="button" id="filter-chat-list-filter"><img id="filter-chats-icon" src={filterIcon}/> Filter</div>
+                        <div className="button" id="filter-chat-list-advanced-search"><img id="advanced-search-chats-icon" src={advancedSearchIcon}/> Advanced
+                            search
+                        </div>
                     </div>
                 </div>
 
                 <div id="filter-chat-list-by-project">
                     <div id="filter-chat-list-by-project-title" onClick={toggleDropdown}>
-                        <span className={"dropdown-text"}>Showing chats from all projects</span>
+                        <span className={"dropdown-text"}>All projects</span>
                         <span className={"dropdown-arrow"}>▼</span>
                     </div>
                     {isOpen && (
@@ -97,28 +109,29 @@ const ChatList = () => {
                         </ul>
                     )}
                 </div>
+                <div id="chat-list-main">
+                    <CustomScrollbar>
+                        <div id="chat-list-open-chats">
+                            {chatListData.map((item, index) => (
+                                <ChatListItem
+                                    key={item.id}
+                                    id={item.id}
+                                    isSelected={selectedId === item.id}
+                                    onSelect={() => handleSelectItem(item.id)}
+                                    name={item.name}
+                                    date={item.date}
+                                />
+                            ))}
+                        </div>
+                    </CustomScrollbar>
+
+                    <div className="button" id="chat-list-see-all">
+                        <img src={archiveIcon} alt={"See all chats"}/>
+                        <div>See all chats</div>
+                    </div>
+            </div>
             </div>
 
-
-            <div id="chat-list-main">
-                <div id="chat-list-open-chats">
-                    {chatListData.map((item, index) => (
-                        <ChatListItem
-                            key={item.id}
-                            id={item.id}
-                            isSelected={selectedId === item.id}
-                            onSelect={() => handleSelectItem(item.id)}
-                            name={item.name}
-                            date={item.date}
-                        />
-                    ))}
-                </div>
-
-                <div className="button" id="chat-list-see-all">
-                    <img src={archiveIcon} alt={"See all chats"}/>
-                    <div>See all chats</div>
-                </div>
-            </div>
         </section>
     );
 }

@@ -1,42 +1,14 @@
 import React, { CSSProperties, useEffect, useRef } from 'react';
 import { Scrollbar } from 'react-scrollbars-custom';
 
-// scrollbarStyles.ts
-const trackYStyle: CSSProperties = {
-    border: '1px solid hsl(226deg 55.31% 84.52% / 1)',
-    boxShadow: 'inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.3)',
-    backgroundColor: 'hsl(225 30% 97% / 1)',
-    borderRadius: '10px',
-    position: 'absolute',
-    userSelect: 'none',
-    width: '13px',
-    height: 'calc(100% - 3px)',
-    top: '0px',
-    right: '0px',
-    overflow: 'hidden'
-};
-
-const trackXStyle: CSSProperties = {
-    border: '1px solid hsl(226deg 55.31% 84.52% / 1)',
-    boxShadow: 'inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.3)',
-    backgroundColor: 'hsl(225 30% 97% / 1)',
-    borderRadius: '10px',
-    position: 'absolute',
-    userSelect: 'none',
-    height: '10px',
-    width: 'calc(100% - 3px)',
-    left: '0px',
-    bottom: '0px',
-    overflow: 'hidden'
-};
-
 const outermostStyle: CSSProperties = {
     position: 'relative',
     inset: '0px 10px 0px 0px',
     overflow: 'hidden',
     width: '100%',
     height: '100%',
-    minHeight: '70px'
+    minHeight: '70px',
+    marginRight: '1px',
 };
 
 const wrapperStyle: CSSProperties = {
@@ -46,21 +18,49 @@ const wrapperStyle: CSSProperties = {
     width: '100%',
 };
 
+const trackYStyle: CSSProperties = {
+    border: '1px solid hsl(226deg 55.31% 84.52% / 1)',
+    boxShadow: 'inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.3)',
+    backgroundColor: 'hsl(225 4% 92% / 1)',
+    borderRadius: '12px',
+    position: 'absolute',
+    userSelect: 'none',
+    width: '9px',
+    height: 'calc(100% - 3px)',
+    top: '0px',
+    right: '0px',
+    overflow: 'hidden'
+};
+
 const thumbYStyle: CSSProperties = {
-    boxShadow: 'inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.2), 0 3px 3px hsl(226deg 25.31% 84.52% / 0.15)',
-    borderRadius: '10px',
-    background: 'hsl(225 10% 100% / 1)',
-    border: '1px solid hsl(226deg 65.31% 60% / 1)',
+    boxShadow: 'inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.2), 0 2px 0px hsl(226deg 25.31% 30% / 0.16)',
+    borderRadius: '12px',
+    background: 'linear-gradient(to bottom, hsl(225 8% 98% / 1), hsl(225 15% 100% / 1)',
     height: '100%',
-    width: '13px'
+    width: '10px',
+    border: '1px solid hsl(226deg 35.31% 78% / 1)',
 };
 
 const thumbXStyle: CSSProperties = {
     boxShadow: 'inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.2), 0 3px 3px hsl(226deg 25.31% 84.52% / 0.15)',
-    borderRadius: '10px',
+    borderRadius: '12px',
     background: 'hsl(225 10% 100% / 1)',
     border: '1px solid hsl(226deg 35.31% 76% / 1)',
     height: '5px'
+};
+
+const trackXStyle: CSSProperties = {
+    border: '1px solid hsl(226deg 55.31% 84.52% / 1)',
+    boxShadow: 'inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.3)',
+    backgroundColor: 'hsl(225 30% 97% / 1)',
+    borderRadius: '12px',
+    position: 'absolute',
+    userSelect: 'none',
+    height: '10px',
+    width: 'calc(100% - 3px)',
+    left: '0px',
+    bottom: '0px',
+    overflow: 'hidden'
 };
 
 const thumbWrapperStyle: CSSProperties = {

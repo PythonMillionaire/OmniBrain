@@ -1,10 +1,13 @@
 @import "../mixins-and-variables";
 
-#logo {
-  height: 43px;
-  border-bottom: 1px solid var(--border-color-lighter);
+$padding-left: 22px;
 
-  @include flex;
+#logo {
+  height: 48px;
+
+  padding-left: 44px;
+
+  @include flex(flex-start);
 
   filter: var(--soft-shadow-bottom);
 
@@ -14,8 +17,10 @@
 
   z-index: 2;
 
+  margin-bottom: 14px;
+
   img {
-    width: 86px;
+    width: 96px;
 
     position: relative;
 
@@ -37,14 +42,12 @@
 
   filter: var(--soft-shadow-right);
 
-  background: hsl(225, 20%, 93%);
+  background: hsl(225, 20%, 98%);
 }
 
 #left-section-middle {
   height: 100%;
   width: 100%;
-
-  padding-top: 58px;
 
   display: none;
 
@@ -53,15 +56,26 @@
   overflow-y: auto;
   overflow-x: hidden;
 
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
+  padding-bottom: 24px;
 }
 
 #left-section-action-buttons {
+  flex-grow: 1;
+
   @include flex(flex-start, stretch, $direction: column);
 
-  background: linear-gradient(to bottom, hsl(216 5% 95% / 1), hsl(216 2% 95% / 1));
+  background: hsl(215, 7%, 97%);
+
+  border-top: 1px solid var(--border-color-lightest);
+  border-bottom: 1px solid var(--border-color-lightest);
+
+  section {
+    margin-bottom: 18px;
+  }
+
+  .ScrollbarsCustom-Content {
+    margin-top: 18px;
+  }
 }
 
 #left-section-bottom {
@@ -86,7 +100,21 @@
   box-shadow: inset 0 0 2px 0 hsla(0, 0%, 0%, 0.16);
 }
 
+.section-title {
+  text-transform: uppercase;
+
+  color: hsl(228 2% 42% / 1);
+
+  font-size: 1.2rem;
+
+  padding: 3px ($padding-left + 8px) 7px;
+
+  letter-spacing: 0.125rem;
+}
+
 #chat-list-main {
+  border-top: 1px solid var(--border-color-lightest);
+
   height: 100%;
   max-width: none;
   $hue: 225;
@@ -97,22 +125,24 @@
 
   @include flex(space-between, $direction: column);
 
-  border-bottom: 1px solid var(--border-color-lighter);
+  z-index: 3;
+
+  .ScrollbarsCustom {
+    flex-grow: 1;
+  }
 }
 
 #chat-list-open-chats {
-  z-index: 1;
   width: 100%;
+  height: 100%;
 
-  .chat-list-item-container.selected:first-of-type {
-    filter: var(--soft-shadow-top) drop-shadow(0 2px 3px hsla(225, 20%, 30%, 0.08));
-  }
-
-  .chat-list-item-container.selected:last-of-type {
-    //filter: var(--soft-shadow-bottom);
-  }
+  box-shadow: inset 0 0 60px 0 hsla(0, 0%, 0%, 1);
 
   filter: drop-shadow(0 2px 3px hsla(225, 20%, 30%, 0.08));
+
+  .ScrollbarsCustom-Content {
+    overflow-y: scroll;
+  }
 }
 
 $forward-animation-transition: 0.45s ease;
@@ -129,10 +159,10 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
 
   width: 100%;
 
-  padding: 1.5rem 2rem;
+  padding: 1.4rem 2rem;
 
-  border-top: 1px solid var(--border-color-lighter);
-  //border-bottom: 1px solid var(--border-color-lighter-three);
+  border-top: 1px solid var(--border-color-lighter-three);
+  border-bottom: 1px solid var(--border-color-lighter-two);
 
   filter: var(--soft-shadow-top) var(--soft-shadow-bottom);
 
@@ -144,6 +174,14 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
   img {
     width: 20px;
     opacity: 0.75;
+
+    position: relative;
+    top: -1px;
+  }
+
+  > div {
+    position: relative;
+    top: -1px;
   }
 
   &::before {
@@ -152,7 +190,7 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 4px;
+    height: 3px;
 
     $color: hsl(226deg 26% 55%);
     $color-two: hsl(226deg 56% 74%);
@@ -175,21 +213,75 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
   user-select: none;
   width: 100%;
   height: auto;
-  border-bottom: 1px solid var(--border-color-lighter);
   border-radius: 0;
-  padding: 1rem 1.8rem;
   @include flex(space-between, $gap: 10px);
+
+  transition: padding $forward-animation-transition;
 
   z-index: 1;
 
   @include pointer;
 
+
+  $color: hsl(224 90% 80% / 1);
+  $color-two: hsl(224 41% 54% / 1);
+  &::after {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -36px;
+    width: 40px;
+    background: linear-gradient(135deg, $color, $color-two);
+
+    height: 100%;
+
+    transform: translateY(-50%);
+
+    transition: left $backward-animation-transition;
+
+    visibility: hidden;
+  }
+
   $hue: 225;
 
+  $pd-l: 1.6rem;
+
   &:not(.selected) {
-    box-shadow: inset 0 0 4px 0 hsla(0, 0%, 0%, 0.03);
     color: #6a6a6a;
-    background: linear-gradient(to bottom, hsl($hue 15% 94% / 1), hsl($hue 14% 91% / 1));
+    background: hsl(215 7% 95% / 1);
+    padding: 0.7rem 2.7rem 0.7rem ($pd-l + 0.4rem);
+
+    font-style: italic;
+
+    .chat-list-item-ai-model-logo {
+      opacity: 0.4;
+    }
+
+    &:hover {
+      padding-left: $pd-l + 0.8rem;
+
+      transition: padding $backward-animation-transition;
+
+      background: hsl(215 10% 92% / 1);
+
+      &::after {
+        left: -33px;
+        opacity: 0.5;
+
+        transition: left $backward-animation-transition;
+
+        visibility: visible;
+
+      }
+    }
+
+    .chat-list-item-title
+    {
+      font-weight: 400;
+
+      transition: font-size $forward-animation-transition;
+    }
   }
 
   &:hover .chat-list-item-menu {
@@ -199,30 +291,39 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
   &.selected {
     color: #3a3a3a;
 
-    $color: hsl(226deg 42% 58%);
-    $color-two: hsl(226deg 50% 74%);
+    padding: 0.8rem 2.7rem 0.8rem ($pd-l + 1.2rem);
 
-    background: linear-gradient(to bottom, hsl(225 18% 100% / 1), hsl(225 15% 97.5% / 1) 82%);
+    background: linear-gradient(to bottom, hsl(215 8% 91% / 1), hsl(215 4% 90% / 1));
 
-    box-shadow: 0 0 3px hsla(225, 20%, 60%, 0.08), inset 0 0 21px 0 hsla(0, 0%, 0%, 0.06);
-    z-index: 2;
+    border: 1px solid hsl(215 60% 30% / 0.1);
 
-    &:not(:last-of-type) {
-      filter: drop-shadow(0 1px 6px hsla(225, 20%, 40%, 0.08));
+    &:first-of-type {
+      border-top-width: 0;
     }
 
+    &:last-of-type {
+      border-bottom-width: 0;
+    }
+
+    z-index: 2;
 
     &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 4px;
-      background: linear-gradient(25deg, $color, $color-two);
+      left: -33px;
 
-      height: 100%;
+      transition: left $backward-animation-transition;
 
-      box-shadow: inset 0 0 1px 0 hsla(0, 0%, 0%, 0.5);
+      visibility: visible;
+
+      background:  linear-gradient(135deg, $color, $color-two);
+    }
+
+    .chat-list-item-title
+    {
+      font-weight: 600;
+      font-size: 1.55rem;
+      letter-spacing: 0.02rem;
+
+      transition: font-size $backward-animation-transition;
     }
   }
 }
@@ -237,8 +338,6 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
 
   @include pointer;
 
-  padding: 8px;
-  margin-right: -8px;
 
   $b-radius: 2px;
   /* Styles for the dropdown menu */
@@ -316,8 +415,9 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
   justify-content: flex-start;
   align-items: center;
   padding: 1px 0;
-  font-size: 1.6rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 0.035rem;
+  font-weight: 400;
   display: flex;
 }
 
@@ -335,13 +435,11 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
   width: 100%;
   height: auto;
   background: linear-gradient(to bottom, hsl(220 16% 98% / 1), hsl(220 6% 96% / 1));
-  padding: 14px 14px 12px;
+  padding: 24px 0 24px;
 
-  @include flex(left, stretch, $direction: column, $gap: 14px);
+  @include flex(left, stretch, $direction: column);
 
-  border-bottom: 1px solid var(--border-color-lighter-two);
-
-  filter: var(--soft-shadow-top);
+  filter: var(--soft-shadow-top) var(--soft-shadow-bottom);
 
   z-index: 2;
 }
@@ -350,20 +448,14 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
   @include flex(flex-start, stretch, $direction: column);
 
   background: linear-gradient(to bottom, white, #fafafa);
-
-  filter: drop-shadow(0 2px 3px hsla(225, 20%, 40%, 0.04));
 }
 
 #start-new-chat-section {
-  padding: 21px 9px;
+  $p: 18px;
 
-  border-bottom: 1px solid var(--border-color-lighter-two);
+  padding: 0 $p;
 
-  @include flex;
-
-  background: hsl(216, 25%, 93%);
-
-  height: 42px;
+  z-index: 3;
 }
 
 #start-new-chat-button {
@@ -371,68 +463,26 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
 
   @include flex($gap: 8px);
 
-  background: linear-gradient(to bottom, white, #f0f0f0);
-  padding: 4px 14px;
+  background: linear-gradient(to bottom, hsl(228 68% 72% / 1), hsl(220 48% 48% / 1));
+  padding: 6px 14px;
   width: 100%;
-  border-radius: 8px;
-  border: 1px solid var(--border-color-slightly-lighter);
+  border-radius: 10px;
 
-  box-shadow: 0 0 4px hsla(225, 20%, 60%, 0.12), 0 2px 2px hsla(225, 20%, 60%, 0.20);
+  box-shadow: hsla(225, 100%, 20%, 0.15) 0 6px 10px, hsla(225, 100%, 20%, 0.1) 0 1px 2px;
+  color: white;
 
-  overflow: hidden;
+  font-weight: 400;
+  font-size: 1.55rem;
+  letter-spacing: 0.025rem;
 
-  color: #444;
-
-  font-weight: 500;
-
-  .add-new-circle {
-    margin-right: 10px;
+  > span {
+    text-shadow: 0 0 1px hsla(0, 0%, 0%, 1);
   }
 
   svg {
-    width: 15px;
+    width: 16px;
 
-    opacity: 0.84;
-
-    filter: drop-shadow(0 2px 1px hsla(225, 20%, 60%, 0.5));
-  }
-
-  --start-new-chat-button-details-color: hsl(225deg 45% 62%); //hsl(58 15% 31% / 1); //#DBC235; //hsl(122 14% 64% / 1);//hsl(225deg 44% 65%);
-
-  @mixin start-new-chat-button-color-detail($leftOrRight) {
-    content: '';
-    position: absolute;
-    width: 64px;
-    height: 100px;
-
-    border: 1px solid var(--border-color-lighter);
-
-    border-radius: 50%;
-
-    //filter: drop-shadow(if($leftOrRight == "left", 1px, -1px) 0 0px hsla(225, 20%, 40%, 0.08));
-
-    $color: hsl(226deg 56% 65%);
-    $color-two: hsl(226deg 60% 74%);
-
-    // Dynamically set either left or right
-    @if $leftOrRight == "left" {
-      background: linear-gradient(to left, $color, $color-two);
-      left: -60px;
-    } @else if $leftOrRight == "right" {
-      background: linear-gradient(to right, $color, $color-two);
-      right: -60px;
-    } @else {
-      @warn "Invalid value for $leftOrRight. Use 'left' or 'right'.";
-    }
-
-    box-shadow: inset 0 0 1px 0 hsla(225, 50%, 10%, 0.5);
-  }
-
-  &::before {
-    @include start-new-chat-button-color-detail(left);
-  }
-  &::after {
-    @include start-new-chat-button-color-detail(right);
+    filter: drop-shadow(0 2px 1px hsla(225, 20%, 60%, 0.25)) invert(1);
   }
 }
 
@@ -442,10 +492,12 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
   grid-template-areas: "searchInput searchButton"
                         "advanced empty";
 
-    grid-column-gap: 8px;
+  grid-column-gap: 8px;
 
   justify-content: center;
   align-items: center;
+
+  padding: 0 $padding-left;
 
   .search-icon {
     grid-area: searchButton;
@@ -467,12 +519,24 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
 
   grid-area: advanced;
 
-  letter-spacing: 0.02rem;
+  letter-spacing: 0.055rem;
 
   color: #444;
 
   .button {
     font-weight: 500;
+  }
+
+  #filter-chats-icon {
+    height: 9px;
+
+    opacity: 0.7;
+  }
+
+  #advanced-search-chats-icon {
+    height: 8px;
+
+    opacity: 0.5;
   }
 }
 
@@ -483,7 +547,7 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
 
   font-size: 1.4rem;
 
-  margin-bottom: 2px;
+  padding: 12px $padding-left 22px;
 
   .dropdown-menu {
     position: absolute;
@@ -518,11 +582,11 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
   @include flex(space-between);
   width: 100%;
 
-  padding: 4px 14px 4px 12px;
+  padding: 3px 14px;
   background: linear-gradient(to bottom, hsl(225 12% 97%), hsl(225 10% 94%));
   border: 1px solid hsl(225 20% 75% / 1);
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 10px;
 
   font-style: italic;
 
@@ -532,6 +596,7 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
 
   .dropdown-text {
     flex-grow: 1;
+    letter-spacing: 0.035rem;
   }
 
   .dropdown-arrow {
@@ -623,21 +688,15 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
 .left-panel-action-button {
   @include flex(flex-start, $gap: 14px);
 
-  padding: 1.2rem 2rem;
+  padding: 0 2rem;
+
+  margin-bottom: 3px;
 
   font-weight: 500;
-  color: #464646;
+  color: #666;
 
-  max-height: 48px;
-  min-height: 48px;
-
-  border-top: 1px solid var(--border-color-lighter);
-  &:last-child { border-bottom: 1px solid var(--border-color-lighter) };
-
-  background: linear-gradient(to bottom, hsl(225 12% 99% / 1), hsl(225 10% 97% / 1));
-
-  box-shadow: 0 0 12px hsla(225, 20%, 60%, 0.03), inset 0 0 15px 0 hsla(225, 20%, 60%, 0.07);
-  filter: var(--soft-shadow-bottom) var(--soft-shadow-top);
+  max-height: 42px;
+  min-height: 42px;
 
   // return transition, moving back to original position
   transition: padding $backward-animation-transition;
@@ -668,22 +727,6 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
   }
 }
 
-.left-section-button {
-  @include flex($gap: 12px);
-
-  padding: 6px 10px;
-
-  width: 100%;
-
-  border-radius: 16px;
-
-  border: 1px solid var(--border-color);
-
-  background: linear-gradient(to bottom, white, #f5f5f5);
-
-  box-shadow: 0 0 12px hsla(225, 20%, 60%, 0.10);
-}
-
 .button-icon {
   height: 22px;
 
@@ -702,14 +745,6 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
   top: -2px;
 
   width: 20px;
-}
-
-#upgrade-plan::before, #add-credits::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  height: 100%;
-  width: 5px;
 }
 
 #upgrade-plan::before {

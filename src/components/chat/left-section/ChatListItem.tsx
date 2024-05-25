@@ -18,7 +18,7 @@ const ChatListItem: React.FC<ChatListItemProps> = ({
                                                        date,
                                                    }) => {
     return (
-        <div className={`chat-list-item-container ${isSelected ? 'selected' : ''}`} onClick={() => onSelect(id)}>
+        <div className={`chat-list-item-container${isSelected ? ' selected' : ''}`} onClick={() => onSelect(id)}>
             <div className="chat-list-item-ai-model-logo">
                 <img src={aiLogo} alt="AI Logo" />
             </div>

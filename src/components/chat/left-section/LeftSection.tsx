@@ -16,19 +16,17 @@ import CustomScrollbar from "../../general/CustomScrollbar";
 const LeftSection = () => {
     return (
         <div id="left-section">
-            <div id="left-section-top">
+            <section id="left-section-top">
                 <div id="logo">
                     <img src={logo} alt="OmniBrain Logo"/>
                 </div>
                 <ChatList />
-            </div>
+            </section>
 
 
-            <CustomScrollbar styles={{filter: "var(--soft-shadow-top)"}}>
-                <div id="left-section-middle">
-                    <LeftSectionActionButtons/>
-                </div>
-            </CustomScrollbar>
+            <section id="left-section-middle">
+                <LeftSectionActionButtons/>
+            </section>
 
             <section id="left-section-bottom">
                 <div id="account-info">

@@ -182,9 +182,7 @@ main, menu, nav, section
     }
 }
 
-.custom-scroller {
-    overflow: hidden !important;  // Allow vertical scrolling
-}
+/*
 
 ::-webkit-scrollbar-track
 {
@@ -208,3 +206,27 @@ main, menu, nav, section
     border: 1px solid hsl(226deg 35.31% 76%);
 }
 
+*/
+
+
+/* Hide the scrollbar for modern browsers */
+.custom-scroller::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
+/* Hide the scrollbar for IE, Edge, and Firefox */
+.custom-scroller {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.ScrollbarsCustom-Content {
+    overflow: hidden; /* Ensure native scrollbars are hidden */
+}
+
+.custom-scroller {
+    overflow: hidden scroll; /* Ensure custom scrollbar is visible */
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
