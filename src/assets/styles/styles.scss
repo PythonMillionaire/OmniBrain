@@ -46,7 +46,15 @@ body
     justify-content: space-between;
     margin-left: 0;
     margin-right: 0;
-    display: flex;
+    display: grid;
+
+    grid-template-areas:
+            "left-section middle-section-top right-section"
+            "left-section middle-section-middle right-section"
+            "left-section middle-section-bottom right-section";
+
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: auto 1fr auto;
 }
 
 *

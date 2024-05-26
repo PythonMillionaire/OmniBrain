@@ -1,26 +1,5 @@
 @import "../mixins-and-variables";
 
-#left-section, #right-section {
-  position: relative;
-  z-index: 1;
-}
-
-#middle-section {
-  width: auto;
-  height: 100%;
-  max-width: 68%;
-  border-left: 1px solid var(--border-color-lighter-two);
-  border-right: 1px solid var(--border-color-lighter-two);
-  flex: 1;
-
-  margin: 0;
-
-  @include flex(flex-start, stretch, $direction: column);
-
-  position: relative;
-  z-index: 0;
-}
-
 #ai-response-settings-checkboxes {
   width: 100%;
   @include flex(space-between);
@@ -30,15 +9,16 @@
 #chat-messages-tool-bar {
   @include flex(space-between, $direction: column);
 
+  grid-area: middle-section-top;
   width: 100%;
   border-bottom: 1px solid var(--border-color-lighter);
 
-  background: linear-gradient(to bottom, white, #fcfcfc);
+  background: linear-gradient(to bottom, hsl(225 10% 100% / 1 ), hsl(225 10% 96% / 1 ));
 
   filter: var(--soft-shadow-bottom);
 
   position: relative;
-  z-index: 2;
+  z-index: 4;
 
   font-size: 1.4rem;
 }
@@ -50,6 +30,8 @@
   min-height: 42px;
 
   padding: 6px 22px;
+
+
 }
 
 #chat-message-tool-bar-bottom {
@@ -163,7 +145,7 @@ $bg-chat-input-top-base-brightness: 96%;
 #chat-input-organization-settings-top {
   @include flex(space-between);
 
-  border-bottom: $chat-bottom-border-width solid var(--border-color-hued-subdued);
+  border-bottom: 1px solid var(--border-color-lighter);
 
   background: linear-gradient(to bottom, hsl(225 20% $bg-chat-input-top-base-brightness + 2% / 1), hsl(225 16% calc($bg-chat-input-top-base-brightness - 1%) / 1));
 }
@@ -383,15 +365,15 @@ $thread-background: linear-gradient(to bottom, hsl($hue, 12%, 91%), hsl($hue, 11
 .follow-up-question-outer-border {
   @include flex;
 
-  background: linear-gradient(170deg, hsl(225 80% 60% / 0.7 ), hsl(225 40% 50% / 0.8));
+  background: linear-gradient(170deg, hsl(225 650% 60% / 0.65 ), hsl(225 50% 50% / 0.65));
 
   border-radius: 13px;
   padding: 1px;
 
   box-shadow:
-          0 1px 2px hsla(225, 20%, 60%, 0.5),
-          1px 2px 7px hsla(225, 20%, 60%, 0.14),
-          0 1px 10px hsla(225, 60%, 60%, 0.1);
+          0 0 2px hsla(225, 20%, 60%, 0.25),
+          0 2px 7px hsla(225, 20%, 60%, 0.19),
+          0 3px 10px hsla(225, 60%, 60%, 0.08);
 }
 
 .follow-up-question {
@@ -421,6 +403,7 @@ $thread-background: linear-gradient(to bottom, hsl($hue, 12%, 91%), hsl($hue, 11
 
 $middle-bg: hsl(240 14% 95% / 1);
 
+
 #chat-messages-section {
   position: relative;
   //height: auto;
@@ -433,11 +416,6 @@ $middle-bg: hsl(240 14% 95% / 1);
   //overflow: hidden;
 
   @include flex(flex-start, stretch, $direction: column, $gap: 16px);
-  flex-grow: 1;
-}
-
-#middle-section .ScrollbarsCustom.trackYVisible {
-  background: $middle-bg;
 }
 
 #follow-up-questions-section {
@@ -492,6 +470,11 @@ $middle-bg: hsl(240 14% 95% / 1);
   @include flex($gap: 7px);
 }
 
+#chat-page-number-input-field {
+  width: 36px;
+  text-align: center;
+}
+
 #chat-page-and-thread-tabs-section {
   @include flex(flex-start, flex-end, $gap: 12px);
 
@@ -533,6 +516,8 @@ $middle-bg: hsl(240 14% 95% / 1);
 
   filter: var(--soft-shadow-top);
 
+  color: hsl(0 0% 20% / 1);
+
   > span {
     font-weight: 500;
   }
@@ -547,6 +532,8 @@ $middle-bg: hsl(240 14% 95% / 1);
     position: relative;
     top: 3px;
     padding: 6px 18px 8px;
+
+    color: hsl(0 0% 20% / 0.5);
   }
 }
 
@@ -584,6 +571,8 @@ $middle-bg: hsl(240 14% 95% / 1);
                                   hsl(227 56% 96% / 0.5),
                                   hsl(227 56% 93% / 0.5)
                   ));
+
+
 }
 
 .chat-page-thread-tab-delete
@@ -827,6 +816,7 @@ $darkest-bg-brightness-reduction: 2%;
 
 #chat-input-section {
   position: relative;
+  z-index: 4;
 
   @include flex(flex-start, stretch, $direction: column);
 }
@@ -863,7 +853,7 @@ $darkest-bg-brightness-reduction: 2%;
 #chat-input-field {
   position: relative;
 
-  background: hsl(225 40% 98% / 1);//hsl(220deg 30% 99%); //hsl(220 12% 92%);
+  background: hsl(225 40% 97.5% / 1);//hsl(220deg 30% 99%); //hsl(220 12% 92%);
 
   height: auto;
   min-height: 4.2rem;
@@ -1011,15 +1001,15 @@ $opacity-message-buttons: 0.7;
   border-bottom: none;
   white-space: nowrap;
   border-radius: 12px 12px 0 0;
-  padding: 8px 18px 8px;
+  padding: 8px 14px 8px;
   position: relative;
 
 
   &.selected {
     color: hsl(0 0% 24%);
 
-    border-width: $chat-bottom-border-width;
-    border-color: var(--border-color-hued-subdued);
+    border-width: 1px;
+    border-color: var(--border-color-slightly-lighter);
     font-weight: 700;
 
     background: white;
@@ -1032,9 +1022,9 @@ $opacity-message-buttons: 0.7;
   }
 
   &:not(.selected) {
-    color: hsl(0 0% 50%);
+    color: hsl(0 0% 60%);
     border-color: var(--border-color-lighter);
-    background: linear-gradient(to bottom, hsl(225 5% 94% / 1), hsl(225 1% 93% / 1));
+    background: linear-gradient(to bottom, hsl(225 5% 94% / 0.7), hsl(225 1% 93% / 0.7));
   }
 }
 
@@ -1178,7 +1168,7 @@ $opacity-message-buttons: 0.7;
   position: relative;
   z-index: 1;
 
-  $shadow: 0 0 8px hsl(225 60% 40% / 0.06);
+  $shadow: 0 0 6px hsl(225 30% 40% / 0.08),  0 0 30px hsl(225 30% 40% / 0.06);
   $inset: inset 0 0 4px 0 hsla(0, 0%, 0%, 0.04), inset 0 0 40px 0 hsla(0, 0%, 0%, 0.025);
   $border-modifier-messages: 1;
 
@@ -1207,6 +1197,10 @@ $opacity-message-buttons: 0.7;
   white-space: pre-line;
 
   line-height: 1.8rem;
+
+  word-break: break-all; /* Ensures words can break at any character */
+  overflow-wrap: break-word; /* Ensures long words break to the next line */
+  hyphens: auto; /* Allows hyphens to be added where needed */
 }
 
 
@@ -1340,6 +1334,7 @@ $opacity-message-buttons: 0.7;
   position: relative;
   grid-area: message;
   width: 100%;
+  max-width: 100%;
 
 
   padding: 0 12px;

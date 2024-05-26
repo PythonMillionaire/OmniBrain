@@ -4,7 +4,7 @@ import CustomScrollbar from "../../general/CustomScrollbar";
 
 const ChatMessagesSection = () => {
     return (
-        <CustomScrollbar>
+        <CustomScrollbar scrollbarId="chat-messages-section-container">
             <section id="chat-messages-section">
                 <Conversation />
             </section>

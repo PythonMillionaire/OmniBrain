@@ -18,11 +18,13 @@ const wrapperStyle: CSSProperties = {
     width: '100%',
 };
 
+const borderRadius = 4;
+
 const trackYStyle: CSSProperties = {
     border: '1px solid hsl(226deg 55.31% 84.52% / 1)',
     boxShadow: 'inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.3)',
     backgroundColor: 'hsl(225 4% 92% / 1)',
-    borderRadius: '12px',
+    borderRadius: `${borderRadius - 2}px`,
     position: 'absolute',
     userSelect: 'none',
     width: '9px',
@@ -34,7 +36,7 @@ const trackYStyle: CSSProperties = {
 
 const thumbYStyle: CSSProperties = {
     boxShadow: 'inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.2), 0 2px 0px hsl(226deg 25.31% 30% / 0.16)',
-    borderRadius: '12px',
+    borderRadius: `${borderRadius}px`,
     background: 'linear-gradient(to bottom, hsl(225 8% 98% / 1), hsl(225 15% 100% / 1)',
     height: '100%',
     width: '10px',
@@ -102,7 +104,7 @@ const contentStyle: CSSProperties = {
     minWidth: '100%'
 };
 
-const CustomScrollbar: React.FC<{ children: React.ReactNode, minHeight?: string, styles?: CSSProperties }> = ({ children, minHeight = 'none', styles = {} }) => {
+const CustomScrollbar: React.FC<{ children: React.ReactNode, minHeight?: string, styles?: CSSProperties, scrollbarId?: string }> = ({ children, minHeight = 'none', styles = {}, scrollbarId }) => {
     const scrollerRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -125,6 +127,8 @@ const CustomScrollbar: React.FC<{ children: React.ReactNode, minHeight?: string,
     return (
         <Scrollbar
             noDefaultStyles
+
+            id={scrollbarId}
 
             style={{ width: '100%', height: '100%', minHeight: minHeight, ...styles }}
 

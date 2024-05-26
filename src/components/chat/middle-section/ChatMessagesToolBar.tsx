@@ -93,7 +93,7 @@ const ChatMessagesToolBar: React.FC = () => {
                                                                           alt="Previous page"/> Previous
                         </div>
                         <div id="chat-page-number">
-                            <b>1</b> <i>of</i> <b>13</b> <i>pages</i>
+                            <input id={"chat-page-number-input-field"} maxLength={3}/><i>of</i> <b>13</b> <i>pages</i>
                         </div>
                         <div id="next-page" className={"button"}>Next <img className={"page-navigation-arrow"}
                                                                            src={pageNavigationArrow} alt="Next page"/>

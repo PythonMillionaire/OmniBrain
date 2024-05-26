@@ -9,7 +9,8 @@ import botIcon from "../../../assets/images/bot.svg";
 import exploreIcon from "../../../assets/images/explore.svg";
 import upgradeIcon from "../../../assets/images/upgrade.svg";
 import creditsIcon from "../../../assets/images/credits.svg";
-import logo from "../../../assets/images/logo.svg";
+import logoText from "../../../assets/images/logo.svg";
+import logoImage from "../../../assets/images/logo.png";
 import AddElementButton from "../../general/AddElementButton";
 import CustomScrollbar from "../../general/CustomScrollbar";
 
@@ -18,7 +19,8 @@ const LeftSection = () => {
         <div id="left-section">
             <section id="left-section-top">
                 <div id="logo">
-                    <img src={logo} alt="OmniBrain Logo"/>
+                    <img src={logoImage} alt="OmniBrain Logo"/>
+                    <img src={logoText} alt="OmniBrain Logo"/>
                 </div>
                 <ChatList />
             </section>
