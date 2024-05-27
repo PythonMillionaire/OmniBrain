@@ -96,32 +96,46 @@ $usage-stats-height: 60px;
   padding-top: 10px;
 
   .left-panel-action-buttons-section {
-    @include flex(flex-start, flex-start, $gap: 24px);
+    @include flex(flex-start, center, $gap: 18px);
 
-    padding: 16px 20px;
+    padding: 10px 20px 10px 32px;
 
     background: hsl(215, 7%, 95%);
 
-    box-shadow: inset 0 0 12px hsla(0, 0%, 0%, 0.04), inset 0 0 3px hsla(0, 0%, 0%, 0.03);
-  }
-
-  .usage-statistics-contents {
-    @include flex(center, flex-start, $gap: 2px, $direction: column);
-  }
-
-  .usage-statistics-title {
-    font-size: 1.3rem;
-    font-weight: 400;
-    letter-spacing: 0.135rem;
-    color: hsl(0 0% 66%);
-  }
-
-  .usage-statistics-numbers {
-    font-weight: 500;
-    color: hsl(0 0% 33%);
-    font-size: 1.3rem;
+    box-shadow: inset 0 0 12px hsla(0, 0%, 0%, 0.04), inset 0 0 3px hsla(0, 0%, 0%, 0.09);
   }
 }
+
+.usage-statistics-contents {
+  @include flex(center, flex-start, $gap: 2px, $direction: column);
+}
+
+.usage-statistics-title {
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 0.135rem;
+  color: hsl(0 0% 40%);
+
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.06);
+}
+
+.usage-statistics-numbers {
+  font-weight: 500;
+  color: hsl(0 0% 40%);
+  font-size: 1.3rem;
+  font-style: italic;
+  letter-spacing: 0.015rem;
+
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.06);
+}
+
+.usage-statistics-remaining-credits {
+  font-weight: 700;
+}
+
+.usage-statistics-total-credits {
+   opacity: 0.6;
+ }
 
 #left-section-bottom {
   background: linear-gradient(to bottom, hsl(225 20% 99% / 1), hsl(225 12% 95% / 1));
@@ -148,7 +162,7 @@ $usage-stats-height: 60px;
 .section-title {
   text-transform: uppercase;
 
-  color: hsl(228 2% 48% / 1);
+  color: hsl(228 2% 45% / 1);
 
   font-size: 1.2rem;
 

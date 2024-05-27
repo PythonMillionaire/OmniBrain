@@ -366,20 +366,33 @@ $thread-background: linear-gradient(to bottom, hsl($hue, 12%, 91%), hsl($hue, 11
 .follow-up-question-outer-border {
   @include flex;
 
-  background: linear-gradient(170deg, hsl(225 650% 60% / 0.65 ), hsl(225 50% 50% / 0.65));
+  $base-bg-brightness: 58%;
 
-  border-radius: 13px;
-  padding: 1px;
+  background: linear-gradient(
+                  177deg,
+                  hsl(200 85% (20% + $base-bg-brightness) / 1 ),
+                  hsl(218 80% (10% + $base-bg-brightness) / 1),
+                  hsl(225 50% (10% + $base-bg-brightness) / 1),
+                  hsl(225 50% (10% + $base-bg-brightness) / 1),
+                  hsl(230 50% (10% + $base-bg-brightness) / 1),
+                  hsl(235 50% (10% + $base-bg-brightness) / 1),
+                  hsl(230 90% (10% + $base-bg-brightness) / 1));
+
+  $p: 2px;
+  border-radius: 12px + $p;
+  padding: $p;
 
   box-shadow:
-          0 0 2px hsla(225, 20%, 60%, 0.1),
-          0 2px 7px hsla(225, 20%, 60%, 0.03),
+          0 0 2px hsla(225, 20%, 60%, 0.14),
+          0 1px 1px hsla(225, 20%, 60%, 0.2),
+          0 2px 7px hsla(225, 20%, 60%, 0.08),
           0 3px 10px hsla(225, 30%, 60%, 0.02),
-          0 3px 24px hsla(225, 20%, 60%, 0.08);
+          0 3px 24px hsla(225, 20%, 60%, 0.08),
+          0 3px 24px hsla(225, 100%, 90%, 0.14);
 }
 
 .follow-up-question {
-  background: linear-gradient(to bottom, hsl(225 20% 98% / 1), hsl(225 14% 95% / 1));
+  background: linear-gradient(to bottom, hsl(225 20% 100% / 1) 60%, hsl(225 14% 93% / 1));
   //border: 2px solid var(--border-color-hued);
   white-space: nowrap;
   border-radius: 12px;
@@ -409,6 +422,8 @@ $middle-bg: hsl(218 14% 96% / 1);
   border-top: 1px solid var(--border-color-lighter-two);
 
   border-radius: 6px;
+
+  overflow: visible !important;
 }
 
 #chat-messages-section {
@@ -481,6 +496,7 @@ $middle-bg: hsl(218 14% 96% / 1);
 #chat-page-number-input-field {
   width: 36px;
   text-align: center;
+  padding: 0;
 }
 
 #chat-page-and-thread-tabs-section {
@@ -843,7 +859,7 @@ $darkest-bg-brightness-reduction: 2%;
 #chat-input-top {
   height: auto;
   max-height: 120px;
-  border-top: 1px solid var(--border-color-slightly-lighter);
+  border-top: 1px solid var(--border-color-lighter-two);
 
   margin: 0;
   position: relative;
@@ -1144,12 +1160,18 @@ $opacity-message-buttons: 0.7;
     z-index: 1;
     @include flex($gap: 8px);
 
-    box-shadow: 0 0 2px hsla(225, 20%, 60%, 0.2);
+    box-shadow:
+            0 0 2px hsla(225, 20%, 60%, 0.2),
+            inset 0 0 2px hsla(225, 20%, 60%, 0.46),
+            inset 0 0 8px hsla(225, 20%, 60%, 0.08);
+
     border: 2px solid var(--border-color-hued-subdued);
-    color: #2e2020;
-    background: linear-gradient(175deg, hsl(226 80% 99% / 1) 60%, hsl(226 40% 97% / 1) 90%);
+    color: hsl(245 18% 20% / 1);
+    background: linear-gradient(176deg, hsl(226 90% 100% / 1) 60%, hsl(226 80% 97% / 1) 90%);
     border-radius: 12px;
-    padding: 8px 12px;
+    padding: 8px 14px;
+
+    text-shadow: 1px 1px 2px hsla(225, 20%, 60%, 0.0);
 
     img {
       filter: drop-shadow(2px 2px 1px hsl(225 20% 60% / 0.06)) drop-shadow(2px 2px 2px hsl(225 20% 60% / 0.16));
@@ -1157,10 +1179,12 @@ $opacity-message-buttons: 0.7;
   }
 
   > div.below-button {
-    $color: hsl(226 30% 58% / 1);
-    $color-two: hsl(226 64% 68% / 1);
+    $color: hsl(200 30% 58% / 1);
+    $color-two: hsl(216 30% 58% / 1);
+    $color-three: hsl(226 64% 68% / 1);
+    $color-four: hsl(255 60% 68% / 1);
 
-    background: linear-gradient(65deg, $color, $color-two);
+    background: linear-gradient(65deg, $color, $color-two, $color-three, $color-four);
     width: 100%;
     position: absolute;
     height: 100%;
@@ -1169,7 +1193,11 @@ $opacity-message-buttons: 0.7;
     bottom: -3px;
     right: -2px;
 
-    box-shadow: 2px 2px 1px hsl(225 20% 60% / 0.065), 1px 1px 3px hsl(225 20% 60% / 0.15);
+    box-shadow:
+            2px 2px 1px hsl(225 40% 60% / 0.065),
+            1px 1px 3px hsl(225 30% 60% / 0.13),
+            1px 1px 1px hsl(225 30% 30% / 0.2),
+            0 0 8px hsl(225 60% 60% / 0.07);
   }
 }
 

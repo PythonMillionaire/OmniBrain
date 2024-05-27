@@ -5,7 +5,7 @@ import settingsIcon from '../../../assets/images/settings.svg';
 import ChatList from "./ChatList";
 import LeftSectionActionButtons from "./LeftSectionActionButtons";
 
-import logoText from "../../../assets/images/logo.svg";
+import logoText from "../../../assets/images/logo-text.png";
 import logoImage from "../../../assets/images/logo.png";
 
 import AboveChatList from "./AboveChatList";

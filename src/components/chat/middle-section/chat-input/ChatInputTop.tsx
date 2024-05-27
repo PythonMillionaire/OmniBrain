@@ -13,16 +13,25 @@ const ChatInputTop = () => {
         <div id="chat-input-top">
             <CollapseButton isVisible={isVisible} buttonPosition={ButtonPosition.bottom} referenceToCollapsedElement={collapseDivRef} visibilitySetter={setIsVisible} id={"chat-input-top-collapse-button"} />
 
-            <div id="chat-input-top-response-settings" ref={collapseDivRef} style={{ display: isVisible ? 'flex' : 'none'}}>
+            <div id="chat-input-top-response-settings" ref={collapseDivRef}
+                 style={{display: isVisible ? 'flex' : 'none'}}>
+                <div className="chat-input-detail-level-slider">
+                    <div>Temperature <br/>
+                    </div>
+                    <Slider/>
+                </div>
                 <div className="chat-input-detail-level-slider">
                     <div>Response detail level <br/>
                     </div>
                     <Slider/>
                 </div>
                 <div id="ai-response-settings-checkboxes">
-                    <Checkbox text={"Include examples"} tooltipText={"Whether or not the AI should include illustrative examples in its output."} />
-                    <Checkbox text={"Include explanation"} tooltipText={"Whether or not the AI should also provide explanations in addition to completing the given task."} />
-                    <Checkbox text={"Split output"} tooltipText={"Whether the AI's output should split into sections, as defined in Settings."} />
+                    <Checkbox text={"Include examples"}
+                              tooltipText={"Whether or not the AI should include illustrative examples in its output."}/>
+                    <Checkbox text={"Include explanation"}
+                              tooltipText={"Whether or not the AI should also provide explanations in addition to completing the given task."}/>
+                    <Checkbox text={"Split output"}
+                              tooltipText={"Whether the AI's output should split into sections, as defined in Settings."}/>
                 </div>
             </div>
         </div>

@@ -60,7 +60,8 @@ const ProgressBar: React.FC<ProgressProps> = ({ percentage, size }) => {
         height: size,
         borderRadius: '50%',
         overflow: 'hidden',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+        boxShadow: '0 2px 3px rgba(0, 0, 0, 0.06), 0 0 10px rgba(0, 0, 0, 0.025)',
+        border: '1px solid #e1e1e1',
     };
 
     const canvasStyle: React.CSSProperties = {
@@ -82,7 +83,8 @@ const ProgressBar: React.FC<ProgressProps> = ({ percentage, size }) => {
         fontWeight: 900,
         textAlign: 'center',
         transform: 'translate(-50%, -50%)',
-        color: '#505050',
+        color: 'hsl(225 38% 24% / 1)',
+        textShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
     };
 
     const drawProgress = (ctx: CanvasRenderingContext2D, percentage: number) => {

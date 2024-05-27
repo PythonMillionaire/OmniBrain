@@ -22,7 +22,9 @@ const LeftSectionActionButtons = () => (
                         REMAINING CREDITS
                     </div>
                     <div className="usage-statistics-numbers">
-                        1357/10000
+                        <span className={"usage-statistics-remaining-credits"}>1357</span>
+                        /
+                        <span className={"usage-statistics-total-credits"}>10000</span>
                     </div>
                 </div>
             </div>
