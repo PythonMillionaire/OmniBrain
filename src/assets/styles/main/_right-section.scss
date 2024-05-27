@@ -8,7 +8,7 @@
 
   max-width: 460px;
 
-  border-left: 1px solid var(--border-color-lighter-two);
+  //border-left: 1px solid var(--border-color-lighter-two);
 
   @include flex(flex-start, center, $direction: column);
 
@@ -47,6 +47,10 @@
   background: linear-gradient(to bottom, white 75%, #fcfcfc);
 
   font-size: 1.4rem;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
 
   .button {
     font-weight: 500;

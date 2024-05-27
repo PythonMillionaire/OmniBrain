@@ -21,11 +21,17 @@ const MessageTop: React.FC<MessageInfoProps> = ({sender, userAvatar, aiLogo, sen
                             </div>
                             <div className="chat-message-info-sender-name">{sender.name}</div>
                         </div>
-                        <div className="chat-message-info-send-date">{sendDate.toLocaleString()}</div>
+                        <div className="chat-message-info-send-date">
+                            <b>{sendDate.toLocaleDateString()}</b>, {sendDate.toLocaleTimeString()}
+                        </div>
+
                     </>
                 ) : (
                     <>
-                    <div className="chat-message-info-send-date">{sendDate.toLocaleString()}</div>
+                        <div className="chat-message-info-send-date">
+                            <b>{sendDate.toLocaleDateString()}</b>, {sendDate.toLocaleTimeString()}
+                        </div>
+
                         <div className="chat-message-info-sender">
                             <div className="account-avatar-message">
                                 <img className={"message-avatar"} src={userAvatar} alt="User avatar"/>

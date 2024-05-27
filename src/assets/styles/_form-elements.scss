@@ -34,14 +34,16 @@ $slider-width: 120px;
   }
 }
 
-input:not([type="range"])
+input:not([type=range])
 {
   padding: 12px;
-  border: 1px solid var(--border-color-hued-subdued);
+  border: 1px solid var(--border-color-lighter-two);
   height: var(--input-field-height);
   border-radius: 10px;
 
   background: hsl(225 20% 98% / 1);
+
+  font-size: 1.4rem;
 }
 
 input[type="checkbox"] {

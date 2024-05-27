@@ -5,25 +5,26 @@ import settingsIcon from '../../../assets/images/settings.svg';
 import ChatList from "./ChatList";
 import LeftSectionActionButtons from "./LeftSectionActionButtons";
 
-import botIcon from "../../../assets/images/bot.svg";
-import exploreIcon from "../../../assets/images/explore.svg";
-import upgradeIcon from "../../../assets/images/upgrade.svg";
-import creditsIcon from "../../../assets/images/credits.svg";
 import logoText from "../../../assets/images/logo.svg";
 import logoImage from "../../../assets/images/logo.png";
-import AddElementButton from "../../general/AddElementButton";
-import CustomScrollbar from "../../general/CustomScrollbar";
+
+import AboveChatList from "./AboveChatList";
 
 const LeftSection = () => {
     return (
         <div id="left-section">
-            <section id="left-section-top">
-                <div id="logo">
-                    <img src={logoImage} alt="OmniBrain Logo"/>
-                    <img src={logoText} alt="OmniBrain Logo"/>
+            <div id="left-section-top">
+                <div id="left-section-top-upper">
+                    <div id="logo">
+                        <img src={logoImage} alt="OmniBrain Logo"/>
+                        <img src={logoText} alt="OmniBrain Logo"/>
+                    </div>
+
+                    <AboveChatList/>
                 </div>
-                <ChatList />
-            </section>
+
+                <ChatList/>
+            </div>
 
 
             <section id="left-section-middle">

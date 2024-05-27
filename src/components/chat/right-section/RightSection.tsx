@@ -13,6 +13,7 @@ import settingsIcon from "../../../assets/images/settings.svg";
 import AddElementButton from "../../general/AddElementButton";
 import CollapseButton from "../../general/CollapseSectionButton";
 import {ButtonPosition} from "../../../types/enums";
+import CustomScrollbar from "../../general/CustomScrollbar";
 
 const RightSection = () => {
     const [isVisible, setIsVisible] = useState(true);
@@ -25,12 +26,32 @@ const RightSection = () => {
         <CollapseButton isVisible={isVisible} buttonPosition={ButtonPosition.right}  referenceToCollapsedElement={collapseDivRef} visibilitySetter={setIsVisible} id={'right-section-collapse-button'} />
 
             <div id="right-section-inner" style={{ display: isVisible ? 'flex' : 'none'}}>
-                <section id="tab-headers-section">
-                    <div className="button tab-header selected"><img src={saveIcon} id="saved-prompt-button-tab-icon"/> Saved prompts</div>
-                    <div className="button tab-header"><img src={settingsIcon} id="settings-tab-icon"/> File manager</div>
-                    <div className="button tab-header"><img src={settingsIcon} id="settings-tab-icon"/> AutoGPT</div>
-                </section>
-
+                    <section>
+                        <CustomScrollbar minHeight={'43px'} styles={{minHeight: '43px'}}>
+                            <div id="tab-headers-section">
+                                <div className="button tab-header selected">
+                                    <img src={saveIcon} id="saved-prompt-button-tab-icon"/>
+                                    Saved prompts
+                                </div>
+                                <div className="button tab-header">
+                                    <img src={saveIcon} id="saved-prompt-button-tab-icon"/>
+                                    Prompt chaining
+                                </div>
+                                <div className="button tab-header">
+                                    <img src={settingsIcon} id="settings-tab-icon"/>
+                                    AutoGPT
+                                </div>
+                                <div className="button tab-header">
+                                    <img src={settingsIcon} id="settings-tab-icon"/>
+                                    File processing
+                                </div>
+                                <div className="button tab-header">
+                                    <img src={settingsIcon} id="settings-tab-icon"/>
+                                    File manager
+                                </div>
+                            </div>
+                        </CustomScrollbar>
+                    </section>
                 <section id="tab-contents">
                     <div className="saved-prompt-button-topic-list">
                         <div className="button saved-prompt-button-topic selected">All</div>

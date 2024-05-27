@@ -6,9 +6,27 @@ import creditsIcon from "../../../assets/images/credits.svg";
 import supportIcon from "../../../assets/images/support.svg";
 import feedbackIcon from "../../../assets/images/feedback.svg";
 import CustomScrollbar from "../../general/CustomScrollbar";
+import UsageStatistics from "./UsageStatistics";
 
 const LeftSectionActionButtons = () => (
     <div id="left-section-action-buttons">
+        <section id={"usage-statistics"}>
+            <div className="section-title">
+                <span>Usage statistics</span>
+            </div>
+            <div className={"left-panel-action-buttons-section"}>
+                <UsageStatistics percentage={0.3} size={50}/>
+
+                <div className="usage-statistics-contents">
+                    <div className="usage-statistics-title">
+                        REMAINING CREDITS
+                    </div>
+                    <div className="usage-statistics-numbers">
+                        1357/10000
+                    </div>
+                </div>
+            </div>
+        </section>
         <CustomScrollbar styles={{filter: "var(--soft-shadow-top)"}}>
             <section>
                 <div className="section-title">
@@ -16,7 +34,7 @@ const LeftSectionActionButtons = () => (
                 </div>
                 <div className={"left-panel-action-buttons-section"}>
                     <div className={"button left-panel-action-button"} id="create-bot">
-                        <img src={botIcon} alt="Create a chat bot" id="create-bot-icon" className={"button-icon"}/>
+                    <img src={botIcon} alt="Create a chat bot" id="create-bot-icon" className={"button-icon"}/>
                         <div id="create-bot-button-text">Create a bot</div>
                     </div>
 
@@ -24,24 +42,6 @@ const LeftSectionActionButtons = () => (
                         <img src={exploreIcon} alt="Explore other user's chat bots" id="explore-bots-icon"
                              className={"button-icon"}/>
                         <div id="explore-bots-button-text">Explore bot gallery</div>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <div className="section-title">
-                    <span>Billing</span>
-                </div>
-                <div className={"left-panel-action-buttons-section"}>
-                    <div className={"button left-panel-action-button"} id="upgrade-plan">
-                        <img src={upgradeIcon} alt="Upgrade your plan" className={"button-icon"}
-                             id="upgrade-plan-icon"/>
-                        <div id="create-bot-button-text">Upgrade plan</div>
-                    </div>
-
-                    <div className={"button left-panel-action-button"} id="add-credits">
-                        <img src={creditsIcon} alt="Add more credits" className={"button-icon"} id="add-credits-icon"/>
-                        <div id="explore-bots-button-text">Add credits</div>
                     </div>
                 </div>
             </section>

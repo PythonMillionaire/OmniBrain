@@ -1,6 +1,7 @@
 @use 'sass:math';
 
-$border-modifier: 1;
+$border-modifier: 0.9;
+$border-modifier-messages: 0.8;
 
 :root
 {
@@ -14,12 +15,12 @@ $border-modifier: 1;
   --border-color-hued-subdued: hsl(226deg 34% 60%);
   --border-color-hued-complementary: hsl(226deg 55.31% 66.52%);
 
-  --input-field-height: 2em;
+  --input-field-height: 1.9em;
 
-  --soft-shadow-top: drop-shadow(0 -4px 6px hsla(225, 90%, 40%, 0.04));
-  --soft-shadow-bottom: drop-shadow(0 4px 6px hsla(225, 90%, 40%, 0.04));
-  --soft-shadow-right: drop-shadow(4px 0 6px hsla(225, 90%, 40%, 0.04));
-  --soft-shadow-left: drop-shadow(-4px 0 6px hsla(225, 90%, 40%, 0.04));
+  --soft-shadow-top: drop-shadow(0 -2px 2px hsla(225, 90%, 40%, 0.04));
+  --soft-shadow-bottom: drop-shadow(0 2px 2px hsla(225, 90%, 40%, 0.04));
+  --soft-shadow-right: drop-shadow(2px 0 2px hsla(225, 90%, 40%, 0.04));
+  --soft-shadow-left: drop-shadow(-2px 0 2px hsla(225, 90%, 40%, 0.04));
 
   --primary-color: hsl(226deg 55.31% 66.52%);
 }
