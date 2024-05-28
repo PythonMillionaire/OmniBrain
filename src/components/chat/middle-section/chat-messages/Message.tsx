@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import aiLogo from "../../../../assets/images/ai-providers/logo-chatgpt.svg";
-import userAvatar from '../../../../assets/images/user-avatar.svg';
+import userAvatar from '../../../../assets/images/user-avatar.png';
 import {MessageSenderType} from "../../../../types/enums";
 
 import MessageTop from "./message/MessageTop";

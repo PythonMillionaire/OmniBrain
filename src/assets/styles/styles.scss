@@ -66,6 +66,8 @@ body
 {
     width: 2.2rem;
     height: 2.2rem;
+    min-width: 2.2rem;
+    min-height: 2.2rem;
     border: 2px solid var(--border-color-hued);
     border-radius: 50%;
     justify-content: center;

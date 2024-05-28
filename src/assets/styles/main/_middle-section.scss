@@ -67,6 +67,11 @@
     .ScrollbarsCustom, .ScrollbarsCustom-Wrapper, .custom-scroller {
       overflow: visible !important;
     }
+
+    #chat-page-and-thread-tabs-section {
+
+      border-radius: 10px;
+    }
   }
 }
 
@@ -382,18 +387,19 @@ $thread-background: linear-gradient(to bottom, hsl($hue, 12%, 91%), hsl($hue, 11
   border-radius: 12px + $p;
   padding: $p;
 
+  $i: 0.55;
+
   box-shadow:
-          0 0 2px hsla(225, 20%, 60%, 0.14),
-          0 1px 1px hsla(225, 20%, 60%, 0.2),
-          0 2px 7px hsla(225, 20%, 60%, 0.08),
-          0 3px 10px hsla(225, 30%, 60%, 0.02),
-          0 3px 24px hsla(225, 20%, 60%, 0.08),
-          0 3px 24px hsla(225, 100%, 90%, 0.14);
+          0 0 2px hsla(225, 20%, 60%, 0.14 * $i),
+          0 1px 1px hsla(225, 20%, 60%, 0.2 * $i),
+          0 2px 7px hsla(225, 20%, 60%, 0.08 * $i),
+          0 3px 10px hsla(225, 30%, 60%, 0.02 * $i),
+          0 3px 24px hsla(225, 20%, 60%, 0.08 * $i),
+          0 3px 24px hsla(225, 100%, 90%, 0.14 * $i);
 }
 
 .follow-up-question {
-  background: linear-gradient(to bottom, hsl(225 20% 100% / 1) 60%, hsl(225 14% 93% / 1));
-  //border: 2px solid var(--border-color-hued);
+  background: linear-gradient(to bottom, hsl(225 20% 98% / 1) 60%, hsl(225 14% 93% / 1));
   white-space: nowrap;
   border-radius: 12px;
   padding: 4px 16px;
@@ -421,9 +427,13 @@ $middle-bg: hsl(218 14% 96% / 1);
 #chat-messages-section-container {
   border-top: 1px solid var(--border-color-lighter-two);
 
-  border-radius: 6px;
+  border-radius: 10px;
 
   overflow: visible !important;
+
+  .custom-scroller {
+    border-radius: 10px 10px 0 0;
+  }
 }
 
 #chat-messages-section {
@@ -647,9 +657,13 @@ $input-inset-shadow: inset 0 0 2px 0 hsl(0 0 0 / 0.16);
 
   @include flex(left);
 
-  padding: 12px 5px;
+  padding: 12px 4px;
 
   box-shadow: $input-inset-shadow;
+
+  input {
+    box-shadow: none;
+  }
 }
 
 #filter-chat-tag-section {
@@ -803,6 +817,16 @@ $input-inset-shadow: inset 0 0 2px 0 hsl(0 0 0 / 0.16);
   top: 2px;
 }
 
+#subchat-input-topics-section-border {
+  width: 100%;
+  height: 100%;
+
+  position: relative;
+  top: -2px;
+
+  background: linear-gradient(150deg, hsl(230 30% 60% / 1), hsl(200 60% 70% / 1));
+}
+
 $base-bg-brightness: 100%;
 
 $lightest-bg-brightness-reduction: 1%;
@@ -813,35 +837,62 @@ $darkest-bg-brightness-reduction: 2%;
   @include flex(left, $gap: 1.4rem);
   padding: 1.3rem 1.4rem;
 
+  position: relative;
+  top: 2px;
+
   filter: var(--soft-shadow-top);
   background: linear-gradient(to bottom, hsl(225 30% $base-bg-brightness / 1), hsl(225 30% $base-bg-brightness - $lightest-bg-brightness-reduction / 1));
+}
+$b-r-subtopic: 8px;
+$p-subtopic: 2px;
+.subtopic-border {
+  border-radius: $b-r-subtopic + $p-subtopic;
+
+  &.selected {
+    background: linear-gradient(135deg, hsl(230 30% 60% / 0.1), hsl(200 60% 70% / 0.1));
+
+    padding: $p-subtopic;
+
+    .subtopic {
+      border: 1px solid hsl(215, 50%, 56%);
+
+      padding: 5px 12px;
+
+      color: hsl(0 0% 29% / 1);
+      background: linear-gradient(to bottom, hsl(225, 50%, 100%), hsl(225, 30%, 95%));
+
+      box-shadow:
+              0 0 2px hsla(225, 20%, 60%, 0.015),
+              0 0 4px hsla(225, 20%, 60%, 0.06),
+              0 3px 8px hsla(225, 70%, 70%, 0.24),
+              inset 0 0 4px 0 hsla(225, 20%, 60%, 0.02);
+    }
+  }
+
+  &:not(.selected) {
+    background: linear-gradient(135deg, hsl(230 30% 66% / 1), hsl(200 60% 76% / 1));
+
+    padding: $p-subtopic - 1px;
+
+    .subtopic {
+      font-style: italic;
+      background: linear-gradient(to bottom, hsla(225, 26%, 97%, 1), hsla(225, 26%, 96%, 1));
+      color: hsl(0 0% 76% / 1);
+      border: 1px solid hsl(226deg 20% 70% / 0.26);
+      box-shadow: 0 0 2px hsla(225, 20%, 60%, 0.1), inset 0 0 5px 0 hsla(225, 20%, 60%, 0.02);
+    }
+  }
 }
 
 .subtopic {
   white-space: nowrap;
-  border-radius: 8px;
   padding: 4px 12px;
 
   max-width: 300px;
   overflow: hidden;
   text-overflow: ellipsis;
 
-
-  &.selected {
-    border: 1px solid var(--border-color-hued);
-
-    color: hsl(0 0% 20% / 1);
-    background: linear-gradient(to bottom, hsl(225, 50%, 100%), hsl(225, 30%, 95%));
-
-    box-shadow:  0 0 2px hsla(225, 20%, 60%, 0.015), 0 0 4px hsla(225, 20%, 60%, 0.06), inset 0 0 4px 0 hsla(225, 20%, 60%, 0.02);
-  }
-
-  &:not(.selected) {
-    background: linear-gradient(to bottom, hsla(225, 26%, 97%, 1), hsla(225, 26%, 96%, 1));
-    color: hsl(0 0% 50% / 1);
-    border: 1px solid hsl(226deg 20% 70% / 0.6);
-    box-shadow: 0 0 2px hsla(225, 20%, 60%, 0.1), inset 0 0 5px 0 hsla(225, 20%, 60%, 0.02);
-  }
+  border-radius: $b-r-subtopic;
 }
 
 #chat-input-section {
@@ -892,7 +943,7 @@ $darkest-bg-brightness-reduction: 2%;
 
   height: auto;
   min-height: 4.2rem;
-  border: 1px solid hsl(225 40% 52.26% / 56%);
+  border: 1px solid hsl(232deg 82% 34% / 38%);
   border-radius: 12px;
   flex: 1;
   width: 100%;
@@ -901,11 +952,17 @@ $darkest-bg-brightness-reduction: 2%;
 
   resize: vertical;
 
-  filter: drop-shadow(0 0 6px hsl(225 20% 60% / 0.04));
+  filter: drop-shadow(0 0 6px hsl(225 20% 60% / 0.015));
 
   z-index: 2;
 
-  box-shadow: inset 0 0 36px 0 hsla(0, 0%, 0%, -(100% - $base-bg-brightness) + 1%), inset 0 0 12px 0 hsla(0, 0%, 0%, -(100% - $base-bg-brightness));
+  box-shadow:
+          inset 0 0 36px 0 hsla(0, 0%, 0%, -(100% - $base-bg-brightness) + 1%),
+          inset 0 0 12px 0 hsla(0, 0%, 0%, -(100% - $base-bg-brightness)),
+          inset 0 0 4px 0 hsla(0, 0%, 0%, 4%),
+          inset 0 0 2px 0 hsla(0, 0%, 0%, 7%),
+          inset 3px 3px 12px 0 hsla(0, 0%, 0%, 3%),
+          0 0 12px 0 hsla(0, 0%, 0%, 2%);
 
   &::placeholder {
     color: #444;
@@ -927,9 +984,18 @@ $darkest-bg-brightness-reduction: 2%;
   }
 }
 
+$u-width: 72%;
 .user  {
-  .chat-message-info {
-    justify-content: flex-end;
+
+  .chat-message-info, .chat-message-bottom  {
+    width: $u-width;
+    justify-self: flex-end;
+  }
+
+  .chat-message-wrapper {
+    width: $u-width;
+
+    justify-self: flex-end;
   }
 }
 
@@ -1030,37 +1096,62 @@ $opacity-message-buttons: 0.7;
   @include flex(flex-start, flex-end, $gap: 8px)
 }
 
-.topic-tab {
-  border-style: solid;
-  border-width: 1px;
-  border-bottom: none;
-  white-space: nowrap;
-  border-radius: 12px 12px 0 0;
-  padding: 8px 14px 8px;
+$b-r: 12px;
+$b-w: 2px;
+.topic-tab-border {
+  width: 100%;
+  height: 100%;
+
+  border-radius: ($b-r + $b-w) ($b-r + $b-w) 0 0;
+
   position: relative;
 
-
-  &.selected {
-    color: hsl(0 0% 24%);
-
-    border-width: 1px;
-    border-color: hsl(225 24% 71% / 1);
-    font-weight: 700;
-
-    background: white;
-
-    padding-bottom: 12px;
-
-    top: $chat-bottom-border-width;
-
+  .topic-tab {
+    top: 0;
     z-index: 1;
   }
 
-  &:not(.selected) {
-    color: hsl(0 0% 60%);
-    border-color: var(--border-color-lighter);
-    background: linear-gradient(to bottom, hsl(225 5% 94% / 0.7), hsl(225 1% 93% / 0.7));
+  &.selected {
+    top: 1px;
+
+    padding: $b-w $b-w 0 $b-w;
+
+    background: linear-gradient(170deg, hsl(230, 50%, 66%), hsl(200, 60%, 70%));
+
+    .topic-tab {
+        color: hsl(0 0% 24%);
+
+        font-weight: 700;
+
+        background: white;
+
+        padding-bottom: 12px;
+
+    }
   }
+
+  &:not(.selected) {
+    padding: ($b-w - 1) ($b-w - 1) 0 ($b-w - 1);
+
+    top: 4px;
+
+    background: linear-gradient(170deg, hsl(225, 30%, 70%), hsl(200, 40%, 74%));
+
+    .topic-tab {
+      color: hsl(0 0% 60%);
+      background: linear-gradient(to bottom, hsl(225 5% 99% / 1), hsl(225 1% 98% / 1));
+
+      padding-bottom: 8px;
+    }
+  }
+}
+
+.topic-tab {
+  white-space: nowrap;
+  padding: 8px 14px 12px;
+  position: relative;
+
+  border-radius: $b-r $b-r 0 0;
 }
 
 #chat-input-middle {
@@ -1156,19 +1247,74 @@ $opacity-message-buttons: 0.7;
 
   @include flex;
 
-  > div.button-contents {
+  $b-r: 12px;
+
+  $t-t: 0.05s;
+  $type: cubic-bezier(0,1.38,1,.05);
+  $transition:
+          left $t-t $type,
+          bottom $t-t $type,
+          right $t-t $type,
+          padding-bottom $t-t $type,
+          padding-left $t-t $type,
+          padding-top $t-t $type;
+
+  .button-outer-border,
+  .button-contents,
+  .below-button {
+    transition: $transition;
+  }
+
+
+  &:active {
+    .button-outer-border {
+      bottom: -3px;
+      right: -2px;
+
+      transition: $transition;
+    }
+
+    .below-button {
+      border-radius: $b-r + 2px;
+    }
+  }
+
+  .button-outer-border {
+    position: relative;
+    bottom: 0;
+    right: 0;
+
+    $color: hsl(200 58% 52% / 1);
+    $color-two: hsl(230 60% 64% / 1);
+
+    background: linear-gradient(65deg, $color, $color-two);
+
+    padding: 2px;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: $b-r + 2;
+
     z-index: 1;
+
+
+  }
+
+  .button-contents {
+    z-index: 2;
     @include flex($gap: 8px);
 
     box-shadow:
-            0 0 2px hsla(225, 20%, 60%, 0.2),
-            inset 0 0 2px hsla(225, 20%, 60%, 0.46),
-            inset 0 0 8px hsla(225, 20%, 60%, 0.08);
+            0 0 2px hsla(225, 20%, 60%, 0.16),
+            inset 0 0 2px hsla(225, 20%, 60%, 0.2),
+            inset 0 0 8px hsla(225, 20%, 60%, 0.06);
 
-    border: 2px solid var(--border-color-hued-subdued);
+    border: 2px solid transparent;
+
     color: hsl(245 18% 20% / 1);
     background: linear-gradient(176deg, hsl(226 90% 100% / 1) 60%, hsl(226 80% 97% / 1) 90%);
-    border-radius: 12px;
+    border-radius: $b-r;
     padding: 8px 14px;
 
     text-shadow: 1px 1px 2px hsla(225, 20%, 60%, 0.0);
@@ -1178,26 +1324,26 @@ $opacity-message-buttons: 0.7;
     }
   }
 
-  > div.below-button {
-    $color: hsl(200 30% 58% / 1);
-    $color-two: hsl(216 30% 58% / 1);
-    $color-three: hsl(226 64% 68% / 1);
-    $color-four: hsl(255 60% 68% / 1);
+  .below-button {
+    $color: hsl(216 28% 52% / 1);
+    $color-two: hsl(220 30% 64% / 1);
+    $color-three: hsl(226 26% 65% / 1);
+    $color-four: hsl(235 20% 62% / 1);
 
     background: linear-gradient(65deg, $color, $color-two, $color-three, $color-four);
     width: 100%;
     position: absolute;
     height: 100%;
     z-index: 0;
-    border-radius: 12px;
+    border-radius: $b-r;
     bottom: -3px;
     right: -2px;
 
     box-shadow:
-            2px 2px 1px hsl(225 40% 60% / 0.065),
-            1px 1px 3px hsl(225 30% 60% / 0.13),
-            1px 1px 1px hsl(225 30% 30% / 0.2),
-            0 0 8px hsl(225 60% 60% / 0.07);
+            2px 2px 1px hsl(215 40% 60% / 0.065),
+            1px 1px 3px hsl(235 40% 60% / 0.09),
+            1px 1px 1px hsl(255 50% 30% / 0.2),
+            0 0 8px hsl(225 60% 60% / 0.05);
   }
 }
 
@@ -1209,32 +1355,31 @@ $opacity-message-buttons: 0.7;
 .chat-message {
   border-radius: 13px;
   padding: 18px 28px;
-
-
-
   position: relative;
   z-index: 1;
 
   $shadow: 0 0 6px hsl(225 30% 40% / 0.035),  0 0 30px hsl(225 30% 40% / 0.035);
   $inset: inset 0 0 4px 0 hsla(0, 0%, 0%, 0.04), inset 0 0 40px 0 hsla(0, 0%, 0%, 0.025);
 
+  $base:  0 0 0 1px #{hsl(225, 14%, 70%, 0.75 * $border-modifier * $border-modifier-messages)},
+          0 0 0 2px #{hsla(225, 30%, 60%, 0.05 * $border-modifier * $border-modifier-messages)};
 
   &.ai-message {
+      padding: 18px 28px;
+
     background: linear-gradient(to bottom, white, #f8f8f8);
 
     box-shadow:
-            0 0 0 1px #{hsl(225, 14%, 70%, 0.75 * $border-modifier * $border-modifier-messages)},
-            0 0 0 2px #{hsla(225, 30%, 60%, 0.05 * $border-modifier * $border-modifier-messages)},
+            $base,
             $shadow,
             $inset;
   }
 
   &.user-message {
-    background: linear-gradient(to bottom, white, #f8f8f8);
+    background: linear-gradient(to bottom, hsl(225, 38%, 99%), hsl(225, 36%, 97%));
 
     box-shadow:
-            0 0 0 1px #{hsl(225, 14%, 70%, 0.75 * $border-modifier * $border-modifier-messages)},
-            0 0 0 2px #{hsla(225, 30%, 60%, 0.05 * $border-modifier * $border-modifier-messages)},
+            $base,
             $shadow,
             $inset;
   }
@@ -1243,7 +1388,7 @@ $opacity-message-buttons: 0.7;
 .chat-message-contents {
   white-space: pre-line;
 
-  line-height: 1.8rem;
+  line-height: 2.6rem;
 
   word-break: break-all; /* Ensures words can break at any character */
   overflow-wrap: break-word; /* Ensures long words break to the next line */
@@ -1253,6 +1398,8 @@ $opacity-message-buttons: 0.7;
 
 .chat-message-outer-container {
   @include flex(flex-start, stretch, $direction: column);
+
+  padding: 0 150px;
 
   &:hover  {
     .visible { visibility: visible; }
@@ -1269,7 +1416,7 @@ $opacity-message-buttons: 0.7;
   }
 
   &:first-child {
-    margin-top: 16px;
+    margin-top: 22px;
   }
 }
 

@@ -10,13 +10,16 @@ const ProviderSendButton: React.FC<ProviderSendButtonProps> = ({ providerName, p
     return (
         <div className="button provider-button">
             <div className="below-button"></div>
-            <div className="button-contents">{providerIcon &&
-                (typeof providerIcon === 'string' ? (
-                    <img src={providerIcon} alt="User uploaded icon" className="provider-icon"/>
-                ) : (
-                    React.createElement(providerIcon)
-                ))}
-                {providerName}</div>
+            <div className="button-outer-border">
+                <div className="button-contents">{providerIcon &&
+                    (typeof providerIcon === 'string' ? (
+                        <img src={providerIcon} alt="User uploaded icon" className="provider-icon"/>
+                    ) : (
+                        React.createElement(providerIcon)
+                    ))}
+                    {providerName}
+                </div>
+            </div>
         </div>
     );
 };

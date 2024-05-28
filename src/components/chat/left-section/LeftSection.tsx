@@ -1,6 +1,6 @@
 import React from 'react';
 
-import userAvatar from '../../../assets/images/user-avatar.svg';
+import userAvatar from '../../../assets/images/user-avatar.png';
 import settingsIcon from '../../../assets/images/settings.svg';
 import ChatList from "./ChatList";
 import LeftSectionActionButtons from "./LeftSectionActionButtons";

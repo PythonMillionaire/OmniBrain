@@ -8,7 +8,23 @@ import {ReplyMode} from "../../../../../types/enums";
 import {useDispatch, useSelector} from "react-redux";
 import {selectReplyMode, setReplyMode} from "../../../../../features/chat/chatSlice";
 
-const ChatInputOrganizationSettings = () => {
+const TopicTab: React.FC<{text: string, selected: boolean}> = ({text, selected}) => {
+    return (
+        <div className={`topic-tab-border${selected ? " selected" : ""}`}>
+            <div className={`button topic-tab`}>{text}</div>
+        </div>
+    );
+};
+
+const SubtopicTab: React.FC<{text: string, selected: boolean}> = ({text, selected}) => {
+    return (
+        <div className={`subtopic-border${selected ? " selected" : ""}`}>
+            <div className={`button subtopic`}>{text}</div>
+        </div>
+    );
+};
+
+const ChatInputOrganizationSettings: React.FC = () => {
     const replyMode = useSelector(selectReplyMode);
 
     return (
@@ -18,9 +34,9 @@ const ChatInputOrganizationSettings = () => {
                     replyMode === ReplyMode.allMessages ?
                         <div id="chat-input-topics-section">
                             <div id="chat-input-topics">
-                                <div className="button topic-tab selected">Graphic design</div>
-                                <div className="button topic-tab">Programming</div>
-                                <div className="button topic-tab">Marketing</div>
+                                <TopicTab text={"Graphic design"} selected={true}/>
+                                <TopicTab text={"Programming"} selected={false}/>
+                                <TopicTab text={"Marketing"} selected={false}/>
                             </div>
                                 <AddElementButton type={"topic"}/>
                         </div>
@@ -36,10 +52,13 @@ const ChatInputOrganizationSettings = () => {
                 </div>
             </div>
 
-            <div id="subchat-input-topics-section">
-                <div className="button subtopic selected">Ajahn Brahm is the VERY BEST. No question about it</div>
-                <div className="button subtopic">Ajahn Brahm is beautiful</div>
-                <AddElementButton type={"subtopic"}/>
+            <div id="subchat-input-topics-section-border">
+                <div id="subchat-input-topics-section">
+
+                    <SubtopicTab text={"Ajahn Brahm is the VERY BEST. No question about it"} selected={true}/>
+                    <SubtopicTab text={"Ajahn Brahm is beautiful"} selected={false}/>
+                    <AddElementButton type={"subtopic"}/>
+                </div>
             </div>
         </div>
     );
