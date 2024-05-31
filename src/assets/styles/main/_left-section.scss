@@ -519,6 +519,7 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
 
 #left-section-top-upper {
   background: linear-gradient(to bottom, white, hsl(220, 6%, 96%));
+
 }
 
 #start-new-chat-section {
@@ -749,7 +750,7 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
 
   font-size: 1.4rem;
 
-  padding: 12px $padding-left 22px;
+  padding: 12px $padding-left 24px;
 
   // shift left to not cast it over the scrollbar
   box-shadow: -9px 3px 3px hsl(225 36% 92% / 0.8);
@@ -875,7 +876,7 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
   @include flex;
 
   img {
-    width: 80%;
+    width: 15px;
     opacity: 0.8;
   }
 }

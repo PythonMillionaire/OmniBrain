@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import lodash from 'lodash';
 import MessageSender from "../../../../../types/messages/MessageSender";
+import {MessageSenderType} from "../../../../../types/enums";
 
 interface MessageMiddleSectionProps {
     sender: MessageSender;
@@ -18,6 +19,7 @@ const MessageMiddleSection: React.FC<MessageMiddleSectionProps> = ({
     const chatMessageRef = useRef<HTMLDivElement>(null);
     const sideButtonsRef = useRef<HTMLDivElement>(null);
     const [showSideButtons, setShowSideButtons] = useState(true);
+    const [truncateText, setTruncateText] = useState(true);
 
     const checkAndSetButtonVisibility = useCallback(() => {
         const messageContainer = chatMessageRef.current;
@@ -62,6 +64,24 @@ const MessageMiddleSection: React.FC<MessageMiddleSectionProps> = ({
         };
     }, [checkAndSetButtonVisibility]);
 
+
+    const maxCharsBeforeTruncating = MessageSenderType.user === sender.type ? 200 : 2400;
+    const isAboveThreshold = messageContents.length > maxCharsBeforeTruncating; // check if text is below
+
+    // check if text is longer than minimum threshold and truncate if it is
+    useEffect(() => {
+        if (isAboveThreshold) {
+            setTruncateText(true);
+        } else {
+            setTruncateText(false);
+        }
+    }, [messageContents]);
+
+    // function to set truncated text to visible when the button below is clicked on
+    const handleShowTruncatedText = () => {
+        setTruncateText(!truncateText);
+    };
+
     return (
         <>
             <div className="chat-message-select-checkbox">
@@ -72,7 +92,14 @@ const MessageMiddleSection: React.FC<MessageMiddleSectionProps> = ({
 
             <div className="chat-message-wrapper">
                 <div ref={chatMessageRef} className={`chat-message ${sender.type.toLowerCase()}-message`}>
-                    <div className="chat-message-contents">{messageContents}</div>
+                    <div className={`chat-message-contents`}>
+                        <div className={`chat-message-contents-text${truncateText ? ' truncated' : ''}`}>
+                            {messageContents}
+                        </div>
+                        <div className="button chat-message-show-truncated-contents"  style={{ display: isAboveThreshold ? 'block' : 'none' }} onClick={handleShowTruncatedText}>
+                            { truncateText ? 'Show full response' : 'Collapse response' }
+                        </div>
+                    </div>
                 </div>
             </div>
 

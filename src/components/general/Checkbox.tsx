@@ -3,10 +3,11 @@ import Tooltip from "./Tooltip";
 
 interface CheckboxProps {
     text: string;
+    checked?: boolean;
     tooltipText?: string;
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ text, tooltipText }) => {
+const Checkbox: React.FC<CheckboxProps> = ({ text, checked= false, tooltipText }) => {
     const [isHovered, setIsHovered] = useState(false);
     const parentRef = useRef<HTMLLabelElement>(null); // Ref for the label
 
@@ -21,7 +22,8 @@ const Checkbox: React.FC<CheckboxProps> = ({ text, tooltipText }) => {
                     parentRef={parentRef} // Pass the ref to Tooltip
                 />
             )}
-            <input type="checkbox"/>
+            <input type="checkbox" checked={checked} />
+            <span className="faux-checkbox"></span>
             <span ref={parentRef} className="checkbox-label">{text}</span>
         </label>
     );

@@ -10,8 +10,10 @@ import {selectReplyMode, setReplyMode} from "../../../../../features/chat/chatSl
 
 const TopicTab: React.FC<{text: string, selected: boolean}> = ({text, selected}) => {
     return (
-        <div className={`topic-tab-border${selected ? " selected" : ""}`}>
-            <div className={`button topic-tab`}>{text}</div>
+        <div className={`topic-tab-outer-border${selected ? " selected" : ""}`}>
+            <div className={`topic-tab-border`}>
+                <div className={`button topic-tab`}>{text}</div>
+            </div>
         </div>
     );
 };

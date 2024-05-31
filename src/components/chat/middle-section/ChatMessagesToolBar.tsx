@@ -15,23 +15,27 @@ import settingsIcon from "../../../assets/images/settings.svg";
 import Tag from "../../general/Tag";
 import AddElementButton from "../../general/AddElementButton";
 
-import pageNavigationArrow from "../../../assets/images/next-page.svg";
+import pageNavigationArrow from "../../../assets/images/arrow-two.svg";
 import CustomScrollbar from "../../general/CustomScrollbar";
 
-const ChatThreadTab: React.FC<{ id: string; }> = ({ id }) => {
+const ChatThreadTab: React.FC<{ id: string; classes?: string }> = ({ id, classes }) => {
     return (
-        <div id={`chat-thread-tab-${id}`} className="button chat-thread-tab">
-            <span>Thread</span> <i>{id}</i>
-            <div className="button chat-page-thread-tab-delete">X</div>
+        <div id={`chat-thread-tab-${id}`} className={`button chat-tab-border${classes ? ` ${classes}` : ""}`}>
+            <div className="chat-thread-tab">
+                <span>Thread</span> <i>{id}</i>
+                <div className="button chat-thread-thread-tab-delete">X</div>
+            </div>
         </div>
     );
 }
 
-const ChatPageTab: React.FC<{ current: string; }> = ({ current }) => {
+const ChatPageTab: React.FC<{ current: string; classes?: string }> = ({ current, classes }) => {
     return (
-        <div id={`chat-page-tab-${current}`} className="button chat-page-tab">
-            <span>Page</span> <i>{current}</i>
-            <div className="button chat-page-thread-tab-delete">X</div>
+        <div id={`chat-page-tab-${current}`} className={`button chat-tab-border${classes ? ` ${classes}` : ""}`}>
+            <div className="chat-page-tab">
+                <span>Page</span> <i>{current}</i>
+                <div className="button chat-page-thread-tab-delete">X</div>
+            </div>
         </div>
     );
 }
@@ -74,8 +78,10 @@ const ChatMessagesToolBar: React.FC = () => {
                 </div>
                 <div id="chat-filter-search">
                     <div id="chat-message-filters">
-                        <input id="filter-chat-tag-section"/>
-                        <Tag className={"chat-tag-filter"} tagName={"Tag name"}/>
+                        <input id="filter-chat-tag-section-input"/>
+                        <div id={"chat-message-filters-tags"}>
+                            <Tag className={"chat-tag chat-tag-filter"} tagName={"Tag name"}/>
+                        </div>
                     </div>
                     <div id="chat-message-search-section">
                         <input id="filter-chat-search-section" placeholder="Search messages"/>
@@ -88,18 +94,20 @@ const ChatMessagesToolBar: React.FC = () => {
             <div id="chat-message-tool-bar-bottom">
                 <div className={"left"}>
                     <div id="chat-pages-menu">
-                        <div id="previous-page" className={"button"}><img className={"page-navigation-arrow"}
-                                                                          src={pageNavigationArrow}
-                                                                          alt="Previous page"/> Previous
+                        <div id="previous-page" className={"button"}>
+                            <img className={"page-navigation-arrow"} src={pageNavigationArrow} alt="Previous page"/>
+                            Previous
                         </div>
                         <div id="chat-page-number">
                             <input id={"chat-page-number-input-field"} maxLength={3}/><i>of</i> <b>13</b> <i>pages</i>
                         </div>
-                        <div id="next-page" className={"button"}>Next <img className={"page-navigation-arrow"}
-                                                                           src={pageNavigationArrow} alt="Next page"/>
+                        <div id="next-page" className={"button"}>
+                            Next
+                            <img className={"page-navigation-arrow"} src={pageNavigationArrow} alt="Next page"/>
                         </div>
-                        <div id="create-new-page" className={"button"}><AddElementButton text={"Create new page"}
-                                                                                         type={"page"}/></div>
+                        <div id="create-new-page" className={"button"}>
+                            <AddElementButton text={"Create new page"} type={"page"}/>
+                        </div>
                     </div>
                 </div>
                 <div className={"right"}>
@@ -107,11 +115,8 @@ const ChatMessagesToolBar: React.FC = () => {
                         <DragDropContext onDragEnd={handleOnDragEnd}>
                             <Droppable droppableId="tabs" direction={"horizontal"}>
                                 {(provided: DroppableProvided) => (
-                                    <div {...provided.droppableProps} ref={provided.innerRef}
-                                         id="chat-page-and-thread-tabs-section">
-                                        <div id={`chat-page-tab-1`} className="button chat-page-tab chat-main-page selected">
-                                            <span>Page</span> <i>1</i>
-                                        </div>
+                                    <div {...provided.droppableProps} ref={provided.innerRef} id="chat-page-and-thread-tabs-section">
+                                        <ChatPageTab current={'1'} classes={'chat-main-page selected'}/>
 
                                         {tabs.map((tab, index) => (
                                             <Draggable

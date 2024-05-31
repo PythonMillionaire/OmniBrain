@@ -41,10 +41,14 @@ $border-modifier-messages: 0.8;
   cursor: url("../images/cursors/cursor.png"), auto;
 }
 
+@mixin textCursor {
+  cursor: url("../images/cursors/cursor-text.png"), auto;
+}
+
 @mixin pointer {
   cursor: url("../images/cursors/cursor-pointer.png") 8 0, auto;
 }
 
 @mixin scrollCursor {
-  cursor: url("../images/cursors/cursor-scroll.png"), auto;
+  cursor: url("../images/cursors/cursor-scrollbar.png"), auto;
 }

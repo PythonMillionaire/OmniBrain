@@ -7,9 +7,11 @@ interface AddElementButtonProps {
 
 const Tag: React.FC<AddElementButtonProps> = ({className= 'chat-tag', tagName}) => {
     return (
-            <div className={`tag ${className}`}>
-                { tagName }
-                <div className="button chat-tag-delete">X</div>
+            <div className={`tag-border`}>
+                <div className={`tag ${className}`}>
+                    { tagName }
+                    <div className="button chat-tag-delete">X</div>
+                </div>
             </div>
     )
 }

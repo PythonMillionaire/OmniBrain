@@ -15,6 +15,7 @@ const wrapperStyle: CSSProperties = {
     inset: '0px 10px 0px 0px',
     overflow: 'hidden',
     width: '100%',
+    height: '100%'
 };
 
 const borderRadius = 4;
@@ -68,7 +69,7 @@ const thumbWrapperStyle: CSSProperties = {
     position: 'absolute',
     width: '100%',
     height: '100%',
-    display: 'flex',
+    display: 'flex !important',
     alignItems: 'center',
     justifyContent: 'center'
 };
@@ -93,6 +94,7 @@ const scrollerStyle: CSSProperties = {
     position: 'absolute',
     inset: '0',
     width: '100%',
+    height: '100%',
     marginRight: '0px'
 };
 
@@ -112,7 +114,11 @@ const CustomScrollbar: React.FC<{ children: React.ReactNode, minHeight?: string,
             const handleWheel = (event: WheelEvent) => {
                 if (scroller.contains(event.target as Node)) {
                     event.preventDefault();
-                    scroller.scrollTop += event.deltaY;
+                    if (event.shiftKey) {
+                        scroller.scrollLeft += event.deltaY;  // Scroll horizontally when Shift key is held
+                    } else {
+                        scroller.scrollTop += event.deltaY;
+                    }
                 }
             };
             scroller.addEventListener('wheel', handleWheel, { passive: false });
