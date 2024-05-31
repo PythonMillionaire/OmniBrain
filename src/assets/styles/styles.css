@@ -207,7 +207,7 @@ input[type=range]:focus::-ms-fill-upper {
   filter: var(--soft-shadow-right);
   background: hsl(225, 20%, 98%);
   position: relative;
-  z-index: 2;
+  z-index: 4;
 }
 
 #left-section-middle {
@@ -338,7 +338,6 @@ input[type=range]:focus::-ms-fill-upper {
   flex-wrap: nowrap;
   z-index: 3;
   filter: var(--soft-shadow-bottom);
-  overflow-x: hidden;
 }
 #chat-list-main .ScrollbarsCustom {
   flex-grow: 1;
@@ -1083,19 +1082,20 @@ input[type=range]:focus::-ms-fill-upper {
 }
 #chat-message-tool-bar-bottom .right {
   width: 100%;
-}
-#chat-message-tool-bar-bottom .right ::-webkit-scrollbar {
-  height: 10px;
-  filter: drop-shadow(5px 0px 0px red);
-}
-#chat-message-tool-bar-bottom .right ::-webkit-scrollbar-track {
-  border: 1px solid hsl(226, 55.31%, 84.52%);
-  box-shadow: inset 0 0 3px hsla(226, 25.31%, 84.52%, 0.3);
-  background-color: hsl(225, 6%, 99%);
-  border-radius: 10px;
-}
-#chat-message-tool-bar-bottom .right .ScrollbarsCustom, #chat-message-tool-bar-bottom .right .ScrollbarsCustom-Wrapper, #chat-message-tool-bar-bottom .right .custom-scroller {
-  overflow: visible !important;
+  /*::-webkit-scrollbar
+      {
+        height: 10px;
+        filter: drop-shadow(5px 0px 0px red);
+      }
+
+      ::-webkit-scrollbar-track
+      {
+        border: 1px solid hsl(226deg 55.31% 84.52%);
+        box-shadow: inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.3);
+        background-color: hsl(225 6% 99% / 1);
+        border-radius: 10px;
+      }
+  */
 }
 #chat-message-tool-bar-bottom .right #chat-page-and-thread-tabs-section {
   border-radius: 10px;
@@ -1489,7 +1489,7 @@ input[type=range]:focus::-ms-fill-upper {
   flex-direction: row;
   gap: 0px;
   flex-wrap: nowrap;
-  background: linear-gradient(177deg, hsl(208, 85%, 90.6976744186%), hsl(218, 80%, 79.0697674419%), hsl(225, 50%, 79.0697674419%), hsl(225, 50%, 79.0697674419%), hsl(230, 50%, 79.0697674419%), hsl(235, 50%, 79.0697674419%), hsl(225, 90%, 79.0697674419%));
+  background: linear-gradient(177deg, hsl(208, 85%, 95.1219512195%), hsl(218, 80%, 82.9268292683%), hsl(225, 50%, 82.9268292683%), hsl(225, 50%, 82.9268292683%), hsl(230, 50%, 82.9268292683%), hsl(235, 50%, 82.9268292683%), hsl(225, 90%, 82.9268292683%));
   border-radius: 15px;
   padding: 1px;
   box-shadow: 0 0 2px hsla(225, 20%, 60%, 0.108), 0 1px 1px hsla(225, 20%, 60%, 0.24), 0 2px 7px hsla(225, 20%, 60%, 0.048), 0 3px 10px hsla(225, 30%, 60%, 0.012), 0 3px 24px hsla(225, 20%, 60%, 0.048), 0 3px 24px hsla(225, 100%, 90%, 0.084);
@@ -1516,6 +1516,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 #chat-messages-section-container {
+  z-index: 3;
   border-top: 1px solid var(--border-color-lighter-two);
   border-radius: 10px;
   overflow: visible !important;
@@ -1639,8 +1640,7 @@ input[type=range]:focus::-ms-fill-upper {
   flex-wrap: nowrap;
   width: 100%;
   height: 100%;
-  overflow-y: hidden;
-  overflow-x: auto;
+  overflow-x: visible;
   background: hsl(225, 8%, 93%);
   padding: 2px 12px 0;
   border-left: 1px solid var(--border-color-lighter-two);
@@ -1661,13 +1661,14 @@ input[type=range]:focus::-ms-fill-upper {
   position: relative;
 }
 .chat-tab-border.selected {
-  --p: 2px;
+  --p: 3px;
   top: 1px;
-  background: linear-gradient(45deg, hsl(190, 60%, 65%), hsl(255, 60%, 65%));
+  padding: var(--p) calc(var(--p) - 1px) calc(var(--p) - 1px) calc(var(--p) - 1px);
+  background: linear-gradient(45deg, hsl(210, 55%, 69%), hsl(235, 55%, 69%));
 }
 .chat-tab-border:not(.selected) {
   top: 3px;
-  background: linear-gradient(45deg, hsl(190, 38%, 72%), hsl(255, 38%, 72%));
+  background: linear-gradient(45deg, hsl(210, 38%, 72%), hsl(235, 38%, 72%));
 }
 
 .chat-main-page {
@@ -1897,6 +1898,7 @@ input[type=range]:focus::-ms-fill-upper {
   padding: 2px 8px;
   font-size: 1.2rem;
   position: relative;
+  box-shadow: 0 0 3px hsl(225, 20%, 63%), 0 0 12px hsl(225, 20%, 90%);
 }
 
 .tag-border {
@@ -1979,7 +1981,7 @@ input[type=range]:focus::-ms-fill-upper {
   border-radius: 9px;
 }
 .subtopic-border.selected {
-  background: linear-gradient(135deg, hsl(250, 26%, 68%), hsl(214, 62%, 74%));
+  background: linear-gradient(135deg, hsl(250, 28%, 70%), hsl(214, 40%, 78%));
   padding: 1px;
   box-shadow: 0 1px 4px hsla(225, 20%, 10%, 0.02), 2px 2px 18px hsla(225, 20%, 10%, 0.01), 4px 4px 9px hsla(225, 100%, 88%, 0.03);
 }
@@ -1990,14 +1992,14 @@ input[type=range]:focus::-ms-fill-upper {
   font-style: italic;
   font-weight: 500;
   cursor: url("../images/cursors/cursor.png"), auto;
-  border: 1px solid hsl(215, 50%, 73%);
-  border-right-color: hsl(215, 50%, 65%);
-  border-bottom-color: hsl(215, 50%, 62%);
-  border-left-color: hsl(215, 50%, 67%);
+  border: 1px solid hsl(215, 35%, 69%);
+  border-left-color: hsl(215, 35%, 65%);
+  border-right-color: hsl(215, 35%, 60%);
+  border-bottom-color: hsl(215, 35%, 56%);
   padding: 5px 15px 7px 14px;
   color: hsl(0, 0%, 29%);
   background: linear-gradient(to bottom, hsl(225, 50%, 100%) 50%, hsl(225, 10%, 99%));
-  box-shadow: inset 0 0 4px 0 hsla(225, 20%, 10%, 0.039), inset -2px -2px 4px 0 hsla(225, 60%, 50%, 0.039), inset -1px -1px 2px 0 hsla(225, 60%, 50%, 0.039), inset 1px 1px 2px 0 hsla(225, 60%, 50%, 0.039), -2px -2px 3px hsl(225, 20%, 100%);
+  box-shadow: inset 0 0 4px 0 hsla(225, 20%, 10%, 0.039), inset 2px 2px 4px 0 hsla(225, 60%, 50%, 0.009), inset -2px -2px 4px 0 hsla(225, 60%, 50%, 0.051), inset -1px -1px 2px 0 hsla(225, 60%, 50%, 0.039), inset 1px 1px 2px 0 hsla(225, 60%, 50%, 0.084), -2px -2px 3px hsl(225, 20%, 100%);
 }
 .subtopic-border:not(.selected) {
   background: linear-gradient(135deg, hsl(230, 30%, 72%), hsl(200, 60%, 80%));
@@ -2060,21 +2062,38 @@ input[type=range]:focus::-ms-fill-upper {
   transform: translate(50%, -50%);
 }
 
+#chat-input-field-border {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 0px;
+  flex-wrap: nowrap;
+  padding: 1px;
+  background: linear-gradient(135deg, hsl(230, 50%, 92%), hsl(200, 60%, 84%));
+  border-radius: 13px;
+  width: 100%;
+  min-height: 2lh;
+  max-height: 70vh;
+}
+
 #chat-input-field {
   cursor: url("../images/cursors/cursor-text.png"), auto;
   position: relative;
+  bottom: 0;
   background: hsl(225, 40%, 97.5%);
   height: auto;
-  min-height: 4.2rem;
-  border: 1px solid hsla(232, 82%, 34%, 0.38);
+  width: 100%;
+  min-height: 2lh;
+  max-height: 30lh;
+  border: 1px solid hsla(232, 32%, 45%, 0.5);
   border-radius: 12px;
   flex: 1;
-  width: 100%;
   padding: 12px;
-  resize: vertical;
+  resize: none;
   filter: drop-shadow(0 0 6px hsla(225, 20%, 60%, 0.015));
   z-index: 2;
-  box-shadow: inset 0 0 36px 0 hsla(0, 0%, 0%, 0.01), inset 0 0 12px 0 hsla(0, 0%, 0%, 0.01), inset 0 0 4px 0 hsla(0, 0%, 0%, 0.02), inset 0 0 2px 0 hsla(0, 0%, 0%, 0.04), inset 0 0 1px 0 hsla(0, 0%, 0%, 0.02), inset 3px 3px 12px 0 hsla(0, 0%, 0%, 0.01), 0 0 12px 0 hsla(0, 0%, 0%, 0.02);
+  box-shadow: inset 0 0 4px 0 hsla(0, 0%, 0%, 0.05), inset 0 0 2px 0 hsla(0, 0%, 0%, 0.3), inset 0 0 1px 0 hsla(0, 0%, 0%, 0.12), 0 0 12px 0 hsla(0, 0%, 0%, 0.02);
 }
 #chat-input-field::placeholder {
   color: #444;
@@ -2233,7 +2252,7 @@ input[type=range]:focus::-ms-fill-upper {
 .topic-tab-outer-border.selected .topic-tab-border {
   padding: 3px 2px;
   border-radius: 16px 16px 0 0;
-  background: linear-gradient(30deg, hsl(225, 54%, 66%), hsl(206, 52%, 66%));
+  background: linear-gradient(30deg, hsl(225, 50%, 66%), hsl(206, 48%, 66%));
 }
 .topic-tab-outer-border:not(.selected) {
   padding: 1px 1px 0 1px;
@@ -2402,7 +2421,7 @@ input[type=range]:focus::-ms-fill-upper {
   position: relative;
   bottom: 0;
   right: 0;
-  background: linear-gradient(65deg, hsl(205, 52%, 52%), hsl(230, 55%, 64%));
+  background: linear-gradient(65deg, hsl(212, 42%, 57%), hsl(230, 59%, 69%));
   padding: 2px;
   width: 100%;
   height: 100%;
@@ -2418,11 +2437,11 @@ input[type=range]:focus::-ms-fill-upper {
   gap: 8px;
   flex-wrap: nowrap;
   box-shadow: 0 0 2px hsla(225, 20%, 60%, 0.035), inset 0 0 2px hsla(225, 20%, 60%, 0.2), inset 0 0 8px hsla(225, 20%, 60%, 0.03);
-  border: 2px solid transparent;
+  border: 1px solid hsla(225, 56%, 52%, 0.07);
   color: hsl(245, 18%, 20%);
-  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 80%), linear-gradient(176deg, hsl(226, 90%, 100%) 60%, hsl(226, 80%, 97%) 90%);
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 80%), linear-gradient(176deg, hsl(226, 40%, 99%) 60%, hsl(226, 30%, 95%) 90%);
   border-radius: 12px;
-  padding: 8px 14px;
+  padding: 8px 15px;
   text-shadow: 1px 1px 2px hsla(225, 20%, 60%, 0);
 }
 .provider-button.provider-button .button-contents img {
@@ -2454,11 +2473,11 @@ input[type=range]:focus::-ms-fill-upper {
   color: #4a4a4a;
   padding: 18px 28px;
   background: linear-gradient(to bottom, white, #fafafa);
-  box-shadow: 0 0 0 1px hsla(225, 14%, 62%, 0.36), 0 0 0 2px hsla(225, 30%, 60%, 0.04), 0 0 2px hsla(225, 30%, 40%, 0.25), 0 0 6px hsla(225, 30%, 40%, 0.056), 0 0 30px hsla(225, 30%, 40%, 0.045), inset 0 0 4px 0 hsla(0, 0%, 0%, 0.04), inset 0 0 40px 0 hsla(0, 0%, 0%, 0.02);
+  box-shadow: 0 0 0 1px hsla(225, 10%, 65%, 0.288), 0 0 0 2px hsla(225, 30%, 60%, 0.04), 0 0 2px hsla(225, 30%, 40%, 0.25), 0 0 6px hsla(225, 30%, 40%, 0.056), 0 0 30px hsla(225, 30%, 40%, 0.045), inset 0 0 4px 0 hsla(0, 0%, 0%, 0.04), inset 0 0 40px 0 hsla(0, 0%, 0%, 0.02);
 }
 .chat-message.user-message {
   background: linear-gradient(to bottom, hsl(225, 38%, 99%), hsl(225, 36%, 97%));
-  box-shadow: 0 0 0 1px hsla(225, 14%, 62%, 0.36), 0 0 0 2px hsla(225, 30%, 60%, 0.04), 0 0 2px hsla(225, 30%, 40%, 0.25), 0 0 6px hsla(225, 30%, 40%, 0.056), 0 0 30px hsla(225, 30%, 40%, 0.045), inset 0 0 4px 0 hsla(0, 0%, 0%, 0.04), inset 0 0 40px 0 hsla(0, 0%, 0%, 0.02);
+  box-shadow: 0 0 0 1px hsla(225, 10%, 65%, 0.288), 0 0 0 2px hsla(225, 30%, 60%, 0.04), 0 0 2px hsla(225, 30%, 40%, 0.25), 0 0 6px hsla(225, 30%, 40%, 0.056), 0 0 30px hsla(225, 30%, 40%, 0.045), inset 0 0 4px 0 hsla(0, 0%, 0%, 0.04), inset 0 0 40px 0 hsla(0, 0%, 0%, 0.02);
 }
 
 .chat-message-contents {
@@ -2694,7 +2713,7 @@ input[type=range]:focus::-ms-fill-upper {
 #right-section {
   grid-area: right-section;
   position: relative;
-  z-index: 2;
+  z-index: 1;
   max-width: 460px;
   display: flex;
   justify-content: flex-start;
@@ -2868,6 +2887,7 @@ input[type=range]:focus::-ms-fill-upper {
   gap: 0px;
   flex-wrap: nowrap;
   text-align: center;
+  white-space: nowrap;
 }
 .saved-prompt-button-topic:not(.selected) {
   box-shadow: inset 0 0 14px hsla(225, 20%, 60%, 0.05);
@@ -3246,30 +3266,29 @@ main, menu, nav, section {
 }
 
 /*
+#chat-page-and-thread-tabs-section {
+    &::-webkit-scrollbar-track
+    {
+        border: 1px solid hsl(226deg 55.31% 84.52%);
+        box-shadow: inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.3);
+        background-color: hsl(225 16% 92% / 1) !important;
+        border-radius: 10px;
+    }
 
-::-webkit-scrollbar-track
-{
-    border: 1px solid hsl(226deg 55.31% 84.52%);
-    box-shadow: inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.3);
-    background-color: hsl(225 6% 99% / 1);
-    border-radius: 10px;
-}
+    &::-webkit-scrollbar
+    {
+        width: 12px;
+        height: 20px !important;
+    }
 
-::-webkit-scrollbar
-{
-    width: 12px;
-    filter: drop-shadow(5px 0px 0px red);
-}
-
-::-webkit-scrollbar-thumb
-{
-    box-shadow: inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.6), 0 2px 3px hsl(226deg 25.31% 84.52%);
-    border-radius: 10px;
-    background: hsl(225 10% 100% / 1);
-    border: 1px solid hsl(226deg 35.31% 76%);
-}
-
-*/
+    &::-webkit-scrollbar-thumb
+    {
+        box-shadow: inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.6), 0 2px 3px hsl(226deg 25.31% 84.52%);
+        border-radius: 8px;
+        background: hsl(225 10% 100% / 1);
+        border: 1px solid hsl(226deg 35.31% 76%);
+    }
+}*/
 /* Hide the scrollbar for modern browsers */
 .custom-scroller::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
@@ -3286,6 +3305,114 @@ main, menu, nav, section {
   width: 100%;
   height: 100%;
   position: relative;
+}
+
+/* Outermost container style */
+.ScrollbarsCustom {
+  position: relative;
+  inset: 0px 10px 0px 0px;
+  width: 100%;
+  height: 100%;
+  margin-right: 1px;
+  overflow: visible;
+}
+
+/* Wrapper style */
+.ScrollbarsCustom-Wrapper {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.ScrollbarsCustom-Track {
+  overflow: visible;
+}
+
+/* Track Y style */
+.ScrollbarsCustom-TrackY {
+  position: absolute;
+  border-radius: 2px;
+  user-select: none;
+  width: 12px;
+  height: calc(100% - 3px);
+  top: 0px;
+  right: 0px;
+  border: 1px solid hsl(226, 55.31%, 84.52%);
+  box-shadow: inset 0 0 3px hsla(226, 25.31%, 84.52%, 0.3);
+  background-color: hsl(225, 4%, 92%);
+}
+
+/* Thumb Y style */
+.ScrollbarsCustom-ThumbY {
+  display: block;
+  width: 16px;
+  position: absolute;
+  left: -2px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 3px hsla(226, 25.31%, 84.52%, 0.2), 0 3px 3px hsla(226, 25.31%, 84.52%, 0.15);
+  border-radius: 12px;
+  background: white;
+  border: 1px solid hsl(226, 35.31%, 76%);
+}
+
+/* Track X style */
+.ScrollbarsCustom-TrackX {
+  display: block;
+  position: absolute;
+  border-radius: 12px;
+  user-select: none;
+  height: 14px;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+  border: 1px solid hsl(226, 55.31%, 84.52%);
+  box-shadow: inset 0 0 3px hsla(226, 25.31%, 84.52%, 0.3);
+  background-color: hsl(225, 30%, 97%);
+  margin-bottom: -8px;
+}
+
+/* Thumb X style */
+.ScrollbarsCustom-ThumbX {
+  height: 100%;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(0px);
+  box-shadow: inset 0 0 3px hsla(226, 25.31%, 84.52%, 0.2), 0 3px 3px hsla(226, 25.31%, 84.52%, 0.15);
+  border-radius: 16px;
+  background: rgb(255, 255, 255);
+  border: 1px solid hsl(226, 35.31%, 76%);
+}
+
+/* Thumb wrapper style */
+.scrollbars-custom-thumb-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Scroller style */
+.custom-scroller {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin-right: 0px;
+  overflow: scroll;
+  margin-bottom: -17px;
+}
+
+/* Content style */
+.ScrollbarsCustom-Content {
+  box-sizing: border-box;
+  padding: 0.05px;
+  min-height: 100%;
+  min-width: 100%;
 }
 
 /*# sourceMappingURL=styles.css.map */

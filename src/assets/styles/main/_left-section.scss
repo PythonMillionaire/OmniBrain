@@ -50,7 +50,7 @@ $padding-left: 22px;
   background: hsl(225, 20%, 98%);
 
   position: relative;
-  z-index: 2;
+  z-index: 4;
 }
 
 #left-section-middle {
@@ -191,7 +191,7 @@ $usage-stats-height: 60px;
   z-index: 3;
 
   filter: var(--soft-shadow-bottom);
-  overflow-x: hidden;
+  //overflow-x: hidden;
 
   .ScrollbarsCustom {
     flex-grow: 1;

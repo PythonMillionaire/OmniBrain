@@ -27,7 +27,7 @@ const RightSection = () => {
 
             <div id="right-section-inner" style={{ display: isVisible ? 'flex' : 'none'}}>
                     <section>
-                        <CustomScrollbar minHeight={'43px'} styles={{minHeight: '43px'}}>
+                        <CustomScrollbar>
                             <div id="tab-headers-section">
                                 <div className="button tab-header selected">
                                     <img src={saveIcon} id="saved-prompt-button-tab-icon"/>
@@ -54,8 +54,8 @@ const RightSection = () => {
                     </section>
                 <section id="tab-contents">
                     <div className="saved-prompt-button-topic-list">
-                        <div className="button saved-prompt-button-topic selected">All</div>
-                        <div className="button saved-prompt-button-topic">Graphic design</div>
+                        <div className="button saved-prompt-button-topic selected">Single prompts</div>
+                        <div className="button saved-prompt-button-topic">Chained prompts</div>
                         <div className="button saved-prompt-button-topic">Programming</div>
                         <div className="button saved-prompt-button-topic">Marketing</div>
                     </div>

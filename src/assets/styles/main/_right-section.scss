@@ -4,7 +4,7 @@
   grid-area: right-section;
 
   position: relative;
-  z-index: 2;
+  z-index: 1;
 
   max-width: 460px;
 
@@ -166,6 +166,8 @@
   @include flex;
 
   text-align: center;
+
+  white-space: nowrap;
 
   &:not(.selected) {
     box-shadow: inset 0 0 14px hsl(225 20% 60% / 0.05);

@@ -204,30 +204,30 @@ main, menu, nav, section
 }
 
 /*
+#chat-page-and-thread-tabs-section {
+    &::-webkit-scrollbar-track
+    {
+        border: 1px solid hsl(226deg 55.31% 84.52%);
+        box-shadow: inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.3);
+        background-color: hsl(225 16% 92% / 1) !important;
+        border-radius: 10px;
+    }
 
-::-webkit-scrollbar-track
-{
-    border: 1px solid hsl(226deg 55.31% 84.52%);
-    box-shadow: inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.3);
-    background-color: hsl(225 6% 99% / 1);
-    border-radius: 10px;
-}
+    &::-webkit-scrollbar
+    {
+        width: 12px;
+        height: 20px !important;
+    }
 
-::-webkit-scrollbar
-{
-    width: 12px;
-    filter: drop-shadow(5px 0px 0px red);
-}
+    &::-webkit-scrollbar-thumb
+    {
+        box-shadow: inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.6), 0 2px 3px hsl(226deg 25.31% 84.52%);
+        border-radius: 8px;
+        background: hsl(225 10% 100% / 1);
+        border: 1px solid hsl(226deg 35.31% 76%);
+    }
+}*/
 
-::-webkit-scrollbar-thumb
-{
-    box-shadow: inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.6), 0 2px 3px hsl(226deg 25.31% 84.52%);
-    border-radius: 10px;
-    background: hsl(225 10% 100% / 1);
-    border: 1px solid hsl(226deg 35.31% 76%);
-}
-
-*/
 
 
 /* Hide the scrollbar for modern browsers */
@@ -245,9 +245,126 @@ main, menu, nav, section
     //overflow: hidden; /* Ensure native scrollbars are hidden */
 }
 
+.ScrollbarsCustom-Thumb.ScrollbarsCustom-ThumbX {
+}
+
 .custom-scroller {
     overflow: hidden scroll; /* Ensure custom scrollbar is visible */
     width: 100%;
     height: 100%;
     position: relative;
+}
+
+/* Outermost container style */
+.ScrollbarsCustom {
+    position: relative;
+    inset: 0px 10px 0px 0px;
+    width: 100%;
+    height: 100%;
+    margin-right: 1px;
+
+    overflow: visible;
+}
+
+/* Wrapper style */
+.ScrollbarsCustom-Wrapper {
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+
+}
+
+.ScrollbarsCustom-Track {
+    overflow: visible;
+}
+
+$y-track-width: 12px;
+$y-thumb-width: $y-track-width + 4px;
+
+/* Track Y style */
+.ScrollbarsCustom-TrackY {
+    position: absolute;
+    border-radius: 2px;
+    user-select: none;
+    width: $y-track-width;
+    height: calc(100% - 3px);
+    top: 0px;
+    right: 0px;
+    border: 1px solid hsl(226deg 55.31% 84.52% / 1);
+    box-shadow: inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.3);
+    background-color: hsl(225 4% 92% / 1);
+}
+
+/* Thumb Y style */
+.ScrollbarsCustom-ThumbY {
+    display: block;
+    width: $y-thumb-width;
+    position: absolute;
+    left: -2px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.2), 0 3px 3px hsl(226deg 25.31% 84.52% / 0.15);
+    border-radius: 12px;
+    background: white;
+    border: 1px solid hsl(226deg 35.31% 76% / 1);
+}
+
+/* Track X style */
+.ScrollbarsCustom-TrackX {
+    display: block;
+    position: absolute;
+    border-radius: 12px;
+    user-select: none;
+    height: 14px;
+    width: 100%;
+    bottom: 0px;
+    left: 0px;
+    border: 1px solid hsl(226deg 55.31% 84.52% / 1);
+    box-shadow: inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.3);
+    background-color: hsl(225 30% 97% / 1);
+
+    margin-bottom: -8px;
+}
+
+/* Thumb X style */
+.ScrollbarsCustom-ThumbX {
+    height: 100%;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(0px);
+    box-shadow: inset 0 0 3px hsl(226deg 25.31% 84.52% / 0.2), 0 3px 3px hsl(226deg 25.31% 84.52% / 0.15);
+    border-radius: 16px;
+    background: rgb(255, 255, 255);
+    border: 1px solid hsl(226deg 35.31% 76% / 1);
+}
+
+/* Thumb wrapper style */
+.scrollbars-custom-thumb-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Scroller style */
+.custom-scroller {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin-right: 0px;
+    overflow: scroll;
+    margin-bottom: -17px;
+}
+
+/* Content style */
+.ScrollbarsCustom-Content {
+    box-sizing: border-box;
+    padding: 0.05px;
+    min-height: 100%;
+    min-width: 100%;
 }
