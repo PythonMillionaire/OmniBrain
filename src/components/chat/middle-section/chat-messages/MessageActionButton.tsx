@@ -94,7 +94,7 @@ const SavePromptButton: React.FC = () => (
     <MessageActionButton
         buttonAction={(event) => savePrompt(event.currentTarget)}
         buttonIconURL={savePromptIcon}
-        className="add-to-saved-prompts-button"
+        className="add-to-prompt-templatess-button"
     />
 );
 

@@ -29,7 +29,7 @@ const LeftSectionActionButtons = () => (
                 </div>
             </div>
         </section>
-        <CustomScrollbar styles={{filter: "var(--soft-shadow-top)"}}>
+        {/*<CustomScrollbar styles={{filter: "var(--soft-shadow-top)"}}>
             <section>
                 <div className="section-title">
                     <span>ChatBots</span>
@@ -67,7 +67,7 @@ const LeftSectionActionButtons = () => (
                 </div>
             </section>
 
-        </CustomScrollbar>
+        </CustomScrollbar>*/}
     </div>
 );
 

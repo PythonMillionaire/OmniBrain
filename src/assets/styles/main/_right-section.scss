@@ -36,6 +36,10 @@
   }
 }
 
+#tab-headers-section-container {
+  z-index: 1;
+}
+
 #tab-headers-section {
   height: 43px;
   min-height: 43px;
@@ -44,38 +48,58 @@
 
   @include flex(flex-start);
 
-  background: linear-gradient(to bottom, white 75%, #fcfcfc);
+  background: linear-gradient(to bottom, white, hsl(240 14% 98% / 1));
 
   font-size: 1.4rem;
 
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: visible;
   white-space: nowrap;
 
-  .button {
-    font-weight: 500;
+  .ScrollbarsCustom-TrackX {
+    margin-bottom: -6px;
   }
 }
 
-.tab-header {
-  height: 100%;
+#tab-headers-container {
+  @include flex(flex-start, stretch);
+  height: 42px;
+  min-height: 42px;
+}
 
+.tab-header {
   @include flex($gap: 8px);
 
   padding: 0 18px;
 
-  border-right: 1px solid var(--border-color-lightest);
+  color: #444;
 
-  &:not(.selected) {
-    color: #666;
+  &.selected {
+    /*position: relative;
 
     box-shadow: inset 0 0 14px hsla(225, 20%, 60%, 0.015);
 
     background: #f5f5f5;
+
+    border-left: 1px solid var(--border-color-lightest);
+    border-right: 1px solid var(--border-color-lightest);*/
+
+    /*&::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: var(--border-color-hued);
+    }*/
+  }
+
+  &:not(.selected) {
+    //color: #555;
   }
 }
 
-#saved-prompt-button-tab-icon {
+#prompt-templates-button-tab-icon {
   width: 14px;
 
   opacity: 0.6;
@@ -93,7 +117,7 @@
   height: 100%;
 }
 
-#saved-prompt-buttons-list-header {
+#prompt-templates-buttons-list-header {
   width: 100%;
 
   @include flex(space-between, stretch);
@@ -114,51 +138,51 @@
   }
 }
 
-#saved-prompt-buttons-list-settings {
+#prompt-templates-buttons-list-settings {
   @include flex($gap: 8px)
 }
 
-#saved-prompt-buttons-list-settings-icon {
+#prompt-templates-buttons-list-settings-icon {
   width: 16px;
 }
 
-#saved-prompt-buttons-display {
+#prompt-templates-buttons-display {
 
   @include flex(flex-end, $gap: 22px);
 }
 
-#saved-prompt-buttons-display-grid, #saved-prompt-buttons-display-list {
+#prompt-templates-buttons-display-grid, #prompt-templates-buttons-display-list {
 
   @include flex($gap: 8px);
 }
 
-#saved-prompt-buttons-display-grid-icon {
+#prompt-templates-buttons-display-grid-icon {
   width: 14px;
   opacity: 0.7;
 }
 
-#saved-prompt-buttons-display-list-icon {
+#prompt-templates-buttons-display-list-icon {
   width: 15px;
   opacity: 0.7;
 }
 
-.saved-prompt-button-topic-list {
+.prompt-templates-button-topic-list {
   @include flex(flex-start);
 
   width: 100%;
 
   border-bottom: 1px solid var(--border-color-lightest);
+  border-left: 1px solid var(--border-color-lighter-three);
 
   height: 42px;
 
   font-size: 1.4rem;
 }
 
-.saved-prompt-button-topic {
+.prompt-templates-button-topic {
   position: relative;
 
   padding: 10px 24px;
-  border-right: 1px solid var(--border-color-lightest);
   background-color: #f5f5f5;
 
   height: 100%;
@@ -169,47 +193,42 @@
 
   white-space: nowrap;
 
-  &:not(.selected) {
+  &.selected {
     box-shadow: inset 0 0 14px hsl(225 20% 60% / 0.05);
+
+    border-left: 1px solid var(--border-color-lightest);
+    border-right: 1px solid var(--border-color-lightest);
   }
 
-  &.selected {
+  &:not(.selected) {
     background: linear-gradient(to bottom, white, #fafafa);
 
-    font-weight: 600;
-
-    border-right-color: var(--border-color-lighter-two);
   }
 
-  &.selected::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background-color: var(--border-color-hued);
-  }
+
 }
 
-#saved-prompt-buttons-list {
+#prompt-templates-buttons-list {
   width: 100%;
   height: 100%;
 
   @include flex(flex-start, stretch, $gap: 30px, $direction: column);
 
   background: hsl(210 10% 96% / 1);
-
-  > *:not(:first-child) {
-    padding: 0 22px;
-  }
 }
 
-.saved-prompt-button-category-container {
+.prompt-templates-button-category-container {
   @include flex(center, stretch, $gap: 20px, $direction: column);
 }
 
-.saved-prompt-button-category {
+.prompt-templates-button-category-header-container {
+  width: 100%;
+  @include flex(space-between, center, $gap: 8px);
+
+  padding: 0 20px;
+}
+
+.prompt-templates-button-category {
   text-align: center;
 
   color: #444;
@@ -217,11 +236,19 @@
   margin: 0;
 }
 
-.saved-prompt-button-outer {
-  @include flex(space-between, $gap: 8px);
+.prompt-templates-minimize-category {
+  font-weight: 700;
+
+  font-size: 2.2rem;
 }
 
-.saved-prompt-button-reorder-icon {
+.prompt-templates-button-outer {
+  @include flex(space-between, $gap: 12px);
+
+  padding: 0 18px;
+}
+
+.prompt-templates-button-reorder-icon {
   flex: 0;
 
   cursor: move !important;
@@ -235,11 +262,28 @@
   }
 }
 
-.saved-prompt-button-border {
+.prompt-templates-category-reorder-icon {
+  @include flex;
+  flex: 0;
+
+  cursor: move !important;
+
+  svg {
+    width: 14px;
+
+    opacity: 0.55;
+
+    //fill: hsl(226deg 34% 56%);
+  }
+}
+
+.prompt-templates-button-border {
+  width: 100%;
+
   position: relative;
   @include flex;
 
-  padding: 0px 2px 2px 0px;
+  padding: 0px 1px 1px 0px;
 
   left: 1px;
 
@@ -250,7 +294,7 @@
   box-shadow: 2px 2px 6px hsla(225, 20%, 60%, 0.25);
 }
 
-.saved-prompt-button {
+.prompt-templates-button {
   position: relative;
   flex-grow: 1;
 
@@ -268,29 +312,29 @@
           0 1px 4px hsla(225, 20%, 60%, 0.16),
           inset 0 0 8px hsla(225, 20%, 60%, 0.09);
 
-  &:hover .saved-prompt-button-action-buttons {
+  &:hover .prompt-templates-button-action-buttons {
     visibility: visible;
   }
 }
 
-.saved-prompt-button-content {
+.prompt-templates-button-content {
   @include flex($gap: 12px);
 }
 
-.saved-prompt-button-info {
+.prompt-templates-button-info {
   @include flex($gap: 8px);
 }
 
-.saved-prompt-button-icon {
+.prompt-templates-button-icon {
   width: 16px;
 }
 
-.saved-prompt-button-action-buttons {
+.prompt-templates-button-action-buttons {
   visibility: hidden;
   @include flex($gap: 8px);
 }
 
-.saved-prompt-button-delete-icon {
+.prompt-templates-button-delete-icon {
   font-size: 2.3rem;
 
   font-weight: 500;
@@ -302,13 +346,13 @@
   line-height: 0;
 }
 
-.saved-prompt-button-settings-icon {
+.prompt-templates-button-settings-icon {
   width: 12px;
 
   opacity: 0.85;
 }
 
-.saved-prompt-button-credits {
+.prompt-templates-button-credits {
   @include flex($gap: 4px);
 
   border-radius: 8px;
@@ -322,17 +366,17 @@
   box-shadow: inset 0 0 8px hsl(0 0% 0% / 0.08);
 }
 
-.saved-prompt-button-credits-icon {
+.prompt-templates-button-credits-icon {
   width: 14px;
 
   opacity: 0.85;
 }
 
-.saved-prompt-button-credits-amount {
+.prompt-templates-button-credits-amount {
   font-weight: 400;
 }
 
-#add-new-saved-prompt-button-section {
+#add-new-prompt-templates-button-section {
   padding: 8px 0;
 
   background: linear-gradient(to bottom, white, #fcfcfc);
@@ -342,7 +386,7 @@
   filter: var(--soft-shadow-bottom);
 }
 
-#add-new-saved-prompt-button {
+#add-new-prompt-templates-button {
   @include flex;
 }
 

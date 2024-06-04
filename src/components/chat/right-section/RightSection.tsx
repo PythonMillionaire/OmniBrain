@@ -5,8 +5,6 @@ import listIcon from '../../../assets/images/list-display.svg';
 
 import aiLogo from "../../../assets/images/ai-providers/logo-chatgpt.svg";
 
-import SavedPromptButton from "./saved-prompts/SavedPromptButton";
-
 import saveIcon from "../../../assets/images/action-buttons/save-prompt.svg";
 
 import settingsIcon from "../../../assets/images/settings.svg";
@@ -14,11 +12,19 @@ import AddElementButton from "../../general/AddElementButton";
 import CollapseButton from "../../general/CollapseSectionButton";
 import {ButtonPosition} from "../../../types/enums";
 import CustomScrollbar from "../../general/CustomScrollbar";
+import SavedPromptCategory from "./prompt-templates/SavedPromptCategory";
 
 const RightSection = () => {
     const [isVisible, setIsVisible] = useState(true);
 
     const collapseDivRef = useRef<HTMLDivElement>(null);
+
+    const prompts = [
+        { promptContents: "Ajahn Brahm is just so beautiful!!!", promptIcon: aiLogo },
+        { promptContents: "Ajahn Brahm is just so beautiful!!!", promptIcon: aiLogo },
+        { promptContents: "Ajahn Brahm is just so beautiful!!!", promptIcon: aiLogo },
+        { promptContents: "Ajahn Brahm is just so beautiful!!!", promptIcon: aiLogo }
+    ];
 
     return (
         <div id="right-section" ref={collapseDivRef} style={!isVisible ? { width: '10px' } : {}}>
@@ -26,16 +32,13 @@ const RightSection = () => {
         <CollapseButton isVisible={isVisible} buttonPosition={ButtonPosition.right}  referenceToCollapsedElement={collapseDivRef} visibilitySetter={setIsVisible} id={'right-section-collapse-button'} />
 
             <div id="right-section-inner" style={{ display: isVisible ? 'flex' : 'none'}}>
-                    <section>
+                <section id="tab-headers-section-container">
+                    <div id="tab-headers-section">
                         <CustomScrollbar>
-                            <div id="tab-headers-section">
+                            <div id="tab-headers-container">
                                 <div className="button tab-header selected">
-                                    <img src={saveIcon} id="saved-prompt-button-tab-icon"/>
-                                    Saved prompts
-                                </div>
-                                <div className="button tab-header">
-                                    <img src={saveIcon} id="saved-prompt-button-tab-icon"/>
-                                    Prompt chaining
+                                    <img src={saveIcon} id="prompt-templates-button-tab-icon"/>
+                                    Prompts templates
                                 </div>
                                 <div className="button tab-header">
                                     <img src={settingsIcon} id="settings-tab-icon"/>
@@ -43,62 +46,48 @@ const RightSection = () => {
                                 </div>
                                 <div className="button tab-header">
                                     <img src={settingsIcon} id="settings-tab-icon"/>
-                                    File processing
-                                </div>
-                                <div className="button tab-header">
-                                    <img src={settingsIcon} id="settings-tab-icon"/>
                                     File manager
                                 </div>
                             </div>
                         </CustomScrollbar>
-                    </section>
+                    </div>
+                </section>
                 <section id="tab-contents">
-                    <div className="saved-prompt-button-topic-list">
-                        <div className="button saved-prompt-button-topic selected">Single prompts</div>
-                        <div className="button saved-prompt-button-topic">Chained prompts</div>
-                        <div className="button saved-prompt-button-topic">Programming</div>
-                        <div className="button saved-prompt-button-topic">Marketing</div>
+                    <div className="prompt-templates-button-topic-list">
+                        <div className="button prompt-templates-button-topic selected">Single prompts</div>
+                        <div className="button prompt-templates-button-topic">Chained prompts</div>
+                        <div className="button prompt-templates-button-topic">Programming</div>
+                        <div className="button prompt-templates-button-topic">Marketing</div>
                     </div>
 
-                    <div id="saved-prompt-buttons-list-header">
-                        <div id="saved-prompt-buttons-display">
-                            <div className={"button"} id="saved-prompt-buttons-display-grid">
-                                <img src={gridIcon} id="saved-prompt-buttons-display-grid-icon" alt="Display saved prompts as grid"/>
+                    <div id="prompt-templates-buttons-list-header">
+                        <div id="prompt-templates-buttons-display">
+                            <div className={"button"} id="prompt-templates-buttons-display-grid">
+                                <img src={gridIcon} id="prompt-templates-buttons-display-grid-icon" alt="Display prompt templates as grid"/>
 
-                                <div id="saved-prompt-buttons-display-grid-text">Show as grid</div>
+                                <div id="prompt-templates-buttons-display-grid-text">Show as grid</div>
                             </div>
 
-                            <div className={"button"} id="saved-prompt-buttons-display-list">
-                                <img src={listIcon} id="saved-prompt-buttons-display-list-icon" alt="Display saved prompts as list"/>
+                            <div className={"button"} id="prompt-templates-buttons-display-list">
+                                <img src={listIcon} id="prompt-templates-buttons-display-list-icon" alt="Display prompt templates as list"/>
 
-                                <div id="saved-prompt-buttons-display-grid-text">Show as list</div>
+                                <div id="prompt-templates-buttons-display-grid-text">Show as list</div>
                             </div>
                         </div>
 
-                        <div className={"button"} id="saved-prompt-buttons-list-settings">
-                            <img src={settingsIcon} id="saved-prompt-buttons-list-settings-icon" alt="Settings"/>
+                        <div className={"button"} id="prompt-templates-buttons-list-settings">
+                            <img src={settingsIcon} id="prompt-templates-buttons-list-settings-icon" alt="Settings"/>
                             Settings
                         </div>
                     </div>
 
-                    <div id="saved-prompt-buttons-list">
+                    <div id="prompt-templates-buttons-list">
 
-                        <div id="add-new-saved-prompt-button-section"><AddElementButton text={"Create new saved prompt"} type={"saved-prompt"}/></div>
+                        <div id="add-new-prompt-templates-button-section"><AddElementButton text={"Create new prompt template"} type={"prompt-templates"}/></div>
 
-                        <div className="saved-prompt-button-category-container">
-                            <h3 className="saved-prompt-button-category">The Naked Truth</h3>
-                            <SavedPromptButton promptContents={"Ajahn Brahm is just so beautiful!!!"} promptIcon={aiLogo}/>
-                            <SavedPromptButton promptContents={"Ajahn Brahm is just so beautiful!!!"} promptIcon={aiLogo}/>
-                            <SavedPromptButton promptContents={"Ajahn Brahm is just so beautiful!!!"} promptIcon={aiLogo}/>
-                            <SavedPromptButton promptContents={"Ajahn Brahm is just so beautiful!!!"} promptIcon={aiLogo}/>
-                        </div>
-                        <div className="saved-prompt-button-category-container">
-                            <h3 className="saved-prompt-button-category">General</h3>
-                            <SavedPromptButton promptContents={"Ajahn Brahm is just so beautiful!!!"} promptIcon={aiLogo}/>
-                            <SavedPromptButton promptContents={"Ajahn Brahm is just so beautiful!!!"} promptIcon={aiLogo}/>
-                            <SavedPromptButton promptContents={"Ajahn Brahm is just so beautiful!!!"} promptIcon={aiLogo}/>
-                            <SavedPromptButton promptContents={"Ajahn Brahm is just so beautiful!!!"} promptIcon={aiLogo}/>
-                        </div>
+                        <SavedPromptCategory categoryName="The Naked Truth" prompts={prompts} />
+                        <SavedPromptCategory categoryName="General" prompts={prompts} />
+
                     </div>
                 </section>
             </div>

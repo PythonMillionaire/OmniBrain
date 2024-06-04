@@ -3,6 +3,8 @@
 $padding-left: 22px;
 
 #logo {
+  user-select: none;
+  
   padding: 12px 0 20px 34px;
 
   @include flex(flex-start);
@@ -97,7 +99,7 @@ $usage-stats-width: 60px;
 $usage-stats-height: 60px;
 
 #usage-statistics {
-  padding-top: 10px;
+  margin-top: 36px;
 
   .left-panel-action-buttons-section {
     @include flex(flex-start, center, $gap: 18px);
@@ -170,7 +172,7 @@ $usage-stats-height: 60px;
 
   font-size: 1.2rem;
 
-  padding: 3px ($padding-left + 8px) 9px;
+  padding: 3px ($padding-left + 8px) 5px;
 
   letter-spacing: 0.125rem;
 }
@@ -792,7 +794,7 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
   @include flex(space-between);
   width: 100%;
 
-  padding: 3px 14px;
+  padding: 2px 14px;
   background: linear-gradient(to bottom, hsl(225 12% 97%), hsl(225 10% 94%));
   border: 1px solid var(--border-color-lighter-two);
   cursor: pointer;
@@ -858,6 +860,8 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
 #account-info {
   height: auto;
   display: flex;
+
+  user-select: none;
 }
 
 #account-avatar-left {

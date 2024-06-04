@@ -3,6 +3,8 @@ import lodash from 'lodash';
 import MessageSender from "../../../../../types/messages/MessageSender";
 import {MessageSenderType} from "../../../../../types/enums";
 
+import showFullResponse from '../../../../../assets/images/circle-arrow.svg';
+
 interface MessageMiddleSectionProps {
     sender: MessageSender;
     messageContents: string;
@@ -96,7 +98,8 @@ const MessageMiddleSection: React.FC<MessageMiddleSectionProps> = ({
                         <div className={`chat-message-contents-text${truncateText ? ' truncated' : ''}`}>
                             {messageContents}
                         </div>
-                        <div className="button chat-message-show-truncated-contents"  style={{ display: isAboveThreshold ? 'block' : 'none' }} onClick={handleShowTruncatedText}>
+                        <div className="button chat-message-show-truncated-contents"  style={{ display: isAboveThreshold ? 'flex' : 'none' }} onClick={handleShowTruncatedText}>
+                            <img src={showFullResponse} alt="Show full response" className={"chat-message-show-truncated-contents-icon"} style={{ transform: !truncateText ? 'rotate(180deg)' : ''}}/>
                             { truncateText ? 'Show full response' : 'Collapse response' }
                         </div>
                     </div>

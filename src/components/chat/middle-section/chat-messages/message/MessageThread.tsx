@@ -48,7 +48,7 @@ const ReplyToAnotherThread: React.FC = () => {
     return <span>
                 <img className={"reply-in-thread-button-icon"} src={cancelReplyInThreadIcon}
                      alt="Reply to another thread"/>
-                Already replying to a thread. Reply to this one instead
+                Already replying to a thread. Click to reply to this one instead
             </span>;
 }
 

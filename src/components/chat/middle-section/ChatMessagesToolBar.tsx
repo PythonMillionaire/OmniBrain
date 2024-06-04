@@ -111,46 +111,48 @@ const ChatMessagesToolBar: React.FC = () => {
                     </div>
                 </div>
                 <div className={"right"}>
-                    <CustomScrollbar>
-                        <DragDropContext onDragEnd={handleOnDragEnd}>
-                            <Droppable droppableId="tabs" direction={"horizontal"}>
-                                {(provided: DroppableProvided) => (
-                                    <div {...provided.droppableProps} ref={provided.innerRef} id="chat-page-and-thread-tabs-section">
-                                        <ChatPageTab current={'1'} classes={'chat-main-page selected'}/>
+                    <div id="chat-page-and-thread-tabs-section-container">
+                        <CustomScrollbar>
+                            <DragDropContext onDragEnd={handleOnDragEnd}>
+                                <Droppable droppableId="tabs" direction={"horizontal"}>
+                                    {(provided: DroppableProvided) => (
+                                        <div {...provided.droppableProps} ref={provided.innerRef} id="chat-page-and-thread-tabs-section">
+                                            <ChatPageTab current={'1'} classes={'chat-main-page selected'}/>
 
-                                        {tabs.map((tab, index) => (
-                                            <Draggable
-                                                key={tab.id}
-                                                draggableId={`chat-${tab.type === 'page' ? 'page' : tab.type === 'thread' ? 'thread' : 'main'}-tab-${tab.id}`}
-                                                index={index}>
-                                                {(provided: DraggableProvided) => {
-                                                    let transform = provided.draggableProps.style?.transform;
-                                                    if (transform) {
-                                                        transform = transform.replace(/,\s*[-+]?[\d]+px\)/, ", 0px)");
-                                                    }
-                                                    const style = transform ? {
-                                                        ...provided.draggableProps.style,
-                                                        transform
-                                                    } : provided.draggableProps.style;
+                                            {tabs.map((tab, index) => (
+                                                <Draggable
+                                                    key={tab.id}
+                                                    draggableId={`chat-${tab.type === 'page' ? 'page' : tab.type === 'thread' ? 'thread' : 'main'}-tab-${tab.id}`}
+                                                    index={index}>
+                                                    {(provided: DraggableProvided) => {
+                                                        let transform = provided.draggableProps.style?.transform;
+                                                        if (transform) {
+                                                            transform = transform.replace(/,\s*[-+]?[\d]+px\)/, ", 0px)");
+                                                        }
+                                                        const style = transform ? {
+                                                            ...provided.draggableProps.style,
+                                                            transform
+                                                        } : provided.draggableProps.style;
 
-                                                    return (
-                                                        <div
-                                                            ref={provided.innerRef}
-                                                            {...provided.draggableProps}
-                                                            {...provided.dragHandleProps}
-                                                            style={style}>
-                                                            {tab.content}
-                                                        </div>
-                                                    );
-                                                }}
-                                            </Draggable>
-                                        ))}
-                                        {provided.placeholder}
-                                    </div>
-                                )}
-                            </Droppable>
-                        </DragDropContext>
-                    </CustomScrollbar>
+                                                        return (
+                                                            <div
+                                                                ref={provided.innerRef}
+                                                                {...provided.draggableProps}
+                                                                {...provided.dragHandleProps}
+                                                                style={style}>
+                                                                {tab.content}
+                                                            </div>
+                                                        );
+                                                    }}
+                                                </Draggable>
+                                            ))}
+                                            {provided.placeholder}
+                                        </div>
+                                    )}
+                                </Droppable>
+                            </DragDropContext>
+                        </CustomScrollbar>
+                    </div>
                 </div>
             </div>
         </section>
