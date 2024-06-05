@@ -219,7 +219,7 @@ $bg-chat-input-top-base-brightness: 96%;
   padding-bottom: 4px;
 }
 
-.chat-input-detail-level-slider {
+.chat-input-slider {
   white-space: nowrap;
   align-items: center;
   padding: 4px 0 4px 6px;
@@ -1026,47 +1026,48 @@ $p-subtopic: 1px;
     .subtopic {
       position: relative;
 
-      //font-style: italic;
-      //font-weight: 500;
+      font-weight: 400;
 
       @include cursor;
-      $b-b: 50%;
-      border: 1px solid hsl(215, 54%, $b-b + 19%);
-      border-left-color: hsl(215, 49%, $b-b + 15%);
-      border-right-color: hsl(215, 49%, $b-b + 10%);
+      $b-b: 40%;
+      $b-s: 38%;
+      border: 1px solid hsl(215, $b-s + 24%, $b-b + 19%);
+      border-left-color: hsl(215, $b-s +  19%, $b-b + 15%);
+      border-right-color: hsl(215, $b-s + 19%, $b-b + 10%);
 
-      border-bottom-width: 3px;
-      border-bottom-color: hsl(215, 46%, $b-b + 12%);
+      border-bottom-width: 2px;
+      border-bottom-color: hsl(215, $b-s, $b-b + 32%);
 
-      padding: 5px 15px;
+      padding: 3px 12px 2px;
 
-      color: hsl(0 0% 29% / 1);
+      color: hsl(0 0% 22% / 1);
       background: linear-gradient(to bottom, hsl(225, 50%, 100%) 50%, hsl(225, 10%, 99%));
 
-      $i: 0.55;
+      $i: 0.25;
 
       box-shadow:
               inset 0 0 4px 0 hsla(225, 60%, 10%, 0.065 * $i),
-              inset 2px 2px 4px 0 hsla(225, 60%, 50%, 0.085 * $i),
-              inset -2px -2px 4px 0 hsla(225, 60%, 50%, 0.11 * $i),
-              inset -1px -1px 2px 0 hsla(225, 60%, 50%, 0.085 * $i),
+              inset 1px 2px 4px 0 hsla(225, 60%, 50%, 0.16 * $i),
               inset 1px 1px 2px 0 hsla(225, 60%, 50%, 0.14 * $i),
               -1px -1px 2px hsla(225, 20%, 40%, 0.055 * $i);
     }
   }
 
   &:not(.selected) {
-    background: linear-gradient(135deg, hsl(230 30% 75% / 1), hsl(200 60% 82% / 1));
+    background: linear-gradient(135deg, hsl(230 30% 72% / 1), hsl(200 60% 80% / 1));
 
     padding: $p-subtopic;
 
     .subtopic {
       background: linear-gradient(to bottom, hsla(225, 16%, 96%, 1), hsla(225, 14%, 95%, 1));
       color: hsl(0 0% 57% / 1);
-      border: 1px solid hsl(226deg 20% 70% / 0.5);
+      border: 1px solid hsl(226deg 20% 70% / 0.38);
       box-shadow: 0 0 2px hsla(225, 20%, 60%, 0.1), inset 0 0 5px 0 hsla(225, 20%, 60%, 0.02);
 
-      padding: 4px - $p-subtopic 12px;
+      padding: 3px - $p-subtopic 12px;
+
+      font-style: italic;
+      font-weight: 400;
     }
   }
 }
@@ -1130,7 +1131,7 @@ $p-subtopic: 1px;
   $p: 1px;
   padding: $p;
 
-  $op: 0.3;
+  $op: 0.1;
   $base-brightness: 79%;
   background: linear-gradient(
                   135deg,
@@ -1148,7 +1149,7 @@ $p-subtopic: 1px;
 
   width: 100%;
 
-  border: 1px solid hsl(232deg 8% 54% / 40%);
+  border: 1px solid hsl(232deg 8% 37% / 40%);
   border-radius: 12px;
 
   filter: drop-shadow(0 0 6px hsl(225 20% 60% / 0.015));
@@ -1198,27 +1199,27 @@ $p-subtopic: 1px;
 }
 
 
-#chat-input-mode-container {
-  @include flex(flex-start);
+#chat-input-settings-container {
+  @include flex(space-between);
 
   width: 100%;
 
-  background: hsl(225 52% 94%);
+  background: hsl(225 55% 93.5%);
 
   border-radius: 3px;
 
   overflow: visible;
 
-  @at-root .system-message #chat-input-mode-container {
+  @at-root .system-message #chat-input-settings-container {
     background: hsl(225 46% 91.5%);
   }
 }
 
-#chat-input-mode {
+#chat-input-mode-container {
   @include flex($gap: 8px);
 
   background: hsl(225 20% 95%);
-  border: 1px solid hsl(225 20% 80%);
+  border: 1px solid hsl(225 20% 78%);
 
   border-radius: 8px;
 
@@ -1261,6 +1262,16 @@ $p-subtopic: 1px;
     &:not(.selected) {
       margin-right: 10px;
     }
+  }
+}
+
+#chat-input-settings {
+  @include flex($gap: 14px);
+
+  font-size: 1.4rem;
+
+  label {
+    color: #2a2a2a;
   }
 }
 
@@ -1412,13 +1423,13 @@ $b-w: 3px;
 
   &.selected {
     top: 5px;
-    padding: $b-w - 2 $b-w - 3 0 $b-w - 3;
+    padding: $b-w - 2 $b-w - 3 0;
 
     border-radius: ($b-r + $b-w + 2) ($b-r + $b-w + 2) 0 0;
 
-    $op: 0.4;
+    $op: 0;
 
-    background: linear-gradient(170deg, hsla(230, 50%, 66%, $op), hsla(225, 60%, 70%, $op));
+    background: linear-gradient(170deg, hsla(230, 54%, 66%, $op), hsla(225, 64%, 70%, $op));
 
     box-shadow: 0 -1px 5px hsl(225 20% 20% / 0.02);
 
@@ -1426,6 +1437,7 @@ $b-w: 3px;
       color: hsl(0 0% 24%);
 
       font-weight: 700;
+      font-size: 1.6rem;
 
       background: white;
 
@@ -1446,25 +1458,28 @@ $b-w: 3px;
   &:not(.selected) {
     padding: ($b-w - 2px) ($b-w - 2px) 0 ($b-w - 2px);
 
-    border-radius: ($b-r + $b-w - 2) ($b-r + $b-w - 2) 0 0;
+    border-radius: ($b-r + $b-w + 1) ($b-r + $b-w + 1) 0 0;
 
-    top: 7px;
+    top: 10px;
 
-    $o: 0;
+    $o: 0.48;
 
-    background: linear-gradient(170deg, hsla(225, 30%, 70%, $o), hsla(200, 40%, 74%, $o));
+    background: linear-gradient(170deg, hsla(225, 50%, 70%, $o), hsla(200, 60%, 74%, $o));
+
+    box-shadow: 0 0px 3px hsl(225 20% 20% / 0.12);
 
     .topic-tab {
-      color: hsl(0 0% 60%);
-      background: linear-gradient(to bottom, hsl(225 5% 99% / 1), hsl(225 1% 98% / 1));
+      color: hsl(0 0% 50%);
 
-      padding: 8px 11px;
+      background: linear-gradient(to bottom, hsl(225deg 14.68% 94.5%), hsl(225deg 14.68% 95.5%));
+
+      padding: 6px 11px;
     }
 
     .topic-tab-border {
-      padding:  $b-w - 2px;
+      padding:  $b-w - 2px $b-w - 2px $b-w - 2px;
 
-      background: var(--border-color-slightly-lighter);
+      background: hsl(225 20% 96%);
 
       border-radius: ($b-r + $b-w - 1) ($b-r + $b-w - 1) 0 0;
     }
@@ -1473,7 +1488,7 @@ $b-w: 3px;
 
 .topic-tab {
   white-space: nowrap;
-  padding: 8px 14px 12px;
+  padding: 8px 16px 12px;
   position: relative;
 
   border-radius: $b-r + 1 $b-r + 1 0 0;

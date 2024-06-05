@@ -89,7 +89,7 @@ const ChatInputOrganizationSettings: React.FC = () => {
             <div id="subchat-input-subtopics-section-border">
                 <div id="subchat-input-subtopics-section">
                     <div id="subchat-input-subtopics">
-                        <SubtopicTab text={"General"} selectedSubtopic={selectedSubtopic} setSelectedSubtopic={setSelectedSubtopic}/>
+                        <SubtopicTab text={"Default"} selectedSubtopic={selectedSubtopic} setSelectedSubtopic={setSelectedSubtopic}/>
                         <SubtopicTab text={"Ajahn Brahm is the VERY BEST. No question about it"} selectedSubtopic={selectedSubtopic} setSelectedSubtopic={setSelectedSubtopic}/>
                         <SubtopicTab text={"Ajahn Brahm is beautiful"} selectedSubtopic={selectedSubtopic} setSelectedSubtopic={setSelectedSubtopic}/>
                         <AddElementButton type={"subtopic"}/>

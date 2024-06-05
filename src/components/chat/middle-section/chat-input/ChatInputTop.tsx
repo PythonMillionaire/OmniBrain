@@ -15,16 +15,8 @@ const ChatInputTop = () => {
 
             <div id="chat-input-top-response-settings" ref={collapseDivRef}
                  style={{display: isVisible ? 'flex' : 'none'}}>
-                <div className="chat-input-detail-level-slider">
-                    <div>Temperature <br/>
-                    </div>
-                    <Slider/>
-                </div>
-                <div className="chat-input-detail-level-slider">
-                    <div>Response detail level <br/>
-                    </div>
-                    <Slider/>
-                </div>
+                <Slider labelText={"Response detail level"} id={"chat-input-detail-level-slider"} classes={"chat-input-slider"}/>
+
                 <div id="ai-response-settings-checkboxes">
                     <Checkbox text={"Include examples"}
                               tooltipText={"Whether or not the AI should include illustrative examples in its output."}/>

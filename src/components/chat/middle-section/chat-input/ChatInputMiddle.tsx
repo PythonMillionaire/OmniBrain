@@ -3,6 +3,7 @@ import React, { useState, useRef } from 'react';
 import ChatInputOrganizationSettings from "./middle/ChatInputOrganizationSettings";
 import ChatInputMiddleActionRow from "./middle/ChatInputMiddleActionRow";
 import CustomScrollbar from "../../../general/CustomScrollbar";
+import Slider from "../../../general/Slider";
 
 enum InputMode {
     Prompt = "prompt",
@@ -26,8 +27,8 @@ const ChatInputMiddle = () => {
                     <div id="chat-input-field-outer-border">
                         <div id="chat-input-field-container"
                              className={`${ inputMode === InputMode.SystemMessage ? "system-message" : "" }`}>
-                            <div id="chat-input-mode-container">
-                                <div id="chat-input-mode">
+                            <div id="chat-input-settings-container">
+                                <div id="chat-input-mode-container">
                                     <div id="chat-input-mode-prompt"
                                          className={`${ inputMode === InputMode.Prompt ? "selected" : "button" }`}
                                          onClick={() => setInputMode(InputMode.Prompt)}>
@@ -41,6 +42,20 @@ const ChatInputMiddle = () => {
                                          onClick={() => setInputMode(InputMode.SystemMessage)}>
                                         System message
                                     </div>
+                                </div>
+
+                                <div id="chat-input-settings">
+                                    <Slider
+                                        min={0} max={1} step={0.01}
+                                        labelText={"Temperature"}
+                                        id={"chat-input-temperature-slider"}
+                                        classes={"chat-input-slider"}/>
+
+                                    <Slider
+                                        min={1} max={4096} step={1}
+                                        labelText={"Max. tokens"}
+                                        id={"chat-input-max-token-slider"}
+                                        classes={"chat-input-slider"}/>
                                 </div>
                             </div>
                             <textarea

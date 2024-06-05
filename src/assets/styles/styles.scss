@@ -59,7 +59,11 @@ body
     grid-template-columns: auto 1fr auto;
 }
 
-#login-overlay {
+#authentication {
+    @include flex(flex-start, $gap: 40px);
+}
+
+#authentication-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -70,29 +74,139 @@ body
     z-index: 99;
 }
 
-#login-section {
+#authentication-section {
+    @include flex(center, stretch, $gap: 20px);
+
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
-    @include flex(center, flex-start, $direction: column, $gap: 14px);
-
     z-index: 100;
 
     background: hsl(225 15% 94% / 1);
 
-    padding: 16px 22px;
-
-    //border: 2px solid hsl(225 30% 54%);
-    border-radius: 12px;
+    padding: 10px;
+    border-radius: 18px;
 
     box-shadow: 0 0 4px hsl(225 30% 54% / 0.12), 0 0 12px hsl(225 30% 54% / 0.32), 0 0 18px hsl(225 30% 54% / 0.14);
+}
 
-    label {
-        margin-right: 14px;
+
+#authentication-left {
+    flex-grow: 1;
+    @include flex(center, flex-start);
+
+    padding: 22px;
+
+    background: hsl(225 60% 60% / 1);
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    > div {
+        height: 100%;
+
+        @include flex(flex-start, flex-start, $direction: column, $gap: 24px);
+
+        @at-root #authentication-left-top {
+            @include flex($gap: 20px, $direction: column);
+        }
+
+        @at-root #authentication-left-bottom {
+            width: 160%;
+            height: 100%;
+
+            background: white;
+
+            border-radius: 50% 50% 0 0;
+
+            margin-left: -50%;
+        }
+
+        @at-root #authentication-left-title {
+            font-size: 2.8rem;
+
+            color: hsl(225 10% 98%);
+        }
+        @at-root #authentication-left-description {
+            font-size: 1.8rem;
+
+            color: hsl(225 10% 92%);
+
+            font-weight: 400;
+
+            b {
+                font-weight: 700;
+                letter-spacing: 0.035rem;
+            }
+        }
     }
 }
+
+#authentication-right {
+    @include flex($direction: column, $gap: 24px);
+
+    padding: 32px 30px 32px 20px;
+
+    @at-root #authentication-section-close-button {
+        position: absolute;
+        top: 4px;
+        right: 18px;
+
+        font-size: 2.4rem;
+        font-weight: 500;
+    }
+
+    @at-root #third-party-authentication-section {
+        @include flex($direction: column, $gap: 20px);
+
+        width: 100%;
+
+        @at-root #sign-in-with-google, #sign-in-with-facebook {
+            @include flex($gap: 16px);
+
+            width: 100%;
+
+            background: hsl(225 20% 97%);
+
+            border: 1px solid var(--border-color-lighter);
+
+            padding: 6px 12px;
+            border-radius: 8px;
+
+            img {
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
+
+    @at-root #login-section {
+        @include flex(center, flex-start, $direction: column, $gap: 14px);
+
+        label {
+            margin-right: 14px;
+        }
+    }
+
+    @at-root #authentication-section-or-divider {
+        @include flex($gap: 12px);
+
+        width: 100%;
+
+        .authentication-section-or-divider-line {
+            flex: 1;
+
+            border-top: 1px solid var(--border-color-slightly-lighter);
+        }
+    }
+
+    @at-root #omnibrain-authentication-section {
+        @include flex($direction: column, $gap: 40px);
+    }
+}
+
 
 #login-section-header {
     position: relative;
@@ -108,7 +222,29 @@ body
     font-weight: 600;
 }
 
-#login-section-close-button {
+#registration-section {
+    @include flex(center, flex-start, $direction: column, $gap: 14px);
+
+    label {
+        margin-right: 14px;
+    }
+}
+
+#registration-section-header {
+    position: relative;
+    width: 100%;
+}
+
+#registration-section-title {
+    width: 100%;
+
+    text-align: center;
+
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+#registration-section-close-button {
     position: absolute;
     top: 50%;
     right: 0;
@@ -233,14 +369,14 @@ main, menu, nav, section
 
 .custom-tooltip {
     position: absolute;
-    background-color: hsl(150 30% 96% / 1); //hsl(226deg 100% 98.44%);
-    color: #555;
+    background-color: hsl(225 40% 98% / 1); //hsl(226deg 100% 98.44%);
+    color: #444;
     text-align: center;
     padding: 8px 18px;
     border-radius: 22px;
     z-index: 1000;
     top: -28px;
-    border: 2px solid #3E6638; //var(--border-color-hued-subdued);
+    border: 2px solid hsl(225 48% 62% / 1); //var(--border-color-hued-subdued);
     left: 50%;
     text-wrap: wrap;
     transform: translateX(-50%);
@@ -251,7 +387,10 @@ main, menu, nav, section
 
     max-width: 400px;
 
-    filter: drop-shadow(0 0 14px hsl(226 20% 20% / 0.14));
+    filter:
+            drop-shadow(0 0 1px hsl(226 20% 20% / 0.35))
+            drop-shadow(0 0 3px hsl(226 20% 20% / 0.16))
+            drop-shadow(0 0 14px hsl(226 20% 20% / 0.05));
 
     &::before {
         content: "";
