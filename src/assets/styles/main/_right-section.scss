@@ -67,6 +67,8 @@
 }
 
 .tab-header {
+  position: relative;
+
   @include flex($gap: 8px);
 
   padding: 0 18px;
@@ -83,15 +85,15 @@
     border-left: 1px solid var(--border-color-lightest);
     border-right: 1px solid var(--border-color-lightest);*/
 
-    /*&::after {
+    &::after {
       content: '';
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 4px;
+      height: 3px;
       background-color: var(--border-color-hued);
-    }*/
+    }
   }
 
   &:not(.selected) {
@@ -208,24 +210,36 @@
 
 }
 
-#prompt-templates-buttons-list {
+#prompt-templates-buttons-list-container{
   width: 100%;
   height: 100%;
 
-  @include flex(flex-start, stretch, $gap: 30px, $direction: column);
 
   background: hsl(210 10% 96% / 1);
 }
 
+#prompt-templates-buttons-list {
+  @include flex(flex-start, stretch, $gap: 30px, $direction: column);
+  height: 100%;
+}
 .prompt-templates-button-category-container {
   @include flex(center, stretch, $gap: 20px, $direction: column);
+
+  &:not(:first-of-type) {
+    border-top: 1px solid var(--border-color-lighter-three);
+  }
 }
 
 .prompt-templates-button-category-header-container {
   width: 100%;
   @include flex(space-between, center, $gap: 8px);
 
-  padding: 0 20px;
+  padding: 2px 20px;
+
+  border-bottom: 1px solid var(--border-color-lighter-two);
+
+  background: linear-gradient(to bottom, white, #fafafa);
+
 }
 
 .prompt-templates-button-category {
@@ -283,24 +297,24 @@
   position: relative;
   @include flex;
 
-  padding: 0px 1px 1px 0px;
+  //padding: 0px 1px 1px 0px;
 
   left: 1px;
 
   border-radius: 14px;
 
-  background: linear-gradient(175deg, hsl(190 44% 64% / 1), hsl(230 42% 60% / 1));
+  //background: linear-gradient(175deg, hsl(190 44% 64% / 1), hsl(230 42% 60% / 1));
 
-  box-shadow: 2px 2px 6px hsla(225, 20%, 60%, 0.25);
+  box-shadow: 0 0 2px hsla(225, 20%, 20%, 0.035);
 }
 
 .prompt-templates-button {
   position: relative;
   flex-grow: 1;
 
-  border: 1px solid hsla(225, 10%, 78%, 1);
-  border-bottom-color: hsl(225, 20%, 58% / 1);
-  border-right-color: hsl(225, 20%, 62% / 1);
+  border: 1px solid hsla(225, 10%, 80%, 1);
+  /*border-bottom-color: hsl(225, 20%, 58% / 1);
+  border-right-color: hsl(225, 20%, 62% / 1);*/
   border-radius: 12px;
   padding: 4px 15px;
 

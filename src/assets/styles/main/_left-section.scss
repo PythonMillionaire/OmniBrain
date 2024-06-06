@@ -4,7 +4,7 @@ $padding-left: 22px;
 
 #logo {
   user-select: none;
-  
+
   padding: 12px 0 20px 34px;
 
   @include flex(flex-start);
@@ -367,7 +367,9 @@ $backward-animation-transition: 0.75s cubic-bezier(.17,.67,.08,1.07);
 
     border: 1px solid hsl(215 40% 34% / 0.27);
 
-    $s: 0 2px 4px hsla(225, 22%, 30%, 0.16);
+    border-bottom-color: hsl(215 40% 34% / 0.30);
+
+    $s: 0 2px 3px hsla(225, 22%, 30%, 0.09);
     box-shadow: $s;
 
     &:first-of-type {

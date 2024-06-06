@@ -38,7 +38,7 @@ const RightSection = () => {
                             <div id="tab-headers-container">
                                 <div className="button tab-header selected">
                                     <img src={saveIcon} id="prompt-templates-button-tab-icon"/>
-                                    Prompts templates
+                                    Prompt templates
                                 </div>
                                 <div className="button tab-header">
                                     <img src={settingsIcon} id="settings-tab-icon"/>
@@ -81,12 +81,16 @@ const RightSection = () => {
                         </div>
                     </div>
 
-                    <div id="prompt-templates-buttons-list">
+                    <div id="prompt-templates-buttons-list-container">
 
-                        <div id="add-new-prompt-templates-button-section"><AddElementButton text={"Create new prompt template"} type={"prompt-templates"}/></div>
+                        <div id="add-new-prompt-templates-button-section">
+                            <AddElementButton text={"New prompt template category"} type={"prompt-templates"}/>
+                        </div>
 
-                        <SavedPromptCategory categoryName="The Naked Truth" prompts={prompts} />
-                        <SavedPromptCategory categoryName="General" prompts={prompts} />
+                        <div id={"prompt-templates-buttons-list"}>
+                            <SavedPromptCategory categoryName="The Naked Truth" prompts={prompts}/>
+                            <SavedPromptCategory categoryName="General" prompts={prompts}/>
+                        </div>
 
                     </div>
                 </section>
